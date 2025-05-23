@@ -1,3 +1,10 @@
-body {
-  margin: 0;
+@use 'modern-normalize/modern-normalize.css';
+@use './styles/base/null';
+
+:root {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  font-synthesis: none;
 }

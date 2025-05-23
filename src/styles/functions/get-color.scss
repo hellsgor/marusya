@@ -1,0 +1,36 @@
+@use '../custom/colors' as colors;
+@use 'sass:map';
+@use 'sass:meta';
+
+/// Функция get-color:
+/// Поддерживает прямые цвета и вложенные состояния
+/// @param $group Название группы ($colors[$group])
+/// @param $name  Ключ внутри группы ($colors[$group][$name])
+/// @param $state Состояние (если значение - карта состояний)
+@function getColor($group, $name, $state: static) {
+  // Получаем карту группы
+  $group-map: map.get(colors.$colors, $group);
+  @if not $group-map {
+    @error "Группа '#{$group}' не найдена в палитре colors.$colors.";
+  }
+
+  // Извлекаем элемент по ключу $name
+  $item: map.get($group-map, $name);
+  @if not $item {
+    @error "Ключ '#{$name}' не найден в группе '#{$group}'.";
+  }
+
+  // Если значение - не карта (single value), возвращаем его напрямую
+  @if meta.type-of($item) != 'map' {
+    @return $item;
+  }
+
+  // Иначе ожидаем карту состояний: выбираем по $state
+  $value: map.get($item, $state);
+  @if not $value {
+    @error "Состояние '#{$state}' не найдено для цвета '#{$name}' в группе '#{$group}'.";
+  }
+
+  // Возвращаем найденное состояние цвета
+  @return $value;
+}

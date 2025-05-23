@@ -1,5 +1,5 @@
-@use '../../../styles/functions/get-color' as colorFn;
-@use '../../../styles/mixins/transition' as tr;
+@use '../../styles/functions/get-color' as colorFn;
+@use '../../styles/mixins/transition' as tr;
 
 .button {
   cursor: pointer;

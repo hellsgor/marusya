@@ -1,0 +1,22 @@
+.header {
+  padding: 24px 0;
+
+  &__wrapper {
+    display: flex;
+    column-gap: 80px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__menu {
+    display: flex;
+    column-gap: 40px;
+  }
+
+  &__center {
+    display: flex;
+    flex: 1 1 auto;
+    column-gap: 40px;
+    align-items: center;
+  }
+}

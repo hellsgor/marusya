@@ -6,6 +6,7 @@ import {
   type ReactNode,
   memo,
 } from 'react';
+import { NavLink } from 'react-router';
 
 type ButtonVariantsType = 'primary' | 'secondary' | 'ghost';
 
@@ -45,13 +46,13 @@ export const Button = memo(function Button({
 
   if (href) {
     return (
-      <a
+      <NavLink
         className={classes}
-        href={href}
+        to={href}
         {...(restProps as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {children}
-      </a>
+      </NavLink>
     );
   }
 

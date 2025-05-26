@@ -17,7 +17,7 @@ export function AppRotes() {
         <Route
           key={route.path}
           path={route.path}
-          element={<MainLayout title={route.title}></MainLayout>}
+          element={<MainLayout title={route.title}>{route.element}</MainLayout>}
         />
       ))}
     </Routes>

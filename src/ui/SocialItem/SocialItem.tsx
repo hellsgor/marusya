@@ -1,5 +1,6 @@
 import type { ComponentType, SVGProps } from 'react';
 import st from './SocialItem.module.scss';
+import { Link } from 'react-router';
 
 interface SocialItemProps {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
@@ -8,8 +9,8 @@ interface SocialItemProps {
 
 export function SocialItem({ icon: Icon, href }: SocialItemProps) {
   return (
-    <a className={st.socialItem} href={href}>
+    <Link className={st.socialItem} to={href} target={'_blank'}>
       <Icon />
-    </a>
+    </Link>
   );
 }

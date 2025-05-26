@@ -1,15 +1,15 @@
 import './App.scss';
 
 import { BrowserRouter } from 'react-router';
-import { PublicLayout } from './layouts/PublicLayout/PublicLayout';
+import { MainLayout } from './layouts/MainLayout/MainLayout';
 import { AppRotes } from './router/routes';
 
 function App() {
   return (
     <BrowserRouter>
-      <PublicLayout>
+      <MainLayout>
         <AppRotes />
-      </PublicLayout>
+      </MainLayout>
     </BrowserRouter>
   );
 }

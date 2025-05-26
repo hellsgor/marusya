@@ -1,10 +1,10 @@
-import st from './PublicLayout.module.scss';
+import st from './MainLayout.module.scss';
 
 import type { ReactNode } from 'react';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 
-export function PublicLayout({ children }: { children?: ReactNode }) {
+export function MainLayout({ children }: { children?: ReactNode }) {
   return (
     <>
       <Header />

@@ -1,6 +1,7 @@
 import st from './MenuItem.module.scss';
 import clsx from 'clsx';
 import type { MenuItemModel } from '../../models';
+import { NavLink } from 'react-router';
 
 type MenuItemProps = MenuItemModel;
 
@@ -12,12 +13,12 @@ export function MenuItem({
 }: MenuItemProps) {
   if (href?.length) {
     return (
-      <a
-        href={href}
+      <NavLink
+        to={href}
         className={clsx(st.menuItem, isActive ? st.menuItem_active : null)}
       >
         {children}
-      </a>
+      </NavLink>
     );
   }
 

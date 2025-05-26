@@ -1,0 +1,38 @@
+@use '../../styles/functions/get-color' as colorFn;
+
+.logo {
+  display: flex;
+  column-gap: 4.98%;
+  justify-content: flex-end;
+
+  aspect-ratio: calc(251 / 56);
+  width: auto;
+  height: 56px;
+
+  &__image {
+    align-self: center;
+    width: auto;
+    height: 100%;
+  }
+
+  &__text {
+    position: relative;
+    top: 26.79%;
+
+    aspect-ratio: calc(174.074 / 36.75);
+    width: auto;
+    height: 65.6%;
+  }
+
+  &_dark {
+    .logo__text {
+      color: colorFn.getColor(content, 'black');
+    }
+  }
+
+  &_light {
+    .logo__text {
+      color: colorFn.getColor(content, primary);
+    }
+  }
+}

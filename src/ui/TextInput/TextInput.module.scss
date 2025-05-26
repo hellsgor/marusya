@@ -1,0 +1,145 @@
+@use '../../styles/functions/get-color' as colorFn;
+@use '../../styles/mixins/transition.scss' as tr;
+
+@mixin active($color) {
+  border-color: $color;
+
+  & + .icon {
+    color: $color;
+    opacity: 1;
+  }
+}
+
+@mixin notEmpty($color, $opacity) {
+  &:not(:placeholder-shown) {
+    & + .icon {
+      color: $color;
+      opacity: $opacity;
+    }
+  }
+}
+
+.textInput {
+  position: relative;
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: 16px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+
+    font-family: Play, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+
+    outline: none;
+
+    @include tr.transition(border-color);
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    translate: 0 -50%;
+
+    width: 24px;
+    height: 24px;
+
+    @include tr.transition(opacity, color);
+  }
+
+  &:has(.icon) {
+    input {
+      padding-left: 52px;
+    }
+  }
+
+  &_dark {
+    input {
+      border-color: colorFn.getColor(bg, secondary, static);
+      color: colorFn.getColor(content, primary);
+      background-color: colorFn.getColor(bg, secondary, static);
+
+      &::placeholder {
+        color: colorFn.getColor(content, disabled);
+      }
+
+      @include notEmpty(colorFn.getColor(content, primary), 0.8);
+
+      &:focus {
+        @include active(colorFn.getColor(accent, active));
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          @include active(colorFn.getColor(accent, active));
+        }
+      }
+    }
+
+    .icon {
+      color: colorFn.getColor(content, primary);
+      opacity: 0.5;
+    }
+  }
+
+  &_light {
+    input {
+      border-color: colorFn.getColor(content, placeholder);
+      color: colorFn.getColor(content, 'black');
+      background-color: colorFn.getColor(base, 'white');
+
+      &::placeholder {
+        color: colorFn.getColor(content, placeholder);
+      }
+
+      @include notEmpty(colorFn.getColor(content, 'black'), 0.4);
+
+      &:focus {
+        @include active(colorFn.getColor(accent, active));
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          @include active(colorFn.getColor(accent, active));
+        }
+      }
+    }
+
+    .icon {
+      color: colorFn.getColor(content, 'black');
+      opacity: 0.4;
+    }
+  }
+
+  & > p {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 16px;
+
+    color: colorFn.getColor(accent, error);
+
+    opacity: 0;
+
+    @include tr.transition(opacity);
+  }
+
+  &.error {
+    input {
+      border-color: colorFn.getColor(accent, error);
+    }
+
+    div.icon {
+      color: colorFn.getColor(accent, error);
+      opacity: 1;
+    }
+
+    p {
+      opacity: 1;
+    }
+  }
+}

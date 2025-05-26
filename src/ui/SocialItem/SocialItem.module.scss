@@ -1,0 +1,30 @@
+@use '../../styles/functions/get-color' as colorFn;
+@use '../../styles/mixins/transition' as tr;
+
+.socialItem {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  border: 1px solid colorFn.getColor(content, thirdly);
+  border-radius: 8px;
+
+  color: colorFn.getColor(content, thirdly);
+
+  @include tr.transition(color, border-color);
+
+  svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: colorFn.getColor(accent, active);
+      color: colorFn.getColor(accent, active);
+    }
+  }
+}

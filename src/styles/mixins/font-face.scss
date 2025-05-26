@@ -1,0 +1,14 @@
+@mixin font-face($family, $woff2, $woff, $weight, $local: null) {
+  @font-face {
+    font-family: $family;
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+
+    @if $local {
+      src: local($local), url('/fonts/#{woff2}'), url('/fonts/#{$woff}');
+    } @else {
+      src: url('/fonts/#{$woff2}'), url('/fonts/#{$woff}');
+    }
+  }
+}

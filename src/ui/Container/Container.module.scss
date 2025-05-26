@@ -1,0 +1,16 @@
+@use '../../styles/mixins/media-bp' as media;
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+
+  @include media.bp(xl) {
+    padding: 0 40px;
+  }
+
+  @include media.bp(sm) {
+    padding: 0 20px;
+  }
+}

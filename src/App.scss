@@ -1,3 +1,11 @@
+@use './styles/functions/get-color' as colorFn;
+
 #root {
+  display: flex;
+  flex-direction: column;
+
   width: 100vw;
+  height: 100vh;
+
+  background-image: colorFn.getColor(bg, gr1), colorFn.getColor(bg, gr2);
 }

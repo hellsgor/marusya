@@ -13,12 +13,12 @@ body {
   font-weight: 700;
 
   &_1 {
-    font-size: clamp(1.5rem, 0.818rem + 2.909vi, 3rem);
-    line-height: clamp(2rem, 1.318rem + 2.909vi, 3.5rem);
+    font-size: clamp(1.5rem, -1.167rem + 5.556vi, 3rem);
+    line-height: clamp(2rem, -0.667rem + 5.556vi, 3.5rem);
   }
 
   &_2 {
-    font-size: clamp(1.125rem, 0.273rem + 3.636vi, 3rem);
-    line-height: clamp(2rem, 1.545rem + 1.939vi, 3rem);
+    font-size: clamp(1.5rem, -0.278rem + 3.704vi, 2.5rem);
+    line-height: clamp(2rem, 0.222rem + 3.704vi, 3rem);
   }
 }

@@ -1,0 +1,24 @@
+@use '../functions/get-color' as colorFn;
+
+body {
+  font-family: Play, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.333;
+  color: colorFn.getColor(content, primary);
+}
+
+.heading {
+  font-weight: 700;
+
+  &_1 {
+    font-size: clamp(1.5rem, 0.818rem + 2.909vi, 3rem);
+    line-height: clamp(2rem, 1.318rem + 2.909vi, 3.5rem);
+  }
+
+  &_2 {
+    font-size: clamp(1.125rem, 0.273rem + 3.636vi, 3rem);
+    line-height: clamp(2rem, 1.545rem + 1.939vi, 3rem);
+  }
+}

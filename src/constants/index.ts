@@ -1,4 +1,4 @@
-export { MAIN_MENU_ITEMS } from './main-menu-items';
-export { FOOTER_SOCIAL } from './footer-social';
-export { APP_NAME } from './app-name';
-export { BASE_URL } from './base-url';
+export { MAIN_MENU_ITEMS } from './mainMenuItems';
+export { FOOTER_SOCIAL } from './footerSocial';
+export { APP_NAME } from './appName';
+export { BASE_URL } from './baseUrl';

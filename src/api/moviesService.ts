@@ -1,5 +1,5 @@
 import { MovieSchema, MoviesSchema } from '../models/Movie';
-import { apiClient } from './api-client';
+import { apiClient } from './apiClient';
 
 export const moviesService = {
   getTop10: async () => {

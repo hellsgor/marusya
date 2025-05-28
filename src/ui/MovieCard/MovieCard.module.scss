@@ -1,5 +1,5 @@
-@use '../../styles/functions/get-color' as colorFn;
-@use '../../styles/mixins/media-bp' as bp;
+@use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/mediaBp' as bp;
 
 .movieCard {
   position: relative;

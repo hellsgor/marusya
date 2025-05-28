@@ -2,7 +2,7 @@
 @use 'sass:map';
 @use 'sass:meta';
 
-/// Функция get-color:
+/// Функция getColor:
 /// Поддерживает прямые цвета и вложенные состояния
 /// @param $group Название группы ($colors[$group])
 /// @param $name  Ключ внутри группы ($colors[$group][$name])

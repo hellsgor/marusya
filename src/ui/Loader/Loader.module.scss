@@ -1,0 +1,62 @@
+@use '../../styles/functions/get-color' as colorFn;
+
+.loader {
+  display: grid;
+  aspect-ratio: 1/1;
+  margin: auto;
+  animation: s4 4s infinite;
+
+  &::before,
+  &::after {
+    content: '';
+
+    grid-area: 1/1;
+
+    border-color: colorFn.getColor(accent, secondary)
+      colorFn.getColor(accent, secondary) transparent transparent;
+    border-style: solid;
+    border-radius: 50%;
+
+    mix-blend-mode: darken;
+
+    animation: s4 1s infinite linear;
+  }
+
+  &::after {
+    border-color: transparent transparent colorFn.getColor(accent, primary)
+      colorFn.getColor(accent, primary);
+    animation-direction: reverse;
+  }
+
+  &_big {
+    width: 100px;
+
+    &::before,
+    &::after {
+      border-width: 4px;
+    }
+  }
+
+  &_medium {
+    width: 50px;
+
+    &::before,
+    &::after {
+      border-width: 2px;
+    }
+  }
+
+  &_small {
+    width: 24px;
+    &::before,
+    &::after {
+      border-width: 1px;
+    }
+  }
+}
+
+@keyframes s4 {
+  100% {
+    transform: rotate(1turn);
+  }
+}

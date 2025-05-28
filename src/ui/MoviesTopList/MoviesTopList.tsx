@@ -4,6 +4,7 @@ import { moviesService } from '../../api/moviesService';
 import type { MoviesModel } from '../../models/Movie';
 import { MovieCard } from '../MovieCard/MovieCard';
 import { Container } from '../Container/Container';
+import { Loader } from '../Loader/Loader';
 
 export function MoviesTopList() {
   const { data, isPending, isError } = useQuery<MoviesModel | undefined>({
@@ -18,7 +19,7 @@ export function MoviesTopList() {
         <div className={st.moviesTopList__wrapper}>
           <h2 className={'heading heading_2'}>Топ 10 фильмов</h2>
 
-          {isPending && <span>Loading...</span>}
+          {isPending && <Loader />}
 
           {isError && (
             <span>Что-то пошло не так. Попробуйте перезагрузить страницу.</span>

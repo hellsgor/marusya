@@ -1,4 +1,4 @@
-@use '../../styles/functions/get-color' as colorFn;
+@use '../../styles/functions/getColor' as colorFn;
 @use '../../styles/mixins/transition.scss' as tr;
 
 @mixin active($color) {

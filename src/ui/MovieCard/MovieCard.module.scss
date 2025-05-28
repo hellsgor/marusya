@@ -1,7 +1,7 @@
 @use '../../styles/functions/get-color' as colorFn;
 @use '../../styles/mixins/media-bp' as bp;
 
-.filmCard {
+.movieCard {
   position: relative;
 
   &__link {

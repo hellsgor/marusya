@@ -1,6 +1,6 @@
 import axios, { AxiosError, type AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../constants';
-import type { z } from 'zod';
+import type { z } from 'zod/v4';
 import { ZodError } from 'zod/v4';
 
 const api = axios.create({

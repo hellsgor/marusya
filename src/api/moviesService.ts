@@ -1,4 +1,4 @@
-import { MoviesSchema } from '../models/Movie';
+import { MovieSchema, MoviesSchema } from '../models/Movie';
 import { apiClient } from './api-client';
 
 export const moviesService = {
@@ -6,6 +6,13 @@ export const moviesService = {
     return apiClient(MoviesSchema, {
       method: 'GET',
       url: '/movie/top10',
+    });
+  },
+
+  getRandom: async () => {
+    return apiClient(MovieSchema, {
+      method: 'GET',
+      url: '/movie/random',
     });
   },
 };

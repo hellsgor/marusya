@@ -1,7 +1,6 @@
 import axios, { AxiosError, type AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../constants';
 import type { z } from 'zod/v4';
-import { ZodError } from 'zod/v4';
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -23,14 +22,31 @@ export async function apiClient<T extends z.ZodType>(
   schema: T,
   config: AxiosRequestConfig,
 ) {
+  let response;
+
   try {
-    const response = await api.request(config);
-    return schema.parse(response.data);
+    response = await api.request(config);
   } catch (e) {
-    if (e instanceof ZodError) {
-      throw new Error(
-        `Validation failed: ${e.issues.map((i) => i.message).join(', ')}`,
-      );
-    }
+    console.error(`API request failed: ${e}`);
+    throw e;
   }
+
+  const result = schema.safeParse(response.data);
+
+  if (!result.success) {
+    const details = result.error.issues
+      .map((i) => `— ${i.path.join('.') || '<root>'}: ${i.message}`)
+      .join('\n');
+
+    console.error(
+      'Response validation failed:',
+      `\n${details}`,
+      '\n',
+      '\nData:\n',
+      response.data,
+    );
+    throw new Error(`Validation failed:\n${details}`);
+  }
+
+  return result.data;
 }

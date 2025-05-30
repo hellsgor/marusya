@@ -15,7 +15,7 @@ export function Home() {
     <>
       <Section>
         <h2 className={'heading heading_2'}>Топ 10 фильмов</h2>
-        <MoviesTopList query={top10Query} />
+        <MoviesTopList query={top10Query} indexes={true} />
       </Section>
     </>
   );

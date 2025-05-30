@@ -6,10 +6,25 @@ import type { MoviesModel } from '../../models/Movie';
 
 interface MoviesTopListProps {
   query: UseQueryResult<MoviesModel | undefined>;
+  indexes?: boolean;
 }
 
-export function MoviesTopList({ query }: MoviesTopListProps) {
-  const { data, isPending, isError } = query;
+export function MoviesTopList({
+  query: { data, isPending, isError },
+  indexes,
+}: MoviesTopListProps) {
+  const movieList = data
+    ? data.map((movie, index) => (
+        <MovieCard
+          key={movie.id}
+          href={`/${movie.id}`}
+          poster={movie.posterUrl || undefined}
+          alt={`${movie.title} poster`}
+          place={indexes ? index + 1 : undefined}
+          className={st.moviesTopList__item}
+        />
+      ))
+    : undefined;
 
   return (
     <div className={st.moviesTopList}>
@@ -19,19 +34,7 @@ export function MoviesTopList({ query }: MoviesTopListProps) {
         <span>Что-то пошло не так. Попробуйте перезагрузить страницу.</span>
       )}
 
-      <div className={st.moviesTopList__list}>
-        {data &&
-          data.map((movie, index) => (
-            <MovieCard
-              key={movie.id}
-              href={`/${movie.id}`}
-              poster={movie.posterUrl || undefined}
-              alt={`${movie.title} poster`}
-              place={index + 1}
-              className={st.moviesTopList__item}
-            />
-          ))}
-      </div>
+      {movieList && <div className={st.moviesTopList__list}>{movieList}</div>}
     </div>
   );
 }

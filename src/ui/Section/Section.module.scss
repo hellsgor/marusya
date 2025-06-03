@@ -1,7 +1,13 @@
+@use '../../styles/mixins/mediaBp' as media;
+
 .section {
   &__wrapper {
     display: flex;
     flex-direction: column;
     row-gap: 64px;
+
+    @include media.bp(md) {
+      row-gap: 40px;
+    }
   }
 }

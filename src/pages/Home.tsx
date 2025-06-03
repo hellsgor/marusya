@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { MoviesList } from '../ui/MoviesList/MoviesList';
-import type { MoviesModel } from '../models/Movie';
+import type { MovieModel } from '../models/Movie';
 import { moviesService } from '../api/moviesService';
 import { Section } from '../ui/Section/Section';
 
 export function Home() {
-  const top10Query = useQuery<MoviesModel | undefined>({
+  const top10Query = useQuery<MovieModel[] | undefined>({
     queryKey: ['movies', 'top10'],
     queryFn: moviesService.getTop10,
     staleTime: Infinity,

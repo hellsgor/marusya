@@ -20,6 +20,11 @@
     @include media.bp(md) {
       display: flex;
       width: fit-content;
+
+      &:has(div.moviesTopList__slider) {
+        display: block;
+        width: 100%;
+      }
     }
   }
 
@@ -30,4 +35,12 @@
       width: 224px;
     }
   }
+}
+
+div.moviesTopList__slider {
+  overflow: visible;
+}
+
+div.moviesTopList__sliderSlide {
+  width: fit-content;
 }

@@ -15,7 +15,7 @@ export function Home() {
     <>
       <Section>
         <h2 className={'heading heading_2'}>Топ 10 фильмов</h2>
-        <MoviesTopList query={top10Query} indexes={true} />
+        <MoviesTopList query={top10Query} isIndexes={true} isSlider={true} />
       </Section>
     </>
   );

@@ -13,7 +13,7 @@ export function Home() {
 
   return (
     <>
-      <Section>
+      <Section indentsClasses="pt-40 pb-120 pt-md-32 pb-md-32">
         <h2 className={'heading heading_2'}>Топ 10 фильмов</h2>
         <MoviesList query={top10Query} isIndexes={true} isSlider={true} />
       </Section>

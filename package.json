@@ -20,6 +20,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.6.1",
+    "swiper": "^11.2.8",
     "zod": "^3.25.30"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "@tanstack/react-query-devtools": "^5.77.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/swiper": "^5.4.3",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-config-prettier": "^10.1.5",

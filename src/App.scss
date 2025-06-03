@@ -1,6 +1,7 @@
 @use './styles/functions/getColor' as colorFn;
 
 #root {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 

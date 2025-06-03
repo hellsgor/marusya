@@ -1,4 +1,4 @@
-import st from './MoviesTopList.module.scss';
+import st from './MoviesList.module.scss';
 import 'swiper/swiper-bundle.css';
 
 import type { UseQueryResult } from '@tanstack/react-query';
@@ -12,17 +12,17 @@ import { Loader } from '../Loader/Loader';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
 
-interface MoviesTopListProps {
+interface MoviesListProps {
   query: UseQueryResult<MoviesModel | undefined>;
   isIndexes?: boolean;
   isSlider?: boolean;
 }
 
-export function MoviesTopList({
+export function MoviesList({
   query: { data, isPending, isError },
   isIndexes,
   isSlider,
-}: MoviesTopListProps) {
+}: MoviesListProps) {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const cards = data
@@ -33,7 +33,7 @@ export function MoviesTopList({
           poster={movie.posterUrl || undefined}
           alt={`${movie.title} poster`}
           place={isIndexes ? index + 1 : undefined}
-          className={st.moviesTopList__item}
+          className={st.moviesList__item}
         />
       ))
     : undefined;
@@ -47,8 +47,8 @@ export function MoviesTopList({
   }
 
   return (
-    <div className={st.moviesTopList}>
-      <div className={st.moviesTopList__list}>
+    <div className={st.moviesList}>
+      <div className={st.moviesList__list}>
         {isMobile && isSlider ? (
           <Swiper
             spaceBetween={40}
@@ -56,12 +56,12 @@ export function MoviesTopList({
             grabCursor={true}
             freeMode={true}
             modules={[FreeMode]}
-            className={st.moviesTopList__slider}
+            className={st.moviesList__slider}
           >
             {cards.map((card, idx) => (
               <SwiperSlide
                 key={data![idx].id}
-                className={st.moviesTopList__sliderSlide}
+                className={st.moviesList__sliderSlide}
               >
                 {card}
               </SwiperSlide>

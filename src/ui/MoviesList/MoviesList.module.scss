@@ -1,6 +1,6 @@
 @use '../../styles/mixins/mediaBp' as media;
 
-.moviesTopList {
+.moviesList {
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
       display: flex;
       width: fit-content;
 
-      &:has(div.moviesTopList__slider) {
+      &:has(div.moviesList__slider) {
         display: block;
         width: 100%;
       }
@@ -37,10 +37,10 @@
   }
 }
 
-div.moviesTopList__slider {
+div.moviesList__slider {
   overflow: visible;
 }
 
-div.moviesTopList__sliderSlide {
+div.moviesList__sliderSlide {
   width: fit-content;
 }

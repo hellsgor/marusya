@@ -1,4 +1,4 @@
-import { getErrorText } from '../../helpers/getErrorText';
+import { getErrorText } from '../../helpers';
 
 type ErrorKey = Parameters<typeof getErrorText>[0];
 

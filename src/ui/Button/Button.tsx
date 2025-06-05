@@ -14,6 +14,7 @@ interface CommonProps {
   children: ReactNode;
   variant?: ButtonVariantsType;
   wide?: boolean;
+  smallPaddings?: boolean;
   className?: string;
 }
 
@@ -33,6 +34,7 @@ export const Button = memo(function Button({
   children,
   variant = 'primary',
   wide = false,
+  smallPaddings = false,
   className,
   href,
   ...restProps
@@ -41,6 +43,7 @@ export const Button = memo(function Button({
     st.button,
     st[`button_${variant}`],
     wide && st.button_wide,
+    smallPaddings && st.button_smallPaddings,
     className,
   );
 

@@ -11,6 +11,7 @@ import { Loader } from '../Loader/Loader';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
+import { ErrorText } from '../ErrorText/ErrorText';
 
 interface MoviesListProps {
   query: UseQueryResult<MoviesModel | undefined>;
@@ -43,7 +44,7 @@ export function MoviesList({
   }
 
   if (!cards || !cards.length || isError) {
-    return <span>Что-то пошло не так. Попробуйте перезагрузить страницу.</span>;
+    return <ErrorText errorKey={'e001'} />;
   }
 
   return (

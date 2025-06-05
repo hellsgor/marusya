@@ -7,6 +7,7 @@ import Poster from '../Poster/Poster';
 import { Heart, Refresh } from '../../ui/icons';
 import { queryClient } from '../../api/queryClient';
 import clsx from 'clsx';
+import { ErrorText } from '../ErrorText/ErrorText';
 
 type MovieDetailType = Pick<
   MovieModel,
@@ -38,7 +39,7 @@ export function MovieDetail({
   }
 
   if (!data || isError) {
-    return <span>Что-то пошло не так. Попробуйте перезагрузить страницу.</span>;
+    return <ErrorText errorKey={'e001'} />;
   }
 
   const {
@@ -56,8 +57,6 @@ export function MovieDetail({
 
   return (
     <div className={st.movieDetail}>
-      {isFetching && <Loader />}
-
       <div className={st.movieDetail__details}>
         <div className={st.movieDetail__info}>
           <div className={st.movieDetail__detailsItems}>

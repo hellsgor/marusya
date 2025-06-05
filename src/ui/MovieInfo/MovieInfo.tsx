@@ -1,10 +1,11 @@
 import st from './MovieInfo.module.scss';
 import clsx from 'clsx';
+
 import type { MovieModel } from '../../models/Movie';
-import {
-  MovieDetails,
-  type MovieDetailsProps,
-} from '../MovieDetails/MovieDetails';
+import type { MovieDetailsProps } from '../MovieDetails/MovieDetails';
+
+import { MovieDetails } from '../MovieDetails/MovieDetails';
+import { ExpandableText } from '../ExpandableText/ExpandableText';
 
 export type MovieInfoProps = {
   data: Pick<MovieModel, 'title' | 'plot'> & MovieDetailsProps;
@@ -21,10 +22,14 @@ export function MovieInfo({
         runtime={runtime}
         tmdbRating={tmdbRating}
       />
+
       <h1 className={clsx('heading heading_1', st.movieInfo__title)}>
         {title}
       </h1>
-      <p className={st.movieInfo__plot}>{plot}</p>
+
+      <div className={st.movieInfo__plot}>
+        <ExpandableText maxHeight={140}>{plot}</ExpandableText>
+      </div>
     </div>
   );
 }

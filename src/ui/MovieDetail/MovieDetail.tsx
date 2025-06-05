@@ -4,7 +4,7 @@ import type { MovieModel } from '../../models/Movie';
 import type { MovieActionsProps } from '../MovieActions/MovieActions';
 import type { MovieInfoProps } from '../MovieInfo/MovieInfo';
 
-import Poster from '../Poster/Poster';
+import { Poster } from '../Poster/Poster';
 import { MovieInfo } from '../MovieInfo/MovieInfo';
 import { MovieActions } from '../MovieActions/MovieActions';
 

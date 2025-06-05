@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { Button } from '../Button/Button';
 import Poster from '../Poster/Poster';
 import { Heart, Refresh } from '../../ui/icons';
+import { formatRuntime } from '../../helpers';
 
 type MovieDetailType = Pick<
   MovieModel,
@@ -30,8 +31,6 @@ export function MovieDetail({
   onRefresh,
   url,
 }: MovieDetailProps) {
-  const runtimeStr = `${Math.trunc(runtime / 60) > 0 ? Math.trunc(runtime / 60) + ' ч ' : ''}${runtime % 60} мин`;
-
   return (
     <div className={st.movieDetail}>
       <div className={st.movieDetail__details}>
@@ -42,7 +41,7 @@ export function MovieDetail({
             {genres.map((genre, idx) => (
               <span key={idx}>{genre}</span>
             ))}
-            <span>{runtimeStr}</span>
+            <span>{formatRuntime(runtime)}</span>
           </div>
           <h1 className={clsx('heading heading_1', st.movieDetail__title)}>
             {title}

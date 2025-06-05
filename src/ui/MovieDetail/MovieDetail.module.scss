@@ -26,22 +26,6 @@
     border-radius: 16px;
   }
 
-  &__info {
-    display: flex;
-    flex-direction: column;
-    row-gap: 16px;
-  }
-
-  &__title {
-    text-wrap: balance;
-  }
-
-  &__plot {
-    font-size: 24px;
-    color: colorFn.getColor(content, secondary);
-    text-wrap: balance;
-  }
-
   &__actions {
     display: flex;
     column-gap: 16px;

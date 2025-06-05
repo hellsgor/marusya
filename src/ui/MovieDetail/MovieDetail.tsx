@@ -2,12 +2,10 @@ import st from './MovieDetail.module.scss';
 
 import type { MovieModel } from '../../models/Movie';
 
-import clsx from 'clsx';
-
 import { Button } from '../Button/Button';
 import Poster from '../Poster/Poster';
 import { Heart, Refresh } from '../../ui/icons';
-import { MovieDetails } from '../MovieDetails/MovieDetails';
+import { MovieInfo } from '../MovieInfo/MovieInfo';
 
 type MovieDetailType = Pick<
   MovieModel,
@@ -34,18 +32,9 @@ export function MovieDetail({
   return (
     <div className={st.movieDetail}>
       <div className={st.movieDetail__wrapper}>
-        <div className={st.movieDetail__info}>
-          <MovieDetails
-            releaseYear={releaseYear}
-            genres={genres}
-            runtime={runtime}
-            tmdbRating={tmdbRating}
-          />
-          <h1 className={clsx('heading heading_1', st.movieDetail__title)}>
-            {title}
-          </h1>
-          <p className={st.movieDetail__plot}>{plot}</p>
-        </div>
+        <MovieInfo
+          data={{ title, plot, tmdbRating, releaseYear, genres, runtime }}
+        />
 
         <div className={st.movieDetail__actions}>
           <Button type="button">Трейлер</Button>

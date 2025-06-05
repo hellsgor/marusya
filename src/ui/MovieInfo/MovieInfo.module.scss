@@ -1,0 +1,17 @@
+@use '../../styles/functions/getColor' as colorFn;
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  &__title {
+    text-wrap: balance;
+  }
+
+  &__plot {
+    font-size: 24px;
+    color: colorFn.getColor(content, secondary);
+    text-wrap: balance;
+  }
+}

@@ -1,6 +1,7 @@
 import st from './MovieDetails.module.scss';
 import type { MovieModel } from '../../models/Movie';
 import { formatRuntime } from '../../helpers';
+import { Rating } from '../Rating/Rating';
 
 export type MovieDetailsProps = Pick<
   MovieModel,
@@ -15,7 +16,7 @@ export function MovieDetails({
 }: MovieDetailsProps) {
   return (
     <div className={st.movieDetails}>
-      <span>{tmdbRating}</span>
+      <Rating rate={tmdbRating} />
       <span>{releaseYear}</span>
       {genres.map((genre, idx) => (
         <span key={idx}>{genre}</span>

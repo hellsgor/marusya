@@ -3,6 +3,7 @@
 .movieDetails {
   display: flex;
   column-gap: 16px;
+  align-items: last baseline;
 
   & > span {
     color: colorFn.getColor(content, secondary);

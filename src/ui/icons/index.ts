@@ -6,4 +6,5 @@ export { ReactComponent as TelegramIcon } from '../icons/telegram.svg';
 export { ReactComponent as VkIcon } from '../icons/vk.svg';
 export { ReactComponent as YouTubeIcon } from '../icons/youtube.svg';
 export { ReactComponent as Heart } from '../icons/heart.svg';
-export { ReactComponent as Refresh } from '../icons/Refresh.svg';
+export { ReactComponent as Refresh } from '../icons/refresh.svg';
+export { ReactComponent as Star } from '../icons/star.svg';

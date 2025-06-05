@@ -33,7 +33,7 @@ export function MovieDetail({
   if (isFetching) {
     return (
       <div className={clsx(st.movieDetail, st.movieDetail_withLoader)}>
-        <Loader />
+        <Loader size="big" />
       </div>
     );
   }

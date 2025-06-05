@@ -1,11 +1,11 @@
 import st from './MovieDetail.module.scss';
 
 import type { MovieModel } from '../../models/Movie';
+import type { MovieActionsProps } from '../MovieActions/MovieActions';
 
-import { Button } from '../Button/Button';
 import Poster from '../Poster/Poster';
-import { Heart, Refresh } from '../../ui/icons';
 import { MovieInfo } from '../MovieInfo/MovieInfo';
+import { MovieActions } from '../MovieActions/MovieActions';
 
 type MovieDetailType = Pick<
   MovieModel,
@@ -18,10 +18,8 @@ type MovieDetailType = Pick<
   | 'runtime'
 >;
 
-interface MovieDetailProps {
+interface MovieDetailProps extends MovieActionsProps {
   data: MovieDetailType;
-  onRefresh?: () => void;
-  url?: string;
 }
 
 export function MovieDetail({
@@ -36,27 +34,7 @@ export function MovieDetail({
           data={{ title, plot, tmdbRating, releaseYear, genres, runtime }}
         />
 
-        <div className={st.movieDetail__actions}>
-          <Button type="button">Трейлер</Button>
-          {url && (
-            <Button href={url} variant="secondary">
-              О фильме
-            </Button>
-          )}
-          <Button type="button" variant="secondary" smallPaddings={true}>
-            <Heart />
-          </Button>
-          {onRefresh && (
-            <Button
-              type="button"
-              variant="secondary"
-              smallPaddings={true}
-              onClick={onRefresh}
-            >
-              <Refresh />
-            </Button>
-          )}
-        </div>
+        <MovieActions url={url} onRefresh={onRefresh} />
       </div>
 
       <div className={st.movieDetail__poster}>

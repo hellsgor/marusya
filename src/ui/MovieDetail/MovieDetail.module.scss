@@ -25,15 +25,4 @@
     height: var(--random-min-heigh);
     border-radius: 16px;
   }
-
-  &__actions {
-    display: flex;
-    column-gap: 16px;
-    padding-bottom: 122px;
-  }
-
-  &_withLoader {
-    align-items: center;
-    justify-content: center;
-  }
 }

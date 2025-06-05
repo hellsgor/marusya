@@ -1,0 +1,63 @@
+@use '../../styles/functions/getColor' as colorFn;
+
+.movieDetail {
+  $minHeight: 552px;
+
+  display: flex;
+  column-gap: 36px;
+  min-height: $minHeight;
+
+  &__poster,
+  &__details {
+    flex: 1 50%;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+    padding-top: 74px;
+  }
+
+  &__poster {
+    overflow: hidden;
+    height: $minHeight;
+    border-radius: 16px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+  }
+
+  &__detailsItems {
+    display: flex;
+    column-gap: 16px;
+
+    & > span {
+      color: colorFn.getColor(content, secondary);
+    }
+  }
+
+  &__title {
+    text-wrap: balance;
+  }
+
+  &__plot {
+    font-size: 24px;
+    color: colorFn.getColor(content, secondary);
+    text-wrap: balance;
+  }
+
+  &__actions {
+    display: flex;
+    column-gap: 16px;
+    padding-bottom: 122px;
+  }
+
+  &_withLoader {
+    align-items: center;
+    justify-content: center;
+  }
+}

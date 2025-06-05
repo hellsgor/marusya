@@ -3,8 +3,17 @@ import { MoviesList } from '../ui/MoviesList/MoviesList';
 import type { MovieModel } from '../models/Movie';
 import { moviesService } from '../api/moviesService';
 import { Section } from '../ui/Section/Section';
+import { MovieDetail } from '../ui/MovieDetail/MovieDetail';
 
 export function Home() {
+  const randomQuery = useQuery<MovieModel | undefined>({
+    queryKey: ['movies', 'random'],
+    queryFn: moviesService.getRandom,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    refetchOnMount: false,
+  });
+
   const top10Query = useQuery<MovieModel[] | undefined>({
     queryKey: ['movies', 'top10'],
     queryFn: moviesService.getTop10,
@@ -13,6 +22,10 @@ export function Home() {
 
   return (
     <>
+      <Section indentsClasses="pt-56 pt-md-0">
+        <MovieDetail query={randomQuery} isRefreshable={true} />
+      </Section>
+
       <Section indentsClasses="pt-40 pb-120 pt-md-32 pb-md-32">
         <h2 className={'heading heading_2'}>Топ 10 фильмов</h2>
         <MoviesList query={top10Query} isIndexes={true} isSlider={true} />

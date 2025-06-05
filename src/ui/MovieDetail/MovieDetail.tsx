@@ -1,54 +1,35 @@
 import st from './MovieDetail.module.scss';
-import { Loader } from '../Loader/Loader';
+
+import type { MovieModel } from '../../models/Movie';
+
+import clsx from 'clsx';
+
 import { Button } from '../Button/Button';
 import Poster from '../Poster/Poster';
 import { Heart, Refresh } from '../../ui/icons';
-import clsx from 'clsx';
-import { ErrorText } from '../ErrorText/ErrorText';
-import { useRandomMovie } from '../../hooks/useRandomMovie';
 
-// type MovieDetailType = Pick<
-//   MovieModel,
-//   | 'id'
-//   | 'title'
-//   | 'backdropUrl'
-//   | 'plot'
-//   | 'tmdbRating'
-//   | 'releaseYear'
-//   | 'genres'
-//   | 'runtime'
-// >;
+type MovieDetailType = Pick<
+  MovieModel,
+  | 'title'
+  | 'backdropUrl'
+  | 'plot'
+  | 'tmdbRating'
+  | 'releaseYear'
+  | 'genres'
+  | 'runtime'
+>;
 
 interface MovieDetailProps {
-  isRefreshable?: boolean;
+  data: MovieDetailType;
+  onRefresh?: () => void;
+  url?: string;
 }
 
-export function MovieDetail({ isRefreshable = false }: MovieDetailProps) {
-  const { data, isFetching, isError, refresh } = useRandomMovie();
-
-  if (isFetching) {
-    return (
-      <div className={clsx(st.movieDetail, st.movieDetail_withLoader)}>
-        <Loader size="big" />
-      </div>
-    );
-  }
-
-  if (!data || isError) {
-    return <ErrorText errorKey={'e001'} />;
-  }
-
-  const {
-    id,
-    title,
-    backdropUrl,
-    plot,
-    tmdbRating,
-    releaseYear,
-    genres,
-    runtime,
-  } = data;
-
+export function MovieDetail({
+  data: { title, backdropUrl, plot, tmdbRating, releaseYear, genres, runtime },
+  onRefresh,
+  url,
+}: MovieDetailProps) {
   const runtimeStr = `${Math.trunc(runtime / 60) > 0 ? Math.trunc(runtime / 60) + ' ч ' : ''}${runtime % 60} мин`;
 
   return (
@@ -71,18 +52,20 @@ export function MovieDetail({ isRefreshable = false }: MovieDetailProps) {
 
         <div className={st.movieDetail__actions}>
           <Button type="button">Трейлер</Button>
-          <Button href={`/movies/${id}`} variant="secondary">
-            О фильме
-          </Button>
+          {url && (
+            <Button href={url} variant="secondary">
+              О фильме
+            </Button>
+          )}
           <Button type="button" variant="secondary" smallPaddings={true}>
             <Heart />
           </Button>
-          {isRefreshable && (
+          {onRefresh && (
             <Button
               type="button"
               variant="secondary"
               smallPaddings={true}
-              onClick={refresh}
+              onClick={onRefresh}
             >
               <Refresh />
             </Button>

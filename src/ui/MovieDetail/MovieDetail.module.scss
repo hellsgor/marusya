@@ -1,11 +1,12 @@
 @use '../../styles/functions/getColor' as colorFn;
 
-.movieDetail {
-  $minHeight: 552px;
+:root {
+  --random-min-heigh: 552px;
+}
 
+.movieDetail {
   display: flex;
   column-gap: 36px;
-  min-height: $minHeight;
 
   &__poster,
   &__details {
@@ -21,7 +22,7 @@
 
   &__poster {
     overflow: hidden;
-    height: $minHeight;
+    height: var(--random-min-heigh);
     border-radius: 16px;
   }
 

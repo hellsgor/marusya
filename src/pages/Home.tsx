@@ -3,7 +3,7 @@ import { MoviesList } from '../ui/MoviesList/MoviesList';
 import type { MovieModel } from '../models/Movie';
 import { moviesService } from '../api/moviesService';
 import { Section } from '../ui/Section/Section';
-import { MovieDetail } from '../ui/MovieDetail/MovieDetail';
+import { RandomMovie } from '../components/RandomMovie/RandomMovie';
 
 export function Home() {
   const top10Query = useQuery<MovieModel[] | undefined>({
@@ -15,7 +15,7 @@ export function Home() {
   return (
     <>
       <Section indentsClasses="pt-56 pt-md-0">
-        <MovieDetail isRefreshable={true} />
+        <RandomMovie />
       </Section>
 
       <Section indentsClasses="pt-40 pb-120 pt-md-32 pb-md-32">

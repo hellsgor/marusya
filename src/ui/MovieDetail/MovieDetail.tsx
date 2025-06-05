@@ -1,35 +1,31 @@
-import type { UseQueryResult } from '@tanstack/react-query';
-import type { MovieModel } from '../../models/Movie';
 import st from './MovieDetail.module.scss';
 import { Loader } from '../Loader/Loader';
 import { Button } from '../Button/Button';
 import Poster from '../Poster/Poster';
 import { Heart, Refresh } from '../../ui/icons';
-import { queryClient } from '../../api/queryClient';
 import clsx from 'clsx';
 import { ErrorText } from '../ErrorText/ErrorText';
+import { useRandomMovie } from '../../hooks/useRandomMovie';
 
-type MovieDetailType = Pick<
-  MovieModel,
-  | 'id'
-  | 'title'
-  | 'backdropUrl'
-  | 'plot'
-  | 'tmdbRating'
-  | 'releaseYear'
-  | 'genres'
-  | 'runtime'
->;
+// type MovieDetailType = Pick<
+//   MovieModel,
+//   | 'id'
+//   | 'title'
+//   | 'backdropUrl'
+//   | 'plot'
+//   | 'tmdbRating'
+//   | 'releaseYear'
+//   | 'genres'
+//   | 'runtime'
+// >;
 
 interface MovieDetailProps {
-  query: UseQueryResult<MovieDetailType | undefined>;
   isRefreshable?: boolean;
 }
 
-export function MovieDetail({
-  query: { data, isFetching, isError },
-  isRefreshable = false,
-}: MovieDetailProps) {
+export function MovieDetail({ isRefreshable = false }: MovieDetailProps) {
+  const { data, isFetching, isError, refresh } = useRandomMovie();
+
   if (isFetching) {
     return (
       <div className={clsx(st.movieDetail, st.movieDetail_withLoader)}>
@@ -86,11 +82,7 @@ export function MovieDetail({
               type="button"
               variant="secondary"
               smallPaddings={true}
-              onClick={() => {
-                queryClient.invalidateQueries({
-                  queryKey: ['movies', 'random'],
-                });
-              }}
+              onClick={refresh}
             >
               <Refresh />
             </Button>

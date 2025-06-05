@@ -6,14 +6,6 @@ import { Section } from '../ui/Section/Section';
 import { MovieDetail } from '../ui/MovieDetail/MovieDetail';
 
 export function Home() {
-  const randomQuery = useQuery<MovieModel | undefined>({
-    queryKey: ['movies', 'random'],
-    queryFn: moviesService.getRandom,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    refetchOnMount: false,
-  });
-
   const top10Query = useQuery<MovieModel[] | undefined>({
     queryKey: ['movies', 'top10'],
     queryFn: moviesService.getTop10,
@@ -23,7 +15,7 @@ export function Home() {
   return (
     <>
       <Section indentsClasses="pt-56 pt-md-0">
-        <MovieDetail query={randomQuery} isRefreshable={true} />
+        <MovieDetail isRefreshable={true} />
       </Section>
 
       <Section indentsClasses="pt-40 pb-120 pt-md-32 pb-md-32">

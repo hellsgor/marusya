@@ -29,7 +29,7 @@ export function MoviesList({
     ? data.map((movie, index) => (
         <MovieCard
           key={movie.id}
-          href={`/${movie.id}`}
+          href={`/movies/${movie.id}`}
           poster={movie.posterUrl || undefined}
           alt={`${movie.title} poster`}
           place={isIndexes ? index + 1 : undefined}

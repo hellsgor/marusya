@@ -2,7 +2,7 @@ import st from './MovieDetails.module.scss';
 import type { MovieModel } from '../../models/Movie';
 import { formatRuntime } from '../../helpers';
 
-type MovieDetailsProps = Pick<
+export type MovieDetailsProps = Pick<
   MovieModel,
   'tmdbRating' | 'releaseYear' | 'genres' | 'runtime'
 >;

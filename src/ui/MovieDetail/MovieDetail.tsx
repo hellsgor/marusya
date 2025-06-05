@@ -2,21 +2,13 @@ import st from './MovieDetail.module.scss';
 
 import type { MovieModel } from '../../models/Movie';
 import type { MovieActionsProps } from '../MovieActions/MovieActions';
+import type { MovieInfoProps } from '../MovieInfo/MovieInfo';
 
 import Poster from '../Poster/Poster';
 import { MovieInfo } from '../MovieInfo/MovieInfo';
 import { MovieActions } from '../MovieActions/MovieActions';
 
-type MovieDetailType = Pick<
-  MovieModel,
-  | 'title'
-  | 'backdropUrl'
-  | 'plot'
-  | 'tmdbRating'
-  | 'releaseYear'
-  | 'genres'
-  | 'runtime'
->;
+type MovieDetailType = Pick<MovieModel, 'backdropUrl'> & MovieInfoProps['data'];
 
 interface MovieDetailProps extends MovieActionsProps {
   data: MovieDetailType;

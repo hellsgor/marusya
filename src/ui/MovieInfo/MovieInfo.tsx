@@ -1,13 +1,13 @@
 import st from './MovieInfo.module.scss';
 import clsx from 'clsx';
 import type { MovieModel } from '../../models/Movie';
-import { MovieDetails } from '../MovieDetails/MovieDetails';
+import {
+  MovieDetails,
+  type MovieDetailsProps,
+} from '../MovieDetails/MovieDetails';
 
-type MovieInfoProps = {
-  data: Pick<
-    MovieModel,
-    'title' | 'plot' | 'tmdbRating' | 'releaseYear' | 'genres' | 'runtime'
-  >;
+export type MovieInfoProps = {
+  data: Pick<MovieModel, 'title' | 'plot'> & MovieDetailsProps;
 };
 
 export function MovieInfo({

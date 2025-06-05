@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import { Button } from '../Button/Button';
 import Poster from '../Poster/Poster';
 import { Heart, Refresh } from '../../ui/icons';
-import { formatRuntime } from '../../helpers';
+import { MovieDetails } from '../MovieDetails/MovieDetails';
 
 type MovieDetailType = Pick<
   MovieModel,
@@ -33,16 +33,14 @@ export function MovieDetail({
 }: MovieDetailProps) {
   return (
     <div className={st.movieDetail}>
-      <div className={st.movieDetail__details}>
+      <div className={st.movieDetail__wrapper}>
         <div className={st.movieDetail__info}>
-          <div className={st.movieDetail__detailsItems}>
-            <span>{tmdbRating}</span>
-            <span>{releaseYear}</span>
-            {genres.map((genre, idx) => (
-              <span key={idx}>{genre}</span>
-            ))}
-            <span>{formatRuntime(runtime)}</span>
-          </div>
+          <MovieDetails
+            releaseYear={releaseYear}
+            genres={genres}
+            runtime={runtime}
+            tmdbRating={tmdbRating}
+          />
           <h1 className={clsx('heading heading_1', st.movieDetail__title)}>
             {title}
           </h1>

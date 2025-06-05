@@ -9,11 +9,11 @@
   column-gap: 36px;
 
   &__poster,
-  &__details {
+  &__wrapper {
     flex: 1 50%;
   }
 
-  &__details {
+  &__wrapper {
     display: flex;
     flex-direction: column;
     row-gap: 60px;
@@ -30,15 +30,6 @@
     display: flex;
     flex-direction: column;
     row-gap: 16px;
-  }
-
-  &__detailsItems {
-    display: flex;
-    column-gap: 16px;
-
-    & > span {
-      color: colorFn.getColor(content, secondary);
-    }
   }
 
   &__title {

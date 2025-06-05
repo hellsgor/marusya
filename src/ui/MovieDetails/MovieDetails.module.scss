@@ -1,0 +1,10 @@
+@use '../../styles/functions/getColor' as colorFn;
+
+.movieDetails {
+  display: flex;
+  column-gap: 16px;
+
+  & > span {
+    color: colorFn.getColor(content, secondary);
+  }
+}

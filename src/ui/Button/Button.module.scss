@@ -1,5 +1,6 @@
 @use '../../styles/functions/getColor' as colorFn;
 @use '../../styles/mixins/transition' as tr;
+@use '../../styles/mixins/mediaBp' as media;
 
 .button {
   cursor: pointer;
@@ -20,6 +21,11 @@
   line-height: 1.33;
 
   @include tr.transition(color, background-color, border-color);
+
+  @include media.bp(md) {
+    padding-right: 36px;
+    padding-left: 36px;
+  }
 
   &:disabled {
     cursor: not-allowed;
@@ -81,7 +87,7 @@
   }
 
   &_smallPaddings {
-    padding-right: 22px;
-    padding-left: 22px;
+    padding-right: 21px;
+    padding-left: 21px;
   }
 }

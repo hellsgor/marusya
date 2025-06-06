@@ -11,6 +11,17 @@ $spacings: 0, 32, 40, 56, 120, 160;
   }
 }
 
+@include media.bp(lg) {
+  @each $x in $spacings {
+    .pt-lg-#{$x} {
+      padding-top: #{$x}px;
+    }
+    .pb-lg-#{$x} {
+      padding-bottom: #{$x}px;
+    }
+  }
+}
+
 @include media.bp(md) {
   @each $x in $spacings {
     .pt-md-#{$x} {

@@ -14,7 +14,7 @@ export function Home() {
 
   return (
     <>
-      <Section indentsClasses="pt-56 pt-md-0">
+      <Section indentsClasses="pt-56 pb-0 pb-lg-56 pt-md-0 pb-md-0">
         <RandomMovie />
       </Section>
 

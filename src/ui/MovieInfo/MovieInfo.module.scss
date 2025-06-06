@@ -1,4 +1,5 @@
 @use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/mediaBp' as media;
 
 .movieInfo {
   display: flex;
@@ -12,5 +13,13 @@
   &__plot {
     font-size: 24px;
     color: colorFn.getColor(content, secondary);
+
+    @include media.bp(sm) {
+      font-size: 18px;
+    }
+  }
+
+  @include media.bp(sm) {
+    row-gap: 12px;
   }
 }

@@ -1,11 +1,19 @@
 @use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/mediaBp' as media;
 
 .movieDetails {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 4px;
   column-gap: 16px;
   align-items: last baseline;
 
   & > span {
     color: colorFn.getColor(content, secondary);
+    white-space: nowrap;
+
+    @include media.bp(sm) {
+      font-size: 14px;
+    }
   }
 }

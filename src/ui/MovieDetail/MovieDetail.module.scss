@@ -1,0 +1,51 @@
+@use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/mediaBp' as media;
+
+:root {
+  --random-min-heigh: 552px;
+}
+
+.movieDetail {
+  display: flex;
+  column-gap: 36px;
+
+  &__wrapper {
+    display: flex;
+    flex: 0 0 564px;
+    flex-direction: column;
+    row-gap: 60px;
+
+    padding-top: 74px;
+
+    @include media.bp(lg) {
+      flex: unset;
+      row-gap: 40px;
+      padding-top: unset;
+    }
+
+    @include media.bp(sm) {
+      row-gap: 32px;
+    }
+  }
+
+  &__poster {
+    overflow: hidden;
+    flex: 1 50%;
+    height: var(--random-min-heigh);
+    border-radius: 16px;
+
+    @include media.bp(lg) {
+      flex: unset;
+      max-height: calc(var(--random-min-heigh) / 3 * 2);
+    }
+
+    @include media.bp(sm) {
+      max-height: 234px;
+    }
+  }
+
+  @include media.bp(lg) {
+    flex-direction: column-reverse;
+    row-gap: 40px;
+  }
+}

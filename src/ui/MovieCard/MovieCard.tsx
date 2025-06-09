@@ -4,6 +4,7 @@ import clsx from 'clsx';
 
 import { memo } from 'react';
 import { NavLink } from 'react-router';
+import Poster from '../Poster/Poster';
 
 interface MovieCardProps {
   href: string;
@@ -23,9 +24,7 @@ export const MovieCard = memo(function MovieCard({
   return (
     <div className={clsx(st.movieCard, className)}>
       <NavLink to={href} className={st.movieCard__link}>
-        {poster && (
-          <img src={poster} alt={alt} className={st.movieCard__poster} />
-        )}
+        <Poster src={poster} alt={alt} />
       </NavLink>
       {place && <span className={st.movieCard__place}>{place}</span>}
     </div>

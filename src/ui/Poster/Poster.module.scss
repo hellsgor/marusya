@@ -1,0 +1,56 @@
+@use '../../styles/functions/getColor' as colorFn;
+
+.poster {
+  will-change: background-position;
+
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: colorFn.getColor(bg, 'gray');
+  background-image: linear-gradient(
+    135deg,
+    colorFn.getColor(bg, 'gray') 0%,
+    colorFn.getColor(bg, 'gray') 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    colorFn.getColor(bg, 'gray') 75%,
+    colorFn.getColor(bg, 'gray') 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+
+  animation: shimmerFull 2s ease-out infinite;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    object-fit: cover;
+    object-position: center;
+
+    transition: opacity 0.3s ease-in;
+  }
+
+  &_loaded {
+    background-color: transparent;
+    background-image: none;
+    animation: none;
+
+    img {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes shimmerFull {
+  0% {
+    background-position: 150% 150%;
+  }
+  100% {
+    background-position: -100% -100%;
+  }
+}

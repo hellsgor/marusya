@@ -1,0 +1,38 @@
+@use '../../styles/functions/getColor' as colorFn;
+
+.spoiler {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+
+  &__content {
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 0fr;
+
+    min-height: 0;
+
+    transition: grid-template-rows 0.3s ease-in-out;
+
+    &_show {
+      grid-template-rows: 1fr;
+    }
+
+    &_static {
+      transition-duration: 0s;
+    }
+  }
+
+  &__contentWrapper {
+    display: inline;
+    min-height: 0;
+  }
+
+  &__button {
+    color: colorFn.getColor(accent, primary, static) !important;
+
+    &:hover {
+      color: colorFn.getColor(accent, primary, hover) !important;
+    }
+  }
+}

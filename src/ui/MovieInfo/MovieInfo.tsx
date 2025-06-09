@@ -5,7 +5,7 @@ import type { MovieModel } from '../../models/Movie';
 import type { MovieDetailsProps } from '../MovieDetails/MovieDetails';
 
 import { MovieDetails } from '../MovieDetails/MovieDetails';
-import { ExpandableText } from '../ExpandableText/ExpandableText';
+import { Spoiler } from '../Spoiler/Spoiler';
 
 export type MovieInfoProps = {
   data: Pick<MovieModel, 'title' | 'plot'> & MovieDetailsProps;
@@ -27,9 +27,9 @@ export function MovieInfo({
         {title}
       </h1>
 
-      <div className={st.movieInfo__plot}>
-        <ExpandableText maxHeight={140}>{plot}</ExpandableText>
-      </div>
+      <Spoiler rows={4} className={st.movieInfo__plot}>
+        <p>{plot}</p>
+      </Spoiler>
     </div>
   );
 }

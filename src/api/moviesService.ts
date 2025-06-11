@@ -1,3 +1,4 @@
+import { GenresSchema } from '../models/Genres';
 import { MovieSchema, MoviesSchema } from '../models/Movie';
 import { apiClient } from './apiClient';
 
@@ -13,6 +14,13 @@ export const moviesService = {
     return apiClient(MovieSchema, {
       method: 'GET',
       url: '/movie/random',
+    });
+  },
+
+  getGenres: async () => {
+    return apiClient(GenresSchema, {
+      method: 'GET',
+      url: '/movie/genres',
     });
   },
 };

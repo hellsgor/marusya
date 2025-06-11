@@ -1,4 +1,4 @@
-@use '../mixins/font-face' as ff;
+@use '../mixins/fontFace' as ff;
 
 @include ff.font-face('Play', 'Play-Regular.woff2', '', 400);
 @include ff.font-face('Play', 'Play-Bold.woff2', '', 700);

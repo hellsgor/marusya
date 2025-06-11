@@ -1,0 +1,46 @@
+@use '../../styles/mixins/mediaBp' as media;
+
+.moviesList {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 64px;
+
+    @include media.bp(md) {
+      row-gap: 40px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-column-gap: 40px;
+    grid-row-gap: 64px;
+    grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+
+    @include media.bp(md) {
+      display: flex;
+      width: fit-content;
+
+      &:has(div.moviesList__slider) {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  &__item {
+    width: 100%;
+
+    @include media.bp(md) {
+      width: 224px;
+    }
+  }
+}
+
+div.moviesList__slider {
+  overflow: visible;
+}
+
+div.moviesList__sliderSlide {
+  width: fit-content;
+}

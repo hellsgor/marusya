@@ -1,0 +1,28 @@
+@use '../../styles/functions/getColor' as colorFn;
+
+.rating {
+  display: inline-flex;
+  column-gap: 4px;
+  align-items: center;
+
+  padding: 4px 12px;
+  border-radius: 16px;
+
+  color: colorFn.getColor(content, primary);
+
+  &_red {
+    background-color: colorFn.getColor(rate, 'red');
+  }
+
+  &_gray {
+    background-color: colorFn.getColor(rate, 'gray');
+  }
+
+  &_green {
+    background-color: colorFn.getColor(rate, 'green');
+  }
+
+  &_gold {
+    background-color: colorFn.getColor(rate, 'gold');
+  }
+}

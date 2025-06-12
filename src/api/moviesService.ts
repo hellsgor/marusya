@@ -27,7 +27,7 @@ export const moviesService = {
   getGenreFirstMovie: async (genre: string) => {
     return apiClient(MoviesSchema, {
       method: 'GET',
-      url: `/movie?filter=${genre}&count=1`,
+      url: `/movie?genre=${genre}&count=1`,
     });
   },
 };

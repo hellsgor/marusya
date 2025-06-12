@@ -1,4 +1,4 @@
-import { GenresSchema } from '../models/Genres';
+import { GenresDTOSchema } from '../models/GenresDTO';
 import { MovieSchema, MoviesSchema } from '../models/Movie';
 import { apiClient } from './apiClient';
 
@@ -18,9 +18,16 @@ export const moviesService = {
   },
 
   getGenres: async () => {
-    return apiClient(GenresSchema, {
+    return apiClient(GenresDTOSchema, {
       method: 'GET',
       url: '/movie/genres',
+    });
+  },
+
+  getGenreFirstMovie: async (genre: string) => {
+    return apiClient(MoviesSchema, {
+      method: 'GET',
+      url: `/movie?filter=${genre}&count=1`,
     });
   },
 };

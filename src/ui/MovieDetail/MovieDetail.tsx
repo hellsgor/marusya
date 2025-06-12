@@ -1,6 +1,6 @@
 import st from './MovieDetail.module.scss';
 
-import type { MovieModel } from '../../models/Movie';
+import type { MovieModel } from '../../models';
 import type { MovieActionsProps } from '../MovieActions/MovieActions';
 import type { MovieInfoProps } from '../MovieInfo/MovieInfo';
 

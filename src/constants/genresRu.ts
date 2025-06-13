@@ -1,4 +1,4 @@
-export const genresRu: { [key: string]: string } = {
+export const GENRES_RU: { [key: string]: string } = {
   history: 'история',
   horror: 'ужасы',
   scifi: 'научная фантастика',

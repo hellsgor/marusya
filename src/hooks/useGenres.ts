@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import type { GenreModel } from '../models';
 import { moviesService } from '../api/moviesService';
-import { genresRu } from '../constants/genresRu';
+import { GENRES_RU } from '../constants';
 
 export function useGenres() {
   const genresQuery = useQuery<GenreModel[] | undefined>({
@@ -15,7 +15,7 @@ export function useGenres() {
           const [movie] = await moviesService.getGenreFirstMovie(genre);
           return {
             name: genre,
-            nameRu: genresRu[genre] ?? undefined,
+            nameRu: GENRES_RU[genre] ?? undefined,
             image: movie?.backdropUrl ?? null,
           };
         }),

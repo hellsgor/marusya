@@ -2,6 +2,7 @@ import st from './GenreCard.module.scss';
 
 import { memo } from 'react';
 import { NavLink } from 'react-router';
+import Poster from '../Poster/Poster';
 
 interface GenreCardProps {
   href: string;
@@ -19,13 +20,7 @@ export const GenreCard = memo(function GenreCard({
   return (
     <NavLink to={href} className={st.genreCard}>
       <div className={st.genreCard__image}>
-        {poster && (
-          <img
-            src={poster}
-            alt={alt || ''}
-            className={st.genreCard__imageItem}
-          />
-        )}
+        {poster && <Poster src={poster} alt={alt || ''} />}
       </div>
       <span className={st.genreCard__title}>{title}</span>
     </NavLink>

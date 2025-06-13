@@ -1,6 +1,6 @@
 @use '../mixins/mediaBp' as media;
 
-$spacings: 0, 32, 40, 56, 120, 160;
+$spacings: 0, 16, 32, 40, 56, 64, 120, 160;
 
 @each $x in $spacings {
   .pt-#{$x} {

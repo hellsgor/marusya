@@ -2,7 +2,7 @@ import st from './MoviesList.module.scss';
 import 'swiper/swiper-bundle.css';
 
 import type { UseQueryResult } from '@tanstack/react-query';
-import type { MoviesModel } from '../../models/Movie';
+import type { MoviesModel } from '../../models';
 
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 

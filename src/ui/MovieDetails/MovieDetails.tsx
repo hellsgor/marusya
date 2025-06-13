@@ -1,5 +1,5 @@
 import st from './MovieDetails.module.scss';
-import type { MovieModel } from '../../models/Movie';
+import type { MovieModel } from '../../models';
 import { formatRuntime } from '../../helpers';
 import { Rating } from '../Rating/Rating';
 

@@ -1,7 +1,7 @@
 import st from './MovieInfo.module.scss';
 import clsx from 'clsx';
 
-import type { MovieModel } from '../../models/Movie';
+import type { MovieModel } from '../../models';
 import type { MovieDetailsProps } from '../MovieDetails/MovieDetails';
 
 import { MovieDetails } from '../MovieDetails/MovieDetails';

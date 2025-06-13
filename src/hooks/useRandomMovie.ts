@@ -1,4 +1,4 @@
-import type { MovieModel } from '../models/Movie';
+import type { MovieModel } from '../models';
 
 import { useQuery } from '@tanstack/react-query';
 import { moviesService } from '../api/moviesService';

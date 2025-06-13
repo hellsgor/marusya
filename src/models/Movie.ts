@@ -1,4 +1,5 @@
 import { z } from 'zod/v4';
+import { GenresDTOSchema } from './GenresDTO';
 
 export const MovieSchema = z.object({
   id: z.number(),
@@ -7,7 +8,7 @@ export const MovieSchema = z.object({
   language: z.string(),
   releaseYear: z.nullable(z.number()),
   releaseDate: z.nullable(z.coerce.date()),
-  genres: z.array(z.string()),
+  genres: GenresDTOSchema,
   plot: z.string(),
   runtime: z.number().nonnegative(),
   budget: z.nullable(z.string()),

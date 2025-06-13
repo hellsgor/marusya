@@ -3,11 +3,13 @@ import { Home } from '../pages/Home';
 import { Genres } from '../pages/Genres';
 import { NoMatch } from '../pages/NoMatch';
 import { MainLayout } from '../layouts/MainLayout/MainLayout';
+import { Genre } from '../pages/Genre';
 
 export function AppRotes() {
   const navigationRoutes = [
     { path: '/', element: <Home />, title: 'Главная' },
     { path: '/genres', element: <Genres />, title: 'Жанры' },
+    { path: '/genres/:genreName', element: <Genre /> },
     { path: '*', element: <NoMatch />, title: '404' },
   ];
 
@@ -17,7 +19,9 @@ export function AppRotes() {
         <Route
           key={route.path}
           path={route.path}
-          element={<MainLayout title={route.title}>{route.element}</MainLayout>}
+          element={
+            <MainLayout title={route.title ?? ''}>{route.element}</MainLayout>
+          }
         />
       ))}
     </Routes>

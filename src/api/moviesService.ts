@@ -24,10 +24,16 @@ export const moviesService = {
     });
   },
 
-  getGenreFirstMovie: async (genre: string) => {
+  getMovies: async (params: {
+    genre?: string;
+    title?: string;
+    page?: number;
+    count?: number;
+  }) => {
     return apiClient(MoviesSchema, {
       method: 'GET',
-      url: `/movie?genre=${genre}&count=1`,
+      url: '/movie',
+      params,
     });
   },
 };

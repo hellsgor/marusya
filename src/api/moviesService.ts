@@ -1,3 +1,4 @@
+import type { GenreModel, MovieModel } from '../models';
 import { GenresDTOSchema } from '../models/GenresDTO';
 import { MovieSchema, MoviesSchema } from '../models/Movie';
 import { apiClient } from './apiClient';
@@ -25,8 +26,8 @@ export const moviesService = {
   },
 
   getMovies: async (params: {
-    genre?: string;
-    title?: string;
+    genre?: GenreModel['name'];
+    title?: MovieModel['title'];
     page?: number;
     count?: number;
   }) => {

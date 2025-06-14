@@ -5,15 +5,22 @@ import { GENRES_RU } from '../constants';
 import { BackTitleBar } from '../ui/BackTitleBar/BackTitleBar';
 import { Button } from '../ui/Button/Button';
 import { useMovies } from '../hooks/useMovies';
+import { MoviesList } from '../ui/MoviesList/MoviesList';
+import { Loader } from '../ui/Loader/Loader';
+import { ErrorText } from '../ui/ErrorText/ErrorText';
 
 export function Genre() {
   const { genreName } = useParams();
   const {
     movies,
-    query: { fetchNextPage, hasNextPage },
+    query: {
+      fetchNextPage,
+      hasNextPage,
+      isError,
+      isFetchNextPageError,
+      isFetching,
+    },
   } = useMovies(genreName);
-
-  console.log(movies);
 
   return (
     <Section indentsClasses="pt-64 pb-160 pt-md-16 pb-md-40">
@@ -25,13 +32,23 @@ export function Genre() {
         }
       />
 
+      {isError ? (
+        <ErrorText errorKey={'e001'} />
+      ) : movies.length && !isError ? (
+        <MoviesList data={movies} />
+      ) : (
+        <Loader size="big" />
+      )}
+
+      {isFetchNextPageError && <ErrorText errorKey={'e002'} />}
+
       <Button
         variant="primary"
         onClick={() => fetchNextPage()}
-        disabled={!hasNextPage}
+        disabled={!hasNextPage || isFetching}
         style={{ margin: '0 auto' }}
       >
-        Показать ещё
+        {isFetching ? <Loader size="small" /> : 'Показать ещё'}
       </Button>
     </Section>
   );

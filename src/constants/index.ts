@@ -4,3 +4,4 @@ export { APP_NAME } from './appName';
 export { BASE_URL } from './baseUrl';
 export { ERRORS_TEXTS } from './errorsTexts';
 export { GENRES_RU } from './genresRu';
+export { MOVIES_PER_PAGE } from './moviesPerPage';

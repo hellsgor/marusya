@@ -1,29 +1,22 @@
 import st from './MoviesList.module.scss';
 import 'swiper/swiper-bundle.css';
 
-import type { UseQueryResult } from '@tanstack/react-query';
 import type { MoviesModel } from '../../models';
 
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 import { MovieCard } from '../MovieCard/MovieCard';
-import { Loader } from '../Loader/Loader';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
-import { ErrorText } from '../ErrorText/ErrorText';
 
 interface MoviesListProps {
-  query: UseQueryResult<MoviesModel | undefined>;
+  data: MoviesModel | undefined;
   isIndexes?: boolean;
   isSlider?: boolean;
 }
 
-export function MoviesList({
-  query: { data, isPending, isError },
-  isIndexes,
-  isSlider,
-}: MoviesListProps) {
+export function MoviesList({ data, isIndexes, isSlider }: MoviesListProps) {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const cards = data
@@ -37,15 +30,7 @@ export function MoviesList({
           className={st.moviesList__item}
         />
       ))
-    : undefined;
-
-  if (isPending) {
-    return <Loader />;
-  }
-
-  if (!cards || !cards.length || isError) {
-    return <ErrorText errorKey={'e001'} />;
-  }
+    : [];
 
   return (
     <div className={st.moviesList}>

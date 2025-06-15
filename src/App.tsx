@@ -6,11 +6,13 @@ import { BrowserRouter } from 'react-router';
 import { AppRoutes } from './router/routes';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './api/queryClient';
+import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
+        <ScrollToTop />
         <AppRoutes />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

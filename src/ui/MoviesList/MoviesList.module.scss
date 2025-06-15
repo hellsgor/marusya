@@ -19,6 +19,7 @@
 
     @include media.bp(md) {
       display: flex;
+      flex-wrap: wrap;
       width: fit-content;
 
       &:has(div.moviesList__slider) {
@@ -32,7 +33,9 @@
     width: 100%;
 
     @include media.bp(md) {
-      width: 224px;
+      &:has(div.moviesList__slider) {
+        width: 224px;
+      }
     }
   }
 }

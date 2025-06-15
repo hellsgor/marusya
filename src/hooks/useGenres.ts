@@ -12,7 +12,7 @@ export function useGenres() {
 
       return await Promise.all(
         (genres ?? []).map(async (genre) => {
-          const [movie] = await moviesService.getGenreFirstMovie(genre);
+          const [movie] = await moviesService.getMovies({ genre });
           return {
             name: genre,
             nameRu: GENRES_RU[genre] ?? undefined,

@@ -5,6 +5,8 @@ import {
   type AnchorHTMLAttributes,
   type ReactNode,
   memo,
+  forwardRef,
+  type Ref,
 } from 'react';
 import { NavLink } from 'react-router';
 
@@ -30,15 +32,21 @@ type PropsAsLink = CommonProps &
 
 type ButtonProps = PropsAsButton | PropsAsLink;
 
-export const Button = memo(function Button({
-  children,
-  variant = 'primary',
-  wide = false,
-  smallPaddings = false,
-  className,
-  href,
-  ...restProps
-}: ButtonProps) {
+const ButtonComponent = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>(function Button(
+  {
+    children,
+    variant = 'primary',
+    wide = false,
+    smallPaddings = false,
+    className,
+    href,
+    ...restProps
+  },
+  ref,
+) {
   const classes = clsx(
     st.button,
     st[`button_${variant}`],
@@ -52,6 +60,7 @@ export const Button = memo(function Button({
       <NavLink
         className={classes}
         to={href}
+        ref={ref as Ref<HTMLAnchorElement>}
         {...(restProps as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {children}
@@ -61,6 +70,7 @@ export const Button = memo(function Button({
 
   return (
     <button
+      ref={ref as Ref<HTMLButtonElement>}
       className={classes}
       {...(restProps as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
@@ -68,3 +78,5 @@ export const Button = memo(function Button({
     </button>
   );
 });
+
+export const Button = memo(ButtonComponent);

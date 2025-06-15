@@ -4,6 +4,7 @@ export function useIntersectionObserver(
   ref: MutableRefObject<Element | null>,
   isLoading: boolean,
   callback: () => void,
+  margin?: number[],
 ) {
   const observer = useRef<IntersectionObserver | null>(null);
   const timeout = useRef<number | null>(null);
@@ -30,7 +31,10 @@ export function useIntersectionObserver(
       }
     };
 
-    observer.current = new IntersectionObserver(cb, { threshold: 1 });
+    observer.current = new IntersectionObserver(cb, {
+      threshold: 1,
+      rootMargin: margin?.map((m) => `${m}px`).join(' ') || undefined,
+    });
     if (ref.current) {
       observer.current.observe(ref.current);
     }
@@ -40,5 +44,5 @@ export function useIntersectionObserver(
         observer.current.disconnect();
       }
     };
-  }, [observer, isLoading, callback, ref]);
+  }, [observer, isLoading, callback, ref, margin]);
 }

@@ -6,6 +6,7 @@ export function useIntersectionObserver(
   callback: () => void,
 ) {
   const observer = useRef<IntersectionObserver | null>(null);
+  const timeout = useRef<number | null>(null);
 
   useEffect(() => {
     if (observer.current) {
@@ -16,8 +17,16 @@ export function useIntersectionObserver(
     }
 
     const cb = function (entries: IntersectionObserverEntry[]) {
-      if (entries[0].isIntersecting) {
-        callback();
+      if (entries[0].isIntersecting && !isLoading) {
+        if (timeout.current) {
+          clearTimeout(timeout.current);
+        }
+
+        timeout.current = setTimeout(() => {
+          callback();
+        }, 300);
+
+        window.scrollBy({ top: -200, behavior: 'smooth' });
       }
     };
 

@@ -26,7 +26,12 @@ export function Genre() {
     },
   } = useMovies(genreName);
 
-  useIntersectionObserver(showMoreRef, isFetching, fetchNextPage);
+  useIntersectionObserver(
+    showMoreRef,
+    isFetching,
+    fetchNextPage,
+    [0, 0, -50, 0],
+  );
 
   return (
     <Section indentsClasses="pt-64 pb-160 pt-md-16 pb-md-40">
@@ -57,10 +62,6 @@ export function Genre() {
       >
         {isFetching ? <Loader size="small" /> : 'Показать ещё'}
       </Button>
-      <div
-        ref={showMoreRef}
-        style={{ width: '100%', height: '2px', backgroundColor: 'transparent' }}
-      ></div>
     </Section>
   );
 }

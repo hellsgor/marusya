@@ -12,7 +12,7 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useRef } from 'react';
 
 export function Genre() {
-  const showMoreRef = useRef<HTMLDivElement>(null);
+  const showMoreRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
 
   const { genreName } = useParams();
   const {
@@ -53,6 +53,7 @@ export function Genre() {
         onClick={() => fetchNextPage()}
         disabled={!hasNextPage || isFetching}
         style={{ margin: '0 auto' }}
+        ref={showMoreRef}
       >
         {isFetching ? <Loader size="small" /> : 'Показать ещё'}
       </Button>

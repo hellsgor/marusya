@@ -11,7 +11,9 @@ export interface MovieActionsProps {
 
 export function MovieActions({ url, onRefresh }: MovieActionsProps) {
   return (
-    <div className={st.movieActions}>
+    <div
+      className={clsx(st.movieActions, !onRefresh && st.movieActions_oneRow)}
+    >
       <Button
         type="button"
         className={clsx(

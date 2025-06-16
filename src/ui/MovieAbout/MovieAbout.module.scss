@@ -1,0 +1,59 @@
+@use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/mediaBp' as media;
+
+.movieAbout {
+  $indent: 8px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  &__item {
+    display: flex;
+    column-gap: $indent;
+
+    & span {
+      white-space: nowrap;
+
+      ::first-letter {
+        text-transform: uppercase;
+      }
+
+      @include media.bp(lg) {
+        white-space: unset;
+      }
+    }
+
+    & > p {
+      display: inline-flex;
+      flex: 0 0 482px;
+      column-gap: $indent;
+      align-items: baseline;
+
+      &::after {
+        content: '';
+
+        display: block;
+
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px dashed colorFn.getColor(content, disabled);
+
+        @include media.bp(lg) {
+          content: none;
+        }
+      }
+
+      @include media.bp(lg) {
+        flex: unset;
+        font-size: 14px;
+        color: colorFn.getColor(content, disabled);
+      }
+    }
+
+    @include media.bp(lg) {
+      flex-direction: column;
+      row-gap: 4px;
+    }
+  }
+}

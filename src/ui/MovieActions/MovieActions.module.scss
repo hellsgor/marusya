@@ -22,4 +22,10 @@
     row-gap: 16px;
     justify-content: space-between;
   }
+
+  &_oneRow {
+    @include media.bp(sm) {
+      flex-wrap: nowrap;
+    }
+  }
 }

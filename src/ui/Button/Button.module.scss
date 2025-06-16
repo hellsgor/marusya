@@ -20,6 +20,11 @@
   font-weight: 700;
   line-height: 1.33;
 
+  svg {
+    width: 24px;
+    max-width: unset;
+  }
+
   @include tr.transition(color, background-color, border-color);
 
   @include media.bp(md) {

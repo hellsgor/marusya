@@ -1,11 +1,15 @@
 import { Route, Routes } from 'react-router';
+
+import { GENRES_RU } from '../constants';
+import { getTitle } from '../helpers';
+
+import { MainLayout } from '../layouts/MainLayout/MainLayout';
+
 import { Home } from '../pages/Home';
 import { Genres } from '../pages/Genres';
 import { NoMatch } from '../pages/NoMatch';
-import { MainLayout } from '../layouts/MainLayout/MainLayout';
 import { Genre } from '../pages/Genre';
-import { GENRES_RU } from '../constants';
-import { getTitle } from '../helpers';
+import { Movie } from '../pages/Movie';
 
 export function AppRoutes() {
   const navigationRoutes = [
@@ -15,6 +19,11 @@ export function AppRoutes() {
       path: '/genres/:genreName',
       element: <Genre />,
       title: (str: string) => getTitle(str, GENRES_RU),
+    },
+    {
+      path: '/movies/:movieId',
+      element: <Movie />,
+      title: '',
     },
     { path: '*', element: <NoMatch />, title: '404' },
   ];

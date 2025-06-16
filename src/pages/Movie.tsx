@@ -1,12 +1,38 @@
 import { useParams } from 'react-router';
 import { Section } from '../ui/Section/Section';
+import { useMovie } from '../hooks/useMovie';
+import { MovieDetail } from '../ui/MovieDetail/MovieDetail';
+import { Loader } from '../ui/Loader/Loader';
+import { ErrorText } from '../ui/ErrorText/ErrorText';
 
 export function Movie() {
   const { movieId } = useParams();
 
+  const { data: movie, isFetching, isError } = useMovie(Number(movieId));
+
+  if (isFetching) {
+    return <Loader size="big" />;
+  }
+
+  if (isError || !movie) {
+    return <ErrorText errorKey={'e001'} />;
+  }
+
   return (
     <>
-      <Section indentsClasses="pt-32 pt-md-0">{movieId}</Section>
+      <Section indentsClasses="pt-32 pt-md-0">
+        <MovieDetail
+          data={{
+            title: movie.title,
+            backdropUrl: movie.backdropUrl,
+            plot: movie.plot,
+            tmdbRating: movie.tmdbRating,
+            releaseYear: movie.releaseYear,
+            genres: movie.genres,
+            runtime: movie.runtime,
+          }}
+        />
+      </Section>
     </>
   );
 }

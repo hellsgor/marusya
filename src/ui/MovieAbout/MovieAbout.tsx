@@ -1,3 +1,5 @@
+import { MOVIE_PROPERTIES_RU } from '../../constants';
+import { getTitle } from '../../helpers';
 import type { MovieModel } from '../../models';
 import st from './MovieAbout.module.scss';
 
@@ -25,7 +27,9 @@ export function MovieAbout({ data }: MovieAboutProps) {
               className={`${st.movieAbout__item} ${st.movieAbout__item}_${item[0]}`}
             >
               <p>
-                <span className={st.movieAbout__key}>{item[0]}</span>
+                <span className={st.movieAbout__key}>
+                  {getTitle(item[0], MOVIE_PROPERTIES_RU)}
+                </span>
               </p>
 
               <span className={st.movieAbout__value}>{item[1]}</span>

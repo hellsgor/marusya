@@ -37,4 +37,11 @@ export const moviesService = {
       params,
     });
   },
+
+  getMovie: async (id: MovieModel['id']) => {
+    return apiClient(MovieSchema, {
+      method: 'GET',
+      url: `/movie/${id}`,
+    });
+  },
 };

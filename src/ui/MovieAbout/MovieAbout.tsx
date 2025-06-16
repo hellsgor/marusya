@@ -28,7 +28,7 @@ function formatValue(
       return getTitle(value, LANGUAGES);
     case 'budget':
     case 'revenue':
-      return Number(value).toLocaleString('ru-RU');
+      return `${Number(value).toLocaleString('ru-RU')} руб.`;
     default:
       return value;
   }
@@ -41,17 +41,12 @@ export function MovieAbout({ data }: MovieAboutProps) {
       <div className={st.movieAbout}>
         {data &&
           Object.entries(data).map((item) => (
-            <div
-              key={item[0]}
-              className={`${st.movieAbout__item} ${st.movieAbout__item}_${item[0]}`}
-            >
+            <div key={item[0]} className={st.movieAbout__item}>
               <p>
-                <span className={st.movieAbout__key}>
-                  {getTitle(item[0], MOVIE_PROPERTIES_RU)}
-                </span>
+                <span>{getTitle(item[0], MOVIE_PROPERTIES_RU)}</span>
               </p>
 
-              <span className={st.movieAbout__value}>
+              <span>
                 {formatValue(item[0] as keyof MovieAboutProps['data'], item[1])}
               </span>
             </div>

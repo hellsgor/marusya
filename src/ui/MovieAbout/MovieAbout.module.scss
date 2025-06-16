@@ -11,12 +11,12 @@
     display: flex;
     column-gap: $indent;
 
-    & span::first-letter {
-      text-transform: uppercase;
-    }
-
     & span {
       white-space: nowrap;
+
+      ::first-letter {
+        text-transform: uppercase;
+      }
     }
 
     & > p {

@@ -19,8 +19,6 @@ export function Movie() {
     return <ErrorText errorKey={'e001'} />;
   }
 
-  console.log(movie);
-
   return (
     <>
       <Section indentsClasses="pt-32 pt-md-0">

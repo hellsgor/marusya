@@ -6,3 +6,4 @@ export { ERRORS_TEXTS } from './errorsTexts';
 export { GENRES_RU } from './genresRu';
 export { MOVIES_PER_PAGE } from './moviesPerPage';
 export { MOVIE_PROPERTIES_RU } from './moviePropertiesRu';
+export { LANGUAGES } from './languages';

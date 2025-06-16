@@ -7,7 +7,6 @@ export function useMovies(genreName: GenreModel['name'] | undefined) {
   const query = useInfiniteQuery({
     queryKey: ['movies', genreName],
     refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
     refetchOnMount: false,
     staleTime: 1000 * 60 * 60,
     queryFn: ({ pageParam = 1 }) =>

@@ -1,4 +1,5 @@
 @use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/mediaBp' as media;
 
 .logo {
   display: flex;
@@ -7,7 +8,7 @@
 
   aspect-ratio: calc(251 / 56);
   width: auto;
-  height: 56px;
+  height: 32px;
 
   &__image {
     align-self: center;
@@ -18,6 +19,10 @@
   &__text {
     position: relative;
     top: 26.79%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     aspect-ratio: calc(174.074 / 36.75);
     width: auto;
@@ -34,5 +39,9 @@
     .logo__text {
       color: colorFn.getColor(content, primary);
     }
+  }
+
+  @include media.bp(md) {
+    height: 18px;
   }
 }

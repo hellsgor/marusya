@@ -6,17 +6,19 @@ import { MarusyaText } from '../icons/';
 
 interface LogoProps {
   theme?: 'light' | 'dark';
+  className?: string;
 }
 
-export const Logo = memo(function Logo({ theme = 'dark' }: LogoProps) {
+export const Logo = memo(function Logo({
+  theme = 'dark',
+  className,
+}: LogoProps) {
   return (
-    <div className={clsx(st.logo, st[`logo_${theme}`])}>
+    <div className={clsx(st.logo, st[`logo_${theme}`], className)}>
       <img
         className={st.logo__image}
         src="/images/marusya-image.png"
         alt="Logo"
-        width={60}
-        height={72}
       />
       <div className={st.logo__text}>
         <MarusyaText />

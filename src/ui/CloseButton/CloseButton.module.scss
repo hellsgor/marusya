@@ -1,0 +1,36 @@
+@use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/transition' as tr;
+
+.closeButton {
+  cursor: pointer;
+
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+
+  color: colorFn.getColor(content, 'black');
+
+  background-color: colorFn.getColor(bg, 'white');
+  @include tr.transition(color);
+
+  @media (hover: hover) {
+    &:hover {
+      color: colorFn.getColor(accent, primary, hover);
+    }
+  }
+
+  svg {
+    width: 50%;
+    height: 50%;
+  }
+
+  &:active {
+    color: colorFn.getColor(accent, active);
+  }
+}

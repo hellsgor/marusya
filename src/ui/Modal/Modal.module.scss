@@ -1,0 +1,81 @@
+@use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/mediaBp' as media;
+
+.modal {
+  $closeButtonWidth: 48px;
+
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+
+  overflow-y: auto;
+  display: none;
+
+  padding: 96px;
+
+  &__backdrop {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+  }
+
+  &__inner {
+    position: relative;
+
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+
+    background-color: colorFn.getColor(bg, 'white');
+
+    &_rounded {
+      border-radius: 24px;
+    }
+
+    &_padded {
+      padding: 64px 40px;
+
+      @include media.bp(md) {
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+    }
+  }
+
+  &__closeButton {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: calc(-24px - $closeButtonWidth);
+
+    width: $closeButtonWidth;
+
+    @include media.bp(md) {
+      top: 8px;
+      right: 8px;
+    }
+  }
+
+  &__logo {
+    height: 35px;
+    margin: 0 auto 40px auto;
+
+    @include media.bp(md) {
+      height: 30px;
+      margin-bottom: 32px;
+    }
+  }
+
+  &_visible {
+    display: flex;
+  }
+
+  @include media.bp(md) {
+    padding: 72px 20px;
+  }
+}
+
+.modalOpen {
+  overflow: hidden;
+  width: 100%;
+}

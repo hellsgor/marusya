@@ -33,7 +33,6 @@ export default tseslint.config(
       'no-unused-vars': 'error',
       'no-empty': 'error',
       eqeqeq: 'error',
-      curly: 'error',
     },
   },
 );

@@ -14,6 +14,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ScrollToTop />
         <AppRoutes />
+        <div id="modals"></div>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </BrowserRouter>

@@ -10,15 +10,27 @@ import { Poster } from '../Poster/Poster';
 import { MovieInfo } from '../MovieInfo/MovieInfo';
 import { MovieActions } from '../MovieActions/MovieActions';
 import { Modal } from '../Modal/Modal';
+import { MovieTrailer } from '../MovieTrailer/MovieTrailer';
 
-type MovieDetailType = Pick<MovieModel, 'backdropUrl'> & MovieInfoProps['data'];
+type MovieDetailType = Pick<MovieModel, 'backdropUrl' | 'trailerUrl'> &
+  MovieInfoProps['data'];
 
-interface MovieDetailProps extends MovieActionsProps {
+interface MovieDetailProps
+  extends Omit<MovieActionsProps, 'onTrailerButtonClick'> {
   data: MovieDetailType;
 }
 
 export function MovieDetail({
-  data: { title, backdropUrl, plot, tmdbRating, releaseYear, genres, runtime },
+  data: {
+    title,
+    backdropUrl,
+    plot,
+    tmdbRating,
+    releaseYear,
+    genres,
+    runtime,
+    trailerUrl,
+  },
   onRefresh,
   url,
 }: MovieDetailProps) {
@@ -49,7 +61,7 @@ export function MovieDetail({
         onClose={() => setIsTrailer(false)}
         isFlat={true}
       >
-        <p>hello</p>
+        <MovieTrailer url={trailerUrl} />
       </Modal>
     </>
   );

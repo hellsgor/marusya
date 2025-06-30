@@ -32,6 +32,7 @@ export function Movie() {
             releaseYear: movie.releaseYear,
             genres: movie.genres,
             runtime: movie.runtime,
+            trailerUrl: movie.trailerUrl,
           }}
         />
       </Section>

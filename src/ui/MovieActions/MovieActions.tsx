@@ -8,12 +8,14 @@ export interface MovieActionsProps {
   onTrailerButtonClick: () => void;
   onRefresh?: () => void;
   url?: string;
+  isTrailer: boolean;
 }
 
 export function MovieActions({
   onTrailerButtonClick,
   url,
   onRefresh,
+  isTrailer,
 }: MovieActionsProps) {
   return (
     <div
@@ -26,6 +28,7 @@ export function MovieActions({
           st.movieActions__button_mdWide,
         )}
         onClick={onTrailerButtonClick}
+        disabled={!isTrailer}
       >
         Трейлер
       </Button>

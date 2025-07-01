@@ -16,7 +16,7 @@ type MovieDetailType = Pick<MovieModel, 'backdropUrl' | 'trailerUrl'> &
   MovieInfoProps['data'];
 
 interface MovieDetailProps
-  extends Omit<MovieActionsProps, 'onTrailerButtonClick'> {
+  extends Omit<MovieActionsProps, 'onTrailerButtonClick' | 'isTrailer'> {
   data: MovieDetailType;
 }
 
@@ -34,7 +34,8 @@ export function MovieDetail({
   onRefresh,
   url,
 }: MovieDetailProps) {
-  const [isTrailer, setIsTrailer] = useState(false);
+  const [isTrailerModalOpen, setIsTrailerModalOpen] = useState(false);
+  const [isTrailerPlayed, setIsTrailerPlayed] = useState(false);
 
   return (
     <>
@@ -47,7 +48,8 @@ export function MovieDetail({
           <MovieActions
             url={url}
             onRefresh={onRefresh}
-            onTrailerButtonClick={() => setIsTrailer(true)}
+            onTrailerButtonClick={() => setIsTrailerModalOpen(true)}
+            isTrailer={!!trailerUrl}
           />
         </div>
 
@@ -56,13 +58,23 @@ export function MovieDetail({
         </div>
       </div>
 
-      <Modal
-        isVisible={isTrailer}
-        onClose={() => setIsTrailer(false)}
-        isFlat={true}
-      >
-        <MovieTrailer url={trailerUrl} />
-      </Modal>
+      {trailerUrl && (
+        <Modal
+          isVisible={isTrailerModalOpen}
+          onClose={() => {
+            setIsTrailerModalOpen(false);
+            setIsTrailerPlayed(true);
+          }}
+          isFlat={true}
+        >
+          {(isTrailerModalOpen || isTrailerPlayed) && (
+            <MovieTrailer
+              url={trailerUrl}
+              playing={isTrailerModalOpen && !isTrailerPlayed}
+            />
+          )}
+        </Modal>
+      )}
     </>
   );
 }

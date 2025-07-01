@@ -5,9 +5,10 @@ import ReactPlayer from 'react-player';
 
 export type MovieTrailerProps = {
   url: MovieModel['trailerUrl'];
+  playing: boolean;
 };
 
-export function MovieTrailer({ url }: MovieTrailerProps) {
+export function MovieTrailer({ url, playing }: MovieTrailerProps) {
   return (
     <div className={st.movieTrailer}>
       <div className={st.movieTrailer__frame}>
@@ -26,6 +27,7 @@ export function MovieTrailer({ url }: MovieTrailerProps) {
               enablejsapi: 1,
             },
           }}
+          playing={playing}
         />
       </div>
     </div>

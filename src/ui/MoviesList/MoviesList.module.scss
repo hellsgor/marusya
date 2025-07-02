@@ -20,6 +20,7 @@
     @include media.bp(md) {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-around;
       width: fit-content;
 
       &:has(div.moviesList__slider) {
@@ -31,6 +32,19 @@
 
   &__item {
     width: 100%;
+
+    @include media.bp(md) {
+      width: fit-content;
+    }
+
+    @include media.bp(sm) {
+      width: 100%;
+
+      & > a {
+        width: 100%;
+        height: auto;
+      }
+    }
 
     @include media.bp(md) {
       &:has(div.moviesList__slider) {

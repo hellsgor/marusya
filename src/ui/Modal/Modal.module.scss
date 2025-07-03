@@ -76,12 +76,12 @@
   }
 
   &_wide {
-    // display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 
     .modal__inner {
-      width: 100%;
+      flex: 0 1 960px;
       margin: unset;
     }
 

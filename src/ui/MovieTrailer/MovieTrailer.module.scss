@@ -1,6 +1,7 @@
 .movieTrailer {
-  flex: 1 0 100%;
   aspect-ratio: 16/9;
+  width: 100%;
+  max-width: 960px;
   height: auto;
 
   &__frame {

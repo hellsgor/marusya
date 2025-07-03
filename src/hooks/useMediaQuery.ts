@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
+import type { BREAKPOINTS } from '../constants';
 
-export function useMediaQuery(query: string): boolean {
+export function useMediaQuery(
+  bp: (typeof BREAKPOINTS)[keyof typeof BREAKPOINTS],
+  isMax: boolean = true,
+): boolean {
+  const query = `(${isMax ? 'max' : 'min'}-width: ${bp}px)`;
+
   const [matches, setMatches] = useState(
     () => window.matchMedia(query).matches,
   );

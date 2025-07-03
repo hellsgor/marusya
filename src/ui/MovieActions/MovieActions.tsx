@@ -5,11 +5,18 @@ import { Heart, Refresh } from '../icons';
 import clsx from 'clsx';
 
 export interface MovieActionsProps {
+  onTrailerButtonClick: () => void;
   onRefresh?: () => void;
   url?: string;
+  isTrailer: boolean;
 }
 
-export function MovieActions({ url, onRefresh }: MovieActionsProps) {
+export function MovieActions({
+  onTrailerButtonClick,
+  url,
+  onRefresh,
+  isTrailer,
+}: MovieActionsProps) {
   return (
     <div
       className={clsx(st.movieActions, !onRefresh && st.movieActions_oneRow)}
@@ -20,6 +27,8 @@ export function MovieActions({ url, onRefresh }: MovieActionsProps) {
           st.movieActions__button,
           st.movieActions__button_mdWide,
         )}
+        onClick={onTrailerButtonClick}
+        disabled={!isTrailer}
       >
         Трейлер
       </Button>

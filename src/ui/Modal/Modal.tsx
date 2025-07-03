@@ -39,7 +39,12 @@ export function Modal({
 
   return createPortal(
     <div
-      className={clsx(st.modal, isVisible ? st.modal_visible : null, className)}
+      className={clsx(
+        st.modal,
+        isVisible ? st.modal_visible : null,
+        isFlat ? st.modal_wide : null,
+        className,
+      )}
       onClick={onClose}
     >
       <Backdrop className={st.modal__backdrop} />

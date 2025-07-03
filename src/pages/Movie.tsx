@@ -7,9 +7,10 @@ import { ErrorText } from '../ui/ErrorText/ErrorText';
 import { MovieAbout } from '../ui/MovieAbout/MovieAbout';
 
 export function Movie() {
-  const { movieId } = useParams();
+  const movieIdParam = useParams().movieId;
+  const movieId = movieIdParam ? Number(movieIdParam) : undefined;
 
-  const { data: movie, isFetching, isError } = useMovie(Number(movieId));
+  const { data: movie, isFetching, isError } = useMovie(movieId);
 
   if (isFetching) {
     return <Loader size="big" />;
@@ -31,6 +32,7 @@ export function Movie() {
             releaseYear: movie.releaseYear,
             genres: movie.genres,
             runtime: movie.runtime,
+            trailerUrl: movie.trailerUrl,
           }}
         />
       </Section>

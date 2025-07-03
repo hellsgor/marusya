@@ -53,6 +53,7 @@
     @include media.bp(md) {
       top: 8px;
       right: 8px;
+      width: 32px;
     }
   }
 
@@ -72,6 +73,25 @@
 
   @include media.bp(md) {
     padding: 72px 20px;
+  }
+
+  &_wide {
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .modal__inner {
+      width: 100%;
+      margin: unset;
+    }
+
+    @include media.bp(md) {
+      padding: 0;
+
+      .modal__backdrop {
+        background-color: colorFn.getColor(base, 'black');
+      }
+    }
   }
 }
 

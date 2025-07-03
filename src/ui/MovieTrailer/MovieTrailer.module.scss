@@ -1,0 +1,10 @@
+.movieTrailer {
+  flex: 1 0 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+
+  &__frame {
+    width: 100%;
+    height: 100%;
+  }
+}

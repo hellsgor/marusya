@@ -1,11 +1,13 @@
 import type {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  ComponentType,
   ReactNode,
+  SVGProps,
 } from 'react';
 
 interface BaseMenuItem {
-  children: ReactNode;
+  children: ReactNode | ComponentType<SVGProps<SVGSVGElement>>;
   isActive?: boolean;
   id?: number;
 }

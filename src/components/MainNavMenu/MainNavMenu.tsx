@@ -1,23 +1,34 @@
-import { useLocation } from 'react-router';
-import type { MenuItemModel } from '../../models';
 import { MenuItem } from '../../ui/MenuItem/MenuItem';
+import { MAIN_MENU_ITEMS } from '../../constants';
 
 interface MainNavMenuProps {
-  items: MenuItemModel[];
+  pathname: string;
+  isMobile: boolean;
   className: string;
 }
 
-export function MainNavMenu({ items, className }: MainNavMenuProps) {
-  const { pathname } = useLocation();
-
+export function MainNavMenu({
+  pathname,
+  isMobile,
+  className,
+}: MainNavMenuProps) {
   return (
     <nav className={className}>
-      {items.map((item, idx) => (
-        <MenuItem
-          key={item.id ?? idx}
-          {...{ ...item, isActive: pathname === item.href }}
-        />
-      ))}
+      {MAIN_MENU_ITEMS.map((item) => {
+        const Child = item.children[isMobile ? 'mobile' : 'desktop'];
+        if (!Child) return null;
+
+        const content = typeof Child === 'function' ? <Child /> : Child;
+
+        return (
+          <MenuItem
+            key={item.children.desktop ?? item.children.mobile}
+            href={item.href}
+            children={content}
+            isActive={pathname === item.href}
+          />
+        );
+      })}
     </nav>
   );
 }

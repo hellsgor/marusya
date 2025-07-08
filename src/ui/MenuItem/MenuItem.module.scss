@@ -1,5 +1,6 @@
 @use '../../styles/functions/getColor' as colorFn;
 @use '../../styles/mixins/transition' as tr;
+@use '../../styles/mixins/mediaBp.scss' as media;
 
 .menuItem {
   cursor: pointer;
@@ -60,6 +61,15 @@
           transform: unset;
         }
       }
+    }
+  }
+
+  @include media.bp(md) {
+    min-width: 24px;
+    padding: 0;
+
+    &::after {
+      content: unset;
     }
   }
 }

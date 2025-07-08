@@ -1,3 +1,5 @@
+@use '../../styles/mixins/mediaBp' as media;
+
 .header {
   padding: 24px 0;
 
@@ -6,6 +8,14 @@
     column-gap: 80px;
     align-items: center;
     justify-content: space-between;
+
+    @include media.bp(lg) {
+      column-gap: 40px;
+    }
+
+    @include media.bp(sm) {
+      column-gap: 20px;
+    }
   }
 
   &__menu {
@@ -18,5 +28,14 @@
     flex: 1 1 auto;
     column-gap: 40px;
     align-items: center;
+
+    @include media.bp(lg) {
+      flex: 0 1 500px;
+      margin-left: auto;
+    }
+
+    @include media.bp(sm) {
+      column-gap: 20px;
+    }
   }
 }

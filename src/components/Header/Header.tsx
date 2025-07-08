@@ -12,7 +12,7 @@ import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { User } from '../../ui/icons';
 
 export function Header() {
-  const isMobile = useMediaQuery(BREAKPOINTS.md);
+  const isVertTablet = useMediaQuery(BREAKPOINTS.lg);
   const { pathname } = useLocation();
 
   return (
@@ -25,7 +25,7 @@ export function Header() {
           <div className={st.header__center}>
             <MainNavMenu
               pathname={pathname}
-              isMobile={isMobile}
+              isVertTablet={isVertTablet}
               className={st.header__menu}
             />
             <Search />
@@ -34,7 +34,7 @@ export function Header() {
             onClick={() => {
               console.log('click');
             }}
-            children={isMobile ? <User /> : 'Войти'}
+            children={isVertTablet ? <User /> : 'Войти'}
           />
         </div>
       </Container>

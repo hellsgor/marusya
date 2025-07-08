@@ -3,19 +3,19 @@ import { MAIN_MENU_ITEMS } from '../../constants';
 
 interface MainNavMenuProps {
   pathname: string;
-  isMobile: boolean;
+  isVertTablet: boolean;
   className: string;
 }
 
 export function MainNavMenu({
   pathname,
-  isMobile,
+  isVertTablet,
   className,
 }: MainNavMenuProps) {
   return (
     <nav className={className}>
       {MAIN_MENU_ITEMS.map((item) => {
-        const Child = item.children[isMobile ? 'mobile' : 'desktop'];
+        const Child = item.children[isVertTablet ? 'mobile' : 'desktop'];
         if (!Child) return null;
 
         const content = typeof Child === 'function' ? <Child /> : Child;

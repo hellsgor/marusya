@@ -38,6 +38,21 @@
     outline: none;
 
     @include tr.transition(border-color);
+
+    &[type='search'] {
+      -webkit-appearance: none;
+      appearance: none;
+
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+
+      &::-ms-clear {
+        display: none;
+        width: 0;
+        height: 0;
+      }
+    }
   }
 
   .icon {
@@ -55,6 +70,12 @@
   &:has(.icon) {
     input {
       padding-left: 52px;
+    }
+  }
+
+  &:has(.rightSlot) {
+    input {
+      padding-right: 60px;
     }
   }
 
@@ -141,5 +162,15 @@
     p {
       opacity: 1;
     }
+  }
+
+  .rightSlot {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    translate: 0 -50%;
+
+    width: fit-content;
+    height: 24px;
   }
 }

@@ -1,0 +1,56 @@
+import { memo, useRef, useState, type ChangeEvent } from 'react';
+
+import { TextInput, type TextInputProps } from '../TextInput/TextInput';
+
+import clsx from 'clsx';
+import st from './SearchInput.module.scss';
+
+import { Cross, SearchIcon } from '../icons';
+
+type SearchInputProps = Omit<TextInputProps, 'icon' | 'type' | 'rightSlot'>;
+
+export const SearchInput = memo(function SearchInput({
+  theme = 'dark',
+  className,
+  error,
+  ...props
+}: SearchInputProps) {
+  const [value, setValue] = useState(props.value?.toString() || '');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClearButtonClick = () => {
+    setValue('');
+    const event = new Event('input', { bubbles: true });
+    inputRef.current?.dispatchEvent(event);
+    inputRef.current?.focus();
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+    props.onChange?.(event);
+  };
+
+  return (
+    <TextInput
+      {...props}
+      ref={inputRef}
+      value={value}
+      onChange={handleInputChange}
+      theme={theme}
+      className={clsx(st.searchInput, className ?? null)}
+      type="search"
+      icon={SearchIcon}
+      error={error}
+      rightSlot={
+        <button
+          className={st.searchInput__clearButton}
+          type="button"
+          onClick={handleClearButtonClick}
+          style={{ opacity: `${value ? 1 : 0}` }}
+        >
+          <Cross width={24} height={24} />
+        </button>
+      }
+    />
+  );
+});

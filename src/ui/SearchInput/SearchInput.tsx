@@ -20,8 +20,15 @@ export const SearchInput = memo(function SearchInput({
 
   const handleClearButtonClick = () => {
     setValue('');
-    const event = new Event('input', { bubbles: true });
-    inputRef.current?.dispatchEvent(event);
+
+    if (props.onChange) {
+      const fakeEvent = {
+        target: { value: '' },
+        currentTarget: { value: '' },
+      } as unknown as ChangeEvent<HTMLInputElement>;
+      props.onChange(fakeEvent);
+    }
+
     inputRef.current?.focus();
   };
 

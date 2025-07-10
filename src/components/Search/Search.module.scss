@@ -1,3 +1,12 @@
 .search {
   width: 100%;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__dropdown {
+    z-index: 10;
+    top: calc(100% + 12px);
+  }
 }

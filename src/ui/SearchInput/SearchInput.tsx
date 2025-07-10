@@ -48,6 +48,7 @@ export const SearchInput = memo(function SearchInput({
       type="search"
       icon={SearchIcon}
       error={error}
+      autoComplete="off"
       rightSlot={
         <button
           className={st.searchInput__clearButton}

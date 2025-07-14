@@ -1,19 +1,29 @@
 @use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/transition' as tr;
 
 .dropdown {
+  pointer-events: null;
+
   position: absolute;
   right: 0;
   left: 0;
 
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
-  padding: 8px;
+  max-height: 0;
   border-radius: 8px;
 
   background-color: colorFn.getColor(bg, secondary, static);
 
+  @include tr.transition(max-height);
+
   &_light {
     background-color: colorFn.getColor(bg, 'white');
+  }
+
+  &__content {
+    padding: 8px;
   }
 }

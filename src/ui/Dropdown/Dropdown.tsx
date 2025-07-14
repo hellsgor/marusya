@@ -1,18 +1,22 @@
 import clsx from 'clsx';
 import st from './Dropdown.module.scss';
-import type { ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 
 interface DropdownProps {
   theme?: 'dark' | 'light';
+  isOpen: boolean;
   children: ReactNode;
   className?: string;
 }
 
 export function Dropdown({
   theme = 'dark',
+  isOpen,
   children,
   className,
 }: DropdownProps) {
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <div
       className={clsx(
@@ -20,8 +24,13 @@ export function Dropdown({
         theme === 'light' && st.dropdown_light,
         className,
       )}
+      style={{
+        maxHeight: `${isOpen && contentRef.current ? contentRef.current.offsetHeight : 0}px`,
+      }}
     >
-      {children}
+      <div ref={contentRef} className={st.dropdown__content}>
+        {children}
+      </div>
     </div>
   );
 }

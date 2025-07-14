@@ -9,7 +9,8 @@ export function useSearch(value: string | undefined) {
     refetchOnMount: false,
     refetchOnReconnect: false,
     enabled: !!value?.trim().length,
-    queryFn: () => moviesService.getMovies({ title: value?.trim() }),
+    queryFn: () =>
+      moviesService.getMovies({ title: value?.trim().toLowerCase() }),
     select: (data) => data.slice(0, MAX_SEARCH_DATA_LENGTH),
   });
 

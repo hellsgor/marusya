@@ -6,6 +6,7 @@ import { useSearch } from '../../hooks/useSearch';
 import { debouncer } from '../../helpers/debouncer';
 import { Dropdown } from '../../ui/Dropdown/Dropdown';
 import clsx from 'clsx';
+import { MovieFullCard } from '../../ui/MovieFullCard/MovieFullCard';
 
 export function Search() {
   const [value, setValue] = useState<string | undefined>(undefined);
@@ -49,10 +50,19 @@ export function Search() {
           className={clsx(st.search__dropdown)}
           isOpen={!!data?.length && isFocused}
         >
-          <p>Lorem ipsum dolor sit amet.</p>
-          <p>Lorem ipsum dolor sit amet.</p>
-          <p>Lorem ipsum dolor sit amet.</p>
-          <p>Lorem ipsum dolor sit amet.</p>
+          {data?.map((item) => (
+            <MovieFullCard
+              key={item.id}
+              genres={item.genres}
+              title={item.title}
+              releaseYear={item.releaseYear}
+              runtime={item.runtime}
+              posterUrl={item.posterUrl}
+              tmdbRating={item.tmdbRating}
+              href={`/movies/${item.id}`}
+              alt={`${item.title} poster`}
+            />
+          ))}
         </Dropdown>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import st from './Dropdown.module.scss';
-import { useRef, type ReactNode } from 'react';
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 
 interface DropdownProps {
   theme?: 'dark' | 'light';
@@ -16,6 +16,11 @@ export function Dropdown({
   className,
 }: DropdownProps) {
   const contentRef = useRef<HTMLDivElement | null>(null);
+  const [height, setHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    setHeight(contentRef.current?.scrollHeight ?? 0);
+  }, [children]);
 
   return (
     <div
@@ -25,7 +30,7 @@ export function Dropdown({
         className,
       )}
       style={{
-        maxHeight: `${isOpen && contentRef.current ? contentRef.current.offsetHeight : 0}px`,
+        maxHeight: `${isOpen ? height : 0}px`,
       }}
     >
       <div ref={contentRef} className={st.dropdown__content}>

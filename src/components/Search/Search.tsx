@@ -7,6 +7,7 @@ import { debouncer } from '../../helpers/debouncer';
 import { Dropdown } from '../../ui/Dropdown/Dropdown';
 import clsx from 'clsx';
 import { MovieFullCard } from '../../ui/MovieFullCard/MovieFullCard';
+import { queryClient } from '../../api/queryClient';
 
 export function Search() {
   const [value, setValue] = useState<string | undefined>(undefined);
@@ -15,7 +16,6 @@ export function Search() {
   const debouncedSet = useMemo(() => debouncer(setValue, 500), [setValue]);
 
   const { data } = useSearch(value);
-  console.log(data);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
@@ -35,6 +35,11 @@ export function Search() {
     },
   };
 
+  const clearData = () => {
+    setValue(undefined);
+    queryClient.removeQueries({ queryKey: ['search'], exact: false });
+  };
+
   return (
     <div className={st.search}>
       <div className={st.search__wrapper}>
@@ -44,6 +49,7 @@ export function Search() {
           onChange={handleInputChange}
           onFocus={handleFocus.focus}
           onBlur={handleFocus.blur}
+          clearButtonCallback={clearData}
         />
 
         <Dropdown

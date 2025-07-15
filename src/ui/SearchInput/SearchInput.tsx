@@ -7,12 +7,15 @@ import st from './SearchInput.module.scss';
 
 import { Cross, SearchIcon } from '../icons';
 
-type SearchInputProps = Omit<TextInputProps, 'icon' | 'type' | 'rightSlot'>;
+type SearchInputProps = Omit<TextInputProps, 'icon' | 'type' | 'rightSlot'> & {
+  clearButtonCallback?: () => void;
+};
 
 export const SearchInput = memo(function SearchInput({
   theme = 'dark',
   className,
   error,
+  clearButtonCallback,
   ...props
 }: SearchInputProps) {
   const [value, setValue] = useState(props.value?.toString() || '');
@@ -29,7 +32,9 @@ export const SearchInput = memo(function SearchInput({
       props.onChange(fakeEvent);
     }
 
-    inputRef.current?.focus();
+    inputRef.current?.blur();
+
+    if (clearButtonCallback) clearButtonCallback();
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {

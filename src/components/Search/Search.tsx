@@ -8,6 +8,7 @@ import { Dropdown } from '../../ui/Dropdown/Dropdown';
 import clsx from 'clsx';
 import { MovieFullCard } from '../../ui/MovieFullCard/MovieFullCard';
 import { queryClient } from '../../api/queryClient';
+import { Loader } from '../../ui/Loader/Loader';
 
 export function Search() {
   const [value, setValue] = useState<string | undefined>(undefined);
@@ -15,7 +16,7 @@ export function Search() {
 
   const debouncedSet = useMemo(() => debouncer(setValue, 500), [setValue]);
 
-  const { data } = useSearch(value);
+  const { data, isFetching } = useSearch(value);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
@@ -70,6 +71,12 @@ export function Search() {
             />
           ))}
         </Dropdown>
+
+        {isFetching && (
+          <div className={st.search__loader}>
+            <Loader size="small" />
+          </div>
+        )}
       </div>
     </div>
   );

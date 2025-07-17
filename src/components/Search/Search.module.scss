@@ -9,4 +9,16 @@
     z-index: 10;
     top: calc(100% + 12px);
   }
+
+  &__loader {
+    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    translate: 0 -50%;
+
+    width: fit-content;
+    height: fit-content;
+  }
 }

@@ -32,8 +32,6 @@ export const SearchInput = memo(function SearchInput({
       props.onChange(fakeEvent);
     }
 
-    inputRef.current?.blur();
-
     if (clearButtonCallback) clearButtonCallback();
   };
 

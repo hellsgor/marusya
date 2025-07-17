@@ -1,6 +1,9 @@
-import { NavLink } from 'react-router';
 import st from './MovieFullCard.module.scss';
+import clsx from 'clsx';
+
 import type { MovieModel } from '../../models';
+
+import { NavLink } from 'react-router';
 import Poster from '../Poster/Poster';
 import { MovieDetails } from '../MovieDetails/MovieDetails';
 
@@ -10,11 +13,13 @@ type MovieFullCardProps = Pick<
 > & {
   href: string;
   alt: string;
+  isVertical?: boolean;
 };
 
 export function MovieFullCard({
   href,
   alt,
+  isVertical,
   title,
   tmdbRating,
   releaseYear,
@@ -23,7 +28,13 @@ export function MovieFullCard({
   posterUrl,
 }: MovieFullCardProps) {
   return (
-    <NavLink to={href} className={st.movieFullCard}>
+    <NavLink
+      to={href}
+      className={clsx(
+        st.movieFullCard,
+        isVertical && st.movieFullCard_vertical,
+      )}
+    >
       <div className={st.movieFullCard__poster}>
         <Poster src={posterUrl ?? undefined} alt={alt} />
       </div>

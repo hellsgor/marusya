@@ -38,6 +38,17 @@
     font-weight: 700;
   }
 
+  &_vertical {
+    flex-direction: column;
+    row-gap: 16px;
+    align-items: flex-start;
+    max-width: 220px;
+
+    .movieFullCard__poster {
+      width: 158px;
+    }
+  }
+
   @media (hover: hover) {
     &:hover {
       border-color: colorFn.getColor(content, disabled);

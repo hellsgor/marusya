@@ -1,6 +1,12 @@
 import clsx from 'clsx';
 import st from './Dropdown.module.scss';
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react';
 
 interface DropdownProps {
   theme?: 'dark' | 'light';
@@ -19,8 +25,28 @@ export function Dropdown({
   const [height, setHeight] = useState(0);
 
   useLayoutEffect(() => {
-    setHeight(contentRef.current?.scrollHeight ?? 0);
-  }, [children]);
+    if (isOpen) {
+      requestAnimationFrame(() => {
+        const el = contentRef.current;
+        if (el) {
+          setHeight(el.scrollHeight);
+        }
+      });
+    }
+  }, [children, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen || !contentRef.current) return;
+
+    const el = contentRef.current;
+    const resizeObserver = new ResizeObserver(() => {
+      setHeight(el.scrollHeight);
+    });
+
+    resizeObserver.observe(el);
+
+    return () => resizeObserver.disconnect();
+  }, [isOpen]);
 
   return (
     <div

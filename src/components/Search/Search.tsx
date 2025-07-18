@@ -1,10 +1,17 @@
 import st from './Search.module.scss';
 import clsx from 'clsx';
 
-import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from 'react';
 
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { BREAKPOINTS } from '../../constants';
+import { BREAKPOINTS, ERRORS_TEXTS } from '../../constants';
 
 import { useSearch } from '../../hooks/useSearch';
 import { debouncer } from '../../helpers/debouncer';
@@ -33,7 +40,7 @@ export function Search() {
 
   const debouncedSet = useMemo(() => debouncer(setValue, 500), [setValue]);
 
-  const { data, isFetching } = useSearch(value);
+  const { data, isFetching, isError } = useSearch(value);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
@@ -71,6 +78,12 @@ export function Search() {
   const handleBackdropClick = () => {
     setIsFocused(false);
   };
+
+  const error = useCallback((): Error | undefined => {
+    if (data && !data.length) return new Error(ERRORS_TEXTS.e003);
+    if (isError) return new Error(ERRORS_TEXTS.e001);
+    return undefined;
+  }, [data, isError]);
 
   const cards = useMemo(
     () =>
@@ -114,6 +127,7 @@ export function Search() {
           clearButtonCallback={clearData}
           ref={inputRef}
           onClick={(event) => event.stopPropagation()}
+          error={error()}
         />
 
         <Dropdown

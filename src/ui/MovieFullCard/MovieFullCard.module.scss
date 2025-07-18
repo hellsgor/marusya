@@ -42,10 +42,13 @@
     flex-direction: column;
     row-gap: 16px;
     align-items: flex-start;
+
     max-width: 220px;
+    padding: 0;
 
     .movieFullCard__poster {
       width: 158px;
+      height: 213px;
     }
   }
 

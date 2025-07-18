@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   row-gap: 4px;
   column-gap: 16px;
-  align-items: last baseline;
+  align-items: center;
 
   & > span {
     color: colorFn.getColor(content, secondary);
@@ -15,5 +15,9 @@
     @include media.bp(sm) {
       font-size: 14px;
     }
+  }
+
+  &_small {
+    font-size: 14px;
   }
 }

@@ -4,9 +4,10 @@ import st from './Rating.module.scss';
 
 interface RatingProps {
   rate: number;
+  isSmall?: boolean;
 }
 
-export function Rating({ rate }: RatingProps) {
+export function Rating({ rate, isSmall = false }: RatingProps) {
   const rounded = Math.round((rate + Number.EPSILON) * 10) / 10;
 
   const mod = (() => {
@@ -28,7 +29,7 @@ export function Rating({ rate }: RatingProps) {
   })();
 
   return (
-    <div className={clsx(st.rating, mod)}>
+    <div className={clsx(st.rating, isSmall && st.rating_small, mod)}>
       <Star />
       <span>{rounded.toFixed(1).replace('.', ',')}</span>
     </div>

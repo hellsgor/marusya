@@ -9,6 +9,7 @@ import { MovieCard } from '../MovieCard/MovieCard';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
+import { BREAKPOINTS } from '../../constants';
 
 interface MoviesListProps {
   data: MoviesModel | undefined;
@@ -17,7 +18,7 @@ interface MoviesListProps {
 }
 
 export function MoviesList({ data, isIndexes, isSlider }: MoviesListProps) {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery(BREAKPOINTS.md);
 
   const cards = data
     ? data.map((movie, index) => (

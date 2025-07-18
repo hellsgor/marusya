@@ -10,3 +10,5 @@ export { ReactComponent as Refresh } from './refresh.svg';
 export { ReactComponent as Star } from './star.svg';
 export { ReactComponent as Back } from './arrow-back.svg';
 export { ReactComponent as Cross } from './cross.svg';
+export { ReactComponent as Items } from './items.svg';
+export { ReactComponent as User } from './user.svg';

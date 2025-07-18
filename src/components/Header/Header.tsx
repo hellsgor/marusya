@@ -1,15 +1,20 @@
 import st from './Header.module.scss';
 
-import { MAIN_MENU_ITEMS } from '../../constants';
+import { BREAKPOINTS } from '../../constants';
 
 import { Container } from '../../ui/Container/Container';
 import { Logo } from '../../ui/Logo/Logo';
 import { MainNavMenu } from '../MainNavMenu/MainNavMenu';
 import { MenuItem } from '../../ui/MenuItem/MenuItem';
 import { Search } from '../Search/Search';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { User } from '../../ui/icons';
 
 export function Header() {
+  const isVertTablet = useMediaQuery(BREAKPOINTS.lg);
+  const { pathname } = useLocation();
+
   return (
     <header className={st.header}>
       <Container>
@@ -18,14 +23,18 @@ export function Header() {
             <Logo theme={'light'} />
           </NavLink>
           <div className={st.header__center}>
-            <MainNavMenu items={MAIN_MENU_ITEMS} className={st.header__menu} />
+            <MainNavMenu
+              pathname={pathname}
+              isVertTablet={isVertTablet}
+              className={st.header__menu}
+            />
             <Search />
           </div>
           <MenuItem
             onClick={() => {
               console.log('click');
             }}
-            children={'Войти'}
+            children={isVertTablet ? <User /> : 'Войти'}
           />
         </div>
       </Container>

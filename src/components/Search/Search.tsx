@@ -15,6 +15,8 @@ import { SearchInput } from '../../ui/SearchInput/SearchInput';
 import { Dropdown } from '../../ui/Dropdown/Dropdown';
 import { MovieFullCard } from '../../ui/MovieFullCard/MovieFullCard';
 import { Loader } from '../../ui/Loader/Loader';
+import { SearchIcon } from '../../ui/icons';
+import { Backdrop } from '../../ui/Backdrop/Backdrop';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper/modules';
@@ -22,8 +24,12 @@ import { FreeMode } from 'swiper/modules';
 export function Search() {
   const [value, setValue] = useState<string | undefined>(undefined);
   const [isFocused, setIsFocused] = useState(false);
+
   const isMobile = useMediaQuery(BREAKPOINTS.md);
+  const isTablet = useMediaQuery(BREAKPOINTS.lg);
+
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const debouncedSet = useMemo(() => debouncer(setValue, 500), [setValue]);
 
@@ -58,6 +64,14 @@ export function Search() {
     };
   }, []);
 
+  const handleIconClick = () => {
+    inputRef.current?.focus();
+  };
+
+  const handleBackdropClick = () => {
+    setIsFocused(false);
+  };
+
   const cards = useMemo(
     () =>
       data?.map((item) => (
@@ -79,17 +93,35 @@ export function Search() {
 
   return (
     <div className={st.search} ref={containerRef} tabIndex={0}>
-      <div className={st.search__wrapper}>
+      {isTablet && (
+        <div className={st.search__icon} onClick={handleIconClick}>
+          <SearchIcon />
+        </div>
+      )}
+
+      <div
+        className={clsx(st.search__wrapper, {
+          [st.search__wrapper_active]: isFocused,
+        })}
+        onClick={handleBackdropClick}
+      >
+        {isTablet && <Backdrop className={st.search__backdrop} />}
+
         <SearchInput
           placeholder="Поиск"
           name="search-movie"
           onChange={handleInputChange}
           clearButtonCallback={clearData}
+          ref={inputRef}
+          onClick={(event) => event.stopPropagation()}
         />
 
         <Dropdown
           className={clsx(st.search__dropdown)}
           isOpen={!!data?.length && isFocused}
+          onClick={() => {
+            window.event?.stopPropagation?.();
+          }}
         >
           {!isMobile ? (
             cards

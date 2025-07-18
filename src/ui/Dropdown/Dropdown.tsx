@@ -13,6 +13,7 @@ interface DropdownProps {
   isOpen: boolean;
   children: ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
 export function Dropdown({
@@ -20,6 +21,7 @@ export function Dropdown({
   isOpen,
   children,
   className,
+  onClick,
 }: DropdownProps) {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [height, setHeight] = useState(0);
@@ -58,6 +60,7 @@ export function Dropdown({
       style={{
         maxHeight: `${isOpen ? height : 0}px`,
       }}
+      onClick={onClick}
     >
       <div ref={contentRef} className={st.dropdown__content}>
         {children}

@@ -1,5 +1,6 @@
 @use '../../styles/functions/getColor' as colorFn;
 @use '../../styles/mixins/transition' as tr;
+@use '../../styles/mixins/mediaBp' as media;
 
 .dropdown {
   pointer-events: null;
@@ -25,5 +26,9 @@
 
   &__content {
     padding: 8px;
+
+    @include media.bp(md) {
+      padding: 24px 20px;
+    }
   }
 }

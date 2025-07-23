@@ -3,14 +3,14 @@ import st from './MovieDetail.module.scss';
 import { useState } from 'react';
 
 import type { MovieModel } from '../../models';
-import type { MovieActionsProps } from '../MovieActions/MovieActions';
-import type { MovieInfoProps } from '../MovieInfo/MovieInfo';
+import type { MovieActionsProps } from '../../ui/MovieActions/MovieActions';
+import type { MovieInfoProps } from '../../ui/MovieInfo/MovieInfo';
 
-import { Poster } from '../Poster/Poster';
-import { MovieInfo } from '../MovieInfo/MovieInfo';
-import { MovieActions } from '../MovieActions/MovieActions';
-import { Modal } from '../Modal/Modal';
-import { MovieTrailer } from '../MovieTrailer/MovieTrailer';
+import { Poster } from '../../ui/Poster/Poster';
+import { MovieInfo } from '../../ui/MovieInfo/MovieInfo';
+import { MovieActions } from '../../ui/MovieActions/MovieActions';
+import { Modal } from '../../ui/Modal/Modal';
+import { MovieTrailer } from '../../ui/MovieTrailer/MovieTrailer';
 
 type MovieDetailType = Pick<MovieModel, 'backdropUrl' | 'trailerUrl'> &
   MovieInfoProps['data'];

@@ -11,12 +11,11 @@ export function MenuItem({
   children,
   isActive = false,
 }: MenuItemProps) {
+  const className = clsx(st.menuItem, isActive ? st.menuItem_active : null);
+
   if (href?.length) {
     return (
-      <NavLink
-        to={href}
-        className={clsx(st.menuItem, isActive ? st.menuItem_active : null)}
-      >
+      <NavLink to={href} className={className}>
         {children}
       </NavLink>
     );
@@ -24,10 +23,7 @@ export function MenuItem({
 
   if (onClick) {
     return (
-      <button
-        onClick={onClick}
-        className={clsx(st.menuItem, isActive ? st.menuItem_active : null)}
-      >
+      <button onClick={onClick} className={className}>
         {children}
       </button>
     );

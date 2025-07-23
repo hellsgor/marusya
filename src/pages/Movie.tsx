@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { Section } from '../ui/Section/Section';
 import { useMovie } from '../hooks/useMovie';
-import { MovieDetail } from '../ui/MovieDetail/MovieDetail';
+import { MovieDetail } from '../components/MovieDetail/MovieDetail';
 import { Loader } from '../ui/Loader/Loader';
 import { ErrorText } from '../ui/ErrorText/ErrorText';
 import { MovieAbout } from '../ui/MovieAbout/MovieAbout';

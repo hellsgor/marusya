@@ -1,7 +1,7 @@
 import { useRandomMovie } from '../../hooks/useRandomMovie';
 import { ErrorText } from '../../ui/ErrorText/ErrorText';
 import { Loader } from '../../ui/Loader/Loader';
-import { MovieDetail } from '../../ui/MovieDetail/MovieDetail';
+import { MovieDetail } from '../MovieDetail/MovieDetail';
 
 export function RandomMovie() {
   const { data, isFetching, isError, refresh } = useRandomMovie();

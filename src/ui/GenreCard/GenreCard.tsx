@@ -2,7 +2,7 @@ import st from './GenreCard.module.scss';
 
 import { memo } from 'react';
 import { NavLink } from 'react-router';
-import Poster from '../Poster/Poster';
+import { Poster } from '../Poster/Poster';
 
 interface GenreCardProps {
   href: string;

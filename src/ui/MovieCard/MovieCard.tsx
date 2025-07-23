@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { memo } from 'react';
 import { NavLink } from 'react-router';
-import Poster from '../Poster/Poster';
+import { Poster } from '../Poster/Poster';
 
 interface MovieCardProps {
   href: string;

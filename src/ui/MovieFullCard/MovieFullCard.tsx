@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import type { MovieModel } from '../../models';
 
 import { NavLink } from 'react-router';
-import Poster from '../Poster/Poster';
+import { Poster } from '../Poster/Poster';
 import { MovieDetails } from '../MovieDetails/MovieDetails';
 
 type MovieFullCardProps = Pick<

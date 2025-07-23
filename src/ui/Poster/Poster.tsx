@@ -22,5 +22,3 @@ export function Poster({ src, alt }: PosterProps) {
     </div>
   );
 }
-
-export default Poster;

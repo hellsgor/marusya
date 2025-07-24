@@ -10,10 +10,18 @@ import { Search } from '../Search/Search';
 import { NavLink, useLocation } from 'react-router';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { User } from '../../ui/icons';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { Modal } from '../../ui/Modal/Modal';
+import { closeModal, openModal } from '../../store/authModalSlice';
 
 export function Header() {
+  const { isLoggedIn, user } = useAppSelector((state) => state.auth);
+  const currentAuthModal = useAppSelector((state) => state.authModal);
+
   const isVertTablet = useMediaQuery(BREAKPOINTS.lg);
   const { pathname } = useLocation();
+
+  const dispatch = useAppDispatch();
 
   return (
     <header className={st.header}>
@@ -30,12 +38,33 @@ export function Header() {
             />
             <Search />
           </div>
-          <MenuItem
-            onClick={() => {
-              console.log('click');
-            }}
-            children={isVertTablet ? <User /> : 'Войти'}
-          />
+
+          {isLoggedIn && (
+            <MenuItem
+              href="/account"
+              children={isVertTablet ? <User /> : user?.name}
+            />
+          )}
+
+          {!isLoggedIn && (
+            <>
+              <MenuItem
+                onClick={() => {
+                  dispatch(openModal('login'));
+                }}
+                children={isVertTablet ? <User /> : 'Войти'}
+              />
+
+              <Modal
+                isVisible={currentAuthModal === 'login'}
+                onClose={() => {
+                  dispatch(closeModal());
+                }}
+              >
+                <p>AuthForm</p>
+              </Modal>
+            </>
+          )}
         </div>
       </Container>
     </header>

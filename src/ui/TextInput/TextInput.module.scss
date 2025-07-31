@@ -23,6 +23,8 @@
   position: relative;
   width: 100%;
 
+  @include tr.transition(margin-bottom);
+
   input {
     width: 100%;
     padding: 16px;
@@ -150,6 +152,8 @@
   }
 
   &.error {
+    margin-bottom: 28px;
+
     input {
       border-color: colorFn.getColor(accent, error);
     }

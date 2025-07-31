@@ -13,6 +13,8 @@ import { User } from '../../ui/icons';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Modal } from '../../ui/Modal/Modal';
 import { closeModal, openModal } from '../../store/authModalSlice';
+import AuthForm from '../AuthForm/AuthForm';
+import { Button } from '../../ui/Button/Button';
 
 export function Header() {
   const { isLoggedIn, user } = useAppSelector((state) => state.auth);
@@ -61,7 +63,8 @@ export function Header() {
                   dispatch(closeModal());
                 }}
               >
-                <p>AuthForm</p>
+                <AuthForm />
+                <Button variant="ghost">Регистрация</Button>
               </Modal>
             </>
           )}

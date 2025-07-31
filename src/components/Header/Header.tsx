@@ -25,6 +25,10 @@ export function Header() {
 
   const dispatch = useAppDispatch();
 
+  const handleToggleModalsClick = () => {
+    dispatch(openModal('register'));
+  };
+
   return (
     <header className={st.header}>
       <Container>
@@ -64,7 +68,9 @@ export function Header() {
                 }}
               >
                 <AuthForm />
-                <Button variant="ghost">Регистрация</Button>
+                <Button variant="ghost" onClick={handleToggleModalsClick}>
+                  Регистрация
+                </Button>
               </Modal>
             </>
           )}

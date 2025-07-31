@@ -13,7 +13,7 @@ import clsx from 'clsx';
 export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   theme?: 'light' | 'dark';
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
-  error?: Error;
+  error?: string | undefined;
   className?: string;
   rightSlot?: ReactNode;
 }
@@ -45,7 +45,7 @@ export const TextInput = memo(
           <div className={st.icon}>{<Icon width={24} height={24} />}</div>
         )}
         {rightSlot && <div className={st.rightSlot}>{rightSlot}</div>}
-        {error && <p>{error?.message}</p>}
+        {error && <p>{error}</p>}
       </div>
     );
   }),

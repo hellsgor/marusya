@@ -12,3 +12,4 @@ export { ReactComponent as Back } from './arrow-back.svg';
 export { ReactComponent as Cross } from './cross.svg';
 export { ReactComponent as Items } from './items.svg';
 export { ReactComponent as User } from './user.svg';
+export { ReactComponent as Password } from './password.svg';

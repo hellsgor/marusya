@@ -7,8 +7,10 @@ import { EmailIcon, Password } from '../../ui/icons';
 
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { ERRORS_TEXTS } from '../../constants';
+import { useAuth } from '../../hooks/useAuth';
+import { Loader } from '../../ui/Loader/Loader';
 
-export default function AuthForm() {
+export function AuthForm() {
   const {
     register,
     handleSubmit,
@@ -16,9 +18,10 @@ export default function AuthForm() {
     reset,
   } = useForm<LoginModel>();
 
-  const onSubmit: SubmitHandler<LoginModel> = (data) => {
-    console.log(data);
-    reset();
+  const { mutate, isPending } = useAuth(() => reset());
+
+  const onSubmit: SubmitHandler<LoginModel> = async (form) => {
+    mutate(form);
   };
 
   return (
@@ -45,7 +48,7 @@ export default function AuthForm() {
         />
       </div>
       <Button wide={true} type="submit">
-        Войти
+        {isPending ? <Loader size="small"></Loader> : 'Войти'}
       </Button>
     </form>
   );

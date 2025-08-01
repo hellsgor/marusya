@@ -1,4 +1,4 @@
-import { boolean, z } from 'zod/v4';
+import { z } from 'zod/v4';
 
 export const UserSchema = z.object({
   email: z.email(),
@@ -9,7 +9,7 @@ export const UserSchema = z.object({
 
 export const LoginSchema = UserSchema.pick({ email: true, password: true });
 export const SuccessLoginSchema = z.object({
-  result: boolean,
+  result: z.boolean(),
 });
 
 export type UserModel = z.infer<typeof UserSchema>;

@@ -5,29 +5,14 @@ import { BREAKPOINTS } from '../../constants';
 import { Container } from '../../ui/Container/Container';
 import { Logo } from '../../ui/Logo/Logo';
 import { MainNavMenu } from '../MainNavMenu/MainNavMenu';
-import { MenuItem } from '../../ui/MenuItem/MenuItem';
 import { Search } from '../Search/Search';
 import { NavLink, useLocation } from 'react-router';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { User } from '../../ui/icons';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { Modal } from '../../ui/Modal/Modal';
-import { closeModal, openModal } from '../../store/authModalSlice';
-import AuthForm from '../AuthForm/AuthForm';
-import { Button } from '../../ui/Button/Button';
+import { Auth } from '../Auth/Auth';
 
 export function Header() {
-  const { isLoggedIn, user } = useAppSelector((state) => state.auth);
-  const currentAuthModal = useAppSelector((state) => state.authModal);
-
   const isVertTablet = useMediaQuery(BREAKPOINTS.lg);
   const { pathname } = useLocation();
-
-  const dispatch = useAppDispatch();
-
-  const handleToggleModalsClick = () => {
-    dispatch(openModal('register'));
-  };
 
   return (
     <header className={st.header}>
@@ -45,35 +30,7 @@ export function Header() {
             <Search />
           </div>
 
-          {isLoggedIn && (
-            <MenuItem
-              href="/account"
-              children={isVertTablet ? <User /> : user?.name}
-            />
-          )}
-
-          {!isLoggedIn && (
-            <>
-              <MenuItem
-                onClick={() => {
-                  dispatch(openModal('login'));
-                }}
-                children={isVertTablet ? <User /> : 'Войти'}
-              />
-
-              <Modal
-                isVisible={currentAuthModal === 'login'}
-                onClose={() => {
-                  dispatch(closeModal());
-                }}
-              >
-                <AuthForm />
-                <Button variant="ghost" onClick={handleToggleModalsClick}>
-                  Регистрация
-                </Button>
-              </Modal>
-            </>
-          )}
+          <Auth isVertTablet={isVertTablet} />
         </div>
       </Container>
     </header>

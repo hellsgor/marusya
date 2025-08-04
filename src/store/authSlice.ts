@@ -1,8 +1,8 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { UserModel } from '../models';
+import type { ProfileModel } from '../models';
 
 interface AuthState {
-  user: UserModel | null;
+  user: ProfileModel | null;
   isLoggedIn: boolean;
 }
 
@@ -15,7 +15,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<UserModel>) {
+    setUser(state, action: PayloadAction<ProfileModel>) {
       state.user = action.payload;
       state.isLoggedIn = true;
     },

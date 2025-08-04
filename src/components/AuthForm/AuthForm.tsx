@@ -9,6 +9,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { ERRORS_TEXTS } from '../../constants';
 import { useAuth } from '../../hooks/useAuth';
 import { Loader } from '../../ui/Loader/Loader';
+import { queryClient } from '../../api/queryClient';
 
 export function AuthForm() {
   const {
@@ -18,7 +19,10 @@ export function AuthForm() {
     reset,
   } = useForm<LoginModel>();
 
-  const { mutate, isPending } = useAuth(() => reset());
+  const { mutate, isPending } = useAuth(async () => {
+    reset();
+    queryClient.invalidateQueries({ queryKey: ['profile'] });
+  });
 
   const onSubmit: SubmitHandler<LoginModel> = async (form) => {
     mutate(form);

@@ -1,3 +1,4 @@
+import { useProfile } from '../../hooks/useProfile';
 import { closeModal, openModal } from '../../store/authModalSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Button } from '../../ui/Button/Button';
@@ -16,9 +17,12 @@ export function Auth({ isVertTablet }: AuthProps) {
 
   const dispatch = useAppDispatch();
 
+  useProfile();
+
   const handleToggleModalsClick = () => {
     dispatch(openModal('register'));
   };
+
   return (
     <>
       {isLoggedIn && (

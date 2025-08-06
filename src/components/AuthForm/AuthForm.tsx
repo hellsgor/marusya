@@ -10,6 +10,7 @@ import { ERRORS_TEXTS } from '../../constants';
 import { useAuth } from '../../hooks/useAuth';
 import { Loader } from '../../ui/Loader/Loader';
 import { queryClient } from '../../api/queryClient';
+import { ErrorText } from '../../ui/ErrorText/ErrorText';
 
 export function AuthForm() {
   const {
@@ -19,7 +20,7 @@ export function AuthForm() {
     reset,
   } = useForm<LoginModel>();
 
-  const { mutate, isPending } = useAuth(async () => {
+  const { mutate, isPending, isError, error } = useAuth(async () => {
     reset();
     queryClient.invalidateQueries({ queryKey: ['profile'] });
   });
@@ -54,6 +55,15 @@ export function AuthForm() {
       <Button wide={true} type="submit">
         {isPending ? <Loader size="small"></Loader> : 'Войти'}
       </Button>
+
+      {isError && (
+        <ErrorText
+          errorKey={
+            error.status ? (error.status >= 404 ? 'e006' : 'e005') : 'e001'
+          }
+          className={st.authForm__error}
+        />
+      )}
     </form>
   );
 }

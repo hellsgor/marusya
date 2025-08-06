@@ -1,3 +1,5 @@
+@use '../../styles/functions/getColor' as colorFn;
+
 .authForm {
   display: flex;
   flex-direction: column;
@@ -8,5 +10,10 @@
     display: flex;
     flex-direction: column;
     row-gap: 12px;
+  }
+
+  &__error {
+    color: colorFn.getColor(accent, error);
+    text-align: center;
   }
 }

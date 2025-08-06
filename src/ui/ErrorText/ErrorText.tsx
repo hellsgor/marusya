@@ -1,7 +1,13 @@
+import clsx from 'clsx';
 import { getErrorText } from '../../helpers';
 
 type ErrorKey = Parameters<typeof getErrorText>[0];
 
-export function ErrorText({ errorKey }: { errorKey: ErrorKey }) {
-  return <span>{getErrorText(errorKey)}</span>;
+interface ErrorTextProps {
+  errorKey: ErrorKey;
+  className?: string;
+}
+
+export function ErrorText({ errorKey, className }: ErrorTextProps) {
+  return <span className={clsx(className)}>{getErrorText(errorKey)}</span>;
 }

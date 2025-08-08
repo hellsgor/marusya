@@ -1,69 +1,46 @@
-import st from './AuthForm.module.scss';
-
 import type { LoginModel } from '../../models/User';
-import { Button } from '../../ui/Button/Button';
-import { TextInput } from '../../ui/TextInput/TextInput';
-import { EmailIcon, Password } from '../../ui/icons';
-
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import { ERRORS_TEXTS } from '../../constants';
-import { useAuth } from '../../hooks/useAuth';
-import { Loader } from '../../ui/Loader/Loader';
 import { queryClient } from '../../api/queryClient';
-import { ErrorText } from '../../ui/ErrorText/ErrorText';
+import { useAuth } from '../../hooks/useAuth';
+import { EmailIcon, Password } from '../../ui/icons';
+import { RHFTextInput } from '../../ui/TextInput/RHFTextInput';
+import { Form } from '../Form/Form';
 
-export function AuthForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<LoginModel>();
-
-  const { mutate, isPending, isError, error } = useAuth(async () => {
-    reset();
-    queryClient.invalidateQueries({ queryKey: ['profile'] });
+export function AuthForm({ afterSuccess }: { afterSuccess: () => void }) {
+  const { mutateAsync, isPending, isError, error } = useAuth(async () => {
+    await queryClient.invalidateQueries({ queryKey: ['profile'] });
   });
 
-  const onSubmit: SubmitHandler<LoginModel> = async (form) => {
-    mutate(form);
-  };
+  const serverErrorKey = isError
+    ? error.status
+      ? error.status >= 404
+        ? 'e006'
+        : 'e005'
+      : 'e001'
+    : undefined;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={st.authForm}>
-      <div className={st.authForm__inputs}>
-        <TextInput
-          placeholder="Электронная почта"
-          theme="light"
-          icon={EmailIcon}
-          {...register('email', { required: true })}
-          error={
-            errors.email?.type === 'required' ? ERRORS_TEXTS.e004 : undefined
-          }
-        />
-        <TextInput
-          placeholder="Пароль"
-          theme={'light'}
-          icon={Password}
-          type="password"
-          {...register('password', { required: true })}
-          error={
-            errors.password?.type === 'required' ? ERRORS_TEXTS.e004 : undefined
-          }
-        />
-      </div>
-      <Button wide={true} type="submit">
-        {isPending ? <Loader size="small"></Loader> : 'Войти'}
-      </Button>
-
-      {isError && (
-        <ErrorText
-          errorKey={
-            error.status ? (error.status >= 404 ? 'e006' : 'e005') : 'e001'
-          }
-          className={st.authForm__error}
-        />
-      )}
-    </form>
+    <Form<LoginModel>
+      submitButtonText="Войти"
+      isSubmitting={isPending}
+      serverErrorKey={serverErrorKey}
+      onSubmit={(values) => mutateAsync(values)}
+      afterSuccess={afterSuccess}
+    >
+      <RHFTextInput<LoginModel>
+        name="email"
+        placeholder="Электронная почта"
+        theme="light"
+        icon={EmailIcon}
+        rules={{ required: true }}
+      />
+      <RHFTextInput<LoginModel>
+        name="password"
+        placeholder="Пароль"
+        theme="light"
+        icon={Password}
+        rules={{ required: true }}
+        type={'password'}
+      />
+    </Form>
   );
 }

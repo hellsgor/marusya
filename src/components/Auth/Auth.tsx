@@ -47,7 +47,11 @@ export function Auth({ isVertTablet }: AuthProps) {
               dispatch(closeModal());
             }}
           >
-            <AuthForm />
+            <AuthForm
+              afterSuccess={() => {
+                dispatch(closeModal());
+              }}
+            />
             <Button variant="ghost" onClick={handleToggleModalsClick}>
               Регистрация
             </Button>

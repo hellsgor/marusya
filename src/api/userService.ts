@@ -1,5 +1,9 @@
 import { ProfileSchema } from '../models';
-import { SuccessLoginSchema, type LoginModel } from '../models/User';
+import {
+  SuccessLoginSchema,
+  UserSchema,
+  type LoginModel,
+} from '../models/User';
 import { apiClient } from './apiClient';
 
 export const userService = {
@@ -15,6 +19,13 @@ export const userService = {
     return apiClient(ProfileSchema, {
       method: 'GET',
       url: '/profile',
+      withCredentials: true,
+    });
+  },
+  createUser: async () => {
+    return apiClient(UserSchema, {
+      method: 'POST',
+      url: '/user',
       withCredentials: true,
     });
   },

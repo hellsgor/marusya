@@ -11,8 +11,8 @@ export type { UserModel } from './User';
 export { LoginSchema } from './User';
 export type { LoginModel } from './User';
 
-export { SuccessLoginSchema } from './User';
-export type { SuccessLoginModel } from './User';
+export { SuccessSchema } from './User';
+export type { SuccessModel } from './User';
 
 export { ProfileSchema } from './Profile';
 export type { ProfileModel } from './Profile';

@@ -8,10 +8,10 @@ export const UserSchema = z.object({
 });
 
 export const LoginSchema = UserSchema.pick({ email: true, password: true });
-export const SuccessLoginSchema = z.object({
+export const SuccessSchema = z.object({
   result: z.boolean(),
 });
 
 export type UserModel = z.infer<typeof UserSchema>;
 export type LoginModel = z.infer<typeof LoginSchema>;
-export type SuccessLoginModel = z.infer<typeof SuccessLoginSchema>;
+export type SuccessModel = z.infer<typeof SuccessSchema>;

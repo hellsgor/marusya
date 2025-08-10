@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import type { LoginModel, SuccessLoginModel } from '../models/User';
+import type { LoginModel, SuccessLoginModel } from '../models';
 import { userService } from '../api/userService';
 import type { AxiosError } from 'axios';
 

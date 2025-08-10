@@ -3,7 +3,8 @@ import {
   SuccessLoginSchema,
   UserSchema,
   type LoginModel,
-} from '../models/User';
+  type UserModel,
+} from '../models';
 import { apiClient } from './apiClient';
 
 export const userService = {
@@ -22,10 +23,11 @@ export const userService = {
       withCredentials: true,
     });
   },
-  createUser: async () => {
+  create: async (data: UserModel) => {
     return apiClient(UserSchema, {
       method: 'POST',
       url: '/user',
+      data,
       withCredentials: true,
     });
   },

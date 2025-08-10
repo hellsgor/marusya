@@ -14,7 +14,7 @@ export function useProfile() {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
-    queryFn: () => userService.getProfile(),
+    queryFn: () => userService.get(),
     retry: false,
   });
 

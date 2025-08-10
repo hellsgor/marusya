@@ -11,7 +11,7 @@ export const userService = {
       withCredentials: true,
     });
   },
-  getProfile: async () => {
+  get: async () => {
     return apiClient(ProfileSchema, {
       method: 'GET',
       url: '/profile',

@@ -19,8 +19,8 @@ export function Auth({ isVertTablet }: AuthProps) {
 
   useProfile();
 
-  const handleToggleModalsClick = () => {
-    dispatch(openModal('register'));
+  const toggleModals = () => {
+    dispatch(openModal(currentAuthModal === 'register' ? 'login' : 'register'));
   };
 
   return (
@@ -52,8 +52,19 @@ export function Auth({ isVertTablet }: AuthProps) {
                 dispatch(closeModal());
               }}
             />
-            <Button variant="ghost" onClick={handleToggleModalsClick}>
+            <Button variant="ghost" onClick={toggleModals}>
               Регистрация
+            </Button>
+          </Modal>
+          <Modal
+            isVisible={currentAuthModal === 'register'}
+            onClose={() => {
+              dispatch(closeModal());
+            }}
+          >
+            <h3 className="heading heading_3">Регистрация</h3>
+            <Button variant="ghost" onClick={toggleModals}>
+              У меня уже есть аккаунт
             </Button>
           </Modal>
         </>

@@ -72,6 +72,10 @@
     }
   }
 
+  h3 {
+    color: colorFn.getColor(content, 'black');
+  }
+
   &_visible {
     display: flex;
   }

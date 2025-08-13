@@ -6,6 +6,7 @@ import { User } from '../../ui/icons';
 import { MenuItem } from '../../ui/MenuItem/MenuItem';
 import { Modal } from '../../ui/Modal/Modal';
 import { AuthForm } from '../AuthForm/AuthForm';
+import { RegistrationForm } from '../Form/RegistrationForm';
 
 interface AuthProps {
   isVertTablet: boolean;
@@ -63,6 +64,7 @@ export function Auth({ isVertTablet }: AuthProps) {
             }}
           >
             <h3 className="heading heading_3">Регистрация</h3>
+            <RegistrationForm afterSuccess={() => {}} />
             <Button variant="ghost" onClick={toggleModals}>
               У меня уже есть аккаунт
             </Button>

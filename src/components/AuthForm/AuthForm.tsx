@@ -32,6 +32,7 @@ export function AuthForm({ afterSuccess }: { afterSuccess: () => void }) {
         theme="light"
         icon={EmailIcon}
         rules={{ required: true }}
+        type="email"
       />
       <RHFTextInput<LoginModel>
         name="password"

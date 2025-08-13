@@ -1,10 +1,10 @@
-import { ProfileSchema } from '../models';
-import { SuccessSchema, type LoginModel, type UserModel } from '../models';
+import { ProfileSchema, SuccessCreateSchema } from '../models';
+import { SuccessLoginSchema, type LoginModel, type UserModel } from '../models';
 import { apiClient } from './apiClient';
 
 export const userService = {
   login: async (data: LoginModel) => {
-    return apiClient(SuccessSchema, {
+    return apiClient(SuccessLoginSchema, {
       method: 'POST',
       url: '/auth/login',
       data,
@@ -19,7 +19,7 @@ export const userService = {
     });
   },
   create: async (data: UserModel) => {
-    return apiClient(SuccessSchema, {
+    return apiClient(SuccessCreateSchema, {
       method: 'POST',
       url: '/user',
       data,

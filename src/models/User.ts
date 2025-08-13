@@ -6,12 +6,17 @@ export const UserSchema = z.object({
   name: z.string(),
   surname: z.string(),
 });
+export type UserModel = z.infer<typeof UserSchema>;
 
 export const LoginSchema = UserSchema.pick({ email: true, password: true });
-export const SuccessSchema = z.object({
+export type LoginModel = z.infer<typeof LoginSchema>;
+
+export const SuccessLoginSchema = z.object({
   result: z.boolean(),
 });
+export type SuccessLoginModel = z.infer<typeof SuccessLoginSchema>;
 
-export type UserModel = z.infer<typeof UserSchema>;
-export type LoginModel = z.infer<typeof LoginSchema>;
-export type SuccessModel = z.infer<typeof SuccessSchema>;
+export const SuccessCreateSchema = z.object({
+  success: z.boolean(),
+});
+export type SuccessCreateModel = z.infer<typeof SuccessCreateSchema>;

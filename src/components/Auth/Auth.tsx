@@ -58,7 +58,14 @@ export function Auth({ isVertTablet }: AuthProps) {
               />
             )}
             {currentAuthModal === 'register' && (
-              <RegistrationForm afterSuccess={() => {}} />
+              <>
+                <h3 className="heading heading_3">Регистрация</h3>
+                <RegistrationForm
+                  afterSuccess={() => {
+                    dispatch(openModal('thanks'));
+                  }}
+                />
+              </>
             )}
 
             <Button variant="ghost" onClick={toggleModals}>

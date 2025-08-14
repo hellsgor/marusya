@@ -1,3 +1,5 @@
+import { ERRORS_TEXTS } from '../../constants';
+import { REGS } from '../../constants/regs';
 import { useRegistration } from '../../hooks/useRegistration';
 import type { UserModel } from '../../models';
 import { EmailIcon, Password, User } from '../../ui/icons';
@@ -31,7 +33,10 @@ export function RegistrationForm({
         placeholder="Электронная почта"
         theme="light"
         icon={EmailIcon}
-        rules={{ required: true }}
+        rules={{
+          required: ERRORS_TEXTS.e004,
+          pattern: { value: REGS.EMAIL, message: ERRORS_TEXTS.e007 },
+        }}
         type="email"
       />
       <RHFTextInput<UserModel>

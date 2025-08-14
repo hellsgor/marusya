@@ -42,7 +42,7 @@ export function Form<TValues extends FieldValues>({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(handle)} className={st.form}>
+      <form noValidate onSubmit={handleSubmit(handle)} className={st.form}>
         <div className={st.form__inputs}>{children}</div>
 
         <Button wide={true} type="submit">

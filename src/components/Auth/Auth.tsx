@@ -43,30 +43,27 @@ export function Auth({ isVertTablet }: AuthProps) {
           />
 
           <Modal
-            isVisible={currentAuthModal === 'login'}
+            isVisible={
+              currentAuthModal === 'login' || currentAuthModal === 'register'
+            }
             onClose={() => {
               dispatch(closeModal());
             }}
           >
-            <AuthForm
-              afterSuccess={() => {
-                dispatch(closeModal());
-              }}
-            />
+            {currentAuthModal === 'login' && (
+              <AuthForm
+                afterSuccess={() => {
+                  dispatch(closeModal());
+                }}
+              />
+            )}
+            {currentAuthModal === 'register' && (
+              <RegistrationForm afterSuccess={() => {}} />
+            )}
+
             <Button variant="ghost" onClick={toggleModals}>
-              Регистрация
-            </Button>
-          </Modal>
-          <Modal
-            isVisible={currentAuthModal === 'register'}
-            onClose={() => {
-              dispatch(closeModal());
-            }}
-          >
-            <h3 className="heading heading_3">Регистрация</h3>
-            <RegistrationForm afterSuccess={() => {}} />
-            <Button variant="ghost" onClick={toggleModals}>
-              У меня уже есть аккаунт
+              {currentAuthModal === 'login' && 'Регистрация'}
+              {currentAuthModal === 'register' && 'У меня уже есть аккаунт'}
             </Button>
           </Modal>
         </>

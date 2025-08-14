@@ -19,3 +19,6 @@ export type { SuccessCreateModel } from './User';
 
 export { ProfileSchema } from './Profile';
 export type { ProfileModel } from './Profile';
+
+export { RegistrationFormSchema } from './User';
+export type { RegistrationFormModel } from './User';

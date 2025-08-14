@@ -3,6 +3,7 @@ import {
   useForm,
   type FieldValues,
   type SubmitHandler,
+  type UseFormReturn,
 } from 'react-hook-form';
 
 import type { ReactNode } from 'react';
@@ -21,6 +22,10 @@ type FormProps<TValues extends FieldValues> = {
   isSubmitting: boolean;
   submitButtonText: string;
   serverErrorKey?: keyof typeof ERRORS_TEXTS | undefined;
+  beforeSubmit?: (
+    vals: TValues,
+    methods: UseFormReturn<TValues>,
+  ) => boolean | Promise<boolean>;
 };
 
 export function Form<TValues extends FieldValues>({
@@ -30,11 +35,17 @@ export function Form<TValues extends FieldValues>({
   isSubmitting,
   submitButtonText,
   serverErrorKey,
+  beforeSubmit,
 }: FormProps<TValues>) {
   const methods = useForm<TValues>();
   const { handleSubmit, reset } = methods;
 
   const handle: SubmitHandler<TValues> = async (vals) => {
+    if (beforeSubmit) {
+      const ok = await beforeSubmit(vals, methods);
+      if (!ok) return;
+    }
+
     await onSubmit(vals);
     afterSuccess?.();
     reset();

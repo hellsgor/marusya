@@ -64,11 +64,11 @@
 
   &__logo {
     height: 35px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 16px auto;
 
     @include media.bp(md) {
       height: 30px;
-      margin-bottom: 32px;
+      margin-bottom: 8px;
     }
   }
 

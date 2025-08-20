@@ -25,7 +25,15 @@
   }
 
   &__content {
-    padding: 8px;
+    & > * {
+      &:first-child {
+        margin-top: 8px;
+      }
+
+      &:last-child {
+        margin-bottom: 8px;
+      }
+    }
 
     @include media.bp(md) {
       padding: 24px 20px;

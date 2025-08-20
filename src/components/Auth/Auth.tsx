@@ -7,6 +7,7 @@ import { MenuItem } from '../../ui/MenuItem/MenuItem';
 import { Modal } from '../../ui/Modal/Modal';
 import { AuthForm } from '../AuthForm/AuthForm';
 import { RegistrationForm } from '../Form/RegistrationForm';
+import { ThanksModal } from '../ThanksModal/ThanksModal';
 
 interface AuthProps {
   isVertTablet: boolean;
@@ -73,6 +74,7 @@ export function Auth({ isVertTablet }: AuthProps) {
               {currentAuthModal === 'register' && 'У меня уже есть аккаунт'}
             </Button>
           </Modal>
+          <ThanksModal />
         </>
       )}
     </>

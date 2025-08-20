@@ -2,7 +2,7 @@ import { closeModal, openModal } from '../../store/authModalSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Button } from '../../ui/Button/Button';
 import { Modal } from '../../ui/Modal/Modal';
-import { AuthForm } from '../AuthForm/AuthForm';
+import { LoginForm } from '../LoginForm/LoginForm';
 
 export function LoginModal() {
   const currentAuthModal = useAppSelector((state) => state.authModal);
@@ -19,7 +19,7 @@ export function LoginModal() {
         dispatch(closeModal());
       }}
     >
-      <AuthForm
+      <LoginForm
         afterSuccess={() => {
           dispatch(closeModal());
         }}

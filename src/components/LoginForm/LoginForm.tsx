@@ -5,7 +5,7 @@ import { EmailIcon, Password } from '../../ui/icons';
 import { RHFTextInput } from '../../ui/TextInput/RHFTextInput';
 import { Form } from '../Form/Form';
 
-export function AuthForm({ afterSuccess }: { afterSuccess: () => void }) {
+export function LoginForm({ afterSuccess }: { afterSuccess: () => void }) {
   const { mutateAsync, isPending, isError, error } = useAuth(async () => {
     await queryClient.invalidateQueries({ queryKey: ['profile'] });
   });

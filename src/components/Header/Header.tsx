@@ -5,11 +5,10 @@ import { BREAKPOINTS } from '../../constants';
 import { Container } from '../../ui/Container/Container';
 import { Logo } from '../../ui/Logo/Logo';
 import { MainNavMenu } from '../MainNavMenu/MainNavMenu';
-import { MenuItem } from '../../ui/MenuItem/MenuItem';
 import { Search } from '../Search/Search';
 import { NavLink, useLocation } from 'react-router';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { User } from '../../ui/icons';
+import { Auth } from '../Auth/Auth';
 
 export function Header() {
   const isVertTablet = useMediaQuery(BREAKPOINTS.lg);
@@ -30,12 +29,8 @@ export function Header() {
             />
             <Search />
           </div>
-          <MenuItem
-            onClick={() => {
-              console.log('click');
-            }}
-            children={isVertTablet ? <User /> : 'Войти'}
-          />
+
+          <Auth isVertTablet={isVertTablet} />
         </div>
       </Container>
     </header>

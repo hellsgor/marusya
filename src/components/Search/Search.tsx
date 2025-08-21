@@ -44,10 +44,7 @@ export function Search() {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
-
-    if (value.length >= 3) {
-      debouncedSet(value);
-    }
+    debouncedSet(value.length >= 3 ? value : '');
   };
 
   const clearData = () => {

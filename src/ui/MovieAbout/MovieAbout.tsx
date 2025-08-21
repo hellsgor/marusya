@@ -40,17 +40,22 @@ export function MovieAbout({ data }: MovieAboutProps) {
       <h2 className="heading heading_2">О фильме</h2>
       <div className={st.movieAbout}>
         {data &&
-          Object.entries(data).map((item) => (
-            <div key={item[0]} className={st.movieAbout__item}>
-              <p>
-                <span>{getTitle(item[0], MOVIE_PROPERTIES_RU)}</span>
-              </p>
+          Object.entries(data)
+            .filter((item) => item[1])
+            .map((item) => (
+              <div key={item[0]} className={st.movieAbout__item}>
+                <p>
+                  <span>{getTitle(item[0], MOVIE_PROPERTIES_RU)}</span>
+                </p>
 
-              <span>
-                {formatValue(item[0] as keyof MovieAboutProps['data'], item[1])}
-              </span>
-            </div>
-          ))}
+                <span>
+                  {formatValue(
+                    item[0] as keyof MovieAboutProps['data'],
+                    item[1],
+                  )}
+                </span>
+              </div>
+            ))}
       </div>
     </>
   );

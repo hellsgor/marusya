@@ -24,11 +24,6 @@ export const TextInput = memo(
     inputRef,
   ) {
     const ref = useRef<HTMLInputElement>(null);
-    const handleFocus = () => {
-      if (ref.current) {
-        ref.current.classList.remove(st.error);
-      }
-    };
 
     return (
       <div
@@ -40,7 +35,7 @@ export const TextInput = memo(
           className,
         )}
       >
-        <input ref={inputRef} onFocus={handleFocus} {...props} />
+        <input ref={inputRef} {...props} />
         {Icon && (
           <div className={st.icon}>{<Icon width={24} height={24} />}</div>
         )}

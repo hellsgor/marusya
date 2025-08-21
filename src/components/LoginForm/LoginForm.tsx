@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { EmailIcon, Password } from '../../ui/icons';
 import { RHFTextInput } from '../../ui/TextInput/RHFTextInput';
 import { Form } from '../Form/Form';
+import { ERRORS_TEXTS } from '../../constants';
 
 export function LoginForm({ afterSuccess }: { afterSuccess: () => void }) {
   const { mutateAsync, isPending, isError, error } = useAuth(async () => {
@@ -31,7 +32,7 @@ export function LoginForm({ afterSuccess }: { afterSuccess: () => void }) {
         placeholder="Электронная почта"
         theme="light"
         icon={EmailIcon}
-        rules={{ required: true }}
+        rules={{ required: ERRORS_TEXTS.e004 }}
         type="email"
       />
       <RHFTextInput<LoginModel>
@@ -39,7 +40,7 @@ export function LoginForm({ afterSuccess }: { afterSuccess: () => void }) {
         placeholder="Пароль"
         theme="light"
         icon={Password}
-        rules={{ required: true }}
+        rules={{ required: ERRORS_TEXTS.e004 }}
         type={'password'}
       />
     </Form>

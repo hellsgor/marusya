@@ -55,19 +55,21 @@ export function RegistrationForm({
         placeholder="Имя"
         theme="light"
         icon={User}
+        rules={{ required: ERRORS_TEXTS.e004 }}
       />
       <RHFTextInput<RegistrationFormModel>
         name="surname"
         placeholder="Фамилия"
         theme="light"
         icon={User}
+        rules={{ required: ERRORS_TEXTS.e004 }}
       />
       <RHFTextInput<RegistrationFormModel>
         name="password"
         placeholder="Пароль"
         theme="light"
         icon={Password}
-        rules={{ required: true }}
+        rules={{ required: ERRORS_TEXTS.e004 }}
         type="password"
       />
       <RHFTextInput<RegistrationFormModel>

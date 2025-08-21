@@ -62,7 +62,7 @@ export function Modal({
 
         {!isFlat && <Logo className={st.modal__logo} />}
 
-        {children}
+        {isVisible && children}
       </div>
     </div>,
     modals,

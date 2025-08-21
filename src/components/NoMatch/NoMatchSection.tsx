@@ -12,7 +12,7 @@ export function NoMatchSection() {
             Ooops!
           </p>
           <p>Такой страницы не&nbsp;существует или что-то пошло не&nbsp;так</p>
-          <Button>На главную страницу</Button>
+          <Button href="/">На главную страницу</Button>
         </div>
       </Container>
     </section>

@@ -4,35 +4,13 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  height: 100%;
   min-height: 100vh;
-}
 
-body {
-  background-color: transparent;
-  background-image:
-    colorFn.getColor(bg, gr1), colorFn.getColor(bg, gr2),
-    linear-gradient(
-      colorFn.getColor(bg, preBlack),
-      colorFn.getColor(bg, preBlack)
-    );
-  background-repeat: no-repeat;
-  background-size: cover;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 
-  &::before {
-    pointer-events: none;
-    content: '';
-
-    position: fixed;
-    z-index: -1;
-    inset: 0;
-
-    background-image:
-      colorFn.getColor(bg, gr1), colorFn.getColor(bg, gr2),
-      linear-gradient(
-        colorFn.getColor(bg, preBlack),
-        colorFn.getColor(bg, preBlack)
-      );
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  font-synthesis: none;
 }

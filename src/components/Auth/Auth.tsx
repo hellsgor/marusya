@@ -21,7 +21,7 @@ export function Auth({ isVertTablet }: AuthProps) {
     <>
       {isLoggedIn ? (
         <MenuItem
-          href="/account"
+          href="/profile"
           children={isVertTablet ? <User /> : user?.name}
         />
       ) : (

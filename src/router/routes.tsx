@@ -10,6 +10,8 @@ import { Genres } from '../pages/Genres';
 import { NoMatch } from '../pages/NoMatch';
 import { Genre } from '../pages/Genre';
 import { Movie } from '../pages/Movie';
+import { Profile } from '../pages/Profile';
+import { PrivateRoute } from './PrivateRoute';
 
 export function AppRoutes() {
   const navigationRoutes = [
@@ -26,6 +28,15 @@ export function AppRoutes() {
       title: '',
     },
     { path: '*', element: <NoMatch />, title: '404' },
+    {
+      path: '/profile',
+      element: (
+        <PrivateRoute>
+          <Profile />
+        </PrivateRoute>
+      ),
+      title: '',
+    },
   ];
 
   return (

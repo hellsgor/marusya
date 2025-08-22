@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { userService } from '../api/userService';
 import type { ProfileModel } from '../models';
 import { useAppDispatch } from '../store/hooks';
-import { setUser } from '../store/authSlice';
+import { setStatus, setUser } from '../store/authSlice';
 import { queryClient } from '../api/queryClient';
 import { useEffect } from 'react';
 
@@ -16,10 +16,15 @@ export function useProfile() {
   });
 
   useEffect(() => {
-    if (query.data) {
+    if (query.isPending) {
+      dispatch(setStatus('loading'));
+    } else if (query.isSuccess) {
       dispatch(setUser(query.data));
+      dispatch(setStatus('authenticated'));
+    } else if (query.isError) {
+      dispatch(setStatus('unauthenticated'));
     }
-  }, [query.data, dispatch]);
+  }, [query.isPending, query.isSuccess, query.isError, query.data, dispatch]);
 
   return {
     ...query,

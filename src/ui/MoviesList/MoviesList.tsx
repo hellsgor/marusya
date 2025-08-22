@@ -25,6 +25,7 @@ export function MoviesList({ data, isIndexes, isSlider }: MoviesListProps) {
         <MovieCard
           key={movie.id}
           href={`/movies/${movie.id}`}
+          title={movie.title}
           poster={movie.posterUrl || undefined}
           alt={`${movie.title} poster`}
           place={isIndexes ? index + 1 : undefined}

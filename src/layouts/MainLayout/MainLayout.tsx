@@ -10,7 +10,6 @@ import { useParams } from 'react-router';
 
 interface MainLayoutProps {
   children: ReactNode;
-  /* eslint-disable-next-line */
   title: string | ((_: string) => string);
 }
 

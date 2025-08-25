@@ -70,12 +70,17 @@
     }
   }
 
+  &_noMobileActive {
+    @include media.bp(lg) {
+      padding: 0;
+
+      &::after {
+        content: unset;
+      }
+    }
+  }
+
   @include media.bp(lg) {
     min-width: 24px;
-    padding: 0;
-
-    &::after {
-      content: unset;
-    }
   }
 }

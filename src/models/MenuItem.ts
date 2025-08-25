@@ -9,6 +9,7 @@ import type {
 interface BaseMenuItem {
   children: ReactNode | ComponentType<SVGProps<SVGSVGElement>>;
   isActive?: boolean;
+  isMobileActive?: boolean;
   id?: number;
 }
 

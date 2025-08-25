@@ -58,6 +58,7 @@
   &_active {
     &::after {
       left: 0;
+      @include tr.transition(0s, ease-in-out, transform);
     }
 
     @media (hover: hover) {

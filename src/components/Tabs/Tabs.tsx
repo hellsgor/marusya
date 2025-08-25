@@ -15,10 +15,10 @@ interface TabsProps {
 }
 
 export function Tabs({ children }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(children[0].id);
+  const [activeTabId, setActiveTabId] = useState(children[0].id);
 
   const handleTabClick = (id: Tab['id']) => {
-    setActiveTab(id);
+    setActiveTabId(id);
   };
 
   return (
@@ -36,7 +36,7 @@ export function Tabs({ children }: TabsProps) {
       </div>
 
       <div className={st.tabs__view}>
-        {children.find((item) => item.id === activeTab)?.view}
+        {children.find((item) => item.id === activeTabId)?.view}
       </div>
     </div>
   );

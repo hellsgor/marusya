@@ -20,6 +20,5 @@ export type MenuItemModel =
       })
   | (BaseMenuItem &
       Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onCLick'> & {
-        onClick: () => void;
         href?: never;
       });

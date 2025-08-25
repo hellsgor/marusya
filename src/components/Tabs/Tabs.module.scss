@@ -1,4 +1,8 @@
 .tabs {
+  display: flex;
+  flex-direction: column;
+  row-gap: 64px;
+
   &__items {
     display: flex;
     column-gap: 64px;

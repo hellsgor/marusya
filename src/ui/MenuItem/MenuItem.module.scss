@@ -25,6 +25,11 @@
 
   background-color: transparent;
 
+  svg {
+    width: 24px;
+    max-width: unset;
+  }
+
   &::after {
     content: '';
 

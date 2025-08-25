@@ -42,6 +42,7 @@ export function Tabs({ children, syncWithUrl = false }: TabsProps) {
           <MenuItem
             children={item.label.children}
             isActive={item.id === activeTabId}
+            isMobileActive={true}
             onClick={() => {
               handleTabClick(item.id);
             }}

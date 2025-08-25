@@ -1,3 +1,5 @@
+@use '../../styles/mixins/mediaBp.scss' as media;
+
 .tabs {
   display: flex;
   flex-direction: column;
@@ -6,5 +8,9 @@
   &__items {
     display: flex;
     column-gap: 64px;
+
+    @include media.bp(md) {
+      column-gap: 24px;
+    }
   }
 }

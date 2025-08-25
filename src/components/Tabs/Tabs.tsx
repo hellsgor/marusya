@@ -4,6 +4,8 @@ import { useState, type ReactNode } from 'react';
 import type { MenuItemModel } from '../../models';
 import { MenuItem } from '../../ui/MenuItem/MenuItem';
 
+import { AnimatePresence, motion } from 'framer-motion';
+
 type Tab = {
   id: string | number;
   label: MenuItemModel;
@@ -37,7 +39,18 @@ export function Tabs({ children }: TabsProps) {
       </div>
 
       <div className={st.tabs__view}>
-        {children.find((item) => item.id === activeTabId)?.content}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTabId}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            layout
+          >
+            {children.find((item) => item.id === activeTabId)?.content}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

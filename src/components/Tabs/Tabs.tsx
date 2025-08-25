@@ -6,8 +6,8 @@ import { MenuItem } from '../../ui/MenuItem/MenuItem';
 
 type Tab = {
   id: string | number;
-  tab: MenuItemModel;
-  view: ReactNode;
+  label: MenuItemModel;
+  content: ReactNode;
 };
 
 interface TabsProps {
@@ -26,7 +26,7 @@ export function Tabs({ children }: TabsProps) {
       <div className={st.tabs__items}>
         {children.map((item) => (
           <MenuItem
-            children={item.tab.children}
+            children={item.label.children}
             isActive={item.id === activeTabId}
             onClick={() => {
               handleTabClick(item.id);
@@ -37,7 +37,7 @@ export function Tabs({ children }: TabsProps) {
       </div>
 
       <div className={st.tabs__view}>
-        {children.find((item) => item.id === activeTabId)?.view}
+        {children.find((item) => item.id === activeTabId)?.content}
       </div>
     </div>
   );

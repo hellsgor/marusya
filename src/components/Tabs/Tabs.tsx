@@ -1,6 +1,8 @@
 import st from './Tabs.module.scss';
 
 import { useState, type ReactNode } from 'react';
+import { useSearchParams } from 'react-router';
+
 import type { MenuItemModel } from '../../models';
 import { MenuItem } from '../../ui/MenuItem/MenuItem';
 
@@ -14,13 +16,23 @@ type Tab = {
 
 interface TabsProps {
   children: Tab[];
+  syncWithUrl?: boolean;
 }
 
-export function Tabs({ children }: TabsProps) {
-  const [activeTabId, setActiveTabId] = useState(children[0].id);
+export function Tabs({ children, syncWithUrl = false }: TabsProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeTabId, setActiveTabId] = useState(
+    new URLSearchParams(searchParams).get('activeTabId') || children[0].id,
+  );
 
   const handleTabClick = (id: Tab['id']) => {
     setActiveTabId(id);
+
+    if (syncWithUrl) {
+      const params = new URLSearchParams(searchParams);
+      params.set('activeTabId', String(id));
+      setSearchParams(params, { replace: true });
+    }
   };
 
   return (

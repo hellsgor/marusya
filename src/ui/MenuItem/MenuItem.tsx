@@ -10,8 +10,13 @@ export function MenuItem({
   onClick,
   children,
   isActive = false,
+  isMobileActive = false,
 }: MenuItemProps) {
-  const className = clsx(st.menuItem, isActive ? st.menuItem_active : null);
+  const className = clsx(
+    st.menuItem,
+    isActive ? st.menuItem_active : null,
+    isMobileActive ? '' : st.menuItem_noMobileActive,
+  );
 
   if (href?.length) {
     return (

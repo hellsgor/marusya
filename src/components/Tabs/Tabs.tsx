@@ -27,6 +27,7 @@ export function Tabs({ children }: TabsProps) {
         {children.map((item) => (
           <MenuItem
             children={item.tab.children}
+            isActive={item.id === activeTabId}
             onClick={() => {
               handleTabClick(item.id);
             }}

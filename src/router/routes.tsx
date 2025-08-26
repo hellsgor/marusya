@@ -12,8 +12,11 @@ import { Genre } from '../pages/Genre';
 import { Movie } from '../pages/Movie';
 import { Profile } from '../pages/Profile';
 import { PrivateRoute } from './PrivateRoute';
+import { useAppSelector } from '../store/hooks';
 
 export function AppRoutes() {
+  const userName = useAppSelector((state) => state.auth.user)?.name || '';
+
   const navigationRoutes = [
     { path: '/', element: <Home />, title: 'Главная' },
     { path: '/genres', element: <Genres />, title: 'Жанры' },
@@ -35,7 +38,7 @@ export function AppRoutes() {
           <Profile />
         </PrivateRoute>
       ),
-      title: '',
+      title: userName,
     },
   ];
 

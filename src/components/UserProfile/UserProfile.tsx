@@ -1,36 +1,23 @@
-import { BREAKPOINTS } from '../../constants';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Heart, User } from '../../ui/icons';
-import { Tabs } from '../Tabs/Tabs';
+import { Tabs, type TabDef } from '../Tabs/Tabs';
 
 export function UserProfile() {
-  const isMobile = useMediaQuery(BREAKPOINTS.md);
-  const tabs = [
+  const userProfileTabDef: TabDef[] = [
     {
       id: 'favorites',
-      label: {
-        children: (
-          <>
-            <Heart />
-            <span>{isMobile ? 'Избранное' : 'Избранные фильмы'}</span>
-          </>
-        ),
-      },
+      icon: <Heart />,
+      short: 'Избранное',
+      long: 'Избранные фильмы',
       content: <p>Избранные фильмы</p>,
     },
     {
       id: 'settings',
-      label: {
-        children: (
-          <>
-            <User />
-            <span>{isMobile ? 'Настройки' : 'Настройка аккаунта'}</span>
-          </>
-        ),
-      },
+      icon: <User />,
+      short: 'Настройки',
+      long: 'Настройка аккаунта',
       content: <p>Настройка аккаунта</p>,
     },
   ];
 
-  return <Tabs children={tabs} />;
+  return <Tabs children={userProfileTabDef} compactBp={'md'} />;
 }

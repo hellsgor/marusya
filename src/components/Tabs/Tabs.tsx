@@ -1,36 +1,50 @@
 import st from './Tabs.module.scss';
 
+import { BREAKPOINTS } from '../../constants';
+
 import { useState, type ReactNode } from 'react';
 import { useSearchParams } from 'react-router';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
-import type { MenuItemModel } from '../../models';
 import { MenuItem } from '../../ui/MenuItem/MenuItem';
+import { TabLabel } from './TabLabel';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
-type Tab = {
+export type TabDef = {
   id: string | number;
-  label: MenuItemModel;
+  icon?: ReactNode;
+  short?: string;
+  long: string;
   content: ReactNode;
 };
 
 interface TabsProps {
-  children: Tab[];
+  children: TabDef[];
   syncWithUrl?: boolean;
+  compactBp?: keyof typeof BREAKPOINTS;
 }
 
-export function Tabs({ children, syncWithUrl = false }: TabsProps) {
+const activeTabIdParamName = 'activeTabId';
+
+export function Tabs({
+  children,
+  syncWithUrl = false,
+  compactBp = 'md',
+}: TabsProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeTabId, setActiveTabId] = useState(
-    new URLSearchParams(searchParams).get('activeTabId') || children[0].id,
+    new URLSearchParams(searchParams).get(activeTabIdParamName) ||
+      children[0].id,
   );
+  const isCompact = useMediaQuery(BREAKPOINTS[compactBp]);
 
-  const handleTabClick = (id: Tab['id']) => {
+  const handleTabClick = (id: TabDef['id']) => {
     setActiveTabId(id);
 
     if (syncWithUrl) {
       const params = new URLSearchParams(searchParams);
-      params.set('activeTabId', String(id));
+      params.set(activeTabIdParamName, String(id));
       setSearchParams(params, { replace: true });
     }
   };
@@ -40,7 +54,7 @@ export function Tabs({ children, syncWithUrl = false }: TabsProps) {
       <div className={st.tabs__items}>
         {children.map((item) => (
           <MenuItem
-            children={item.label.children}
+            children={<TabLabel {...item} isCompact={isCompact} />}
             isActive={item.id === activeTabId}
             isMobileActive={true}
             onClick={() => {

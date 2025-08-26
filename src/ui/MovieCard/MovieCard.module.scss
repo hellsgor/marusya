@@ -1,5 +1,6 @@
 @use '../../styles/functions/getColor' as colorFn;
 @use '../../styles/mixins/mediaBp' as media;
+@use '../../styles/mixins/transition' as tr;
 
 .movieCard {
   position: relative;
@@ -30,11 +31,27 @@
     object-position: center;
   }
 
+  &__place,
+  &__removeButton {
+    position: absolute;
+    top: -12px;
+  }
+
+  &__removeButton {
+    pointer-events: none;
+
+    right: -20px;
+
+    width: 40px;
+    height: 40px;
+
+    opacity: 0;
+    @include tr.transition(opacity);
+  }
+
   &__place {
     pointer-events: none;
 
-    position: absolute;
-    top: -12px;
     left: -12px;
 
     display: block;
@@ -50,5 +67,14 @@
     text-align: center;
 
     background-color: colorFn.getColor(bg, 'white');
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      .movieCard__removeButton {
+        pointer-events: all;
+        opacity: 1;
+      }
+    }
   }
 }

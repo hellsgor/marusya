@@ -35,10 +35,22 @@
 
     @include media.bp(md) {
       width: fit-content;
+
+      &:has(div.moviesList__slider) {
+        a {
+          height: 336px;
+        }
+      }
+    }
+
+    @include media.bp(s) {
+      a {
+        height: 300px;
+      }
     }
 
     @include media.bp(sm) {
-      width: 100%;
+      width: 50%;
 
       & > a {
         width: 100%;
@@ -46,10 +58,8 @@
       }
     }
 
-    @include media.bp(md) {
-      &:has(div.moviesList__slider) {
-        width: 224px;
-      }
+    @include media.bp(s) {
+      width: 100%;
     }
   }
 }
@@ -60,4 +70,12 @@ div.moviesList__slider {
 
 div.moviesList__sliderSlide {
   width: fit-content;
+
+  div.movieList__item {
+    width: fit-content;
+  }
+
+  a {
+    height: 336px;
+  }
 }

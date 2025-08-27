@@ -1,4 +1,5 @@
 import { Heart, User } from '../../ui/icons';
+import { Favorites } from '../Favorites/Favorites';
 import { Tabs, type TabDef } from '../Tabs/Tabs';
 
 export function UserProfile() {
@@ -8,7 +9,7 @@ export function UserProfile() {
       icon: <Heart />,
       short: 'Избранное',
       long: 'Избранные фильмы',
-      content: <p>Избранные фильмы</p>,
+      content: <Favorites />,
     },
     {
       id: 'settings',
@@ -19,5 +20,7 @@ export function UserProfile() {
     },
   ];
 
-  return <Tabs children={userProfileTabDef} compactBp={'md'} />;
+  return (
+    <Tabs children={userProfileTabDef} syncWithUrl={true} compactBp={'md'} />
+  );
 }

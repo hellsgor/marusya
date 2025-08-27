@@ -1,5 +1,6 @@
 import { Heart, User } from '../../ui/icons';
 import { Favorites } from '../Favorites/Favorites';
+import { Settings } from '../Settings/Settings';
 import { Tabs, type TabDef } from '../Tabs/Tabs';
 
 export function UserProfile() {
@@ -16,7 +17,7 @@ export function UserProfile() {
       icon: <User />,
       short: 'Настройки',
       long: 'Настройка аккаунта',
-      content: <p>Настройка аккаунта</p>,
+      content: <Settings />,
     },
   ];
 

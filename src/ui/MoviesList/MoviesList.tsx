@@ -15,20 +15,28 @@ interface MoviesListProps {
   data: MoviesModel | undefined;
   isIndexes?: boolean;
   isSlider?: boolean;
+  isFavorites?: boolean;
 }
 
-export function MoviesList({ data, isIndexes, isSlider }: MoviesListProps) {
+export function MoviesList({
+  data,
+  isIndexes,
+  isSlider,
+  isFavorites = false,
+}: MoviesListProps) {
   const isMobile = useMediaQuery(BREAKPOINTS.md);
 
   const cards = data
     ? data.map((movie, index) => (
         <MovieCard
           key={movie.id}
+          id={movie.id}
           href={`/movies/${movie.id}`}
           title={movie.title}
           poster={movie.posterUrl || undefined}
           alt={`${movie.title} poster`}
           place={isIndexes ? index + 1 : undefined}
+          removeButton={isFavorites}
           className={st.moviesList__item}
         />
       ))

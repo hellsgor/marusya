@@ -1,0 +1,16 @@
+@use '../../styles/mixins/mediaBp.scss' as media;
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  row-gap: 64px;
+
+  &__items {
+    display: flex;
+    column-gap: 64px;
+
+    @include media.bp(md) {
+      column-gap: 24px;
+    }
+  }
+}

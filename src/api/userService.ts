@@ -26,4 +26,11 @@ export const userService = {
       withCredentials: true,
     });
   },
+  logout: async () => {
+    return apiClient(SuccessLoginSchema, {
+      method: 'GET',
+      url: '/auth/logout',
+      withCredentials: true,
+    });
+  },
 };

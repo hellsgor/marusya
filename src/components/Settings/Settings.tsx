@@ -1,5 +1,7 @@
 import { getMonogram } from '../../helpers';
+import { useLogout } from '../../hooks/useLogout';
 import { useAppSelector } from '../../store/hooks';
+import { Button } from '../../ui/Button/Button';
 import { EmailIcon } from '../../ui/icons';
 import { Loader } from '../../ui/Loader/Loader';
 import { ProfileInfo } from '../../ui/ProfileInfo/ProfileInfo';
@@ -7,6 +9,7 @@ import st from './Settings.module.scss';
 
 export function Settings() {
   const { user, status } = useAppSelector((state) => state.auth);
+  const logout = useLogout();
 
   if (status !== 'authenticated') {
     return <Loader size="big" />;
@@ -37,6 +40,9 @@ export function Settings() {
           </li>
         ))}
       </ul>
+      <Button className={st.settings__logoutButton} onClick={() => logout()}>
+        Выйти из аккаунта
+      </Button>
     </div>
   );
 }

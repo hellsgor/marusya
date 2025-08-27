@@ -14,4 +14,10 @@
   @include media.bp(sm) {
     row-gap: 40px;
   }
+
+  &__logoutButton {
+    @include media.bp(s) {
+      width: 100%;
+    }
+  }
 }

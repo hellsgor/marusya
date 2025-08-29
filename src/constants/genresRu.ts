@@ -1,4 +1,4 @@
-export const GENRES_RU: { [key: string]: string } = {
+export const GENRES_RU: Record<string, string> = {
   history: 'история',
   horror: 'ужасы',
   scifi: 'научная фантастика',
@@ -19,4 +19,4 @@ export const GENRES_RU: { [key: string]: string } = {
   animation: 'анимация',
   war: 'военный',
   adventure: 'приключения',
-};
+} as const;

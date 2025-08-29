@@ -23,31 +23,10 @@ export function Movie() {
   return (
     <>
       <Section indentsClasses="pt-32 pt-md-0">
-        <MovieDetail
-          data={{
-            title: movie.title,
-            backdropUrl: movie.backdropUrl,
-            plot: movie.plot,
-            tmdbRating: movie.tmdbRating,
-            releaseYear: movie.releaseYear,
-            genres: movie.genres,
-            runtime: movie.runtime,
-            trailerUrl: movie.trailerUrl,
-            id: movie.id,
-          }}
-        />
+        <MovieDetail data={movie} />
       </Section>
       <Section indentsClasses="pt-40 pb-120 pt-md-32 pb-md-32">
-        <MovieAbout
-          data={{
-            language: movie.language,
-            budget: movie.budget,
-            revenue: movie.revenue,
-            director: movie.director,
-            production: movie.production,
-            awardsSummary: movie.awardsSummary,
-          }}
-        />
+        <MovieAbout data={movie} />
       </Section>
     </>
   );

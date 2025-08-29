@@ -20,7 +20,7 @@ export function MainNavMenu({ isVertTablet, className }: MainNavMenuProps) {
 
         return (
           <MenuItem
-            key={item.children.desktop ?? item.children.mobile}
+            key={item.children.desktop}
             href={item.href}
             children={content}
             isActive={pathname === item.href}

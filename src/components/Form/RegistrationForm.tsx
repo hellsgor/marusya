@@ -16,7 +16,7 @@ export function RegistrationForm({
       submitButtonText="Создать аккаунт"
       isSubmitting={isPending}
       errorStatusCode={error?.status}
-      onSubmit={({ confirmPassword, ...payload }) => mutateAsync(payload)}
+      onSubmit={({ confirmPassword: _, ...payload }) => mutateAsync(payload)}
       afterSuccess={afterSuccess}
     >
       <RHFTextInput<RegistrationFormModel>

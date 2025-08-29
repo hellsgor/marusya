@@ -7,13 +7,13 @@ import {
 } from 'react-hook-form';
 
 import type { ReactNode } from 'react';
-import type { ERRORS_TEXTS } from '../../constants';
 
 import st from './Form.module.scss';
 
 import { Button } from '../../ui/Button/Button';
 import { Loader } from '../../ui/Loader/Loader';
 import { ErrorText } from '../../ui/ErrorText/ErrorText';
+
 import { getServerErrorKey } from '../../helpers/getServerErrorKey';
 
 type FormProps<TValues extends FieldValues> = {

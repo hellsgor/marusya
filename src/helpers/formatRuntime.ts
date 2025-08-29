@@ -4,7 +4,7 @@ export function formatRuntime(runtime: number) {
 
   if (!hours) {
     return `${minutes} мин`;
-  } else {
-    return `${hours} ч ${minutes} мин`;
   }
+
+  return `${hours} ч ${minutes} мин`;
 }

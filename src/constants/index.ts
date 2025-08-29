@@ -8,3 +8,4 @@ export { MOVIES_PER_PAGE } from './moviesPerPage';
 export { MOVIE_PROPERTIES_RU } from './moviePropertiesRu';
 export { LANGUAGES } from './languages';
 export { BREAKPOINTS } from './breakpoints';
+export { VALIDATION_RULES } from './validationRules';

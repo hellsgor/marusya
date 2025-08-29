@@ -7,23 +7,15 @@ import { Form } from '../Form/Form';
 import { ERRORS_TEXTS } from '../../constants';
 
 export function LoginForm({ afterSuccess }: { afterSuccess: () => void }) {
-  const { mutateAsync, isPending, isError, error } = useAuth(async () => {
+  const { mutateAsync, isPending, error } = useAuth(async () => {
     await queryClient.invalidateQueries({ queryKey: ['profile'] });
   });
-
-  const serverErrorKey = isError
-    ? error.status
-      ? error.status >= 404
-        ? 'e006'
-        : 'e005'
-      : 'e001'
-    : undefined;
 
   return (
     <Form<LoginModel>
       submitButtonText="Войти"
       isSubmitting={isPending}
-      serverErrorKey={serverErrorKey}
+      errorStatusCode={error?.status}
       onSubmit={(values) => mutateAsync(values)}
       afterSuccess={afterSuccess}
     >

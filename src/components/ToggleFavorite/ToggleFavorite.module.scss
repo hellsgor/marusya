@@ -11,7 +11,7 @@
   @media (hover: hover) {
     &:hover {
       svg {
-        stroke: colorFn.getColor(accent, active);
+        stroke: colorFn.getColor(content, 'black');
       }
     }
   }
@@ -20,6 +20,14 @@
     svg {
       fill: colorFn.getColor(accent, active);
       stroke: colorFn.getColor(accent, active);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        svg {
+          stroke: colorFn.getColor(accent, active);
+        }
+      }
     }
   }
 }

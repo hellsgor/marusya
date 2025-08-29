@@ -11,20 +11,12 @@ export function RegistrationForm({
 }: {
   afterSuccess: () => void;
 }) {
-  const { mutateAsync, isPending, isError, error } = useRegistration();
-
-  const serverErrorKey = isError
-    ? error.status
-      ? error.status >= 400
-        ? 'e006'
-        : 'e001'
-      : 'e001'
-    : undefined;
+  const { mutateAsync, isPending, error } = useRegistration();
   return (
     <Form<RegistrationFormModel>
       submitButtonText="Создать аккаунт"
       isSubmitting={isPending}
-      serverErrorKey={serverErrorKey}
+      errorStatusCode={error?.status}
       onSubmit={({ confirmPassword, ...payload }) => mutateAsync(payload)}
       afterSuccess={afterSuccess}
       beforeSubmit={(vals, methods) => {

@@ -14,6 +14,7 @@ import st from './Form.module.scss';
 import { Button } from '../../ui/Button/Button';
 import { Loader } from '../../ui/Loader/Loader';
 import { ErrorText } from '../../ui/ErrorText/ErrorText';
+import { getServerErrorKey } from '../../helpers/getServerErrorKey';
 
 type FormProps<TValues extends FieldValues> = {
   children: ReactNode;
@@ -21,7 +22,7 @@ type FormProps<TValues extends FieldValues> = {
   afterSuccess?: () => void;
   isSubmitting: boolean;
   submitButtonText: string;
-  serverErrorKey?: keyof typeof ERRORS_TEXTS | undefined;
+  errorStatusCode?: number | undefined;
   beforeSubmit?: (
     vals: TValues,
     methods: UseFormReturn<TValues>,
@@ -34,7 +35,7 @@ export function Form<TValues extends FieldValues>({
   afterSuccess,
   isSubmitting,
   submitButtonText,
-  serverErrorKey,
+  errorStatusCode,
   beforeSubmit,
 }: FormProps<TValues>) {
   const methods = useForm<TValues>();
@@ -60,8 +61,11 @@ export function Form<TValues extends FieldValues>({
           {isSubmitting ? <Loader size="small"></Loader> : submitButtonText}
         </Button>
 
-        {serverErrorKey && (
-          <ErrorText errorKey={serverErrorKey} className={st.form__error} />
+        {errorStatusCode && (
+          <ErrorText
+            errorKey={getServerErrorKey(errorStatusCode)}
+            className={st.form__error}
+          />
         )}
       </form>
     </FormProvider>

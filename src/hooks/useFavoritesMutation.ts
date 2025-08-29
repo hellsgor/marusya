@@ -3,14 +3,14 @@ import { favoriteService } from '../api/favoritesService';
 import type { AxiosError } from 'axios';
 
 type Action = 'add' | 'delete';
-type Vars = { id: number; action: Action };
+export type FavoritesMutationVars = { id: number; action: Action };
 
 export function useFavoritesMutation() {
   const qc = useQueryClient();
 
   const mutation = useMutation({
     mutationKey: ['favorites:mutate'],
-    mutationFn: ({ id, action }: Vars) =>
+    mutationFn: ({ id, action }: FavoritesMutationVars) =>
       action === 'add' ? favoriteService.add(id) : favoriteService.delete(id),
     onSuccess: (response) => {
       if (response.result) {

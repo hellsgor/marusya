@@ -12,11 +12,13 @@ export function useGenres() {
 
       return await Promise.all(
         (genres ?? []).map(async (genre) => {
-          const [movie] = await moviesService.getMovies({ genre });
+          const genreMovies = await moviesService.getMovies({ genre });
           return {
             name: genre,
             nameRu: GENRES_RU[genre] ?? undefined,
-            image: movie?.backdropUrl ?? null,
+            image:
+              genreMovies[Math.floor(Math.random() * genreMovies.length)]
+                ?.backdropUrl ?? null,
           };
         }),
       );

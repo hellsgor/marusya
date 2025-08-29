@@ -18,17 +18,6 @@ export function RegistrationForm({
       errorStatusCode={error?.status}
       onSubmit={({ confirmPassword, ...payload }) => mutateAsync(payload)}
       afterSuccess={afterSuccess}
-      beforeSubmit={(vals, methods) => {
-        if (vals.password !== vals.confirmPassword) {
-          methods.setError('confirmPassword', {
-            type: 'validate',
-            message: ERRORS_TEXTS.e009,
-          });
-          methods.setFocus('confirmPassword');
-          return false;
-        }
-        return true;
-      }}
     >
       <RHFTextInput<RegistrationFormModel>
         name="email"
@@ -66,7 +55,12 @@ export function RegistrationForm({
         theme="light"
         icon={Password}
         type="password"
-        rules={VALIDATION_RULES.confirmPassword}
+        rules={{
+          required: ERRORS_TEXTS.e008,
+          validate: (value, formValues) =>
+            value === formValues.password || ERRORS_TEXTS.e009,
+          deps: ['password'],
+        }}
       />
     </Form>
   );

@@ -1,17 +1,15 @@
 import { MenuItem } from '../../ui/MenuItem/MenuItem';
 import { MAIN_MENU_ITEMS } from '../../constants';
+import { useLocation } from 'react-router';
 
 interface MainNavMenuProps {
-  pathname: string;
   isVertTablet: boolean;
   className: string;
 }
 
-export function MainNavMenu({
-  pathname,
-  isVertTablet,
-  className,
-}: MainNavMenuProps) {
+export function MainNavMenu({ isVertTablet, className }: MainNavMenuProps) {
+  const { pathname } = useLocation();
+
   return (
     <nav className={className}>
       {MAIN_MENU_ITEMS.map((item) => {

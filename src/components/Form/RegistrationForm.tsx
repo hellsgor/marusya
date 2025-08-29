@@ -1,5 +1,4 @@
-import { ERRORS_TEXTS } from '../../constants';
-import { REGS } from '../../constants/regs';
+import { ERRORS_TEXTS, VALIDATION_RULES } from '../../constants';
 import { useRegistration } from '../../hooks/useRegistration';
 import type { RegistrationFormModel } from '../../models';
 import { EmailIcon, Password, User } from '../../ui/icons';
@@ -36,10 +35,7 @@ export function RegistrationForm({
         placeholder="Электронная почта"
         theme="light"
         icon={EmailIcon}
-        rules={{
-          required: ERRORS_TEXTS.e004,
-          pattern: { value: REGS.EMAIL, message: ERRORS_TEXTS.e007 },
-        }}
+        rules={VALIDATION_RULES.email}
         type="email"
       />
       <RHFTextInput<RegistrationFormModel>
@@ -47,21 +43,21 @@ export function RegistrationForm({
         placeholder="Имя"
         theme="light"
         icon={User}
-        rules={{ required: ERRORS_TEXTS.e004 }}
+        rules={VALIDATION_RULES.required}
       />
       <RHFTextInput<RegistrationFormModel>
         name="surname"
         placeholder="Фамилия"
         theme="light"
         icon={User}
-        rules={{ required: ERRORS_TEXTS.e004 }}
+        rules={VALIDATION_RULES.required}
       />
       <RHFTextInput<RegistrationFormModel>
         name="password"
         placeholder="Пароль"
         theme="light"
         icon={Password}
-        rules={{ required: ERRORS_TEXTS.e004 }}
+        rules={VALIDATION_RULES.required}
         type="password"
       />
       <RHFTextInput<RegistrationFormModel>
@@ -70,9 +66,7 @@ export function RegistrationForm({
         theme="light"
         icon={Password}
         type="password"
-        rules={{
-          required: ERRORS_TEXTS.e008,
-        }}
+        rules={VALIDATION_RULES.confirmPassword}
       />
     </Form>
   );

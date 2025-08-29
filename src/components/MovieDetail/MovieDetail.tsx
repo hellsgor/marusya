@@ -12,12 +12,16 @@ import { MovieActions } from '../../ui/MovieActions/MovieActions';
 import { Modal } from '../../ui/Modal/Modal';
 import { MovieTrailer } from '../../ui/MovieTrailer/MovieTrailer';
 
-type MovieDetailType = Pick<MovieModel, 'backdropUrl' | 'trailerUrl'> &
-  MovieInfoProps['data'];
-
-interface MovieDetailProps
-  extends Omit<MovieActionsProps, 'onTrailerButtonClick' | 'isTrailer'> {
-  data: MovieDetailType;
+type MovieDetailData = MovieInfoProps['data'] &
+  Omit<
+    MovieActionsProps,
+    'onTrailerButtonClick' | 'onRefresh' | 'url' | 'isTrailer'
+  > &
+  Pick<MovieModel, 'backdropUrl' | 'trailerUrl'>;
+interface MovieDetailProps {
+  data: MovieDetailData;
+  onRefresh?: MovieActionsProps['onRefresh'];
+  url?: MovieActionsProps['url'];
 }
 
 export function MovieDetail({
@@ -30,6 +34,7 @@ export function MovieDetail({
     genres,
     runtime,
     trailerUrl,
+    id,
   },
   onRefresh,
   url,
@@ -50,6 +55,7 @@ export function MovieDetail({
             onRefresh={onRefresh}
             onTrailerButtonClick={() => setIsTrailerModalOpen(true)}
             isTrailer={!!trailerUrl}
+            id={id}
           />
         </div>
 

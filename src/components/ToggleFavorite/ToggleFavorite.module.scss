@@ -1,0 +1,33 @@
+@use '../../styles/functions/getColor' as colorFn;
+@use '../../styles/mixins/transition' as tr;
+
+.toggleFavorite {
+  svg {
+    fill: transparent;
+    stroke: colorFn.getColor(content, primary);
+    @include tr.transition(fill);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      svg {
+        stroke: colorFn.getColor(content, 'black');
+      }
+    }
+  }
+
+  &_isAdded {
+    svg {
+      fill: colorFn.getColor(accent, active);
+      stroke: colorFn.getColor(accent, active);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        svg {
+          stroke: colorFn.getColor(accent, active);
+        }
+      }
+    }
+  }
+}

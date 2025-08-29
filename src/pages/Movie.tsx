@@ -33,6 +33,7 @@ export function Movie() {
             genres: movie.genres,
             runtime: movie.runtime,
             trailerUrl: movie.trailerUrl,
+            id: movie.id,
           }}
         />
       </Section>

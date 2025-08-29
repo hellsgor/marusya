@@ -15,7 +15,11 @@ export const favoriteService = {
       method: 'POST',
       url: '/favorites',
       withCredentials: true,
-      data: id,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'application/json',
+      },
+      data: new URLSearchParams({ id: String(id) }),
     });
   },
 

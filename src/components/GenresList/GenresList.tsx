@@ -9,7 +9,7 @@ export function GenresList() {
 
   return (
     <div className={st.genresList}>
-      {isFetching && <Loader size="big" />}
+      {(isFetching || !data?.length) && <Loader size="big" />}
 
       {isError && <ErrorText errorKey="e001" />}
 

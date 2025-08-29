@@ -6,13 +6,12 @@ import { Container } from '../../ui/Container/Container';
 import { Logo } from '../../ui/Logo/Logo';
 import { MainNavMenu } from '../MainNavMenu/MainNavMenu';
 import { Search } from '../Search/Search';
-import { NavLink, useLocation } from 'react-router';
+import { NavLink } from 'react-router';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Auth } from '../Auth/Auth';
 
 export function Header() {
   const isVertTablet = useMediaQuery(BREAKPOINTS.lg);
-  const { pathname } = useLocation();
 
   return (
     <header className={st.header}>
@@ -23,7 +22,6 @@ export function Header() {
           </NavLink>
           <div className={st.header__center}>
             <MainNavMenu
-              pathname={pathname}
               isVertTablet={isVertTablet}
               className={st.header__menu}
             />

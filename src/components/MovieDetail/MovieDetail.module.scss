@@ -2,7 +2,7 @@
 @use '../../styles/mixins/mediaBp' as media;
 
 :root {
-  --random-min-heigh: 552px;
+  --random-min-height: 552px;
 }
 
 .movieDetail {
@@ -31,12 +31,12 @@
   &__poster {
     overflow: hidden;
     flex: 1 50%;
-    height: var(--random-min-heigh);
+    height: var(--random-min-height);
     border-radius: 16px;
 
     @include media.bp(lg) {
       flex: unset;
-      max-height: calc(var(--random-min-heigh) / 3 * 2);
+      max-height: calc(var(--random-min-height) / 3 * 2);
     }
 
     @include media.bp(sm) {

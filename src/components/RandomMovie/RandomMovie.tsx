@@ -10,7 +10,7 @@ export function RandomMovie() {
     return (
       <div
         style={{
-          height: 'var(--random-min-heigh)',
+          height: 'var(--random-min-height)',
           display: 'flex',
           alignItems: 'center',
         }}

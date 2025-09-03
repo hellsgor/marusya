@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint '**/*.{css,scss}'",
+    "lint:steiger": "steiger ./src",
     "format": "prettier --write .",
     "prepare": "husky"
   },

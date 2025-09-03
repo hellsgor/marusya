@@ -1,8 +1,7 @@
 import { css } from 'styled-components';
 
-export const bodyColors = css`
+export const bodyBg = css`
   body {
-    color: ${({ theme }) => theme.colors.content.primary};
     background-color: transparent;
     background-image:
       ${({ theme }) => theme.colors.bg.gr1},

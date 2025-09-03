@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export const bodyBg = css`
+export const background = css`
   body {
     background-color: transparent;
     background-image:

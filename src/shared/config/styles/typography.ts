@@ -1,9 +1,10 @@
+import { getRems } from '@/shared/lib';
 import { css } from 'styled-components';
 
 export const typography = css`
   body {
     font-family: Play, sans-serif;
-    font-size: 18px;
+    font-size: ${getRems(18)};
     font-weight: 400;
     font-style: normal;
     line-height: 1.333;

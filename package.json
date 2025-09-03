@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:style": "stylelint '**/*.{css,scss}'",
+    "lint:steiger": "steiger ./src",
     "format": "prettier --write .",
     "prepare": "husky"
   },
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@feature-sliced/steiger-plugin": "^0.5.7",
     "@tanstack/eslint-plugin-query": "^5.78.0",
     "@tanstack/react-query-devtools": "^5.77.2",
     "@types/react": "^18.2.15",
@@ -46,6 +48,7 @@
     "lint-staged": "^16.0.0",
     "prettier": "3.5.3",
     "sass": "^1.89.0",
+    "steiger": "^0.5.11",
     "stylelint": "^16.19.1",
     "stylelint-config-clean-order": "^7.0.0",
     "stylelint-config-standard": "^38.0.0",

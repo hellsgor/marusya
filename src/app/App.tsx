@@ -1,5 +1,8 @@
 // import './App.scss';
 
+import { RouterProvider } from 'react-router';
+import { router } from './routes';
+
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // import { BrowserRouter } from 'react-router';
@@ -26,7 +29,7 @@
 // }
 
 function App() {
-  return <div>Hello World</div>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

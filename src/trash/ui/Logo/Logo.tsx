@@ -2,7 +2,7 @@ import st from './Logo.module.scss';
 
 import { memo } from 'react';
 import clsx from 'clsx';
-import { MarusyaText } from '../icons/';
+import { MarusyaText } from '../icons';
 
 interface LogoProps {
   theme?: 'light' | 'dark';

@@ -2,6 +2,8 @@
 
 import { RouterProvider } from 'react-router';
 import { router } from './routes';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles, theme } from '@/shared/config';
 
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -29,7 +31,12 @@ import { router } from './routes';
 // }
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
 export default App;

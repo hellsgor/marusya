@@ -14,7 +14,7 @@ export function getTransition(
 
   const entries = propsArray.map(
     ({ prop, durationMs = defaultDuration, func = defaultFunc }) =>
-      `${prop} ${durationMs}ms ${func}`,
+      `${prop} ${durationMs} ${func}`,
   );
 
   return css`

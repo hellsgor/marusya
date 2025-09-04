@@ -1,0 +1,15 @@
+export { default as ArrowCheck } from './arrow-back.svg?react';
+export { default as Cross } from './cross.svg?react';
+export { default as Email } from './email.svg?react';
+export { default as Heart } from './heart.svg?react';
+export { default as Items } from './items.svg?react';
+export { default as MarusyaText } from './marusya-text.svg?react';
+export { default as Ok } from './ok.svg?react';
+export { default as Password } from './password.svg?react';
+export { default as Refresh } from './refresh.svg?react';
+export { default as Search } from './search.svg?react';
+export { default as Star } from './star.svg?react';
+export { default as Telegram } from './telegram.svg?react';
+export { default as User } from './user.svg?react';
+export { default as Vk } from './vk.svg?react';
+export { default as YouTube } from './youtube.svg?react';

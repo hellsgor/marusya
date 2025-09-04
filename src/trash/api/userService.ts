@@ -1,6 +1,6 @@
 import { ProfileSchema, SuccessCreateSchema } from '../models';
 import { SuccessLoginSchema, type LoginModel, type UserModel } from '../models';
-import { apiClient } from './apiClient';
+import { apiClient } from '../../shared/api/client';
 
 export const userService = {
   login: async (data: LoginModel) => {

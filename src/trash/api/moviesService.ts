@@ -1,7 +1,7 @@
 import type { GenreModel, MovieModel } from '../models';
 import { GenresDTOSchema } from '../models/GenresDTO';
 import { MovieSchema, MoviesSchema } from '../models/Movie';
-import { apiClient } from './apiClient';
+import { apiClient } from '../../shared/api/client';
 
 export const moviesService = {
   getTop10: async () => {

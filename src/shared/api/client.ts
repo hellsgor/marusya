@@ -1,13 +1,13 @@
 import axios, { type AxiosRequestConfig } from 'axios';
-import { BASE_URL } from '../constants';
 import type { z } from 'zod/v4';
+import { ENV_CONFIG } from '../config';
 
 const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: ENV_CONFIG.API_URL,
   headers: { 'Content-Type': 'application/json' },
 });
 
-export async function apiClient<T extends z.ZodType>(
+export async function client<T extends z.ZodType>(
   schema: T,
   config: AxiosRequestConfig,
 ) {
@@ -17,10 +17,6 @@ export async function apiClient<T extends z.ZodType>(
     response = await api.request(config);
   } catch (error) {
     console.error(`API request failed: ${error}`);
-
-    if (axios.isAxiosError(error)) {
-      throw error;
-    }
     throw error;
   }
 

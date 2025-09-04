@@ -1,5 +1,5 @@
 import { MoviesSchema, SuccessLoginSchema, type MovieModel } from '../models';
-import { apiClient } from './apiClient';
+import { apiClient } from '../../shared/api/client';
 
 export const favoriteService = {
   get: async () => {

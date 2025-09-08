@@ -7,7 +7,9 @@ export function Header() {
     <header>
       <Container>
         <S.StyledWrapper>
-          <Logo />
+          <S.StyledLogo to="/">
+            <Logo />
+          </S.StyledLogo>
           <MainMenu />
           <MenuItem href="some" children="Войти" />
         </S.StyledWrapper>

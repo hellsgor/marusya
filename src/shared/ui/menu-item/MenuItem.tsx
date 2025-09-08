@@ -6,16 +6,11 @@ import clsx from 'clsx';
 export function MenuItem({
   href,
   onClick,
-  isActive = false,
   isMobileActive = false,
   children,
   className,
 }: MenuItemProps) {
-  const classNameStr = clsx(
-    isActive ? 'active' : '',
-    isMobileActive ? '' : 'noMobileActive',
-    className,
-  );
+  const classNameStr = clsx(isMobileActive ? '' : 'noMobileActive', className);
 
   if (href)
     return (

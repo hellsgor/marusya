@@ -1,7 +1,8 @@
-import { Container, Icon, Logo, MenuItem } from '@/shared/ui';
 import * as S from './Header.styled';
+import { Container, Icon, MenuItem } from '@/shared/ui';
 import { MainMenu } from '../main-menu';
 import { useMediaQuery } from '@/shared/lib';
+import { NavLogo } from '../nav-logo';
 
 export function Header() {
   const isIconViewed = useMediaQuery('lg');
@@ -10,9 +11,7 @@ export function Header() {
     <header>
       <Container>
         <S.StyledWrapper>
-          <S.StyledLogo to="/">
-            <Logo />
-          </S.StyledLogo>
+          <NavLogo />
           <MainMenu />
           <MenuItem
             href="some"

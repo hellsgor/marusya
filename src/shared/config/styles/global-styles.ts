@@ -4,6 +4,7 @@ import normalize from 'styled-normalize';
 import { background } from './background';
 import { fonts } from './fonts';
 import { typography } from './typography';
+import { root } from './root';
 
 export const GlobalStyles = createGlobalStyle`
   ${normalize}
@@ -11,4 +12,5 @@ export const GlobalStyles = createGlobalStyle`
   ${background}
   ${fonts}
   ${typography}
+  ${root}
 `;

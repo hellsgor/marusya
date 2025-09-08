@@ -5,10 +5,12 @@ import { GenrePage } from '@/pages/genre';
 import { MoviePage } from '@/pages/movie';
 import { ProfilePage } from '@/pages/profile';
 import { NoMatchPage } from '@/pages/no-match';
+import { Layout } from '../layout';
 
 export const router = createBrowserRouter([
   {
     path: '/',
+    Component: Layout,
     children: [
       { index: true, Component: MainPage },
       {

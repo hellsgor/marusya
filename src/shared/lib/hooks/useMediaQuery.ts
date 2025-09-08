@@ -3,7 +3,6 @@ import { BREAKPOINTS } from '@/shared/config/theme/breakpoints';
 
 export function useMediaQuery(
   bp: keyof typeof BREAKPOINTS,
-  // bp: (typeof BREAKPOINTS)[keyof typeof BREAKPOINTS],
   isMax: boolean = true,
 ): boolean {
   const bpValue = BREAKPOINTS[bp];

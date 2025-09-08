@@ -1,4 +1,4 @@
-export const palette = {
+export const PALETTE = {
   bg: {
     white: '#fff',
     preBlack: '#0a0b0b',
@@ -41,4 +41,4 @@ export const palette = {
   },
 } as const;
 
-export type Palette = typeof palette;
+export type Palette = typeof PALETTE;

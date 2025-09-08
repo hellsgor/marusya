@@ -1,3 +1,2 @@
-export { getTransition } from './styles/get-transition';
-export { getRems } from './styles/get-rems';
-export { createMq } from './styles/create-mq';
+export { createMq, getRems, getTransition } from './styles';
+export { useMediaQuery } from './hooks';

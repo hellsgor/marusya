@@ -1,4 +1,3 @@
-import type React from 'react';
 import type {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
@@ -8,7 +7,6 @@ import type { NavLinkProps } from 'react-router';
 
 type CommonProps = {
   children: ReactNode;
-  isActive?: boolean;
   isMobileActive?: boolean;
   className?: string;
 };
@@ -24,10 +22,6 @@ export type MenuItemProps = (
 ) &
   CommonProps;
 
-type StyledMenuItemProps = {
-  $isActive?: boolean;
-};
-
 export type MenuItemOwnProps =
-  | (React.ButtonHTMLAttributes<HTMLButtonElement> & StyledMenuItemProps)
-  | (NavLinkProps & StyledMenuItemProps);
+  | ButtonHTMLAttributes<HTMLButtonElement>
+  | NavLinkProps;

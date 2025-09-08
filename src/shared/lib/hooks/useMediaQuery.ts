@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import type { BREAKPOINTS } from '@/shared/config/theme/breakpoints';
+import { BREAKPOINTS } from '@/shared/config/theme/breakpoints';
 
 export function useMediaQuery(
-  bp: (typeof BREAKPOINTS)[keyof typeof BREAKPOINTS],
+  bp: keyof typeof BREAKPOINTS,
+  // bp: (typeof BREAKPOINTS)[keyof typeof BREAKPOINTS],
   isMax: boolean = true,
 ): boolean {
-  const query = `(${isMax ? 'max' : 'min'}-width: ${isMax ? bp - 1 : bp}px)`;
+  const bpValue = BREAKPOINTS[bp];
+  const query = `(${isMax ? 'max' : 'min'}-width: ${isMax ? bpValue - 1 : bpValue}px)`;
 
   const [matches, setMatches] = useState(
     () => window.matchMedia(query).matches,

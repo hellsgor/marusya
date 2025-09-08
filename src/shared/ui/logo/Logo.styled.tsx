@@ -1,4 +1,4 @@
-import type { LogoProps } from './types';
+import type { LogoProps, StyledLogoProps } from './types';
 import type { ImgHTMLAttributes } from 'react';
 
 import styled from 'styled-components';
@@ -14,7 +14,7 @@ export const LogoImage = styled.img`
   height: 40px;
 
   ${mqLogoImage.down('md')`
-    height: 22px;
+    height: 28px;
   `}
 `;
 
@@ -30,7 +30,7 @@ export const LogoTextIcon = styled(Icon.MarusyaText)`
   height: 65.6%;
 `;
 
-export const StyledLogo = styled.div<LogoProps>`
+export const StyledLogo = styled.div<StyledLogoProps>`
   display: flex;
   column-gap: 4.98%;
   justify-content: flex-end;
@@ -40,19 +40,19 @@ export const StyledLogo = styled.div<LogoProps>`
   height: 32px;
   overflow: hidden;
 
-  ${({ theme, logoTheme }) =>
-    logoTheme === 'light' &&
+  ${({ theme, $logoTheme }) =>
+    $logoTheme === 'light' &&
     `
     color: ${theme.colors.content.primary};
   `}
 
-  ${({ theme, logoTheme }) =>
-    logoTheme === 'dark' &&
+  ${({ theme, $logoTheme }) =>
+    $logoTheme === 'dark' &&
     `
     color: ${theme.colors.content.black};
   `}
 
   ${mqLogo.down('md')`
-    height: 18px;
+    height: 22px;
   `};
 `;

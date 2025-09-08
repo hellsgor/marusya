@@ -3,7 +3,7 @@
 import { RouterProvider } from 'react-router';
 import { router } from './routes';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyles, theme } from '@/shared/config';
+import { GlobalStyles, THEME } from '@/shared/config';
 
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -32,7 +32,7 @@ import { GlobalStyles, theme } from '@/shared/config';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={THEME}>
       <GlobalStyles />
       <RouterProvider router={router} />
     </ThemeProvider>

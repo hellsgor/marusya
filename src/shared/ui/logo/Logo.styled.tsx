@@ -14,7 +14,7 @@ export const LogoImage = styled.img`
   height: 40px;
 
   ${mqLogoImage.down('md')`
-    height: 22px;
+    height: 28px;
   `}
 `;
 
@@ -53,6 +53,6 @@ export const StyledLogo = styled.div<StyledLogoProps>`
   `}
 
   ${mqLogo.down('md')`
-    height: 18px;
+    height: 22px;
   `};
 `;

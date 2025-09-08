@@ -9,7 +9,7 @@ export function Header() {
         <S.StyledWrapper>
           <Logo />
           <MainMenu />
-          <MenuItem href="javascript:void(0)" children="Войти" />
+          <MenuItem href="some" children="Войти" />
         </S.StyledWrapper>
       </Container>
     </header>

@@ -14,6 +14,7 @@ export const Root = styled.a<SocialItemStyled>`
   color: ${({ theme }) => theme.colors.content.thirdly};
   background-color: transparent;
   border-radius: 8px;
+  overflow: hidden;
 
   ${getTransition([{ prop: 'color' }, { prop: 'border-color' }])};
 
@@ -26,5 +27,6 @@ export const Root = styled.a<SocialItemStyled>`
 
   ${mqRoot.down('md')`
     width: 24px;
+    height: 24px;
   `}
 `;

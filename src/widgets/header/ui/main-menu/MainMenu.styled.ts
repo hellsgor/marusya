@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 const mqNavList = createMq<HTMLAttributes<HTMLUListElement>>();
 
-export const StyledNavList = styled.ul.attrs(() => ({ role: 'list' }))`
+export const StyledNavList = styled.ul.attrs((props) => ({
+  role: props.role || 'list',
+}))`
   display: flex;
   column-gap: 40px;
 

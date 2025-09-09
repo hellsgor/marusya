@@ -1,6 +1,6 @@
-import { MenuItem } from '@/shared/ui';
-import { NAV_ITEMS } from './MainMenu.constants';
+import { NAV_ITEMS } from '../../config';
 import * as S from './MainMenu.styled';
+import { MenuItem } from '@/shared/ui';
 import { useMediaQuery } from '@/shared/lib';
 
 export function MainMenu() {

@@ -8,7 +8,7 @@ export function Footer() {
     <footer>
       <Container>
         <S.StyledFooterWrapper>
-          <S.StyledSocialsList role="list">
+          <S.StyledSocialsList>
             {FOOTER_SOCIAL_ITEMS.map((item) => (
               <li key={item.href}>
                 <SocialItem {...item} />

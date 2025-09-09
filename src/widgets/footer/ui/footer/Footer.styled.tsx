@@ -8,7 +8,9 @@ export const StyledFooterWrapper = styled.div`
   padding: 40px 0;
 `;
 
-export const StyledSocialsList = styled.ul<HTMLAttributes<HTMLUListElement>>`
+export const StyledSocialsList = styled.ul.attrs((props) => ({
+  role: props.role || 'list',
+}))<HTMLAttributes<HTMLUListElement>>`
   display: flex;
   column-gap: 24px;
   align-items: center;

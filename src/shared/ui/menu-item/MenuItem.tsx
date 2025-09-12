@@ -10,7 +10,10 @@ export function MenuItem({
   children,
   className,
 }: MenuItemProps) {
-  const classNameStr = clsx(isMobileActive ? '' : 'noMobileActive', className);
+  const classNameStr = clsx(
+    isMobileActive ? '' : 'no-mobile-active',
+    className,
+  );
 
   if (href)
     return (

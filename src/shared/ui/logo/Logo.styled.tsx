@@ -31,6 +31,7 @@ export const LogoTextIcon = styled(Icon.MarusyaText)`
 `;
 
 export const StyledLogo = styled.div<StyledLogoProps>`
+  overflow: hidden;
   display: flex;
   column-gap: 4.98%;
   justify-content: flex-end;
@@ -38,7 +39,6 @@ export const StyledLogo = styled.div<StyledLogoProps>`
   aspect-ratio: calc(251 / 56);
   width: auto;
   height: 32px;
-  overflow: hidden;
 
   ${({ theme, $logoTheme }) =>
     $logoTheme === 'light' &&

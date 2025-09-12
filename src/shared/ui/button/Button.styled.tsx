@@ -75,7 +75,7 @@ export const Root = styled.button<ButtonOwnProps>`
   border: none;
   border-radius: 28px;
 
-  font-family: 'Play', sans-serif;
+  font-family: Play, sans-serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 1.33;

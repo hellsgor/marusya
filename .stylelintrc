@@ -1,8 +1,9 @@
 {
   "extends": [
-    "stylelint-config-recommended-scss",
+    "stylelint-config-standard",
     "stylelint-config-clean-order"
   ],
+  "customSyntax": "postcss-styled-syntax",
   "rules": {
     "rule-empty-line-before": [
       "always",
@@ -22,7 +23,6 @@
         "except": ["first-nested", "blockless-after-same-name-blockless"],
         "ignore": ["after-comment", "inside-block"]
       }
-    ],
-    "scss/no-global-function-names": null
+    ]
   }
 }

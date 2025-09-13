@@ -72,7 +72,7 @@ const common = css`
     }
   }
 
-  &.noMobileActive {
+  &.no-mobile-active {
     ${mqMainItem.down('lg')`
       padding: 0;
 

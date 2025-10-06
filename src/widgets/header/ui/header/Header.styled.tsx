@@ -4,6 +4,13 @@ import styled from 'styled-components';
 
 const mqWrapper = createMq<HTMLAttributes<HTMLDivElement>>();
 
+export const StyledHeader = styled.header`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+`;
+
 export const StyledWrapper = styled.div`
   display: flex;
   column-gap: 80px;

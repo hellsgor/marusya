@@ -10,7 +10,7 @@ export type SectionProps = {
 
 export function Section({ className, children, indents }: SectionProps) {
   return (
-    <S.StyledSection className={className} indents={indents}>
+    <S.StyledSection className={className} $indents={indents}>
       <Container>
         <S.StyledSectionWrapper>{children}</S.StyledSectionWrapper>
       </Container>

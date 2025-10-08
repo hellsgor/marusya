@@ -6,13 +6,17 @@ export const reset = css`
   *::after {
     box-sizing: border-box;
   }
+
   html,
   body,
   #root {
     height: 100%;
   }
+
   body {
     margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   img,
@@ -34,10 +38,10 @@ export const reset = css`
   }
 
   button {
-    background: none;
-    border: 0;
-    padding: 0;
     cursor: pointer;
+    padding: 0;
+    border: 0;
+    background: none;
   }
 
   a {
@@ -61,13 +65,8 @@ export const reset = css`
 
   ul[role='list'],
   ol[role='list'] {
-    list-style: none;
     margin: 0;
     padding: 0;
-  }
-
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    list-style: none;
   }
 `;

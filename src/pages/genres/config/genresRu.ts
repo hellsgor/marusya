@@ -1,7 +1,7 @@
 export const GENRES_RU: Record<string, string> = {
   history: 'история',
   horror: 'ужасы',
-  scifi: 'научная фантастика',
+  scifi: 'фантастика',
   'stand-up': 'стендап',
   fantasy: 'фэнтези',
   drama: 'драма',

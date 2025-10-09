@@ -9,6 +9,8 @@ export const StyledHeader = styled.header`
   top: 0;
   right: 0;
   left: 0;
+
+  backdrop-filter: blur(10px);
 `;
 
 export const StyledWrapper = styled.div`

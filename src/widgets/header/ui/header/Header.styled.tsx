@@ -6,6 +6,7 @@ const mqWrapper = createMq<HTMLAttributes<HTMLDivElement>>();
 
 export const StyledHeader = styled.header`
   position: fixed;
+  z-index: 5;
   top: 0;
   right: 0;
   left: 0;

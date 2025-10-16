@@ -9,10 +9,19 @@ export const StyledGenresWrapper = styled.div`
   gap: 64px ${columnGapPx + 'px'};
   justify-content: space-between;
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    gap: 24px;
+  }
+
   & > * {
     flex: 1 1
       calc((100% - ${columnGapPx * (rowItemsCount - 1)}px) / ${rowItemsCount});
     min-width: 280px;
     height: 304px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.s}px) {
+      aspect-ratio: 1/1;
+      height: unset;
+    }
   }
 `;

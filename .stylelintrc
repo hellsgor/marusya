@@ -13,6 +13,7 @@
       }
     ],
     "no-descending-specificity": null,
+    "media-query-no-invalid": null,
     "order/order": ["declarations", "at-rules"],
     "block-no-empty": true,
     "no-duplicate-selectors": true,

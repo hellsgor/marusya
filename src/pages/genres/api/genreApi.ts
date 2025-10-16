@@ -8,11 +8,18 @@ const genreApi = api.injectEndpoints({
     getGenres: builder.query<Genres, void>({
       query: () => '/movie/genres',
       providesTags: ['genres'],
-      transformResponse: (response: unknown): Genres =>
-        GenresDTOSchema.parse(response).map((genre) => ({
+      transformResponse: (response: unknown): Genres => {
+        const result = GenresDTOSchema.safeParse(response);
+
+        if (!result.success) {
+          throw new Error(`Ошибка валидации данных жанров: ${result.error}`);
+        }
+
+        return result.data.map((genre) => ({
           genreEn: genre,
           genreRu: GENRES_RU[genre],
-        })),
+        }));
+      },
     }),
   }),
 });

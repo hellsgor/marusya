@@ -1,5 +1,5 @@
-import { StyledCard } from '@/shared/ui/card';
 import styled from 'styled-components';
+import { StyledCard } from '@/shared/ui/card';
 
 export const StyledGenreCard = styled(StyledCard)`
   display: flex;

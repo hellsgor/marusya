@@ -1,6 +1,8 @@
-import { Poster } from '@/shared/ui/poster';
-import type { Genre } from '../../model/types';
 import * as S from './GenreCard.styled';
+import type { Genre } from '../../model/types';
+
+import { Poster } from '@/shared/ui/poster';
+
 import { Link } from 'react-router';
 import { ROUTES } from '@/shared/routes';
 

@@ -1,7 +1,6 @@
 import * as S from './GenresPage.styled';
 import { ErrorText, Loader, Section } from '@/shared/ui';
-import { GenreCard } from '../genre-card/GenreCard';
-import { useGetGenresQuery } from '../../api/genreApi';
+import { GenreCard, useGetGenresQuery } from '@/entities/genre';
 
 export function GenresPage() {
   const { data, isLoading, isError } = useGetGenresQuery();

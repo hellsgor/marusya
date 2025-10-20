@@ -6,7 +6,7 @@ import { sortMoviesByRating } from '../../lib/sortMoviesByRating';
 import { MOVIES_PER_PAGE } from '../../config/constants';
 import { skipToken } from '@reduxjs/toolkit/query/react';
 import { ErrorText, Loader } from '@/shared/ui';
-import { MovieCard } from '@/entities/movie/ui/movie-card';
+import { MovieCard } from '@/entities/movie';
 
 export function GenreMoviesList() {
   const [page, setPage] = useState(1);

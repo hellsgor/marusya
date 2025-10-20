@@ -1,7 +1,7 @@
 import { api } from '@/shared/api';
 import { GenresDTOSchema } from '../model/types';
 import type { Genres } from '../model/types';
-import { GENRES_RU } from '../config/genresRu';
+import { getRuGenreName } from '../lib/getRuGenreName';
 
 const genreApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -17,7 +17,7 @@ const genreApi = api.injectEndpoints({
 
         return result.data.map((genre) => ({
           genreEn: genre,
-          genreRu: GENRES_RU[genre],
+          genreRu: getRuGenreName(genre) ?? genre,
         }));
       },
     }),

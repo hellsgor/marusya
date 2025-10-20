@@ -17,7 +17,7 @@ export function GenreCard({ genre, imageSrc }: GenreCardProps) {
   return (
     <Link to={ROUTES.genre(genre.genreEn)}>
       <S.StyledGenreCard $radius={'big'}>
-        <Poster src={imageSrc} alt={genre.genreRu} />
+        <Poster src={imageSrc} alt={`${genre.genreRu} genre image`} />
         <S.StyledTitle>{capitalizeFirstLetter(genre.genreRu)}</S.StyledTitle>
       </S.StyledGenreCard>
     </Link>

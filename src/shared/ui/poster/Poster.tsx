@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import * as S from './Poster.styled';
 
 type PosterProps = {
@@ -7,19 +7,18 @@ type PosterProps = {
 };
 
 export function Poster({ src, alt }: PosterProps) {
-  const [loaded, setLoaded] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    if (src) {
-      setLoaded(true);
-    } else {
-      setLoaded(false);
+  const handleLoad = () => {
+    if (containerRef.current) {
+      containerRef.current.dataset.loaded = 'true';
     }
-  }, [src, setLoaded]);
+  };
 
   return (
-    <S.StyledPoster $loaded={loaded}>
-      <img src={src} alt={alt} />
+    <S.StyledPoster ref={containerRef} data-loaded="false">
+      <img src={src} alt={alt} ref={imgRef} onLoad={handleLoad} />
     </S.StyledPoster>
   );
 }

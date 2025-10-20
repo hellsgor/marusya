@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const shimmerFull = keyframes`
   from {
@@ -9,7 +9,7 @@ const shimmerFull = keyframes`
   }
 `;
 
-export const StyledPoster = styled.div<{ $loaded: boolean }>`
+export const StyledPoster = styled.div`
   will-change: background-position;
 
   position: relative;
@@ -19,12 +19,8 @@ export const StyledPoster = styled.div<{ $loaded: boolean }>`
   width: 100%;
   height: 100%;
 
-  background-color: ${({ $loaded }) =>
-    $loaded ? 'transparent' : ({ theme }) => theme.colors.bg.gray};
-  background-image: ${({ $loaded }) =>
-    $loaded
-      ? 'none'
-      : ({ theme }) => `linear-gradient(
+  background-color: ${({ theme }) => theme.colors.bg.gray};
+  background-image: ${({ theme }) => `linear-gradient(
     135deg,
     ${theme.colors.bg.gray} 0%,
     ${theme.colors.bg.gray} 25%,
@@ -35,20 +31,26 @@ export const StyledPoster = styled.div<{ $loaded: boolean }>`
   background-repeat: no-repeat;
   background-size: 200% 200%;
 
-  ${({ $loaded }) =>
-    !$loaded &&
-    css`
-      animation: ${shimmerFull} 2s ease-in-out infinite;
-    `}
+  animation: ${shimmerFull} 2s ease-in-out infinite;
 
   img {
     width: 100%;
     height: 100%;
 
-    opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
+    opacity: 0;
     object-fit: cover;
     object-position: center;
 
     transition: opacity 0.3s ease-in;
+  }
+
+  &[data-loaded='true'] {
+    background-color: transparent;
+    background-image: none;
+    animation: none;
+
+    img {
+      opacity: 1;
+    }
   }
 `;

@@ -20,7 +20,6 @@ export function BackTitleBar({ children }: BackTitleBarProps) {
       <S.StyledBut
         $variant="ghost"
         $smallPaddings={true}
-        $wide={false}
         onClick={handlePrevButtonClick}
       >
         <Icon.ChevronLeft />

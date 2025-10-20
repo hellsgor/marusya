@@ -95,7 +95,7 @@ export const Root = styled.button<ButtonOwnProps>`
     cursor: not-allowed;
   }
 
-  ${({ $variant }) => byVariant[$variant]}
+  ${({ $variant }) => byVariant[$variant ?? 'primary']}
 
   ${mqBtn.down('md')`
     padding-left: 12px;

@@ -1,3 +1,4 @@
+import { StyledButton } from '@/shared/ui/button';
 import styled from 'styled-components';
 
 export const StyledWrapper = styled.div`
@@ -31,5 +32,14 @@ export const StyledMovieWrapper = styled.div`
     & > * {
       flex: 0 1 335px;
     }
+  }
+`;
+
+export const StyledShowMoreButton = styled(StyledButton)`
+  align-self: center;
+  min-width: 218px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}px) {
+    width: min(100%, 335px);
   }
 `;

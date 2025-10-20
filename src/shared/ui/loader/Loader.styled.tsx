@@ -5,7 +5,15 @@ const spin = keyframes`
   to {transform: rotate(1turn)};
 `;
 
-export const StyledLoader = styled.div<{ $size: LoaderSize }>`
+export const StyledLoader = styled.div<{ $size: LoaderSize; $fixed: boolean }>`
+  ${({ $fixed }) =>
+    $fixed &&
+    `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  `}
   display: grid;
 
   aspect-ratio: 1/1;

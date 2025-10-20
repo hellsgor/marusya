@@ -3,8 +3,9 @@ import type { LoaderSize } from './types';
 
 type LoaderProps = {
   size?: LoaderSize;
+  fixed?: boolean;
 };
 
-export function Loader({ size = 'medium' }: LoaderProps) {
-  return <StyledLoader $size={size} />;
+export function Loader({ size = 'medium', fixed = false }: LoaderProps) {
+  return <StyledLoader $size={size} $fixed={fixed} />;
 }

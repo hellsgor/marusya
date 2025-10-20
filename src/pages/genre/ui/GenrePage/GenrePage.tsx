@@ -12,6 +12,7 @@ import { GENRES_RU } from '@/entities/genre/config/genresRu';
 
 import { BackTitleBar, Section } from '@/shared/ui';
 import { capitalizeFirstLetter } from '@/shared/lib';
+import { MovieCard } from '@/entities/movie/ui/movie-card';
 
 export function GenrePage() {
   const [page, setPage] = useState(1);
@@ -28,12 +29,12 @@ export function GenrePage() {
         <BackTitleBar>
           <h1>{capitalizeFirstLetter(GENRES_RU[genre ?? ''])}</h1>
         </BackTitleBar>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus
-          et tempora dolorem necessitatibus quas natus officia vitae ad
-          consequatur obcaecati. Ipsam iusto fugit reiciendis libero sint, aut
-          id. Quas, quisquam.
-        </p>
+        <S.StyledMovieWrapper>
+          {data &&
+            data.map(({ id, posterUrl, title }) => (
+              <MovieCard {...{ id, posterUrl, title }} />
+            ))}
+        </S.StyledMovieWrapper>
       </S.StyledWrapper>
     </Section>
   );

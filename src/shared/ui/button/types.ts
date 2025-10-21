@@ -27,9 +27,9 @@ export type PropsAsLink = CommonProps &
   };
 
 type StyledButtonProps = {
-  $variant: ButtonVariants;
-  $wide: boolean;
-  $smallPaddings: boolean;
+  $variant?: ButtonVariants;
+  $wide?: boolean;
+  $smallPaddings?: boolean;
 };
 
 export type ButtonOwnProps = React.ButtonHTMLAttributes<HTMLButtonElement> &

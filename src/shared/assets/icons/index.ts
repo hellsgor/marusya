@@ -1,4 +1,4 @@
-export { default as ArrowCheck } from './arrow-back.svg?react';
+export { default as ChevronLeft } from './arrow-back.svg?react';
 export { default as Cross } from './cross.svg?react';
 export { default as Email } from './email.svg?react';
 export { default as Heart } from './heart.svg?react';

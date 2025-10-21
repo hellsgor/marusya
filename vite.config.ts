@@ -8,4 +8,16 @@ export default defineConfig({
     host: true,
   },
   plugins: [react(), svgr(), tsconfigPaths()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router'], // React и основные библиотеки
+          'redux-vendor': ['@reduxjs/toolkit', 'react-redux'], // Redux
+          'ui-vendor': ['styled-components', 'swiper'], // UI библиотеки
+          'utils-vendor': ['react-hook-form', 'react-player', 'zod', 'clsx'], // Другие библиотеки
+        },
+      },
+    },
+  },
 });

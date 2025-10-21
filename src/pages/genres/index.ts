@@ -1,1 +1,1 @@
-export { GenresPage } from './ui/GenresPage/GenresPage';
+export { GenresPage } from './ui/genres-page/GenresPage';

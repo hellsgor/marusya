@@ -8,7 +8,7 @@ export function Header() {
   const isIconViewed = useMediaQuery('lg');
 
   return (
-    <header>
+    <S.StyledHeader>
       <Container>
         <S.StyledWrapper>
           <NavLogo />
@@ -19,6 +19,6 @@ export function Header() {
           />
         </S.StyledWrapper>
       </Container>
-    </header>
+    </S.StyledHeader>
   );
 }

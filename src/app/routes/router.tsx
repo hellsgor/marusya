@@ -1,11 +1,25 @@
 import { createBrowserRouter } from 'react-router';
-import { MainPage } from '@/pages/main';
-import { GenresPage } from '@/pages/genres';
-import { GenrePage } from '@/pages/genre';
-import { MoviePage } from '@/pages/movie';
-import { ProfilePage } from '@/pages/profile';
-import { NoMatchPage } from '@/pages/no-match';
+import { lazy } from 'react';
 import { Layout } from '../layout';
+
+const MainPage = lazy(() =>
+  import('@/pages/main').then((m) => ({ default: m.MainPage })),
+);
+const GenresPage = lazy(() =>
+  import('@/pages/genres').then((m) => ({ default: m.GenresPage })),
+);
+const GenrePage = lazy(() =>
+  import('@/pages/genre').then((m) => ({ default: m.GenrePage })),
+);
+const MoviePage = lazy(() =>
+  import('@/pages/movie').then((m) => ({ default: m.MoviePage })),
+);
+const ProfilePage = lazy(() =>
+  import('@/pages/profile').then((m) => ({ default: m.ProfilePage })),
+);
+const NoMatchPage = lazy(() =>
+  import('@/pages/no-match').then((m) => ({ default: m.NoMatchPage })),
+);
 
 export const router = createBrowserRouter([
   {

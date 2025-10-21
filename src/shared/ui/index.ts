@@ -4,3 +4,7 @@ export { Container } from './container';
 export { Icon } from './icon';
 export { Logo } from './logo';
 export { MenuItem } from './menu-item';
+export { Section } from './section';
+export { Loader } from './loader';
+export { ErrorText } from './error-text';
+export { BackTitleBar } from './back-title-bar';

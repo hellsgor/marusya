@@ -14,5 +14,3 @@ export const StyledNavList = styled.ul.attrs((props) => ({
     column-gap: 20px;
   `}
 `;
-
-export const StyledListItem = styled.li``;

@@ -4,6 +4,16 @@ import styled from 'styled-components';
 
 const mqWrapper = createMq<HTMLAttributes<HTMLDivElement>>();
 
+export const StyledHeader = styled.header`
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  backdrop-filter: blur(10px);
+`;
+
 export const StyledWrapper = styled.div`
   display: flex;
   column-gap: 80px;

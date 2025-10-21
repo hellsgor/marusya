@@ -10,14 +10,16 @@ import { capitalizeFirstLetter } from '@/shared/lib';
 
 type GenreCardProps = {
   genre: Genre;
-  imageSrc?: string;
 };
 
-export function GenreCard({ genre, imageSrc }: GenreCardProps) {
+export function GenreCard({ genre }: GenreCardProps) {
   return (
     <Link to={ROUTES.genre(genre.genreEn)}>
       <S.StyledGenreCard $radius={'big'}>
-        <Poster src={imageSrc} alt={`${genre.genreRu} genre image`} />
+        <Poster
+          src={genre.backdropUrl ?? undefined}
+          alt={`${genre.genreRu} genre image`}
+        />
         <S.StyledTitle>{capitalizeFirstLetter(genre.genreRu)}</S.StyledTitle>
       </S.StyledGenreCard>
     </Link>

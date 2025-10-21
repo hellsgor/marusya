@@ -1,25 +1,68 @@
 import { api } from '@/shared/api';
 import { GenresDTOSchema } from '../model/types';
-import type { Genres } from '../model/types';
+import type { Genre, Genres } from '../model/types';
 import { getRuGenreName } from '../lib/getRuGenreName';
+import type { MovieModel } from '@/entities/movie/@x/genre';
+import { getMovieBackdropUrl } from '../lib/getMovieBackdropUrl';
 
 const genreApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getGenres: builder.query<Genres, void>({
-      query: () => '/movie/genres',
-      providesTags: ['genres'],
-      transformResponse: (response: unknown): Genres => {
-        const result = GenresDTOSchema.safeParse(response);
+      queryFn: async (_arg, _queryApi, _extraOptions, fetchWithBQ) => {
+        try {
+          const genresResponse = await fetchWithBQ('/movie/genres');
+          if (genresResponse.error) {
+            return { error: genresResponse.error };
+          }
 
-        if (!result.success) {
-          throw new Error(`Ошибка валидации данных жанров: ${result.error}`);
+          const result = GenresDTOSchema.safeParse(genresResponse.data);
+          if (!result.success) {
+            return {
+              error: {
+                status: 'CUSTOM_ERROR',
+                error: `Ошибка валидации данных жанров: ${result.error}`,
+              },
+            };
+          }
+
+          const genresWithPosters = await Promise.all(
+            result.data.map(async (genre) => {
+              try {
+                const movieResponse = await fetchWithBQ(
+                  `/movie?genre=${genre}&page=1&count=50`,
+                );
+                let backdropUrl: Genre['backdropUrl'] | null = null;
+
+                if (!movieResponse.error && Array.isArray(movieResponse.data)) {
+                  const movies = movieResponse.data as Array<MovieModel>;
+                  backdropUrl = getMovieBackdropUrl(movies) ?? null;
+                }
+
+                return {
+                  genreEn: genre,
+                  genreRu: getRuGenreName(genre) ?? genre,
+                  backdropUrl,
+                };
+              } catch (_) {
+                return {
+                  genreEn: genre,
+                  genreRu: getRuGenreName(genre) ?? genre,
+                  backdropUrl: null,
+                };
+              }
+            }),
+          );
+          return { data: genresWithPosters };
+        } catch (error) {
+          return {
+            error: {
+              status: 'FETCH_ERROR',
+              error: String(error),
+            },
+          };
         }
-
-        return result.data.map((genre) => ({
-          genreEn: genre,
-          genreRu: getRuGenreName(genre) ?? genre,
-        }));
       },
+      providesTags: ['genres'],
     }),
   }),
 });

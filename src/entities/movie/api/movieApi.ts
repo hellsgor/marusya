@@ -3,7 +3,7 @@ import { MovieSchema, MoviesSchema } from '../model/types';
 import type { MovieModel, MoviesModel } from '../model/types';
 import type { getByGenreArgs } from '../model/api';
 
-const movieApi = api.injectEndpoints({
+export const movieApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getByGenre: builder.query<MoviesModel, getByGenreArgs>({
       query: ({ genre, page, count }: getByGenreArgs) =>

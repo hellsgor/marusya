@@ -1,6 +1,6 @@
 import { api } from '@/shared/api';
-import { MoviesSchema } from '../model/types';
-import type { MoviesModel } from '../model/types';
+import { MovieSchema, MoviesSchema } from '../model/types';
+import type { MovieModel, MoviesModel } from '../model/types';
 import type { getByGenreArgs } from '../model/api';
 
 const movieApi = api.injectEndpoints({
@@ -48,7 +48,23 @@ const movieApi = api.injectEndpoints({
         return result.data;
       },
     }),
+
+    getById: builder.query<MovieModel, MovieModel['id']>({
+      query: (id: MovieModel['id']) => `/movie/${id}`,
+      providesTags: (_result, _error, id) => [
+        { type: 'currentMovie', id: `${id}` },
+      ],
+      transformResponse: (response: unknown, _meta, id) => {
+        const result = MovieSchema.safeParse(response);
+
+        if (!result.success) {
+          throw new Error(`Ошибка запроса фильма с id=${id}: ${result.error}`);
+        }
+
+        return result.data;
+      },
+    }),
   }),
 });
 
-export const { useGetByGenreQuery } = movieApi;
+export const { useGetByGenreQuery, useGetByIdQuery } = movieApi;

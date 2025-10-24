@@ -16,12 +16,16 @@ const currentMovieSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addMatcher(
-      movieApi.endpoints.getById.matchFulfilled,
-      (state, action) => {
-        state.movie = action.payload;
-      },
-    );
+    builder
+      .addMatcher(
+        movieApi.endpoints.getById.matchFulfilled,
+        (state, action) => {
+          state.movie = action.payload;
+        },
+      )
+      .addMatcher(movieApi.endpoints.getById.matchRejected, (state) => {
+        state.movie = null;
+      });
   },
 });
 

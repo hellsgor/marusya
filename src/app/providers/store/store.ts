@@ -1,11 +1,22 @@
 import { currentMovieReducer } from '@/features/current-movie';
 import { api } from '@/shared/api/';
-import { createAppStore } from '@/shared/store';
+import { configureStore } from '@reduxjs/toolkit';
 
-export const store = createAppStore({
-  reducers: {
+export const store = configureStore({
+  reducer: {
     [api.reducerPath]: api.reducer,
     currentMovie: currentMovieReducer,
   },
-  middleware: [api.middleware],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(api.middleware),
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+declare module 'react-redux' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  interface DefaultRootState extends RootState {}
+}

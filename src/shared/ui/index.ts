@@ -8,3 +8,4 @@ export { Section } from './section';
 export { Loader } from './loader';
 export { ErrorText } from './error-text';
 export { BackTitleBar } from './back-title-bar';
+export { Spoiler } from './spoiler';

@@ -27,6 +27,10 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    row-gap: 12px;
+  }
 `;
 
 export const Actions = styled.div`
@@ -38,7 +42,7 @@ export const Description = styled.p`
   font-size: 24px;
   color: ${({ theme }) => theme.colors.content.secondary};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
     font-size: 18px;
   }
 `;
@@ -54,7 +58,7 @@ export const MetaItem = styled.span`
   font-size: 18px;
   color: ${({ theme }) => theme.colors.content.secondary};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
     font-size: 14px;
     line-height: 1.4287;
   }

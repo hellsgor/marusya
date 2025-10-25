@@ -1,6 +1,6 @@
 import { ERRORS } from '@/shared/config';
 
-type ErrorKey = keyof typeof ERRORS;
+export type ErrorKey = keyof typeof ERRORS;
 type ErrorTextProps = { errorCode: ErrorKey };
 
 function getErrorText(key: ErrorKey) {

@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 import { sortMoviesByRating } from '../../lib/sortMoviesByRating';
 import { MOVIES_PER_PAGE } from '../../config/constants';
 import { skipToken } from '@reduxjs/toolkit/query/react';
-import { ErrorText, Loader } from '@/shared/ui';
+import { Loader, PageError } from '@/shared/ui';
 import { MovieCard } from '@/entities/movie';
 
 export function GenreMoviesList() {
@@ -25,7 +25,9 @@ export function GenreMoviesList() {
   return (
     <>
       {isLoading && <Loader size="big" />}
-      {isError && !data && <ErrorText errorCode="e001" />}
+      {isError && !data && (
+        <PageError errorCode="e001" backdropText="Ooops!"></PageError>
+      )}
       <S.StyledGenreMoviesList>
         {data &&
           data.map(({ id, posterUrl, title }) => (

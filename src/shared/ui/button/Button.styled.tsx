@@ -1,8 +1,6 @@
-import { createMq, getTransition } from '@/shared/lib';
+import { getTransition } from '@/shared/lib';
 import styled, { css } from 'styled-components';
 import type { ButtonOwnProps, ButtonVariants } from './types';
-
-const mqBtn = createMq<ButtonOwnProps>();
 
 const primary = css`
   color: ${({ theme }) => theme.colors.content.primary};
@@ -89,6 +87,8 @@ export const Root = styled.button<ButtonOwnProps>`
   svg {
     width: 24px;
     max-width: unset;
+
+    ${getTransition([{ prop: 'fill' }, { prop: 'stroke' }])}
   }
 
   &:disabled {
@@ -96,9 +96,4 @@ export const Root = styled.button<ButtonOwnProps>`
   }
 
   ${({ $variant }) => byVariant[$variant ?? 'primary']}
-
-  ${mqBtn.down('md')`
-    padding-left: 12px;
-    padding-right: 12px;
-  `}
 `;

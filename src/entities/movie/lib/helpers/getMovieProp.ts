@@ -15,7 +15,9 @@ export function getMovieProp(
         );
       case 'budget':
       case 'revenue':
-        return `${Number(movie[key]).toLocaleString('ru-RU')} $`;
+        return Number(movie[key])
+          ? `${Number(movie[key]).toLocaleString('ru-RU')} $`
+          : null;
       default:
         return movie[key] ? `${movie[key]}` : null;
     }

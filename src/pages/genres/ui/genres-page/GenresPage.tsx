@@ -1,5 +1,5 @@
 import * as S from './GenresPage.styled';
-import { ErrorText, Loader, Section } from '@/shared/ui';
+import { Loader, PageError, Section } from '@/shared/ui';
 import { GenreCard, useGetGenresQuery } from '@/entities/genre';
 
 export function GenresPage() {
@@ -9,7 +9,9 @@ export function GenresPage() {
     <Section indents={'160px'}>
       <h1>Жанры фильмов</h1>
       {isLoading && <Loader size="big" />}
-      {isError && !data && <ErrorText errorCode="e001" />}
+      {isError && !data && (
+        <PageError errorCode="e001" backdropText="Ooops!"></PageError>
+      )}
       {data && (
         <S.StyledGenresWrapper>
           {data?.map((genre) => (

@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: '/movies:movieId',
+        path: '/movies/:movieSlug',
         Component: MoviePage,
       },
       { path: '/profile', Component: ProfilePage },

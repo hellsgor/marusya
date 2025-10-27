@@ -1,3 +1,3 @@
-export { useGetByGenreQuery } from './api/movieApi';
-export type { MoviesModel } from './model/types';
-export { MovieCard } from './ui/movie-card';
+export { useGetByGenreQuery, useGetByIdQuery, movieApi } from './api/movieApi';
+export type { MoviesModel, MovieModel } from './model/types';
+export { MovieCard, MovieDetail, MovieInfo } from './ui';

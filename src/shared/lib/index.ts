@@ -1,3 +1,3 @@
 export { createMq, getRems, getTransition } from './styles';
-export { useMediaQuery } from './hooks';
-export { capitalizeFirstLetter } from './helpers';
+export { useMediaQuery, useAppDispatch, useAppSelector } from './hooks';
+export { capitalizeFirstLetter, toSlug, getMappedValue } from './helpers';

@@ -18,7 +18,7 @@ export function getTransition(
   );
 
   return css`
-    transition: ${entries.join(', ')};
     will-change: ${propsArray.map(({ prop }) => prop).join(', ')};
+    transition: ${entries.join(', ')};
   `;
 }

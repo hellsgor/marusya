@@ -8,3 +8,6 @@ export { Section } from './section';
 export { Loader } from './loader';
 export { ErrorText } from './error-text';
 export { BackTitleBar } from './back-title-bar';
+export { Spoiler } from './spoiler';
+export { PageError } from './page-error';
+export { ScrollToTop } from './scroll-to-top';

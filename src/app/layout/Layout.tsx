@@ -3,11 +3,12 @@ import { Footer } from '@/widgets/footer';
 import { Outlet } from 'react-router';
 import * as S from './Layout.styled';
 import { Suspense } from 'react';
-import { Loader } from '@/shared/ui';
+import { Loader, ScrollToTop } from '@/shared/ui';
 
 export function Layout() {
   return (
     <>
+      <ScrollToTop />
       <Header />
       <S.StyledMain>
         <Suspense fallback={<Loader size="big" fixed />}>

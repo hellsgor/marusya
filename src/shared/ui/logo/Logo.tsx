@@ -3,7 +3,7 @@ import type { LogoProps } from './types';
 
 export function Logo(props: LogoProps) {
   return (
-    <S.StyledLogo {...props} $logoTheme={props.logoTheme || 'light'}>
+    <S.StyledLogo {...props} $logoTheme={props.logoTheme || 'dark'}>
       <S.LogoImage src="/images/marusya-image.png" alt="Marusya logo image" />
       <S.LogoTextIcon />
     </S.StyledLogo>

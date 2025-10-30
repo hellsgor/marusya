@@ -11,3 +11,4 @@ export { BackTitleBar } from './back-title-bar';
 export { Spoiler } from './spoiler';
 export { PageError } from './page-error';
 export { ScrollToTop } from './scroll-to-top';
+export { Modal } from './modal';

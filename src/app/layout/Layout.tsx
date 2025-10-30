@@ -16,6 +16,7 @@ export function Layout() {
         </Suspense>
       </S.StyledMain>
       <Footer />
+      <div id="modals"></div>
     </>
   );
 }

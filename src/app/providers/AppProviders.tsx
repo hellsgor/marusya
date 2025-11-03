@@ -1,4 +1,4 @@
-import { StoreProvider } from './store';
+import { StoreProvider } from '../store';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles, THEME } from '@/shared/config';
 import { RouterProvider } from 'react-router';

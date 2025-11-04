@@ -1,4 +1,3 @@
-import { currentMovieReducer } from '@/features/current-movie';
 import { modalReducer } from '@/features/modal';
 import { api } from '@/shared/api/';
 import { configureStore } from '@reduxjs/toolkit';
@@ -6,7 +5,6 @@ import { configureStore } from '@reduxjs/toolkit';
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
-    currentMovie: currentMovieReducer,
     modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>

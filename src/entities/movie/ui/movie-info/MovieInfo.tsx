@@ -1,12 +1,14 @@
 import * as S from './MovieInfo.styled';
 
+import type { MovieModel } from '../../model/types';
 import { MOVIE_PROPERTIES_RU } from '../../config/moviePropertiesRu';
 import { getMovieProp } from '../../lib';
-import { useAppSelector } from '@/shared/lib';
 
-export function MovieInfo() {
-  const movie = useAppSelector((state) => state.currentMovie.movie);
+type MovieInfoProps = {
+  movie: MovieModel;
+};
 
+export function MovieInfo({ movie }: MovieInfoProps) {
   return (
     <S.Root>
       <h2>О фильме</h2>

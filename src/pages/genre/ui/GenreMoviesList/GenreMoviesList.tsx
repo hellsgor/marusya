@@ -1,8 +1,8 @@
 import * as S from './GenreMoviesList.styled';
 import { useGetByGenreQuery } from '@/entities/movie';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useParams } from 'react-router';
-import { sortMoviesByRating } from '../../lib/sortMoviesByRating';
+import { sortMoviesByRating, useInfiniteLoading } from '../../lib';
 import { MOVIES_PER_PAGE } from '../../config/constants';
 import { skipToken } from '@reduxjs/toolkit/query/react';
 import { Loader, PageError } from '@/shared/ui';
@@ -12,15 +12,24 @@ export function GenreMoviesList() {
   const [page, setPage] = useState(1);
 
   const { genre } = useParams();
-  const { data, isLoading, isFetching, isError } = useGetByGenreQuery(
-    genre
-      ? { genre, page, sortFunc: sortMoviesByRating, count: MOVIES_PER_PAGE }
-      : skipToken,
-  );
+  const { data, isLoading, isFetching, isError, isSuccess } =
+    useGetByGenreQuery(
+      genre
+        ? { genre, page, sortFunc: sortMoviesByRating, count: MOVIES_PER_PAGE }
+        : skipToken,
+    );
 
+  const showMoreButtonRef = useRef<HTMLButtonElement | null>(null);
   const handleShowMoreButtonClick = () => {
     setPage((state) => ++state);
   };
+  useInfiniteLoading({
+    showMoreButtonRef,
+    handleShowMoreButtonClick,
+    isLoading,
+    isSuccess,
+    page,
+  });
 
   return (
     <>
@@ -36,6 +45,7 @@ export function GenreMoviesList() {
       </S.StyledGenreMoviesList>
       {data && (
         <S.StyledShowMoreButton
+          ref={showMoreButtonRef}
           onClick={handleShowMoreButtonClick}
           disabled={isFetching}
         >

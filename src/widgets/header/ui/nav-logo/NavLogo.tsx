@@ -4,7 +4,7 @@ import * as S from './NavLogo.styled';
 export function NavLogo() {
   return (
     <S.StyledLogo to="/">
-      <Logo />
+      <Logo logoTheme="light" />
     </S.StyledLogo>
   );
 }

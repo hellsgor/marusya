@@ -1,0 +1,1 @@
+export { sortMoviesByRating } from './sortMoviesByRating';

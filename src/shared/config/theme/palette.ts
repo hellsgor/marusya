@@ -7,7 +7,10 @@ export const PALETTE = {
       static: '#393b3c',
       disabled: '#747474',
     },
-    backdrop: 'rgba(0, 0, 0, 0.5)',
+    backdrop: {
+      default: 'rgba(0, 0, 0, 0.5)',
+      tailer: 'rgba(10, 11, 11, 0.9)',
+    },
     gr1: 'linear-gradient(179deg, rgba(39, 135, 245, 0.18) -17.53%, rgba(163, 147, 245, 0.18) 131.74%)',
     gr2: 'linear-gradient(180deg, #000 0%, rgba(39, 36, 36, 0.7) 100%)',
   },

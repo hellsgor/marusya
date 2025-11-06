@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { getTransition } from '@/shared/lib';
 import { StyledButton } from '../button';
+import { getTransition } from '@/shared/lib';
 
 export const Root = styled.div`
   display: flex;
@@ -8,24 +8,13 @@ export const Root = styled.div`
   row-gap: 8px;
 `;
 
-export const Content = styled.div<{
-  $isExpanded: boolean;
-  $hasTransition: boolean;
-}>`
+export const Wrap = styled.div<{ $isCollapsed: boolean | null; $rows: number }>`
   overflow: hidden;
-  display: grid;
-  grid-template-rows: ${({ $isExpanded }) => ($isExpanded ? '1fr' : '0fr')};
-  min-height: 0;
-
-  ${({ $hasTransition }) =>
-    $hasTransition &&
-    css`
-      ${getTransition([{ prop: 'grid-template-rows' }])}
-    `}
-`;
-
-export const ContentWrapper = styled.div`
-  min-height: 0;
+  min-height: ${({ $isCollapsed, $rows }) =>
+    $isCollapsed === null ? 'unset' : `${$rows}lh`};
+  ${css`
+    ${getTransition([{ prop: 'max-height' }])}
+  `}
 `;
 
 export const Button = styled(StyledButton)`

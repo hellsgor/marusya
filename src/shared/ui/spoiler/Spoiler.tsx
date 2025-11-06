@@ -1,76 +1,83 @@
+import * as S from './Spoiler.styled';
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
-import * as StyledSpoiler from './Spoiler.styled';
 
-export interface SpoilerProps {
+type SpoilerProps = {
   children: ReactNode;
   rows?: number;
-  buttonTexts?: [string, string];
-}
+  buttonTexts?: string[];
+};
 
 export function Spoiler({
   children,
   rows = 3,
   buttonTexts = ['Свернуть', 'Показать'],
 }: SpoilerProps) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const childrenRef = useRef<HTMLDivElement>(null);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isOverflowing, setIsOverflowing] = useState(false);
-  const [minHeight, setMinHeight] = useState(0);
-  const [enableTransition, setEnableTransition] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean | null>(true);
+  const childrenWrapperRef = useRef<HTMLDivElement>(null);
+
+  const getElements = () => {
+    const wrap = childrenWrapperRef.current;
+    const child = wrap?.children?.[0];
+    return { wrap, child };
+  };
 
   useLayoutEffect(() => {
-    if (!rows || !childrenRef.current) {
+    const { wrap, child } = getElements();
+    if (!child) return;
+
+    const computedChild = getComputedStyle(child);
+
+    if (
+      parseFloat(computedChild.height) <=
+      parseFloat(computedChild.lineHeight) * rows
+    ) {
+      setIsCollapsed(null);
       return;
     }
 
-    const textElement =
-      childrenRef.current.firstElementChild || childrenRef.current;
-    const lineHeight = parseFloat(getComputedStyle(textElement).lineHeight);
-    const calculatedMinHeight = Math.ceil(rows * lineHeight);
-    const contentHeight = childrenRef.current.scrollHeight;
+    wrap!.style.lineHeight = computedChild.lineHeight;
+  }, [rows]);
 
-    setMinHeight(calculatedMinHeight);
-    const overflow = contentHeight > calculatedMinHeight;
-    setIsOverflowing(overflow);
+  const handleCollapsedButtonClick = () => {
+    const { wrap, child } = getElements();
+    if (!child || !(child instanceof HTMLElement)) return;
 
-    if (overflow) {
-      setTimeout(() => {
-        setEnableTransition(true);
-      }, 0);
+    if (isCollapsed === true) {
+      child.style.display = 'block';
+      child.style.webkitLineClamp = '';
+      setIsCollapsed(false);
+    } else {
+      setIsCollapsed(true);
+
+      const handleTransitionEnd = (e: Event) => {
+        const transitionEvent = e as TransitionEvent;
+        if (transitionEvent.propertyName === 'max-height') {
+          child.style.display = '-webkit-box';
+          child.style.webkitBoxOrient = 'vertical';
+          child.style.webkitLineClamp = `${rows}`;
+          wrap!.removeEventListener('transitionend', handleTransitionEnd);
+        }
+      };
+
+      wrap!.addEventListener('transitionend', handleTransitionEnd);
     }
-
-    return () => {
-      setIsOverflowing(false);
-      setEnableTransition(false);
-    };
-  }, [children, rows]);
-
-  const toggle = () => {
-    setIsCollapsed((prev) => !prev);
   };
 
   return (
-    <StyledSpoiler.Root>
-      <StyledSpoiler.Content
-        $isExpanded={isCollapsed || !isOverflowing}
-        $hasTransition={enableTransition}
+    <S.Root>
+      <S.Wrap
+        $isCollapsed={isCollapsed}
+        $rows={rows}
+        ref={childrenWrapperRef}
+        style={{ maxHeight: isCollapsed ? `${rows}lh` : '100%' }}
       >
-        <StyledSpoiler.ContentWrapper
-          ref={wrapperRef}
-          style={
-            isOverflowing && minHeight ? { minHeight: `${minHeight}px` } : {}
-          }
-        >
-          <div ref={childrenRef}>{children}</div>
-        </StyledSpoiler.ContentWrapper>
-      </StyledSpoiler.Content>
-
-      {isOverflowing && (
-        <StyledSpoiler.Button $variant="ghost" onClick={toggle}>
-          {isCollapsed ? buttonTexts[0] : buttonTexts[1]}
-        </StyledSpoiler.Button>
+        {children}
+      </S.Wrap>
+      {isCollapsed !== null && (
+        <S.Button $variant="ghost" onClick={handleCollapsedButtonClick}>
+          {isCollapsed ? buttonTexts[1] : buttonTexts[0]}
+        </S.Button>
       )}
-    </StyledSpoiler.Root>
+    </S.Root>
   );
 }

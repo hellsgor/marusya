@@ -55,7 +55,7 @@ export const MovieDetail = memo(function MovieDetail({
 
       <S.PosterWrapper>
         <Poster
-          src={movie?.backdropUrl || undefined}
+          src={movie?.backdropUrl || movie?.posterUrl || undefined}
           alt={`${movie?.title} poster`}
         />
       </S.PosterWrapper>

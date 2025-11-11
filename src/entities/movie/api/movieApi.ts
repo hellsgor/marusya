@@ -64,7 +64,22 @@ export const movieApi = api.injectEndpoints({
         return result.data;
       },
     }),
+
+    getRandom: builder.query<MovieModel, void>({
+      query: () => '/movie/random',
+      providesTags: (result) => [{ type: 'currentMovie', id: result?.id }],
+      transformResponse: (response: unknown) => {
+        const result = MovieSchema.safeParse(response);
+
+        if (!result.success) {
+          throw new Error(`Ошибка запроса случайного фильма: ${result.error}`);
+        }
+
+        return result.data;
+      },
+    }),
   }),
 });
 
-export const { useGetByGenreQuery, useGetByIdQuery } = movieApi;
+export const { useGetByGenreQuery, useGetByIdQuery, useGetRandomQuery } =
+  movieApi;

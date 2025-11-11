@@ -56,22 +56,30 @@ export function Spoiler({
       const originalDisplay = child.style.display;
       const originalLineClamp = child.style.webkitLineClamp;
       const originalBoxOrient = child.style.webkitBoxOrient;
+      const originalOverflow = child.style.overflow;
+      const originalMaxHeight = child.style.maxHeight;
 
       child.style.display = 'block';
       child.style.webkitLineClamp = '';
       child.style.webkitBoxOrient = '';
+      child.style.overflow = 'visible';
+      child.style.height = 'auto';
+      child.style.maxHeight = 'none';
       void child.offsetHeight;
 
-      const height = child.offsetHeight;
+      const height = child.scrollHeight;
 
       child.style.display = originalDisplay;
       child.style.webkitLineClamp = originalLineClamp;
       child.style.webkitBoxOrient = originalBoxOrient;
+      child.style.overflow = originalOverflow;
+      child.style.height = '';
+      child.style.maxHeight = originalMaxHeight;
 
       return height;
     }
 
-    return parseFloat(computed.height);
+    return child.scrollHeight;
   };
 
   const applyClampStyles = useCallback(
@@ -102,25 +110,33 @@ export function Spoiler({
         if (!child || !wrapper) return;
 
         const lineHeight = measureLineHeight(child);
-        const fullHeight = getFullHeight(child);
         const collapsedHeight = lineHeight * rows;
-
-        fullHeightRef.current = fullHeight;
 
         if (wrapper.style.lineHeight !== `${lineHeight}px`) {
           wrapper.style.lineHeight = `${lineHeight}px`;
         }
 
-        if (fullHeight <= collapsedHeight) {
-          if (isCollapsed !== null) {
-            setIsCollapsed(null);
-            setMaxHeight(null);
-          }
+        const fullHeight = getFullHeight(child);
+        fullHeightRef.current = fullHeight;
+
+        const currentVisibleHeight = child.offsetHeight;
+        const epsilon = lineHeight * 0.1;
+
+        if (
+          isCollapsed === true &&
+          currentVisibleHeight >= fullHeight - epsilon
+        ) {
+          setIsCollapsed(null);
+          setMaxHeight(null);
           return;
         }
 
         if (isCollapsed === null) {
-          setIsCollapsed(true);
+          if (currentVisibleHeight < fullHeight - epsilon) {
+            setIsCollapsed(true);
+          } else {
+            return;
+          }
         }
 
         const targetHeight =

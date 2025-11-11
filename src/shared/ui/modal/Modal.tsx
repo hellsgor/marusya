@@ -39,7 +39,7 @@ export function Modal({
     >
       {isVisible && <S.GlobalScrollLock />}
       <S.Backdrop $type={type} $isVisible={isVisible} />
-      <S.Inner $isVisible={isVisible}>
+      <S.Inner $isVisible={isVisible} $type={type}>
         <S.Body $type={type} ref={modalBodyRef}>
           <S.CloseButton ref={closeButtonRef}>
             <Icon.Cross />

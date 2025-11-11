@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 import type { ModalType } from './type';
+import { getBackdropColor } from './helpers/getBackdropColor';
 
 export const GlobalScrollLock = createGlobalStyle`
   body {
@@ -27,18 +28,17 @@ export const Backdrop = styled.div<{ $type: ModalType; $isVisible?: boolean }>`
   position: absolute;
   z-index: -1;
   inset: 0;
-  background-color: ${({ $type, theme }) => {
-    switch ($type) {
-      case 'trailer':
-        return theme.colors.bg.backdrop.tailer;
-      default:
-        return theme.colors.bg.backdrop.default;
-    }
-  }};
+  background-color: ${({ $type, theme }) =>
+    getBackdropColor($type, theme, 'desktop')};
   ${opacity};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+    background-color: ${({ $type, theme }) =>
+      getBackdropColor($type, theme, 'mobile')};
+  }
 `;
 
-export const Inner = styled.div<{ $isVisible?: boolean }>`
+export const Inner = styled.div<{ $isVisible?: boolean; $type: ModalType }>`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -49,7 +49,7 @@ export const Inner = styled.div<{ $isVisible?: boolean }>`
   ${opacity}
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
-    padding: 0 20px;
+    padding: 0 ${({ $type }) => ($type === 'trailer' ? 0 : '20px')};
   }
 `;
 
@@ -62,6 +62,11 @@ export const Body = styled.div<{ $type: ModalType }>`
           width: ${(960 / 1440) * 100}vw;
           max-width: 960px;
           background-color: ${({ theme }) => theme.colors.bg.secondary.static};
+
+          @media (max-width: ${({ theme }) => theme.breakpoints.md}px) {
+            position: static;
+            width: 100%;
+          }
         `
       : css`
           width: 100%;
@@ -100,6 +105,7 @@ export const BodyInner = styled.div<{ $type: ModalType }>`
 
 export const CloseButton = styled.button`
   position: absolute;
+  z-index: 5;
   top: 0;
   left: calc(100% + 24px);
 

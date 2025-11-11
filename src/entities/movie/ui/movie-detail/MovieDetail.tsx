@@ -1,15 +1,21 @@
 import { Poster } from '@/shared/ui/poster';
 import * as S from './MovieDetail.styled';
-import { useAppSelector } from '@/shared/lib/hooks';
 import { Rating } from '../rating';
 import { formatRuntime } from '../../lib/helpers/formatRuntime';
 import { getRuGenreName } from '@/entities/genre/@x/movie';
 import { Icon, Spoiler } from '@/shared/ui';
+import { memo } from 'react';
+import type { MovieModel } from '../../model/types';
 
-export function MovieDetail() {
-  const movie = useAppSelector((state) => state.currentMovie.movie);
-  // console.log(movie);
+type MovieDetailProps = {
+  movie: MovieModel;
+  onTrailerButtonClick: () => void;
+};
 
+export const MovieDetail = memo(function MovieDetail({
+  onTrailerButtonClick,
+  movie,
+}: MovieDetailProps) {
   if (!movie) return null;
 
   return (
@@ -32,7 +38,11 @@ export function MovieDetail() {
           </Spoiler>
         </S.Content>
         <S.Actions>
-          <S.TrailerButton>Трейлер</S.TrailerButton>
+          {(movie.trailerUrl || movie.trailerYouTubeId) && (
+            <S.TrailerButton onClick={onTrailerButtonClick}>
+              Трейлер
+            </S.TrailerButton>
+          )}
           <S.FavoriteButton
             // $isFavoriteMovie
             $variant="secondary"
@@ -45,10 +55,10 @@ export function MovieDetail() {
 
       <S.PosterWrapper>
         <Poster
-          src={movie?.backdropUrl || undefined}
+          src={movie?.backdropUrl || movie?.posterUrl || undefined}
           alt={`${movie?.title} poster`}
         />
       </S.PosterWrapper>
     </S.Root>
   );
-}
+});

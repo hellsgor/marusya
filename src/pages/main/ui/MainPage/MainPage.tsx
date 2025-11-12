@@ -16,7 +16,7 @@ export function MainPage() {
         )}
 
         {!isFetching && !isError && movie && (
-          <MovieDetailContainer movie={movie} />
+          <MovieDetailContainer random movie={movie} />
         )}
       </Section>
     </>

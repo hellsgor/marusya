@@ -3,18 +3,15 @@ import * as S from './MovieDetail.styled';
 import { Rating } from '../rating';
 import { formatRuntime } from '../../lib/helpers/formatRuntime';
 import { getRuGenreName } from '@/entities/genre/@x/movie';
-import { Icon, Spoiler } from '@/shared/ui';
+import { Button, Icon, Spoiler } from '@/shared/ui';
 import { memo } from 'react';
-import type { MovieModel } from '../../model/types';
-
-type MovieDetailProps = {
-  movie: MovieModel;
-  onTrailerButtonClick: () => void;
-};
+import type { MovieDetailProps } from './types';
+import { ROUTES } from '@/shared/routes';
 
 export const MovieDetail = memo(function MovieDetail({
-  onTrailerButtonClick,
   movie,
+  random,
+  onTrailerButtonClick,
 }: MovieDetailProps) {
   if (!movie) return null;
 
@@ -42,6 +39,14 @@ export const MovieDetail = memo(function MovieDetail({
             <S.TrailerButton onClick={onTrailerButtonClick}>
               Трейлер
             </S.TrailerButton>
+          )}
+          {random && (
+            <Button
+              to={ROUTES.movie(movie.id, movie.title)}
+              variant="secondary"
+            >
+              О фильме
+            </Button>
           )}
           <S.FavoriteButton
             // $isFavoriteMovie

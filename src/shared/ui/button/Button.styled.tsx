@@ -1,6 +1,11 @@
+import { Link } from 'react-router';
 import { getTransition } from '@/shared/lib';
 import styled, { css } from 'styled-components';
-import type { ButtonOwnProps, ButtonVariants } from './types';
+import type {
+  ButtonOwnProps,
+  ButtonVariants,
+  LinkButtonOwnProps,
+} from './types';
 
 const primary = css`
   color: ${({ theme }) => theme.colors.content.primary};
@@ -59,7 +64,11 @@ const byVariant: Record<ButtonVariants, ReturnType<typeof css>> = {
   ghost,
 };
 
-export const Root = styled.button<ButtonOwnProps>`
+const baseButtonStyles = css<{
+  $wide?: boolean;
+  $smallPaddings?: boolean;
+  $variant?: ButtonVariants;
+}>`
   cursor: pointer;
 
   display: flex;
@@ -77,6 +86,7 @@ export const Root = styled.button<ButtonOwnProps>`
   font-size: 18px;
   font-weight: 700;
   line-height: 1.33;
+  text-decoration: none;
 
   ${getTransition([
     { prop: 'color' },
@@ -96,4 +106,12 @@ export const Root = styled.button<ButtonOwnProps>`
   }
 
   ${({ $variant }) => byVariant[$variant ?? 'primary']}
+`;
+
+export const Root = styled.button<ButtonOwnProps>`
+  ${baseButtonStyles}
+`;
+
+export const LinkRoot = styled(Link)<LinkButtonOwnProps>`
+  ${baseButtonStyles}
 `;

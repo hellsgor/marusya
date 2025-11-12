@@ -67,7 +67,8 @@ export const movieApi = api.injectEndpoints({
 
     getRandom: builder.query<MovieModel, void>({
       query: () => '/movie/random',
-      providesTags: (result) => [{ type: 'currentMovie', id: result?.id }],
+      providesTags: (result) =>
+        result?.id ? [{ type: 'currentMovie', id: `${result.id}` }] : [],
       transformResponse: (response: unknown) => {
         const result = MovieSchema.safeParse(response);
 

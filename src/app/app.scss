@@ -1,0 +1,8 @@
+@use '../shared/config/styles/reset';
+@use '../shared/config/styles/typography';
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

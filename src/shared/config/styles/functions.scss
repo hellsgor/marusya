@@ -1,0 +1,61 @@
+@use './colors' as colors;
+@use 'sass:map';
+@use 'sass:meta';
+
+@function getColor($group, $name, $state: 'static', $subState: null) {
+  // группа
+  $group-map: map.get(colors.$colors, $group);
+  @if not $group-map {
+    @error "Группа '#{$group}' не найдена в палитре colors.$colors.";
+  }
+
+  // ключ внутри группы - обрабатываем строки и идентификаторы
+  $item: null;
+
+  // Сначала пробуем как есть (может быть идентификатор)
+  @if map.has-key($group-map, $name) {
+    $item: map.get($group-map, $name);
+  } @else if meta.type-of($name) == 'string' {
+    // Если строка, ищем ключ по строковому представлению через перебор
+    $keys: map.keys($group-map);
+    @each $key in $keys {
+      // meta.inspect для идентификатора вернет его без кавычек
+      $key-str: meta.inspect($key);
+      // Сравниваем строковое представление ключа со строкой
+      @if $key-str == $name and not $item {
+        $item: map.get($group-map, $key);
+      }
+    }
+  }
+
+  @if not $item {
+    @error "Ключ '#{$name}' не найден в группе '#{$group}'.";
+  }
+
+  // если просто цвет без состояний
+  @if meta.type-of($item) != 'map' {
+    @return $item;
+  }
+
+  // состояние
+  $value: null;
+
+  @if map.has-key($item, $state) {
+    $value: map.get($item, $state);
+  } @else if map.has-key($item, 'default') {
+    $value: map.get($item, 'default');
+  } @else {
+    @error "Состояние '#{$state}' не найдено для '#{$name}' в '#{$group}'.";
+  }
+
+  // подсостояние
+  @if meta.type-of($value) == 'map' and $subState {
+    @if not map.has-key($value, $subState) {
+      @error "Подсостояние '#{$subState}' не найдено для '#{$group}.#{$name}.#{$state}'.";
+    }
+
+    @return map.get($value, $subState);
+  }
+
+  @return $value;
+}

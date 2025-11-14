@@ -10,7 +10,7 @@ import { ROUTES } from '@/shared/routes';
 
 export const MovieDetail = memo(function MovieDetail({
   movie,
-  random,
+  randomRefetch,
   onTrailerButtonClick,
 }: MovieDetailProps) {
   if (!movie) return null;
@@ -40,7 +40,7 @@ export const MovieDetail = memo(function MovieDetail({
               Трейлер
             </S.TrailerButton>
           )}
-          {random && (
+          {randomRefetch && (
             <Button
               to={ROUTES.movie(movie.id, movie.title)}
               variant="secondary"
@@ -55,6 +55,15 @@ export const MovieDetail = memo(function MovieDetail({
           >
             <Icon.Heart />
           </S.FavoriteButton>
+          {randomRefetch && (
+            <Button
+              variant="secondary"
+              smallPaddings={true}
+              onClick={randomRefetch}
+            >
+              <Icon.Refresh />
+            </Button>
+          )}
         </S.Actions>
       </S.Wrapper>
 

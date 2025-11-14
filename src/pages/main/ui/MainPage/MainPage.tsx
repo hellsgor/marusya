@@ -5,7 +5,7 @@ import { MovieDetailContainer } from '@/widgets/movie-detail-container';
 
 export function MainPage() {
   const mq = useMediaQuery('md');
-  const { data: movie, isFetching, isError } = useGetRandomQuery();
+  const { data: movie, isFetching, isError, refetch } = useGetRandomQuery();
 
   return (
     <>
@@ -16,7 +16,12 @@ export function MainPage() {
         )}
 
         {!isFetching && !isError && movie && (
-          <MovieDetailContainer random movie={movie} />
+          <MovieDetailContainer
+            movie={movie}
+            randomRefetch={() => {
+              refetch();
+            }}
+          />
         )}
       </Section>
     </>

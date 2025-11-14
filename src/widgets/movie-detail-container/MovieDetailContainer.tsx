@@ -10,12 +10,12 @@ import { useCallback } from 'react';
 
 type MovieDetailContainerProps = {
   movie: MovieModel;
-  random?: MovieDetailPropsRandom;
+  randomRefetch?: MovieDetailPropsRandom;
 };
 
 export function MovieDetailContainer({
   movie,
-  random = false,
+  randomRefetch,
 }: MovieDetailContainerProps) {
   const dispatch = useAppDispatch();
   const isTrailerModalOpen = useAppSelector((state) => state.modal.trailer);
@@ -29,7 +29,7 @@ export function MovieDetailContainer({
       <MovieDetail
         movie={movie}
         onTrailerButtonClick={handleTrailerButtonClick}
-        random={random}
+        randomRefetch={randomRefetch}
       />
       {(movie?.trailerUrl || movie?.trailerYouTubeId) && (
         <TrailerModal

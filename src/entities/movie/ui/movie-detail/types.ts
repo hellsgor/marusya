@@ -2,8 +2,8 @@ import type { MovieModel } from '../../model/types';
 
 export type MovieDetailProps = {
   movie: MovieModel;
-  random: boolean;
+  randomRefetch?: () => void;
   onTrailerButtonClick: () => void;
 };
 
-export type MovieDetailPropsRandom = MovieDetailProps['random'];
+export type MovieDetailPropsRandom = MovieDetailProps['randomRefetch'];

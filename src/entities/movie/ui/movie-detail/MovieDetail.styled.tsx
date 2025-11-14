@@ -88,7 +88,10 @@ export const FavoriteButton = styled(StyledButton)<{
       svg {
         fill: ${({ $isFavoriteMovie, theme }) =>
           $isFavoriteMovie ? theme.colors.accent.active : 'transparent'};
-        stroke: ${({ theme }) => theme.colors.accent.active};
+        stroke: ${({ theme, $isFavoriteMovie }) =>
+          $isFavoriteMovie
+            ? theme.colors.accent.active
+            : theme.colors.content.black};
       }
     }
   }

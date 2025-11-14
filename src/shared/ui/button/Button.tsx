@@ -1,24 +1,38 @@
 import * as StyledButton from './Button.styled';
-import type { PropsAsButton, PropsAsLink } from './types';
+import type { ButtonProps, PropsAsLink } from './types';
 
-export type ButtonProps = PropsAsButton | PropsAsLink;
+export function Button(props: ButtonProps) {
+  const {
+    children,
+    variant = 'primary',
+    wide = false,
+    smallPaddings = false,
+    className,
+    href,
+    to,
+    type = 'button',
+    ...restProps
+  } = props;
 
-export function Button({
-  children,
-  variant = 'primary',
-  wide = false,
-  smallPaddings = false,
-  className,
-  href,
-  type = 'button',
-  ...restProps
-}: ButtonProps) {
+  const commonProps = {
+    $variant: variant,
+    $wide: wide,
+    $smallPaddings: smallPaddings,
+    className,
+  };
+
+  if (to) {
+    const linkProps = props as PropsAsLink;
+    return (
+      <StyledButton.LinkRoot {...commonProps} {...linkProps}>
+        {children}
+      </StyledButton.LinkRoot>
+    );
+  }
+
   return (
     <StyledButton.Root
-      $variant={variant}
-      $wide={wide}
-      $smallPaddings={smallPaddings}
-      className={className}
+      {...commonProps}
       href={href}
       as={href ? 'a' : 'button'}
       type={href ? undefined : type}

@@ -35,7 +35,7 @@ export function GenreMoviesList() {
     <>
       {isLoading && <Loader size="big" />}
       {isError && !data && (
-        <PageError errorCode="e001" backdropText="Ooops!"></PageError>
+        <PageError errorCode="e002" backdropText="Ooops!"></PageError>
       )}
       <S.StyledGenreMoviesList>
         {data &&

@@ -1,13 +1,20 @@
+import s from './mainMenu.module.scss';
+import { clsx } from 'clsx';
+
 import { NAV_ITEMS } from '../../config';
-import * as S from './MainMenu.styled';
 import { MenuItem } from '@/shared/ui';
 import { useMediaQuery } from '@/shared/lib';
 
-export function MainMenu() {
+type MainMenuProps = {
+  className?: string;
+};
+
+export function MainMenu({ className }: MainMenuProps) {
   const isIconViewed = useMediaQuery('lg');
+
   return (
-    <nav>
-      <S.StyledNavList>
+    <nav className={clsx(s.mainMenu, className)}>
+      <ul className={s.mainMenu__list} role="list">
         {Object.values(NAV_ITEMS).map((item) => {
           const ItemChildren = isIconViewed ? item.icon : item.text;
           if (!ItemChildren) {
@@ -26,7 +33,7 @@ export function MainMenu() {
             </li>
           );
         })}
-      </S.StyledNavList>
+      </ul>
     </nav>
   );
 }

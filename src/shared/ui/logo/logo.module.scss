@@ -1,0 +1,45 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/media' as m;
+
+.logo {
+  overflow: hidden;
+  display: flex;
+  column-gap: 4.98%;
+  justify-content: flex-end;
+
+  aspect-ratio: calc(251 / 56);
+  width: auto;
+  height: 32px;
+
+  color: c.getColor(content, 'black');
+
+  img {
+    align-self: center;
+    width: auto;
+    height: 40px;
+
+    @include m.mobile {
+      height: 28px;
+    }
+  }
+
+  &__text {
+    position: relative;
+    top: 36%;
+
+    display: flex;
+    justify-content: center;
+
+    aspect-ratio: calc(174.074 / 36.75);
+    width: auto;
+    height: 65.6%;
+  }
+
+  &_light {
+    color: c.getColor(content, primary);
+  }
+
+  @include m.mobile {
+    height: 22px;
+  }
+}

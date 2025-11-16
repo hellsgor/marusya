@@ -1,16 +1,16 @@
-import s from './layout.module.scss';
+import s from './Layout.module.scss';
 
 import { Outlet } from 'react-router';
 import { Suspense } from 'react';
 import { Loader, ScrollToTop } from '@/shared/ui';
-// import { Header } from '@/widgets/header';
+import { Header } from '@/widgets/header';
 // import { Footer } from '@/widgets/footer';
 
 export function Layout() {
   return (
     <>
       <ScrollToTop />
-      {/* <Header /> */}
+      <Header />
       <main className={s.main}>
         <Suspense fallback={<Loader size="big" fixed />}>
           <Outlet />

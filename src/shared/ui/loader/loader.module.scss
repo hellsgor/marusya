@@ -1,4 +1,4 @@
-@use '@/shared/config/scss/functions' as f;
+@use '@/shared/scss/colors' as c;
 
 @keyframes spin {
   to {
@@ -22,7 +22,7 @@
     grid-area: 1/1;
 
     width: 100%;
-    border-color: f.getColor(accent, secondary) f.getColor(accent, secondary)
+    border-color: c.getColor(accent, secondary) c.getColor(accent, secondary)
       transparent transparent;
     border-style: solid;
     border-width: 2px;
@@ -34,8 +34,8 @@
   }
 
   &::after {
-    border-color: transparent transparent f.getColor(accent, primary, static)
-      f.getColor(accent, primary, static);
+    border-color: transparent transparent c.getColor(accent, primary, static)
+      c.getColor(accent, primary, static);
     animation-direction: reverse;
   }
 

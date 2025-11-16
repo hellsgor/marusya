@@ -1,24 +1,26 @@
-import * as S from './Header.styled';
+// import * as S from './Header.styled';
+import s from './Header.module.scss';
+
 import { Container, Icon, MenuItem } from '@/shared/ui';
-import { MainMenu } from '../main-menu';
+import { MainMenu } from '../mainMenu';
 import { useMediaQuery } from '@/shared/lib';
-import { NavLogo } from '../nav-logo';
+import { NavLogo } from '../navLogo';
 
 export function Header() {
   const isIconViewed = useMediaQuery('lg');
 
   return (
-    <S.StyledHeader>
+    <header className={s.header}>
       <Container>
-        <S.StyledWrapper>
+        <div className={s.header__wrapper}>
           <NavLogo />
           <MainMenu />
           <MenuItem
             href="some"
             children={isIconViewed ? <Icon.User /> : 'Войти'}
           />
-        </S.StyledWrapper>
+        </div>
       </Container>
-    </S.StyledHeader>
+    </header>
   );
 }

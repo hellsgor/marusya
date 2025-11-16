@@ -1,0 +1,25 @@
+@use '@/shared/scss/media' as m;
+
+.header {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  backdrop-filter: blur(10px);
+
+  &__wrapper {
+    display: flex;
+    column-gap: 80px;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 24px 0;
+
+    @include m.mobile {
+      column-gap: 20px;
+      padding: 16px 0;
+    }
+  }
+}

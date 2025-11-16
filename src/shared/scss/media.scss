@@ -1,0 +1,20 @@
+@use './breakpoints' as b;
+
+@mixin mobile {
+  @media (max-width: b.getBP(md)) {
+    @content;
+  }
+}
+
+@mixin tablet-vertical {
+  @media (max-width: b.getBP(lg)) {
+    @content;
+  }
+}
+
+@mixin bp($bp) {
+  $currentBP: b.getBP($bp);
+  @media (max-width: b.getBP($bp)) {
+    @content;
+  }
+}

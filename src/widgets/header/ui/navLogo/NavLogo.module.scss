@@ -1,0 +1,7 @@
+@use '@/shared/scss/media' as m;
+
+.navLogo {
+  @include m.tablet-vertical {
+    margin-right: auto;
+  }
+}

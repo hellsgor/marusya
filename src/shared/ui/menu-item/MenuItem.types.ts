@@ -3,11 +3,9 @@ import type {
   ButtonHTMLAttributes,
   ReactNode,
 } from 'react';
-import type { NavLinkProps } from 'react-router';
 
 type CommonProps = {
   children: ReactNode;
-  isMobileActive?: boolean;
   className?: string;
 };
 
@@ -21,7 +19,3 @@ export type MenuItemProps = (
     })
 ) &
   CommonProps;
-
-export type MenuItemOwnProps =
-  | ButtonHTMLAttributes<HTMLButtonElement>
-  | NavLinkProps;

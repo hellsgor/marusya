@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use 'sass:meta';
+
+$breakpoints: (
+  xxs: 340px,
+  xs: 375px,
+  s: 440px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+  full: 1920px,
+);
+
+@function getBP($bp) {
+  $bp-map: map.get(
+    $map: $breakpoints,
+    $key: $bp,
+  );
+
+  @if not $bp-map {
+    @error "Брэйкпоинт '#{$bp}' не найден.";
+  }
+
+  @return $bp-map;
+}

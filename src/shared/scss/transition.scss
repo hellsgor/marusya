@@ -1,0 +1,41 @@
+@use 'sass:list';
+@use 'sass:meta';
+@use 'sass:string';
+
+$duration-100: 100ms;
+$duration-200: 200ms;
+$duration-300: 300ms;
+$duration-400: 400ms;
+$duration-500: 500ms;
+
+$transition-default-duration: $duration-200;
+$transition-default-func: ease-in-out;
+
+///
+/// @include transition(opacity, transform);
+/// @include transition(opacity, $duration:150ms);
+/// @include transition(transform, $func:linear);
+///
+@mixin transition(
+  $props,
+  $duration: $transition-default-duration,
+  $func: $transition-default-func
+) {
+  @if meta.type-of($props) != 'list' {
+    $props: ($props);
+  }
+
+  $list: ();
+  @each $prop in $props {
+    $list: list.append(
+      $list,
+      string.unquote('#{$prop} #{$duration} #{$func}'),
+      comma
+    );
+  }
+
+  /* stylelint-disable */
+  transition: $list;
+  will-change: $props;
+  /* stylelint-enable */
+}

@@ -1,4 +1,3 @@
-// import * as S from './Header.styled';
 import s from './Header.module.scss';
 
 import { Container, Icon, MenuItem } from '@/shared/ui';

@@ -1,5 +1,5 @@
 import 'modern-normalize/modern-normalize.css';
-import './app.scss';
+import './App.scss';
 import { AppProviders } from './providers';
 
 function App() {

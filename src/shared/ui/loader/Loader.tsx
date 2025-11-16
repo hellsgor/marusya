@@ -1,14 +1,12 @@
 import clsx from 'clsx';
-import s from './loader.module.scss';
-import type { LoaderSize } from './types';
+import s from './Loader.module.scss';
 
 type LoaderProps = {
-  size?: LoaderSize;
+  size?: 'big' | 'small';
   fixed?: boolean;
 };
 
 export function Loader({ size, fixed = false }: LoaderProps) {
-  // return <StyledLoader $size={size} $fixed={fixed} />;
   return (
     <div
       className={clsx(

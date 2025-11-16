@@ -1,6 +1,6 @@
-@use '../shared/config/styles/reset';
-@use '../shared/config/styles/background';
-@use '../shared/config/styles/typography';
+@use './scss/reset';
+@use './scss/background';
+@use './scss/typography';
 
 #root {
   display: flex;

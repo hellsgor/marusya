@@ -1,1 +1,1 @@
-export type LoaderSize = 'big' | 'medium' | 'small';
+export type LoaderSize = 'big' | 'small';

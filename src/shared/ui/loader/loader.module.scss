@@ -1,0 +1,66 @@
+@use '@/shared/config/scss/functions' as f;
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.loader {
+  display: grid;
+
+  aspect-ratio: 1/1;
+  width: 50px;
+  margin: auto;
+
+  animation: spin 4s infinite;
+
+  &::before,
+  &::after {
+    content: '';
+
+    grid-area: 1/1;
+
+    width: 100%;
+    border-color: f.getColor(accent, secondary) f.getColor(accent, secondary)
+      transparent transparent;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50%;
+
+    mix-blend-mode: darken;
+
+    animation: spin 1s infinite linear;
+  }
+
+  &::after {
+    border-color: transparent transparent f.getColor(accent, primary, static)
+      f.getColor(accent, primary, static);
+    animation-direction: reverse;
+  }
+
+  &_small {
+    width: 24px;
+
+    &::before,
+    &::after {
+      border-width: 1px;
+    }
+  }
+
+  &_big {
+    width: 100px;
+
+    &::before,
+    &::after {
+      border-width: 4px;
+    }
+  }
+
+  &_fixed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+}

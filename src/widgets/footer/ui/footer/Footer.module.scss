@@ -1,0 +1,20 @@
+@use '@/shared/scss/media' as m;
+
+.footer {
+  &__wrapper {
+    display: flex;
+    column-gap: 80px;
+    justify-content: flex-end;
+    padding: 40px 0;
+
+    @include m.mobile {
+      justify-content: flex-start;
+    }
+  }
+
+  &__list {
+    display: flex;
+    column-gap: 24px;
+    align-items: center;
+  }
+}

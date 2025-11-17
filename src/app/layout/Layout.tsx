@@ -4,7 +4,7 @@ import { Outlet } from 'react-router';
 import { Suspense } from 'react';
 import { Loader, ScrollToTop } from '@/shared/ui';
 import { Header } from '@/widgets/header';
-// import { Footer } from '@/widgets/footer';
+import { Footer } from '@/widgets/footer';
 
 export function Layout() {
   return (
@@ -16,7 +16,7 @@ export function Layout() {
           <Outlet />
         </Suspense>
       </main>
-      {/* <Footer /> */}
+      <Footer />
       <div id="modals"></div>
     </>
   );

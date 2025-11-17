@@ -1,5 +1,22 @@
-import * as StyledButton from './Button.styled';
-import type { ButtonProps, PropsAsLink } from './types';
+import s from './Button.module.scss';
+import clsx from 'clsx';
+
+import type {
+  ButtonProps,
+  PropsAsLink,
+  PropsAsExternal,
+  PropsAsButton,
+} from './Button.types';
+
+import { Link } from 'react-router';
+
+function isLinkProps(p: ButtonProps): p is PropsAsLink {
+  return 'to' in p;
+}
+
+function isExternalProps(p: ButtonProps): p is PropsAsExternal {
+  return 'href' in p;
+}
 
 export function Button(props: ButtonProps) {
   const {
@@ -8,37 +25,56 @@ export function Button(props: ButtonProps) {
     wide = false,
     smallPaddings = false,
     className,
-    href,
-    to,
     type = 'button',
-    ...restProps
+    ...rest
   } = props;
 
-  const commonProps = {
-    $variant: variant,
-    $wide: wide,
-    $smallPaddings: smallPaddings,
+  const classNameStr = clsx(
+    s.button,
+    {
+      [s.button_primary]: variant === 'primary',
+      [s.button_secondary]: variant === 'secondary',
+      [s.button_ghost]: variant === 'ghost',
+      [s.button_wide]: wide,
+      [s.button_smallPaddings]: smallPaddings,
+    },
     className,
-  };
+  );
 
-  if (to) {
-    const linkProps = props as PropsAsLink;
+  if (isLinkProps(props)) {
     return (
-      <StyledButton.LinkRoot {...commonProps} {...linkProps}>
+      <Link {...props} className={classNameStr}>
         {children}
-      </StyledButton.LinkRoot>
+      </Link>
     );
   }
 
+  if (isExternalProps(props)) {
+    const { disabled, onClick, ...restAnchor } = props;
+
+    return (
+      <a
+        {...restAnchor}
+        className={classNameStr}
+        aria-disabled={disabled || undefined}
+        onClick={(e) => {
+          if (disabled) {
+            e.preventDefault();
+            return;
+          }
+          onClick?.(e);
+        }}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  const buttonProps = rest as PropsAsButton;
+
   return (
-    <StyledButton.Root
-      {...commonProps}
-      href={href}
-      as={href ? 'a' : 'button'}
-      type={href ? undefined : type}
-      {...restProps}
-    >
+    <button {...buttonProps} type={type} className={classNameStr}>
       {children}
-    </StyledButton.Root>
+    </button>
   );
 }

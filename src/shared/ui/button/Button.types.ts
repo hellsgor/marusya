@@ -7,7 +7,7 @@ import type { LinkProps } from 'react-router';
 
 export type ButtonVariants = 'primary' | 'secondary' | 'ghost';
 
-type CommonProps = {
+export type CommonProps = {
   children: ReactNode;
   variant?: ButtonVariants;
   wide?: boolean;
@@ -34,17 +34,5 @@ export type PropsAsExternal = CommonProps &
     type?: never;
     disabled?: boolean;
   };
-
-type StyledButtonProps = {
-  $variant?: ButtonVariants;
-  $wide?: boolean;
-  $smallPaddings?: boolean;
-};
-
-export type ButtonOwnProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  StyledButtonProps;
-
-export type LinkButtonOwnProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
-  StyledButtonProps;
 
 export type ButtonProps = PropsAsButton | PropsAsLink | PropsAsExternal;

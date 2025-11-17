@@ -1,0 +1,94 @@
+@use '@/shared/scss/transition' as t;
+@use '@/shared/scss/hover' as h;
+@use '@/shared/scss/colors' as c;
+
+.button {
+  cursor: pointer;
+
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  padding: 16px 48px;
+  border: none;
+  border-radius: 28px;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.33;
+  text-decoration: none;
+
+  @include t.transition(
+    (color, background-color, border-color),
+    $duration: t.$duration-100
+  );
+
+  svg {
+    width: 24px;
+    max-width: unset;
+    @include t.transition((fill, stroke), $duration: t.$duration-100);
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+
+  &_wide {
+    width: 100%;
+  }
+
+  &_smallPaddings {
+    padding: 16px 21px;
+  }
+
+  &_primary {
+    color: c.getColor(content, primary);
+    background-color: c.getColor(accent, primary, static);
+
+    @include h.hover {
+      background-color: c.getColor(accent, primary, hover);
+    }
+
+    &:disabled,
+    &[aria-disabled='true'] {
+      color: c.getColor(content, disabled);
+      background-color: c.getColor(accent, primary, disabled);
+    }
+  }
+
+  &_secondary {
+    border: 1px solid c.getColor(content, placeholder);
+    color: c.getColor(content, primary);
+    background-color: c.getColor(bg, secondary, static);
+
+    @include h.hover {
+      border-color: c.getColor(content, 'black');
+      color: c.getColor(content, 'black');
+      background-color: c.getColor(bg, 'white');
+    }
+
+    &:disabled,
+    &[aria-disabled='true'] {
+      color: c.getColor(content, disabled);
+      background-color: c.getColor(bg, secondary, disabled);
+    }
+  }
+
+  &_ghost {
+    padding: 0;
+    color: c.getColor(content, 'black');
+    background-color: transparent;
+
+    @include h.hover {
+      color: c.getColor(accent, primary, static);
+    }
+
+    &:disabled,
+    &[aria-disabled='true'] {
+      color: c.getColor(accent, primary, disabled);
+    }
+  }
+}

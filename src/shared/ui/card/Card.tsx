@@ -1,12 +1,18 @@
+import s from './Card.module.scss';
+import clsx from 'clsx';
+
 import type { ReactNode } from 'react';
-import * as S from './Card.styled';
-import type { radius } from './types';
 
 type CardProps = {
   children: ReactNode;
-  radius: radius;
+  smaller?: true;
+  className?: string;
 };
 
-export function Card({ children, radius }: CardProps) {
-  return <S.StyledCard $radius={radius}>{children}</S.StyledCard>;
+export function Card({ children, smaller, className }: CardProps) {
+  return (
+    <div className={clsx(s.card, smaller && s.card_smaller, className)}>
+      {children}
+    </div>
+  );
 }

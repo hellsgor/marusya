@@ -1,15 +1,15 @@
-import * as S from './Backdrop.styled';
+import clsx from 'clsx';
+import s from './Backdrop.module.scss';
 
 type BackdropProps = {
-  isOpen?: boolean;
-  zIndex?: number;
+  isVisible?: boolean;
   className?: string;
 };
 
-export function Backdrop({
-  isOpen = false,
-  zIndex = 1000,
-  className,
-}: BackdropProps) {
-  return <S.Root $visible={isOpen} $zIndex={zIndex} className={className} />;
+export function Backdrop({ isVisible = false, className }: BackdropProps) {
+  return (
+    <div
+      className={clsx(s.backdrop, isVisible && s.backdrop_visible, className)}
+    />
+  );
 }

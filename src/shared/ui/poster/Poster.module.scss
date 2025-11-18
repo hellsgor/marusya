@@ -1,15 +1,15 @@
-import styled, { keyframes } from 'styled-components';
+@use '@/shared/scss/colors' as c;
 
-const shimmerFull = keyframes`
+@keyframes shimmerFull {
   from {
     background-position: 150% 150%;
   }
   to {
     background-position: -100% -100%;
   }
-`;
+}
 
-export const StyledPoster = styled.div`
+.poster {
   will-change: background-position;
 
   position: relative;
@@ -19,19 +19,19 @@ export const StyledPoster = styled.div`
   width: 100%;
   height: 100%;
 
-  background-color: ${({ theme }) => theme.colors.bg.gray};
-  background-image: ${({ theme }) => `linear-gradient(
+  background-color: c.getColor(bg, 'gray');
+  background-image: linear-gradient(
     135deg,
-    ${theme.colors.bg.gray} 0%,
-    ${theme.colors.bg.gray} 25%,
+    c.getColor(bg, 'gray') 0%,
+    c.getColor(bg, 'gray') 25%,
     rgb(255 255 255 / 20%) 50%,
-    ${theme.colors.bg.gray} 75%,
-    ${theme.colors.bg.gray} 100%
-  )`};
+    c.getColor(bg, 'gray') 75%,
+    c.getColor(bg, 'gray') 100%
+  );
   background-repeat: no-repeat;
   background-size: 200% 200%;
 
-  animation: ${shimmerFull} 2s ease-in-out infinite;
+  animation: shimmerFull 2s ease-in-out infinite;
 
   img {
     width: 100%;
@@ -53,4 +53,4 @@ export const StyledPoster = styled.div`
       opacity: 1;
     }
   }
-`;
+}

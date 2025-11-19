@@ -1,0 +1,156 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/transition' as t;
+@use '@/shared/scss/hover' as h;
+
+@mixin modalOpacityTransition {
+  @include t.transition(opacity, $duration: t.$duration-300);
+}
+
+.modal {
+  pointer-events: none;
+
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+
+  color: c.getColor(content, 'black');
+
+  &__backdrop {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    opacity: 0;
+    background-color: c.getColor(bg, backdrop, trailer, default);
+    @include modalOpacityTransition;
+  }
+
+  &__inner {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+
+    opacity: 0;
+    @include modalOpacityTransition;
+
+    @include m.mobile {
+      padding: 0 20px;
+    }
+  }
+
+  &__body {
+    position: relative;
+
+    width: 100%;
+    max-width: 420px;
+    height: fit-content;
+    padding: 64px 40px;
+    border-radius: 24px;
+
+    background-color: c.getColor(bg, 'white');
+
+    @include m.mobile {
+      margin: 80px 0 auto;
+      padding: 64px 20px 32px;
+    }
+  }
+
+  &__bodyInner {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    align-items: center;
+
+    @include m.mobile {
+      row-gap: 32px;
+    }
+  }
+
+  &__closeButton {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: calc(100% + 24px);
+
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    aspect-ratio: 1/1;
+    width: 48px;
+    border-radius: 50%;
+
+    color: c.getColor(content, 'black');
+
+    background-color: c.getColor(bg, 'white');
+
+    @include t.transition(color, $duration: t.$duration-100);
+
+    svg {
+      aspect-ratio: 1/1;
+      width: 24px;
+    }
+
+    @include h.hover {
+      color: c.getColor(accent, primary, hover);
+    }
+
+    &:active {
+      color: c.getColor(accent, primary, disabled);
+    }
+
+    @include m.mobile {
+      top: 8px;
+      right: 8px;
+      left: unset;
+    }
+  }
+
+  &_trailer {
+    background-color: c.getColor(bg, backdrop, tailer, desktop);
+    @include m.mobile {
+      background-color: c.getColor(bg, backdrop, tailer, mobile);
+    }
+
+    .modal__inner {
+      @include m.mobile {
+        padding: 0;
+      }
+    }
+
+    .modal__body {
+      aspect-ratio: 960/540;
+      width: calc((960 / 1440) * 100vw);
+      max-width: 960px;
+      background-color: c.getColor(bg, secondary, static);
+
+      @include m.mobile {
+        position: static;
+        width: 100%;
+      }
+    }
+
+    .modal__bodyInner {
+      display: block;
+    }
+  }
+
+  &_visible {
+    pointer-events: auto;
+    opacity: 1;
+
+    .modal__backdrop {
+      opacity: 1;
+    }
+
+    .modal__inner {
+      opacity: 1;
+    }
+  }
+}

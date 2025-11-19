@@ -1,4 +1,4 @@
-import * as S from './PageError.styled';
+import s from './PageError.module.scss';
 import { ErrorText, type ErrorKey } from '../error-text';
 
 type PageErrorProps = {
@@ -8,9 +8,9 @@ type PageErrorProps = {
 
 export function PageError({ errorCode, backdropText }: PageErrorProps) {
   return (
-    <S.Root $isTopIndent={!!backdropText}>
-      {backdropText && <S.Backdrop>{backdropText}</S.Backdrop>}
+    <div className={s.pageError}>
+      {backdropText && <span>{backdropText}</span>}
       <ErrorText errorCode={errorCode} />
-    </S.Root>
+    </div>
   );
 }

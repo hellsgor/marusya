@@ -1,0 +1,29 @@
+@use '@/shared/scss/colors' as c;
+
+.rating {
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+  justify-content: center;
+
+  padding: 4px 12px;
+  border-radius: 16px;
+
+  background-color: c.getColor(rate, 'gold');
+
+  span {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &_red {
+    background-color: c.getColor(rate, 'red');
+  }
+
+  &_gray {
+    background-color: c.getColor(rate, 'gray');
+  }
+  &_green {
+    background-color: c.getColor(rate, 'green');
+  }
+}

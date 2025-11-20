@@ -1,11 +1,15 @@
+import s from './MovieDetail.module.scss';
+import clsx from 'clsx';
+
+import type { MovieDetailProps } from './MovieDetail.types';
+
+import { memo } from 'react';
+
 import { Poster } from '@/shared/ui/poster';
-import * as S from './MovieDetail.styled';
 import { Rating } from '../rating';
 import { formatRuntime } from '../../lib/helpers/formatRuntime';
 import { getRuGenreName } from '@/entities/genre/@x/movie';
 import { Button, Icon, Spoiler } from '@/shared/ui';
-import { memo } from 'react';
-import type { MovieDetailProps } from './types';
 import { ROUTES } from '@/shared/routes';
 
 export const MovieDetail = memo(function MovieDetail({
@@ -15,30 +19,37 @@ export const MovieDetail = memo(function MovieDetail({
 }: MovieDetailProps) {
   if (!movie) return null;
 
+  const isFavoriteMovie = false;
+
   return (
-    <S.Root>
-      <S.Wrapper>
-        <S.Content>
-          <S.MetaWrapper>
+    <div className={s.movieDetail}>
+      <div className={s.movieDetail__wrapper}>
+        <div className={s.movieDetail__content}>
+          <div className={s.movieDetail__meta}>
             <Rating rate={movie.tmdbRating ?? 0} />
             {[
               movie.releaseYear,
               ...movie.genres.map((genre) => getRuGenreName(genre)),
               formatRuntime(movie.runtime),
             ].map((item, idx) => (
-              <S.MetaItem key={idx}>{item}</S.MetaItem>
+              <span className={s.movieDetail__metaItem} key={idx}>
+                {item}
+              </span>
             ))}
-          </S.MetaWrapper>
+          </div>
           <h1>{movie.title}</h1>
           <Spoiler rows={4}>
-            <S.Description>{movie.plot}</S.Description>
+            <p className={s.movieDetail__description}>{movie.plot}</p>
           </Spoiler>
-        </S.Content>
-        <S.Actions>
+        </div>
+        <div className={s.movieDetail__actions}>
           {(movie.trailerUrl || movie.trailerYouTubeId) && (
-            <S.TrailerButton onClick={onTrailerButtonClick}>
+            <Button
+              className={s.movieDetail__trailerButton}
+              onClick={onTrailerButtonClick}
+            >
               Трейлер
-            </S.TrailerButton>
+            </Button>
           )}
           {randomRefetch && (
             <Button
@@ -48,31 +59,30 @@ export const MovieDetail = memo(function MovieDetail({
               О фильме
             </Button>
           )}
-          <S.FavoriteButton
-            // $isFavoriteMovie
-            $variant="secondary"
-            $smallPaddings
+          <Button
+            className={clsx(
+              s.movieDetail__favoriteButton,
+              isFavoriteMovie && s.movieDetail__favoriteButton_added,
+            )}
+            variant="secondary"
+            smallPaddings
           >
             <Icon.Heart />
-          </S.FavoriteButton>
+          </Button>
           {randomRefetch && (
-            <Button
-              variant="secondary"
-              smallPaddings={true}
-              onClick={randomRefetch}
-            >
+            <Button variant="secondary" smallPaddings onClick={randomRefetch}>
               <Icon.Refresh />
             </Button>
           )}
-        </S.Actions>
-      </S.Wrapper>
+        </div>
+      </div>
 
-      <S.PosterWrapper>
+      <div className={s.movieDetail__posterWrapper}>
         <Poster
           src={movie?.backdropUrl || movie?.posterUrl || undefined}
           alt={`${movie?.title} poster`}
         />
-      </S.PosterWrapper>
-    </S.Root>
+      </div>
+    </div>
   );
 });

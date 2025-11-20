@@ -1,0 +1,113 @@
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/hover' as h;
+
+.movieDetail {
+  display: flex;
+  column-gap: 32px;
+  justify-content: space-between;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+    padding-top: 74px;
+
+    @include m.tablet-vertical {
+      row-gap: 32px;
+      padding-block: 24px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+
+    @include m.mobile {
+      row-gap: 12px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__description {
+    font-size: 24px;
+    color: c.getColor(content, secondary);
+
+    @include m.mobile {
+      font-size: 18px;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    align-items: center;
+  }
+
+  &__metaItem {
+    font-size: 18px;
+    color: c.getColor(content, secondary);
+
+    @include m.mobile {
+      font-size: 14px;
+      line-height: 1.4287;
+    }
+  }
+
+  &__trailerButton {
+    @include m.tablet-vertical {
+      width: 100%;
+      max-width: 260px;
+    }
+  }
+
+  &__favoriteButton {
+    svg {
+      fill: transparent;
+      stroke: c.getColor(content, primary);
+    }
+
+    @include h.hover {
+      svg {
+        fill: transparent;
+        stroke: c.getColor(accent, active);
+      }
+    }
+
+    &_added {
+      svg {
+        fill: c.getColor(accent, active);
+        stroke: c.getColor(accent, active);
+      }
+
+      @include h.hover {
+        svg {
+          fill: c.getColor(accent, active);
+          stroke: c.getColor(content, 'black');
+        }
+      }
+    }
+  }
+
+  &__posterWrapper {
+    overflow: hidden;
+    flex: 0 0 53.125%;
+    height: 552px;
+    border-radius: 16px;
+
+    @include m.tablet-vertical {
+      flex-basis: 260px;
+      width: 100%;
+    }
+  }
+
+  @include m.tablet-vertical {
+    flex-direction: column-reverse;
+  }
+}

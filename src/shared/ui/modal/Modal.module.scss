@@ -16,6 +16,10 @@
 
   color: c.getColor(content, 'black');
 
+  opacity: 0;
+
+  @include modalOpacityTransition;
+
   &__backdrop {
     position: absolute;
     z-index: -1;
@@ -128,6 +132,9 @@
       aspect-ratio: 960/540;
       width: calc((960 / 1440) * 100vw);
       max-width: 960px;
+      padding: 0;
+      border-radius: 0;
+
       background-color: c.getColor(bg, secondary, static);
 
       @include m.mobile {
@@ -138,6 +145,7 @@
 
     .modal__bodyInner {
       display: block;
+      height: 100%;
     }
   }
 

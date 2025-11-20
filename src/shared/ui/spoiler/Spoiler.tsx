@@ -13,7 +13,7 @@ type SpoilerProps = {
   rows?: number;
   buttonTexts?: string[];
 };
-
+// FIXME: Spoiler - нет анимации сворачивания
 export function Spoiler({
   children,
   rows = 3,

@@ -19,6 +19,7 @@
   font-weight: 700;
   line-height: 1.33;
   text-decoration: none;
+  white-space: nowrap;
 
   @include t.transition(
     (color, background-color, border-color),

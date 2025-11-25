@@ -38,7 +38,7 @@ export const MovieDetail = memo(function MovieDetail({
             ))}
           </div>
           <h1>{movie.title}</h1>
-          <Spoiler rows={4}>
+          <Spoiler max={4}>
             <p className={s.movieDetail__description}>{movie.plot}</p>
           </Spoiler>
         </div>

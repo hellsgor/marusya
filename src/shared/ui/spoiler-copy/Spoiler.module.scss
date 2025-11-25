@@ -9,18 +9,14 @@
 
   &__wrapper {
     overflow: hidden;
-    @include t.transition(max-height, $duration: t.$duration-500);
+    @include t.transition(max-height);
+  }
 
-    &_collapsed {
-      @include t.transition(max-height, $duration: t.$duration-200);
-
-      & > * {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        text-overflow: ellipsis;
-      }
-    }
+  &__wrapper > * {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
   }
 
   &__button {

@@ -1,160 +1,127 @@
 import s from './Spoiler.module.scss';
+
+import { Button } from '../button';
 import {
-  useCallback,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
   type ReactNode,
 } from 'react';
-import { Button } from '../button';
+import clsx from 'clsx';
+
+type MaxHeight = string;
+type MaxRows = number;
 
 type SpoilerProps = {
-  children: ReactNode;
-  rows?: number;
-  buttonTexts?: string[];
+  children: ReactNode | string;
+  max?: MaxHeight | MaxRows;
+  buttonTexts?: [string, string];
 };
-// FIXME: Spoiler - нет анимации сворачивания
+
 export function Spoiler({
   children,
-  rows = 3,
+  max = 3,
   buttonTexts = ['Свернуть', 'Показать'],
 }: SpoilerProps) {
-  const [isCollapsed, setIsCollapsed] = useState(true);
-  const [maxHeight, setMaxHeight] = useState('0px');
+  const [isCollapsed, setIsCollapsed] = useState<boolean | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const fullHeightRef = useRef(0);
-  const mountedRef = useRef(false);
+  const maxHeightRef = useRef<number | undefined>(undefined);
 
-  const getChild = () =>
-    wrapperRef.current?.children?.[0] as HTMLElement | undefined;
+  function getChild() {
+    return wrapperRef.current?.querySelector('*');
+  }
 
-  const measureLineHeight = (el: HTMLElement) =>
-    parseFloat(getComputedStyle(el).lineHeight || '16');
+  function getMaxHeight() {
+    return typeof max === 'string'
+      ? parseInt(max, 10)
+      : (() => {
+          const child = getChild();
+          if (!child) {
+            console.warn(`child not found: ${child}`);
+            return;
+          }
 
-  const updateHeights = useCallback(() => {
-    const child = getChild();
-    if (!child) return;
+          maxHeightRef.current =
+            Math.round(parseFloat(getComputedStyle(child).lineHeight)) * max;
+          return maxHeightRef.current;
+        })();
+  }
 
-    const lineH = measureLineHeight(child);
-    const collapseH = lineH * rows;
+  function checkCollapsed() {
+    if (!wrapperRef?.current) return;
 
-    fullHeightRef.current = child.scrollHeight;
+    const wrapperHeight = wrapperRef?.current?.scrollHeight;
+    const maxHeight = getMaxHeight();
 
-    if (isCollapsed) {
-      child.style.display = '-webkit-box';
-      child.style.webkitBoxOrient = 'vertical';
-      child.style.webkitLineClamp = `${rows}`;
-      child.style.overflow = 'hidden';
-      setMaxHeight(`${collapseH}px`);
-    } else {
-      child.style.display = 'block';
-      child.style.webkitBoxOrient = '';
-      child.style.webkitLineClamp = '';
-      child.style.overflow = 'visible';
-      setMaxHeight(`${fullHeightRef.current}px`);
-    }
-  }, [isCollapsed, rows]);
-
-  useLayoutEffect(() => {
-    const child = getChild();
-    if (!child) return;
-
-    const lineH = measureLineHeight(child);
-    const collapseH = lineH * rows;
-
-    if (isCollapsed) {
-      child.style.display = '-webkit-box';
-      child.style.webkitBoxOrient = 'vertical';
-      child.style.webkitLineClamp = `${rows}`;
-      child.style.overflow = 'hidden';
-
-      if (!mountedRef.current) {
-        wrapperRef.current!.style.transition = 'none';
-        setMaxHeight(`${collapseH}px`);
-        requestAnimationFrame(() => {
-          wrapperRef.current!.style.transition = 'max-height 0.3s ease';
-        });
-      } else {
-        setMaxHeight(`${collapseH}px`);
-      }
-    }
-
-    mountedRef.current = true;
-
-    const observer = new ResizeObserver(updateHeights);
-    observer.observe(wrapperRef.current!);
-    observer.observe(child);
-    window.addEventListener('resize', updateHeights);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', updateHeights);
-    };
-  }, [rows, updateHeights, isCollapsed]);
-
-  const handleToggle = () => {
-    const child = getChild();
-    if (!child) return;
-
-    const lineH = measureLineHeight(child);
-    const collapseH = lineH * rows;
-    const fullH = fullHeightRef.current;
-
-    if (isCollapsed) {
-      child.style.display = 'block';
-      child.style.overflow = 'visible';
-      setMaxHeight(`${fullH}px`);
-      setIsCollapsed(false);
-    } else {
-      const currentH = child.offsetHeight;
-      setMaxHeight(`${currentH}px`);
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setMaxHeight(`${collapseH}px`);
-        });
-      });
-
-      const onTransitionEnd = (e: TransitionEvent) => {
-        if (e.propertyName === 'max-height') {
-          child.style.display = '-webkit-box';
-          child.style.webkitBoxOrient = 'vertical';
-          child.style.webkitLineClamp = `${rows}`;
-          child.style.overflow = 'hidden';
-          wrapperRef.current?.removeEventListener(
-            'transitionend',
-            onTransitionEnd,
-          );
-        }
-      };
-
-      wrapperRef.current?.addEventListener('transitionend', onTransitionEnd);
-
+    if (wrapperHeight && maxHeight && wrapperHeight - 2 > maxHeight) {
       setIsCollapsed(true);
     }
+  }
+
+  useLayoutEffect(() => {
+    checkCollapsed();
+  }, []);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    const maxHeight = maxHeightRef.current;
+
+    if (!wrapper || !maxHeight || isCollapsed === null) return;
+
+    const handleTransitionEnd = (event: TransitionEvent) => {
+      if (
+        event.target === wrapperRef.current &&
+        event.propertyName === 'max-height'
+      ) {
+        const child = getChild();
+        if (child && child instanceof HTMLElement) {
+          if (isCollapsed) {
+            child.style.webkitLineClamp = `${max}`;
+          } else {
+            child.style.webkitLineClamp = '';
+          }
+        }
+      }
+    };
+
+    if (isCollapsed) {
+      wrapper.style.maxHeight = `${maxHeightRef.current}px`;
+    } else {
+      wrapper.style.maxHeight = `${wrapperRef?.current?.scrollHeight}px`;
+    }
+
+    wrapper.addEventListener('transitionend', handleTransitionEnd);
+    return () => {
+      wrapper.removeEventListener('transitionend', handleTransitionEnd);
+    };
+  }, [isCollapsed, max]);
+
+  const handleCollapse = () => {
+    setIsCollapsed((state) => (state === null ? null : !state));
   };
 
   return (
     <div className={s.spoiler}>
       <div
-        className={s.spoiler__wrapper}
         ref={wrapperRef}
-        style={{
-          overflow: 'hidden',
-          transition: 'max-height 0.3s ease',
-          maxHeight,
-        }}
+        className={clsx(
+          s.spoiler__wrapper,
+          isCollapsed && s.spoiler__wrapper_collapsed,
+        )}
       >
-        {typeof children === 'string' ? <div>{children}</div> : children}
+        {typeof children === 'string' ? <p>{children}</p> : children}
       </div>
 
-      <Button
-        variant="ghost"
-        className={s.spoiler__button}
-        onClick={handleToggle}
-      >
-        {isCollapsed ? buttonTexts[1] : buttonTexts[0]}
-      </Button>
+      {isCollapsed !== null && isCollapsed !== undefined && (
+        <Button
+          onClick={handleCollapse}
+          variant="ghost"
+          className={s.spoiler__button}
+        >
+          {isCollapsed ? buttonTexts[1] : buttonTexts[0]}
+        </Button>
+      )}
     </div>
   );
 }

@@ -56,11 +56,17 @@ export function Spoiler({
 
     if (wrapperHeight && maxHeight && wrapperHeight - 2 > maxHeight) {
       setIsCollapsed(true);
+
+      const child = getChild();
+      if (child && child instanceof HTMLElement) {
+        child.style.webkitLineClamp = `${max}`;
+      }
     }
   }
 
   useLayoutEffect(() => {
     checkCollapsed();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

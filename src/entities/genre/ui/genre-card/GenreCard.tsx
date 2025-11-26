@@ -1,4 +1,4 @@
-import * as S from './GenreCard.styled';
+import s from './GenreCard.module.scss';
 import type { Genre } from '../../model/types';
 
 import { Poster } from '@/shared/ui/poster';
@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 import { ROUTES } from '@/shared/routes';
 
 import { capitalizeFirstLetter } from '@/shared/lib';
+import { Card } from '@/shared/ui/card';
 
 type GenreCardProps = {
   genre: Genre;
@@ -14,14 +15,16 @@ type GenreCardProps = {
 
 export function GenreCard({ genre }: GenreCardProps) {
   return (
-    <Link to={ROUTES.genre(genre.genreEn)}>
-      <S.StyledGenreCard $radius={'big'}>
+    <Link className={s.genreCard} to={ROUTES.genre(genre.genreEn)}>
+      <Card className={s.genreCard__wrapper}>
         <Poster
           src={genre.backdropUrl ?? undefined}
           alt={`${genre.genreRu} genre image`}
         />
-        <S.StyledTitle>{capitalizeFirstLetter(genre.genreRu)}</S.StyledTitle>
-      </S.StyledGenreCard>
+        <h3 className={s.genreCard__title}>
+          {capitalizeFirstLetter(genre.genreRu)}
+        </h3>
+      </Card>
     </Link>
   );
 }

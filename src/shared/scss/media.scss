@@ -13,7 +13,6 @@
 }
 
 @mixin bp($bp) {
-  $currentBP: b.getBP($bp);
   @media (max-width: b.getBP($bp)) {
     @content;
   }

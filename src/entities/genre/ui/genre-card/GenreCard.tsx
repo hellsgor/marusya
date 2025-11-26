@@ -20,6 +20,7 @@ export function GenreCard({ genre }: GenreCardProps) {
         <Poster
           src={genre.backdropUrl ?? undefined}
           alt={`${genre.genreRu} genre image`}
+          className={s.genreCard__poster}
         />
         <h3 className={s.genreCard__title}>
           {capitalizeFirstLetter(genre.genreRu)}

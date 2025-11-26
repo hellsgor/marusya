@@ -1,4 +1,6 @@
 @use '@/shared/scss/colors' as c;
+@use '@/shared/scss/hover' as h;
+@use '@/shared/scss/animations/scaling' as sc;
 
 .genreCard {
   &__wrapper {
@@ -17,5 +19,17 @@
     text-align: center;
 
     background-color: c.getColor(bg, preBlack);
+  }
+
+  &__poster {
+    position: relative;
+    z-index: -1;
+    @include sc.scaling-out;
+  }
+
+  @include h.hover {
+    .genreCard__poster {
+      @include sc.scaling-in;
+    }
   }
 }

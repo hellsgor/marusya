@@ -1,0 +1,44 @@
+@use '@/shared/scss/media' as m;
+
+.genreMovieList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 64px;
+
+  @include m.mobile {
+    row-gap: 40px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 64px 40px;
+    justify-content: space-between;
+
+    & > * {
+      flex: 1 0 224px;
+    }
+
+    @include m.mobile {
+      gap: 40px;
+    }
+
+    @include m.bp(sm) {
+      row-gap: 24px;
+      justify-content: center;
+
+      & > * {
+        flex: 0 1 335px;
+      }
+    }
+  }
+
+  &__button {
+    align-self: center;
+    min-width: 218px;
+
+    @include m.bp(sm) {
+      width: min(100%, 335px);
+    }
+  }
+}

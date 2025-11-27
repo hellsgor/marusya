@@ -1,12 +1,14 @@
 import s from './GenreMoviesList.module.scss';
-import { useGetByGenreQuery } from '@/entities/movie';
+
 import { useRef, useState } from 'react';
 import { useParams } from 'react-router';
+import { skipToken } from '@reduxjs/toolkit/query/react';
+
 import { sortMoviesByRating, useInfiniteLoading } from '../../lib';
 import { MOVIES_PER_PAGE } from '../../config/constants';
-import { skipToken } from '@reduxjs/toolkit/query/react';
+
 import { Button, Loader, PageError } from '@/shared/ui';
-import { MovieCard } from '@/entities/movie';
+import { MovieList, useGetByGenreQuery } from '@/entities/movie';
 
 export function GenreMoviesList() {
   const [page, setPage] = useState(1);
@@ -34,24 +36,23 @@ export function GenreMoviesList() {
   return (
     <div className={s.genreMovieList}>
       {isLoading && <Loader size="big" />}
+
       {isError && !data && (
         <PageError errorCode="e002" backdropText="Ooops!"></PageError>
       )}
-      <div className={s.genreMovieList__list}>
-        {data &&
-          data.map(({ id, posterUrl, title }) => (
-            <MovieCard key={id} {...{ id, posterUrl, title }} />
-          ))}
-      </div>
+
       {data && (
-        <Button
-          className={s.genreMovieList__button}
-          ref={showMoreButtonRef}
-          onClick={handleShowMoreButtonClick}
-          disabled={isFetching}
-        >
-          {isFetching ? <Loader size="small" /> : 'Показать ещё'}
-        </Button>
+        <>
+          <MovieList items={data} className={s.genreMovieList__list} />
+          <Button
+            className={s.genreMovieList__button}
+            ref={showMoreButtonRef}
+            onClick={handleShowMoreButtonClick}
+            disabled={isFetching}
+          >
+            {isFetching ? <Loader size="small" /> : 'Показать ещё'}
+          </Button>
+        </>
       )}
     </div>
   );

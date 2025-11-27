@@ -11,10 +11,13 @@ export type SectionProps = {
 };
 
 const paddings = (indents: SectionProps['indents']) => {
-  if (!indents) return {};
+  if (!indents) return null;
+
+  const isString = typeof indents === 'string';
+
   return {
-    paddingTop: indents[0] ?? indents,
-    paddingBottom: indents[1] ?? indents[0] ?? indents,
+    paddingTop: isString ? indents : indents[0],
+    paddingBottom: isString ? indents : indents[0],
   };
 };
 

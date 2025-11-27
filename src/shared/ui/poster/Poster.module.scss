@@ -1,4 +1,5 @@
 @use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
 
 @keyframes shimmerFull {
   from {
@@ -10,7 +11,7 @@
 }
 
 .poster {
-  will-change: background-position;
+  will-change: background-position, transform;
 
   position: relative;
 
@@ -31,7 +32,7 @@
   background-repeat: no-repeat;
   background-size: 200% 200%;
 
-  animation: shimmerFull 2s ease-in-out infinite;
+  animation: shimmerFull 2s t.$ease-in-out infinite;
 
   img {
     width: 100%;
@@ -41,7 +42,11 @@
     object-fit: cover;
     object-position: center;
 
-    transition: opacity 0.3s ease-in;
+    @include t.transition(
+      opacity,
+      $duration: t.$duration-300,
+      $func: t.$ease-in
+    );
   }
 
   &[data-loaded='true'] {

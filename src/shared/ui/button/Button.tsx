@@ -9,6 +9,7 @@ import type {
 } from './Button.types';
 
 import { Link } from 'react-router';
+import { forwardRef } from 'react';
 
 function isLinkProps(p: ButtonProps): p is PropsAsLink {
   return 'to' in p;
@@ -18,7 +19,10 @@ function isExternalProps(p: ButtonProps): p is PropsAsExternal {
   return 'href' in p;
 }
 
-export function Button(props: ButtonProps) {
+export const Button = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>((props, ref) => {
   const {
     children,
     variant = 'primary',
@@ -43,7 +47,11 @@ export function Button(props: ButtonProps) {
 
   if (isLinkProps(props)) {
     return (
-      <Link {...props} className={classNameStr}>
+      <Link
+        {...props}
+        className={classNameStr}
+        ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+      >
         {children}
       </Link>
     );
@@ -64,6 +72,7 @@ export function Button(props: ButtonProps) {
           }
           onClick?.(e);
         }}
+        ref={ref as React.ForwardedRef<HTMLAnchorElement>}
       >
         {children}
       </a>
@@ -73,8 +82,13 @@ export function Button(props: ButtonProps) {
   const buttonProps = rest as PropsAsButton;
 
   return (
-    <button {...buttonProps} type={type} className={classNameStr}>
+    <button
+      {...buttonProps}
+      type={type}
+      className={classNameStr}
+      ref={ref as React.ForwardedRef<HTMLButtonElement>}
+    >
       {children}
     </button>
   );
-}
+});

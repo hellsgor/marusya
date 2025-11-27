@@ -1,4 +1,4 @@
-import * as S from './GenrePage.styled';
+import s from './GenrePage.module.scss';
 import { useParams } from 'react-router';
 import { BackTitleBar, Section } from '@/shared/ui';
 import { capitalizeFirstLetter } from '@/shared/lib';
@@ -9,13 +9,13 @@ export function GenrePage() {
   const { genre } = useParams();
 
   return (
-    <Section indents={'160px'}>
-      <S.StyledWrapper>
+    <Section indents={'160px'} className={s.genrePage}>
+      <div className={s.genrePage__wrapper}>
         <BackTitleBar>
           <h1>{genre ? capitalizeFirstLetter(getRuGenreName(genre)) : ''}</h1>
         </BackTitleBar>
         <GenreMoviesList />
-      </S.StyledWrapper>
+      </div>
     </Section>
   );
 }

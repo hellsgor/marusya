@@ -1,0 +1,13 @@
+@use '@/shared/scss/media' as m;
+
+.genrePage {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 64px;
+
+    @include m.mobile {
+      row-gap: 40px;
+    }
+  }
+}

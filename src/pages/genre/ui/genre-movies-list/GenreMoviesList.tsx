@@ -56,5 +56,3 @@ export function GenreMoviesList() {
     </div>
   );
 }
-
-Button.displayName = 'Button';

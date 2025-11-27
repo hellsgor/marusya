@@ -1,9 +1,9 @@
 import s from './Header.module.scss';
 
 import { Container, Icon, MenuItem } from '@/shared/ui';
-import { MainMenu } from '../mainMenu';
+import { MainMenu } from '../main-menu';
 import { useMediaQuery } from '@/shared/lib';
-import { NavLogo } from '../navLogo';
+import { NavLogo } from '../nav-logo';
 
 export function Header() {
   const isIconViewed = useMediaQuery('lg');

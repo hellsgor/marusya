@@ -1,4 +1,4 @@
-import s from './logo.module.scss';
+import s from './Logo.module.scss';
 import clsx from 'clsx';
 
 import { Icon } from '../icon';

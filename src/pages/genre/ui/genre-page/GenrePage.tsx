@@ -2,7 +2,7 @@ import s from './GenrePage.module.scss';
 import { useParams } from 'react-router';
 import { BackTitleBar, Section } from '@/shared/ui';
 import { capitalizeFirstLetter } from '@/shared/lib';
-import { GenreMoviesList } from '../GenreMoviesList/GenreMoviesList';
+import { GenreMoviesList } from '../genre-movies-list/GenreMoviesList';
 import { getRuGenreName } from '@/entities/genre';
 
 export function GenrePage() {

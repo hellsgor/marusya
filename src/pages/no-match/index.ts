@@ -1,1 +1,1 @@
-export { NoMatchPage } from './ui/NoMatchPage/NoMatchPage';
+export { NoMatchPage } from './ui/no-match-page/NoMatchPage';

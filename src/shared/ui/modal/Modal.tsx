@@ -9,6 +9,8 @@ import { useRef, type MouseEvent } from 'react';
 import { Icon } from '../icon';
 import { Logo } from '../logo';
 
+// FIXME: переделать логику рендера модалки, а так же анимацию появления и скрытия
+
 export function Modal({
   children,
   type = 'default',

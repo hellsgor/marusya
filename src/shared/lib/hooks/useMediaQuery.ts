@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BREAKPOINTS } from '@/shared/config/theme/breakpoints';
+import { BREAKPOINTS } from '@/shared/config';
 
 export function useMediaQuery(
   bp: keyof typeof BREAKPOINTS,

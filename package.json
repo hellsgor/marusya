@@ -23,7 +23,6 @@
     "react-player": "^3.0.0",
     "react-redux": "^9.2.0",
     "react-router": "^7.6.1",
-    "styled-components": "^6.1.19",
     "swiper": "^11.2.8",
     "zod": "^3.25.30"
   },

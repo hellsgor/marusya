@@ -4,12 +4,10 @@ import clsx from 'clsx';
 import type { ModalProps } from './Modal.types';
 
 import { createPortal } from 'react-dom';
-import { useRef, type MouseEvent } from 'react';
+import { useEffect, useRef, type MouseEvent } from 'react';
 
 import { Icon } from '../icon';
 import { Logo } from '../logo';
-
-// FIXME: переделать логику рендера модалки, а так же анимацию появления и скрытия
 
 export function Modal({
   children,
@@ -19,8 +17,14 @@ export function Modal({
   name,
   className,
 }: ModalProps) {
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const modalBodyRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!modalRef.current) return;
+    modalRef.current?.classList.add(s.modal_opened);
+  }, [modalRef]);
 
   const handleCloseClick = (e: MouseEvent) => {
     if (!modalBodyRef) return;
@@ -33,15 +37,25 @@ export function Modal({
       return;
     }
 
-    onClose();
+    const handleTransitionEnd = () => {
+      modalRef.current?.removeEventListener(
+        'transitionend',
+        handleTransitionEnd,
+      );
+      onClose();
+    };
+
+    modalRef.current?.classList.remove(s.modal_opened);
+    modalRef.current?.addEventListener('transitionend', handleTransitionEnd);
   };
 
   return createPortal(
     <div
+      ref={modalRef}
       className={clsx(
         s.modal,
         type === 'trailer' && s.modal_trailer,
-        isVisible && s.modal_visible,
+        isVisible && s.modal_opening,
         className,
       )}
       onClick={(e) => {

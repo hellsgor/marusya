@@ -7,9 +7,3 @@
   flex-direction: column;
   height: 100%;
 }
-
-body {
-  &:has(.modal__visible) {
-    overflow-y: hidden;
-  }
-}

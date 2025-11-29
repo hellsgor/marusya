@@ -145,3 +145,7 @@
     @include t.transition(opacity, $duration: t.$duration-500);
   }
 }
+
+body:has(.modal_opened) {
+  overflow-y: hidden;
+}

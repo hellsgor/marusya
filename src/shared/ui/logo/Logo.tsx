@@ -1,12 +1,18 @@
-import * as S from './Logo.styled';
-import type { LogoProps } from './types';
+import s from './Logo.module.scss';
+import clsx from 'clsx';
 
-export function Logo(props: LogoProps) {
-  const { logoTheme, ...restProps } = props;
+import { Icon } from '../icon';
+
+type LogoProps = {
+  light?: true;
+  className?: string;
+};
+
+export function Logo({ light, className }: LogoProps) {
   return (
-    <S.StyledLogo {...restProps} $logoTheme={logoTheme || 'dark'}>
-      <S.LogoImage src="/images/marusya-image.png" alt="Marusya logo image" />
-      <S.LogoTextIcon />
-    </S.StyledLogo>
+    <div className={clsx(s.logo, light && s.logo_light, className)}>
+      <img src="/images/marusya-image.png" alt="Marusya logo image" />
+      <Icon.MarusyaText className={s.logo__text} />
+    </div>
   );
 }

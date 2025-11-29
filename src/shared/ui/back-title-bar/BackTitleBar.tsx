@@ -1,8 +1,9 @@
-import * as S from './BackTitleBar.styled';
+import s from './BackTitleBar.module.scss';
 
 import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import { Icon } from '../icon';
+import { Button } from '../button';
 
 type BackTitleBarProps = {
   children: ReactNode;
@@ -16,15 +17,16 @@ export function BackTitleBar({ children }: BackTitleBarProps) {
   };
 
   return (
-    <S.StyledBackTitleBar>
-      <S.StyledBut
-        $variant="ghost"
-        $smallPaddings={true}
+    <div className={s.backTitleBar}>
+      <Button
+        className={s.backTitleBar__button}
+        variant="ghost"
+        smallPaddings={true}
         onClick={handlePrevButtonClick}
       >
         <Icon.ChevronLeft />
-      </S.StyledBut>
+      </Button>
       {children}
-    </S.StyledBackTitleBar>
+    </div>
   );
 }

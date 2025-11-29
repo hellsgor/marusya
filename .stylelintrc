@@ -1,9 +1,8 @@
 {
   "extends": [
-    "stylelint-config-standard",
+    "stylelint-config-recommended-scss",
     "stylelint-config-clean-order"
   ],
-  "customSyntax": "postcss-styled-syntax",
   "rules": {
     "rule-empty-line-before": [
       "always",
@@ -13,7 +12,6 @@
       }
     ],
     "no-descending-specificity": null,
-    "media-query-no-invalid": null,
     "order/order": ["declarations", "at-rules"],
     "block-no-empty": true,
     "no-duplicate-selectors": true,
@@ -24,6 +22,7 @@
         "except": ["first-nested", "blockless-after-same-name-blockless"],
         "ignore": ["after-comment", "inside-block"]
       }
-    ]
+    ],
+    "scss/no-global-function-names": null
   }
 }

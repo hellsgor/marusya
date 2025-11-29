@@ -1,4 +1,4 @@
-import * as S from './MovieInfo.styled';
+import s from './MovieInfo.module.scss';
 
 import type { MovieModel } from '../../model/types';
 import { MOVIE_PROPERTIES_RU } from '../../config/moviePropertiesRu';
@@ -10,26 +10,25 @@ type MovieInfoProps = {
 
 export function MovieInfo({ movie }: MovieInfoProps) {
   return (
-    <S.Root>
+    <div className={s.movieInfo}>
       <h2>О фильме</h2>
-      <S.PropertiesWrapper>
-        {movie &&
-          (
-            Object.keys(MOVIE_PROPERTIES_RU) as Array<
-              keyof typeof MOVIE_PROPERTIES_RU
-            >
-          ).map((key) => {
-            const prop = getMovieProp(key, movie);
-            if (!prop.value) return null;
+      <div className={s.movieInfo__wrapper}>
+        {(
+          Object.keys(MOVIE_PROPERTIES_RU) as Array<
+            keyof typeof MOVIE_PROPERTIES_RU
+          >
+        ).map((key) => {
+          const prop = getMovieProp(key, movie);
+          if (!prop.value) return null;
 
-            return (
-              <S.Property key={key}>
-                <S.PropertyKey>{prop.name}</S.PropertyKey>
-                <span>{prop.value}</span>
-              </S.Property>
-            );
-          })}
-      </S.PropertiesWrapper>
-    </S.Root>
+          return (
+            <div className={s.movieInfo__property} key={key}>
+              <span className={s.movieInfo__key}>{prop.name}</span>
+              <span>{prop.value}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }

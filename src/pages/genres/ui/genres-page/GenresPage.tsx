@@ -1,4 +1,4 @@
-import * as S from './GenresPage.styled';
+import s from './GenrePage.module.scss';
 import { Loader, PageError, Section } from '@/shared/ui';
 import { GenreCard, useGetGenresQuery } from '@/entities/genre';
 
@@ -6,18 +6,20 @@ export function GenresPage() {
   const { data, isLoading, isError } = useGetGenresQuery();
 
   return (
-    <Section indents={'160px'}>
+    <Section indents="160px" className={s.genresPage}>
       <h1>Жанры фильмов</h1>
       {isLoading && <Loader size="big" />}
       {isError && !data && (
         <PageError errorCode="e001" backdropText="Ooops!"></PageError>
       )}
       {data && (
-        <S.StyledGenresWrapper>
+        <ul role="list" className={s.genresPage__list}>
           {data?.map((genre) => (
-            <GenreCard genre={genre} key={genre.genreEn} />
+            <li className={s.genresPage__item} key={genre.genreEn}>
+              <GenreCard genre={genre} />
+            </li>
           ))}
-        </S.StyledGenresWrapper>
+        </ul>
       )}
     </Section>
   );

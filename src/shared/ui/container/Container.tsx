@@ -1,6 +1,13 @@
-import type { ContainerProps } from './types';
-import * as S from './Container.styled';
+import clsx from 'clsx';
+import s from './container.module.scss';
 
-export function Container({ children, ...rest }: ContainerProps) {
-  return <S.Root {...rest}>{children}</S.Root>;
+import type { ReactNode } from 'react';
+
+type ContainerProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+export function Container({ children, className }: ContainerProps) {
+  return <div className={clsx(s.container, className || null)}>{children}</div>;
 }

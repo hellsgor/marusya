@@ -1,0 +1,20 @@
+@use '@/shared/scss/media' as m;
+
+.genreMovieList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 64px;
+
+  @include m.mobile {
+    row-gap: 40px;
+  }
+
+  &__button {
+    align-self: center;
+    min-width: 218px;
+
+    @include m.bp(sm) {
+      width: min(100%, 335px);
+    }
+  }
+}

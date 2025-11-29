@@ -1,36 +1,29 @@
-import { NavLink } from 'react-router';
-import type { MenuItemProps } from './types';
-import * as StyledItem from './MenuItem.styled';
+import s from './MenuItem.module.scss';
 import clsx from 'clsx';
+
+import { NavLink } from 'react-router';
+import type { MenuItemProps } from './MenuItem.types';
 
 export function MenuItem({
   href,
   onClick,
-  isMobileActive = false,
   children,
   className,
 }: MenuItemProps) {
-  const classNameStr = clsx(
-    isMobileActive ? '' : 'no-mobile-active',
-    className,
-  );
+  const getClassName = (isActive: boolean) =>
+    clsx(s.menuItem, isActive && s.menuItem_active, className);
 
   if (href)
     return (
-      <StyledItem.Root as={NavLink} to={href} className={classNameStr}>
+      <NavLink to={href} className={({ isActive }) => getClassName(isActive)}>
         {children}
-      </StyledItem.Root>
+      </NavLink>
     );
 
   if (onClick)
     return (
-      <StyledItem.Root
-        as={'button'}
-        type="button"
-        onClick={onClick}
-        className={classNameStr}
-      >
+      <button type="button" onClick={onClick} className={getClassName(false)}>
         {children}
-      </StyledItem.Root>
+      </button>
     );
 }

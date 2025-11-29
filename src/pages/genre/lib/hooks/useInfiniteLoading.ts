@@ -17,7 +17,7 @@ export function useInfiniteLoading({
   isSuccess,
   page,
 }: useInfiniteLoadingProps) {
-  const scrollTimeout = useRef<number | undefined>(undefined);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useIntersectionObserver(
     showMoreButtonRef,

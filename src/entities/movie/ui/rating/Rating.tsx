@@ -1,6 +1,9 @@
-import { Icon } from '@/shared/ui';
+import s from './Rating.module.scss';
+
 import type { MovieModel } from '../../model/types';
-import * as S from './Rating.styled';
+
+import { Icon } from '@/shared/ui';
+import clsx from 'clsx';
 
 type RatingProps = {
   rate: MovieModel['tmdbRating'];
@@ -9,10 +12,17 @@ type RatingProps = {
 export function Rating({ rate }: RatingProps) {
   const rounded = Math.round((rate + Number.EPSILON) * 10) / 10;
 
+  const ratingModifier = (roundedRate: number) => {
+    if (roundedRate < 4.5) return s.rating_red;
+    if (roundedRate < 6.0) return s.rating_gray;
+    if (roundedRate < 8.5) return s.rating_green;
+    return s.rating_gold;
+  };
+
   return (
-    <S.StyledRoot $rate={rounded}>
+    <div className={clsx(s.rating, ratingModifier)}>
       <Icon.Star size={16} />
       <span>{rounded.toFixed(1).replace('.', ',')}</span>
-    </S.StyledRoot>
+    </div>
   );
 }

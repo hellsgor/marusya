@@ -1,3 +1,5 @@
+import 'modern-normalize/modern-normalize.css';
+import './App.scss';
 import { AppProviders } from './providers';
 
 function App() {
@@ -5,3 +7,4 @@ function App() {
 }
 
 export default App;
+// TODO: check with pixel perfect all app routes

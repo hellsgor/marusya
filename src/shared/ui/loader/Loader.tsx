@@ -1,11 +1,22 @@
-import { StyledLoader } from './Loader.styled';
-import type { LoaderSize } from './types';
+import clsx from 'clsx';
+import s from './Loader.module.scss';
 
 type LoaderProps = {
-  size?: LoaderSize;
+  size?: 'big' | 'small';
   fixed?: boolean;
 };
 
-export function Loader({ size = 'medium', fixed = false }: LoaderProps) {
-  return <StyledLoader $size={size} $fixed={fixed} />;
+export function Loader({ size, fixed = false }: LoaderProps) {
+  return (
+    <div
+      className={clsx(
+        s.loader,
+        {
+          [s.loader_small]: size === 'small',
+          [s.loader_big]: size === 'big',
+        },
+        fixed && s.loader_fixed,
+      )}
+    ></div>
+  );
 }

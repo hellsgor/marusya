@@ -1,0 +1,12 @@
+@use '@/shared/scss/media' as m;
+
+.mainMenu {
+  &__list {
+    display: flex;
+    column-gap: 40px;
+
+    @include m.mobile {
+      column-gap: 20px;
+    }
+  }
+}

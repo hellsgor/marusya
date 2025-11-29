@@ -1,0 +1,29 @@
+@use '@/shared/scss/media' as m;
+
+.genresPage {
+  $columnGap: 40px;
+  $rowItemsCount: 4;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 64px $columnGap;
+    justify-content: space-between;
+
+    @include m.mobile {
+      gap: 24px;
+    }
+  }
+
+  &__item {
+    flex: 1 1
+      calc((100% - ($columnGap * ($rowItemsCount - 1))) / $rowItemsCount);
+    min-width: 280px;
+    height: 304px;
+
+    @include m.bp(s) {
+      aspect-ratio: 1/1;
+      height: unset;
+    }
+  }
+}

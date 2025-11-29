@@ -31,7 +31,7 @@ export function MovieDetailContainer({
         onTrailerButtonClick={handleTrailerButtonClick}
         randomRefetch={randomRefetch}
       />
-      {(movie?.trailerUrl || movie?.trailerYouTubeId) && (
+      {isTrailerModalOpen && (
         <TrailerModal
           movie={movie}
           isVisible={isTrailerModalOpen}

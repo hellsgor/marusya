@@ -1,10 +1,13 @@
+import s from './navLogo.module.scss';
+import clsx from 'clsx';
+
 import { Logo } from '@/shared/ui';
-import * as S from './NavLogo.styled';
+import { Link } from 'react-router';
 
 export function NavLogo() {
   return (
-    <S.StyledLogo to="/">
-      <Logo logoTheme="light" />
-    </S.StyledLogo>
+    <Link to="/" className={clsx(s.navLogo)}>
+      <Logo light />
+    </Link>
   );
 }

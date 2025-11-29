@@ -1,13 +1,18 @@
+import s from './SocialItem.module.scss';
+
 import { Icon } from '@/shared/ui';
-import * as S from './SocialItem.styled';
-import type { SocialItemProps } from './types';
+
+type SocialItemProps = {
+  href: string;
+  icon: keyof typeof Icon;
+};
 
 export function SocialItem({ href, icon }: SocialItemProps) {
   const IconComponent = Icon[icon];
 
   return (
-    <S.Root href={href}>
+    <a href={href} target="_blank" className={s.socialItem}>
       <IconComponent size={36} />
-    </S.Root>
+    </a>
   );
 }

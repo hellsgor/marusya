@@ -1,21 +1,22 @@
+import s from './Footer.module.scss';
+
 import { Container } from '@/shared/ui';
-import * as S from './Footer.styled';
 import { FOOTER_SOCIAL_ITEMS } from '../../config';
 import { SocialItem } from '../social-item/SocialItem';
 
 export function Footer() {
   return (
-    <footer>
+    <footer className={s.footer}>
       <Container>
-        <S.StyledFooterWrapper>
-          <S.StyledSocialsList>
+        <div className={s.footer__wrapper}>
+          <ul role="list" className={s.footer__list}>
             {FOOTER_SOCIAL_ITEMS.map((item) => (
               <li key={item.href}>
                 <SocialItem {...item} />
               </li>
             ))}
-          </S.StyledSocialsList>
-        </S.StyledFooterWrapper>
+          </ul>
+        </div>
       </Container>
     </footer>
   );

@@ -1,0 +1,25 @@
+@use '@/shared/scss/colors' as c;
+
+body {
+  background-color: transparent;
+  background-image:
+    c.getColor(bg, gr1), c.getColor(bg, gr2),
+    linear-gradient(c.getColor(bg, preBlack), c.getColor(bg, preBlack));
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &::before {
+    pointer-events: none;
+    content: '';
+
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+
+    background-image:
+      c.getColor(bg, gr1), c.getColor(bg, gr2),
+      linear-gradient(c.getColor(bg, preBlack), c.getColor(bg, preBlack));
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

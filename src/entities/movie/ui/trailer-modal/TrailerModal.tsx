@@ -1,7 +1,7 @@
 import { Modal } from '@/shared/ui';
 import type { MovieModel } from '../../model/types';
 import ReactPlayer from 'react-player';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 type TrailerModalProps = {
   isVisible: boolean;
@@ -10,13 +10,15 @@ type TrailerModalProps = {
 };
 
 export function TrailerModal({ isVisible, onClose, movie }: TrailerModalProps) {
-  const playerRef = useRef<HTMLVideoElement | null>(null);
+  const playerRef = useRef<HTMLVideoElement>(null);
+  const [isPlayerReady, setIsPlayerReady] = useState(false);
 
   const handleOnClose = () => {
-    onClose();
     if (playerRef.current) {
       playerRef.current.currentTime = 0;
     }
+    setIsPlayerReady(false);
+    onClose();
   };
 
   return (
@@ -28,11 +30,12 @@ export function TrailerModal({ isVisible, onClose, movie }: TrailerModalProps) {
     >
       <ReactPlayer
         ref={playerRef}
-        playing={isVisible}
+        playing={isVisible && isPlayerReady}
         src={movie.trailerUrl ?? undefined}
         width={'100%'}
         height={'100%'}
         controls
+        onReady={() => setIsPlayerReady(true)}
         config={{
           youtube: {
             rel: 0,

@@ -1,7 +1,24 @@
+@use '@/shared/scss/colors' as c;
+
 .movieCard {
+  position: relative;
   aspect-ratio: 335/502;
 
-  &__wrapper {
-    position: relative;
+  &__rating {
+    pointer-events: none;
+
+    position: absolute;
+    z-index: 1;
+    top: -12px;
+    left: -12px;
+
+    padding: 8px 24px;
+    border-radius: 50px;
+
+    font-size: 24px;
+    font-weight: 700;
+    color: c.getColor(content, brand);
+
+    background-color: c.getColor(bg, 'white');
   }
 }

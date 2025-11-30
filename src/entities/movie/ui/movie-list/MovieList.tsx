@@ -8,13 +8,18 @@ import { MovieCard } from '../movie-card';
 type MovieListProps = {
   items: MoviesModel;
   className?: string;
+  isTop10?: boolean;
 };
 
-export function MovieList({ items, className }: MovieListProps) {
+export function MovieList({ items, className, isTop10 }: MovieListProps) {
   return (
     <div className={clsx(s.movieList, className)}>
-      {items.map(({ id, posterUrl, title }) => (
-        <MovieCard key={id} {...{ id, posterUrl, title }} />
+      {items.map(({ id, posterUrl, title }, idx) => (
+        <MovieCard
+          key={id}
+          {...{ id, posterUrl, title }}
+          ratingPlace={isTop10 ? idx + 1 : undefined}
+        />
       ))}
     </div>
   );

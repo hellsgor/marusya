@@ -2,6 +2,7 @@ import { useGetRandomQuery } from '@/entities/movie';
 import { useMediaQuery } from '@/shared/lib';
 import { Loader, Section, PageError } from '@/shared/ui';
 import { MovieDetailContainer } from '@/widgets/movie-detail-container';
+import { Top10Movies } from '@/widgets/top10-movies';
 
 export function MainPage() {
   const mq = useMediaQuery('md');
@@ -24,6 +25,7 @@ export function MainPage() {
           />
         )}
       </Section>
+      <Top10Movies />
     </>
   );
 }

@@ -9,18 +9,26 @@ import { Poster } from '@/shared/ui/poster';
 import { ROUTES } from '@/shared/routes';
 import { Card } from '@/shared/ui/card';
 
-type MovieCardProps = Pick<MovieModel, 'id' | 'posterUrl' | 'title'>;
+type MovieCardProps = Pick<MovieModel, 'id' | 'posterUrl' | 'title'> & {
+  ratingPlace?: number;
+};
 
 export const MovieCard = memo(function MovieCard({
+  ratingPlace,
   id,
   posterUrl,
   title,
 }: MovieCardProps) {
   return (
-    <Card className={s.movieCard} smaller>
-      <Link to={ROUTES.movie(id, title)} className={s.movieCard__wrapper}>
-        <Poster src={posterUrl ?? undefined} alt={`${title} movie poster`} />
-      </Link>
-    </Card>
+    <div className={s.movieCard}>
+      {ratingPlace && typeof ratingPlace === 'number' && (
+        <span className={s.movieCard__rating}>{ratingPlace}</span>
+      )}
+      <Card smaller>
+        <Link to={ROUTES.movie(id, title)}>
+          <Poster src={posterUrl ?? undefined} alt={`${title} movie poster`} />
+        </Link>
+      </Card>
+    </div>
   );
 });

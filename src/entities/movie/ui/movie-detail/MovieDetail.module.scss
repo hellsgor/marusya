@@ -32,6 +32,10 @@
   &__actions {
     display: flex;
     gap: 16px;
+
+    @include m.mobile {
+      flex-wrap: wrap;
+    }
   }
 
   &__description {
@@ -64,6 +68,10 @@
     @include m.tablet-vertical {
       width: 100%;
       max-width: 260px;
+    }
+
+    @include m.mobile {
+      max-width: unset;
     }
   }
 
@@ -104,6 +112,10 @@
     @include m.tablet-vertical {
       flex-basis: 260px;
       width: 100%;
+    }
+
+    @include m.mobile {
+      flex-basis: 234px;
     }
   }
 

@@ -2,6 +2,7 @@ export {
   useGetByGenreQuery,
   useGetByIdQuery,
   useGetRandomQuery,
+  useGetTop10Query,
   movieApi,
 } from './api/movieApi';
 export type { MoviesModel, MovieModel } from './model/types';
@@ -11,5 +12,6 @@ export {
   MovieDetail,
   MovieInfo,
   MovieList,
+  MovieSlider,
   TrailerModal,
 } from './ui';

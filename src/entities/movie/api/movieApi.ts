@@ -79,8 +79,26 @@ export const movieApi = api.injectEndpoints({
         return result.data;
       },
     }),
+
+    getTop10: builder.query<MoviesModel, void>({
+      query: () => '/movie/top10',
+      providesTags: () => [{ type: 'movies', id: 'top10' }],
+      transformResponse: (response: unknown) => {
+        const result = MoviesSchema.safeParse(response);
+
+        if (!result.success) {
+          throw new Error(`Ошибка запроса ТОП10 фильмов: ${result.error}`);
+        }
+
+        return result.data;
+      },
+    }),
   }),
 });
 
-export const { useGetByGenreQuery, useGetByIdQuery, useGetRandomQuery } =
-  movieApi;
+export const {
+  useGetByGenreQuery,
+  useGetByIdQuery,
+  useGetRandomQuery,
+  useGetTop10Query,
+} = movieApi;

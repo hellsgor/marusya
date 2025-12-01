@@ -17,7 +17,7 @@ const paddings = (indents: SectionProps['indents']) => {
 
   return {
     paddingTop: isString ? indents : indents[0],
-    paddingBottom: isString ? indents : indents[0],
+    paddingBottom: isString ? indents : indents[1],
   };
 };
 

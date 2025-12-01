@@ -1,7 +1,7 @@
 import { Loader, PageError, Section } from '@/shared/ui';
 import s from './Top10Movies.module.scss';
 import { useMediaQuery } from '@/shared/lib';
-import { MovieList, useGetTop10Query } from '@/entities/movie';
+import { MovieList, MovieSlider, useGetTop10Query } from '@/entities/movie';
 
 export function Top10Movies() {
   const mq = useMediaQuery('md');
@@ -17,9 +17,14 @@ export function Top10Movies() {
       {isError && (
         <PageError errorCode="e001" backdropText="Ooops!"></PageError>
       )}
-      {!isFetching && !isError && movies && (
-        <MovieList items={movies} isTop10 />
-      )}
+      {!isFetching &&
+        !isError &&
+        movies &&
+        (!mq ? (
+          <MovieList items={movies} isTop10 />
+        ) : (
+          <MovieSlider items={movies} isTop10 />
+        ))}
     </Section>
   );
 }

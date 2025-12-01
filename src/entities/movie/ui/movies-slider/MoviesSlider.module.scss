@@ -1,0 +1,15 @@
+div.moviesSlider {
+  overflow: visible;
+  width: 100%;
+}
+
+ul.moviesSlider__wrapper {
+  display: flex;
+  width: fit-content;
+  padding: 0;
+  list-style: none;
+}
+
+li.moviesSlider__slide {
+  flex: 0 0 59.733vw;
+}

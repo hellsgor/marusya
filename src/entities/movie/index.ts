@@ -12,5 +12,6 @@ export {
   MovieDetail,
   MovieInfo,
   MovieList,
+  MovieSlider,
   TrailerModal,
 } from './ui';

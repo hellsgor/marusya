@@ -13,14 +13,15 @@ type MovieListProps = {
 
 export function MovieList({ items, className, isTop10 }: MovieListProps) {
   return (
-    <div className={clsx(s.movieList, className)}>
+    <ul role="list" className={clsx(s.movieList, className)}>
       {items.map(({ id, posterUrl, title }, idx) => (
-        <MovieCard
-          key={id}
-          {...{ id, posterUrl, title }}
-          ratingPlace={isTop10 ? idx + 1 : undefined}
-        />
+        <li key={id} className={s.movieList__item}>
+          <MovieCard
+            {...{ id, posterUrl, title }}
+            ratingPlace={isTop10 ? idx + 1 : undefined}
+          />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

@@ -6,8 +6,12 @@
   gap: 64px 40px;
   justify-content: space-between;
 
-  & > * {
+  &__item {
     flex: 1 0 224px;
+
+    @include m.bp(sm) {
+      flex: 0 1 335px;
+    }
   }
 
   @include m.mobile {
@@ -17,9 +21,5 @@
   @include m.bp(sm) {
     row-gap: 24px;
     justify-content: center;
-
-    & > * {
-      flex: 0 1 335px;
-    }
   }
 }

@@ -1,4 +1,11 @@
+@use '@/shared/scss/media' as m;
+
 .main {
   overflow-x: clip;
   flex: 1 auto;
+  padding-top: 128px;
+
+  @include m.mobile {
+    padding-top: 56px;
+  }
 }

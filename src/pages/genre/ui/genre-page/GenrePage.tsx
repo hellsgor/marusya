@@ -9,7 +9,7 @@ export function GenrePage() {
   const { genre } = useParams();
 
   return (
-    <Section indents={'160px'} className={s.genrePage}>
+    <Section indents={['0', '160px']} className={s.genrePage}>
       <div className={s.genrePage__wrapper}>
         <BackTitleBar>
           <h1>{genre ? capitalizeFirstLetter(getRuGenreName(genre)) : ''}</h1>

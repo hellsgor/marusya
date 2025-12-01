@@ -10,7 +10,7 @@ export function MainPage() {
 
   return (
     <>
-      <Section indents={[!mq ? '128px' : '64px', !mq ? '0' : '24px']}>
+      <Section indents={['0', !mq ? '0' : '24px']}>
         {isFetching && <Loader size="big" fixed />}
         {isError && (
           <PageError errorCode="e001" backdropText="Ooops!"></PageError>

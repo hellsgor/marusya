@@ -6,7 +6,7 @@ export function GenresPage() {
   const { data, isLoading, isError } = useGetGenresQuery();
 
   return (
-    <Section indents="160px" className={s.genresPage}>
+    <Section indents={['0', '160px']} className={s.genresPage}>
       <h1>Жанры фильмов</h1>
       {isLoading && <Loader size="big" />}
       {isError && !data && (

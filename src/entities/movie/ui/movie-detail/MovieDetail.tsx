@@ -55,6 +55,7 @@ export const MovieDetail = memo(function MovieDetail({
             <Button
               to={ROUTES.movie(movie.id, movie.title)}
               variant="secondary"
+              className={s.movieDetail__aboutButton}
             >
               О фильме
             </Button>
@@ -70,19 +71,23 @@ export const MovieDetail = memo(function MovieDetail({
             <Icon.Heart />
           </Button>
           {randomRefetch && (
-            <Button variant="secondary" smallPaddings onClick={randomRefetch}>
+            <Button
+              variant="secondary"
+              smallPaddings
+              onClick={randomRefetch}
+              className={s.movieDetail__randomButton}
+            >
               <Icon.Refresh />
             </Button>
           )}
         </div>
       </div>
 
-      <div className={s.movieDetail__posterWrapper}>
-        <Poster
-          src={movie?.backdropUrl || movie?.posterUrl || undefined}
-          alt={`${movie?.title} poster`}
-        />
-      </div>
+      <Poster
+        className={s.movieDetail__poster}
+        src={movie?.backdropUrl || movie?.posterUrl || undefined}
+        alt={`${movie?.title} poster`}
+      />
     </div>
   );
 });

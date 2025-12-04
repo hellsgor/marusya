@@ -1,24 +1,25 @@
 @use '@/shared/scss/media' as m;
 
 .movieList {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 64px 40px;
-  justify-content: space-between;
 
-  &__item {
-    flex: 1 0 224px;
+  @include m.bp(xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
-    @include m.bp(sm) {
-      flex: 0 1 335px;
-    }
+  @include m.tablet-vertical {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @include m.mobile {
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px;
   }
 
-  @include m.bp(sm) {
+  @include m.bp(s) {
+    grid-template-columns: repeat(1, 1fr);
     row-gap: 24px;
     justify-content: center;
   }

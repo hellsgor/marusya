@@ -23,9 +23,9 @@
   &__item {
     height: 304px;
 
-    @include m.bp(s) {
-      aspect-ratio: 1/1;
-      height: unset;
-    }
+    // @include m.bp(s) {
+    //   // aspect-ratio: 1/1;
+    //   height: 304px;
+    // }
   }
 }

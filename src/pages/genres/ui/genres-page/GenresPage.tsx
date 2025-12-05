@@ -1,12 +1,17 @@
 import s from './GenrePage.module.scss';
 import { Loader, PageError, Section } from '@/shared/ui';
 import { GenreCard, useGetGenresQuery } from '@/entities/genre';
+import { useMediaQuery } from '@/shared/lib';
 
 export function GenresPage() {
+  const mq = useMediaQuery('md');
   const { data, isLoading, isError } = useGetGenresQuery();
 
   return (
-    <Section indents={['0', '160px']} className={s.genresPage}>
+    <Section
+      indents={[mq ? '24px' : '32px', mq ? '40px' : '160px']}
+      className={s.genresPage}
+    >
       <h1>Жанры фильмов</h1>
       {isLoading && <Loader size="big" />}
       {isError && !data && (

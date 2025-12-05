@@ -19,7 +19,7 @@ export function useMediaQuery(
     mql.addEventListener('change', handler);
 
     return () => {
-      mql.addEventListener('change', handler);
+      mql.removeEventListener('change', handler);
     };
   }, [query]);
 

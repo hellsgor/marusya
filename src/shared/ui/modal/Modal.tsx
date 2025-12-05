@@ -12,7 +12,6 @@ import { Logo } from '../logo';
 export function Modal({
   children,
   type = 'default',
-  isVisible,
   onClose,
   name,
   className,

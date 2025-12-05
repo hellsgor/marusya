@@ -1,3 +1,5 @@
+import { PageError } from '@/shared/ui';
+
 export function NoMatchPage() {
-  return <div>NoMatchPage</div>;
+  return <PageError errorCode="e001" backdropText="404" />;
 }

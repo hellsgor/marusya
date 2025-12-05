@@ -55,7 +55,6 @@ export function Modal({
       className={clsx(
         s.modal,
         type === 'trailer' && s.modal_trailer,
-        isVisible && s.modal_opening,
         className,
       )}
       onClick={(e) => {

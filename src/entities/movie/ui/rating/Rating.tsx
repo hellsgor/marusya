@@ -20,7 +20,7 @@ export function Rating({ rate }: RatingProps) {
   };
 
   return (
-    <div className={clsx(s.rating, ratingModifier)}>
+    <div className={clsx(s.rating, ratingModifier(rounded))}>
       <Icon.Star size={16} />
       <span>{rounded.toFixed(1).replace('.', ',')}</span>
     </div>

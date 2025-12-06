@@ -17,7 +17,6 @@ export function Layout() {
         </Suspense>
       </main>
       <Footer />
-      <div id="modals"></div>
     </>
   );
 }

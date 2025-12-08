@@ -1,17 +1,19 @@
-import { Modal } from '@/shared/ui';
-import s from './AuthModal.module.scss';
+import s from './SignInModal.module.scss';
+
 import { useAppDispatch } from '@/shared/lib';
 import { closeModal } from '@/features/modal';
 
-export function AuthModal() {
+import { Modal } from '@/shared/ui';
+
+export function SignInModal() {
   const dispatch = useAppDispatch();
   return (
     <Modal
       onClose={() => dispatch(closeModal('signIn'))}
       name="auth"
-      className={s.authModal}
+      className={s.signInModal}
     >
-      <p>i am auth modal</p>
+      <div className={s.signInModal__inputs}></div>
     </Modal>
   );
 }

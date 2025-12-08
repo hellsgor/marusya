@@ -2,14 +2,16 @@ import { Modal } from '@/shared/ui';
 import type { MovieModel } from '../../model/types';
 import ReactPlayer from 'react-player';
 import { useRef, useState } from 'react';
+import { useAppSelector } from '@/shared/lib';
 
 type TrailerModalProps = {
-  isVisible: boolean;
   onClose: () => void;
   movie: MovieModel;
 };
 
-export function TrailerModal({ isVisible, onClose, movie }: TrailerModalProps) {
+export function TrailerModal({ onClose, movie }: TrailerModalProps) {
+  const isVisible = useAppSelector((state) => state.modal.trailer);
+
   const playerRef = useRef<HTMLVideoElement>(null);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
 
@@ -22,12 +24,7 @@ export function TrailerModal({ isVisible, onClose, movie }: TrailerModalProps) {
   };
 
   return (
-    <Modal
-      type="trailer"
-      isVisible={isVisible}
-      onClose={handleOnClose}
-      name="trailer"
-    >
+    <Modal type="trailer" onClose={handleOnClose} name="trailer">
       <ReactPlayer
         ref={playerRef}
         playing={isVisible && isPlayerReady}

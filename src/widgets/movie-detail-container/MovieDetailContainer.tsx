@@ -34,7 +34,6 @@ export function MovieDetailContainer({
       {isTrailerModalOpen && (
         <TrailerModal
           movie={movie}
-          isVisible={isTrailerModalOpen}
           onClose={() => dispatch(closeModal('trailer'))}
         />
       )}

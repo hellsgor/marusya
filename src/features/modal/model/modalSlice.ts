@@ -2,10 +2,12 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface ModalState {
   trailer: boolean;
+  signIn: boolean;
 }
 
 const initialState: ModalState = {
   trailer: false,
+  signIn: false,
 };
 
 const modalSlice = createSlice({
@@ -13,6 +15,7 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action: PayloadAction<keyof ModalState>) => {
+      closeAllModal();
       state[action.payload] = true;
     },
     closeModal: (state, action: PayloadAction<keyof ModalState>) => {

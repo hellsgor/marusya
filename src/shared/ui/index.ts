@@ -12,3 +12,5 @@ export { Spoiler } from './spoiler';
 export { PageError } from './page-error';
 export { ScrollToTop } from './scroll-to-top';
 export { Modal } from './modal';
+export { InputText } from './input-text';
+export { InputsWrapper } from './inputs-wrapper';

@@ -1,0 +1,129 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+@use '@/shared/scss/hover' as h;
+
+@mixin active {
+  .inputText__input {
+    border-color: c.getColor(accent, active);
+  }
+
+  .inputText__leftSlot {
+    color: c.getColor(accent, active);
+  }
+}
+
+.inputText {
+  width: 100%;
+
+  &__inner {
+    position: relative;
+  }
+
+  &__input {
+    will-change: color, border-color;
+
+    width: 100%;
+    padding: 15px 16px;
+    border: 1px solid c.getColor(content, placeholder);
+    border-radius: 8px;
+
+    color: c.getColor(content, 'black');
+
+    background-color: c.getColor(bg, 'white');
+    outline: none;
+
+    // @include t.transition(
+    //   (color, border-color),
+    //   $duration: t.$duration-400,
+    //   $func: t.$ease-in
+    // );
+
+    transition:
+      color t.$duration-200 t.$ease-in-out,
+      border-color t.$duration-100 t.$ease-in;
+
+    &::placeholder {
+      color: c.getColor(content, placeholder);
+    }
+  }
+
+  &__leftSlot {
+    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    translate: 0 -50%;
+
+    color: c.getColor(content, placeholder);
+    @include t.transition(color, $duration: t.$duration-100, $func: t.$ease-in);
+  }
+
+  &__error {
+    will-change: grid-template-rows;
+
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 0fr;
+
+    width: 100%;
+    min-height: 0;
+
+    font-size: 16px;
+    color: c.getColor(accent, error);
+
+    transition: grid-template-rows 0.15s t.$ease-in 0.075s;
+
+    & > div {
+      will-change: opacity;
+
+      min-height: 0;
+      padding-inline: 16px;
+
+      opacity: 0;
+
+      transition: opacity 0.15s t.$ease-in;
+
+      & > span {
+        display: inline-block;
+        padding-top: 2px;
+      }
+    }
+  }
+
+  &:has(.inputText__leftSlot) {
+    .inputText__input {
+      padding-left: 50px;
+    }
+  }
+
+  @include h.hover {
+    @include active;
+  }
+
+  &:focus-within {
+    @include active;
+  }
+
+  &_hasError {
+    .inputText__input {
+      border-color: c.getColor(accent, error);
+      transition: border-color 0.35s t.$ease-out;
+    }
+
+    .inputText__leftSlot {
+      color: c.getColor(accent, error);
+      transition: color 0.35s t.$ease-out;
+    }
+
+    .inputText__error {
+      grid-template-rows: 1fr;
+      transition: grid-template-rows t.$duration-200 t.$ease-out;
+
+      div {
+        opacity: 1;
+        transition: opacity t.$duration-200 t.$ease-out 0.15s;
+      }
+    }
+  }
+}

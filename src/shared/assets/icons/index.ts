@@ -13,3 +13,5 @@ export { default as Telegram } from './telegram.svg?react';
 export { default as User } from './user.svg?react';
 export { default as Vk } from './vk.svg?react';
 export { default as YouTube } from './youtube.svg?react';
+export { default as Eye } from './eye.svg?react';
+export { default as EyeSlash } from './eye-slash.svg?react';

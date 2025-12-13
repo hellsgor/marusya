@@ -1,23 +1,20 @@
 import s from './InputText.module.scss';
-
-import { useEffect, useRef, useState, type InputHTMLAttributes } from 'react';
-
-import { Icon } from '../icon';
 import clsx from 'clsx';
-import { getCSSNumericValue } from '@/shared/lib';
 
-interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
-  type?: 'text' | 'email';
-  icon?: keyof typeof Icon;
-  error?: string;
-}
+import type { InputProps } from './InputText.types';
+
+import { useEffect, useRef, useState } from 'react';
+
+import { Icon } from '@/shared/ui/icon';
+import { getCSSNumericValue } from '@/shared/lib';
 
 export function InputText({
   type = 'text',
   icon,
   error,
+  rightSlotChild,
   ...rest
-}: InputTextProps) {
+}: InputProps) {
   const [displayError, setDisplayError] = useState(error);
 
   const errorWrapperRef = useRef<HTMLDivElement>(null);
@@ -68,6 +65,9 @@ export function InputText({
           </div>
         )}
         <input type={type} {...rest} className={s.inputText__input} />
+        {rightSlotChild && (
+          <div className={s.inputText__rightSlot}>{rightSlotChild}</div>
+        )}
       </div>
       <div className={s.inputText__error}>
         <div ref={errorWrapperRef}>

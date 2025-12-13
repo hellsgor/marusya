@@ -32,12 +32,6 @@
     background-color: c.getColor(bg, 'white');
     outline: none;
 
-    // @include t.transition(
-    //   (color, border-color),
-    //   $duration: t.$duration-400,
-    //   $func: t.$ease-in
-    // );
-
     transition:
       color t.$duration-200 t.$ease-in-out,
       border-color t.$duration-100 t.$ease-in;
@@ -47,16 +41,27 @@
     }
   }
 
-  &__leftSlot {
-    pointer-events: none;
-
+  &__leftSlot,
+  &__rightSlot {
     position: absolute;
     top: 50%;
-    left: 16px;
     translate: 0 -50%;
 
+    width: 24px;
+    height: 24px;
+
     color: c.getColor(content, placeholder);
+  }
+
+  &__leftSlot {
+    pointer-events: none;
+    left: 16px;
+
     @include t.transition(color, $duration: t.$duration-100, $func: t.$ease-in);
+  }
+
+  &__rightSlot {
+    right: 16px;
   }
 
   &__error {
@@ -94,6 +99,12 @@
   &:has(.inputText__leftSlot) {
     .inputText__input {
       padding-left: 50px;
+    }
+  }
+
+  &:has(.inputText__rightSlot) {
+    .inputText__input {
+      padding-right: 50px;
     }
   }
 

@@ -10,7 +10,10 @@ export function MainPage() {
 
   return (
     <>
-      <Section indents={['0', !mq ? '0' : '24px']}>
+      <Section
+        indents={['0', !mq ? '0' : '24px']}
+        style={{ minHeight: '552px' }}
+      >
         {isFetching && <Loader size="big" fixed />}
         {isError && (
           <PageError errorCode="e001" backdropText="Ooops!"></PageError>

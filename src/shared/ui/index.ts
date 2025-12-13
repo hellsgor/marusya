@@ -14,3 +14,4 @@ export { ScrollToTop } from './scroll-to-top';
 export { Modal } from './modal';
 export { InputText, InputPassword } from './inputs';
 export { InputsWrapper } from './inputs-wrapper';
+export { Form } from './form';

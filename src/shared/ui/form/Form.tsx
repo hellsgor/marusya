@@ -7,16 +7,20 @@ import {
   type SubmitHandler,
 } from 'react-hook-form';
 
-type FormProps = {
+type FormProps<T extends FieldValues> = {
   children: ReactNode;
+  onSubmit: SubmitHandler<T>;
 };
 
-export function Form<T extends FieldValues>({ children }: FormProps) {
+export function Form<T extends FieldValues>({
+  children,
+  onSubmit,
+}: FormProps<T>) {
   const methods = useForm<T>({ shouldFocusError: false });
   const { handleSubmit } = methods;
 
   const submit: SubmitHandler<T> = (data) => {
-    console.log(data);
+    onSubmit(data);
   };
   return (
     <FormProvider {...methods}>

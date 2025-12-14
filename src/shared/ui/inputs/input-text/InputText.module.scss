@@ -117,17 +117,17 @@
   }
 
   &_hasError {
-    .inputText__input {
-      border-color: c.getColor(accent, error);
+    input.inputText__input {
+      border-color: c.getColor(accent, error) !important;
       transition: border-color 0.35s t.$ease-out;
     }
 
-    .inputText__leftSlot {
-      color: c.getColor(accent, error);
+    div.inputText__leftSlot {
+      color: c.getColor(accent, error) !important;
       transition: color 0.35s t.$ease-out;
     }
 
-    .inputText__error {
+    div.inputText__error {
       grid-template-rows: 1fr;
       transition: grid-template-rows t.$duration-200 t.$ease-out;
 

@@ -3,53 +3,14 @@ import clsx from 'clsx';
 
 import type { InputProps } from './InputText.types';
 
-import { useEffect, useRef, useState, forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 import { Icon } from '@/shared/ui/icon';
-import { getCSSNumericValue } from '@/shared/lib';
+import { FormError } from '../../form-error';
 
 export const InputText = forwardRef<HTMLInputElement, InputProps>(
   ({ type = 'text', icon, error, rightSlotChild, ...rest }, ref) => {
-    const [displayError, setDisplayError] = useState(error);
-
-    const errorWrapperRef = useRef<HTMLDivElement>(null);
-    const errorTextRef = useRef<HTMLSpanElement>(null);
-
     const IconComponent = icon ? Icon[icon] : null;
-
-    useEffect(() => {
-      if (!errorWrapperRef.current || !errorTextRef.current) return;
-
-      const wrapperTransition =
-        getCSSNumericValue({
-          el: errorWrapperRef.current,
-          property: 'transitionDuration',
-        }) +
-        getCSSNumericValue({
-          el: errorWrapperRef.current,
-          property: 'transitionDelay',
-        });
-
-      const textTransition =
-        getCSSNumericValue({
-          el: errorTextRef.current,
-          property: 'transitionDuration',
-        }) +
-        getCSSNumericValue({
-          el: errorTextRef.current,
-          property: 'transitionDelay',
-        });
-
-      const delay =
-        wrapperTransition > textTransition ? wrapperTransition : textTransition;
-
-      if (error) {
-        setDisplayError(error);
-      } else {
-        const timer = setTimeout(() => setDisplayError(''), delay);
-        return () => clearTimeout(timer);
-      }
-    }, [error]);
 
     return (
       <div className={clsx(s.inputText, error && s.inputText_hasError)}>
@@ -69,11 +30,7 @@ export const InputText = forwardRef<HTMLInputElement, InputProps>(
             <div className={s.inputText__rightSlot}>{rightSlotChild}</div>
           )}
         </div>
-        <div className={s.inputText__error}>
-          <div ref={errorWrapperRef}>
-            <span ref={errorTextRef}>{displayError ?? ''}</span>
-          </div>
-        </div>
+        <FormError text={error} />
       </div>
     );
   },

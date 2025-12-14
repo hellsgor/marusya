@@ -1,17 +1,38 @@
 import {
   Button,
   Form,
+  FormError,
   InputPassword,
   InputsWrapper,
   InputText,
+  Loader,
   RHFInput,
 } from '@/shared/ui';
-import type { SignInFormData } from '../../model/types/SignInFormData';
+import type { SignInFormDataType } from '../../model/types/SignInFormData';
 import { ERRORS, REGEXP } from '@/shared/config';
+import { useSignInMutation } from '../../model/api/signInApi';
+import { useEffect } from 'react';
 
-export function SignInForm() {
+type SignInFormProps = {
+  onSuccess?: () => void;
+};
+
+export function SignInForm({ onSuccess }: SignInFormProps) {
+  const [signIn, { isLoading, isSuccess, error }] = useSignInMutation();
+
+  const errorText =
+    error && 'status' in error && error.status === 400
+      ? ERRORS.e005
+      : ERRORS.e001;
+
+  useEffect(() => {
+    if (isSuccess && onSuccess) {
+      onSuccess();
+    }
+  }, [isSuccess, onSuccess]);
+
   return (
-    <Form<SignInFormData>>
+    <Form<SignInFormDataType> onSubmit={signIn}>
       <InputsWrapper>
         <RHFInput
           rules={{
@@ -38,9 +59,21 @@ export function SignInForm() {
           }}
         />
       </InputsWrapper>
-      <Button variant="primary" wide type="submit">
-        Войти
-      </Button>
+      <div>
+        <Button variant="primary" wide type="submit">
+          {isLoading ? <Loader size="small" /> : 'Войти'}
+        </Button>
+        {
+          <FormError
+            text={!isLoading && error ? errorText : undefined}
+            textStyle={{
+              textAlign: 'center',
+              width: '100%',
+              paddingTop: '8px',
+            }}
+          />
+        }
+      </div>
     </Form>
   );
 }

@@ -8,7 +8,7 @@ export function SignInModal() {
 
   return (
     <Modal onClose={() => dispatch(closeModal('signIn'))} name="auth">
-      <SignInForm />
+      <SignInForm onSuccess={() => dispatch(closeModal('signIn'))} />
     </Modal>
   );
 }

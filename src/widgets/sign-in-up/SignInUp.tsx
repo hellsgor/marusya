@@ -1,4 +1,4 @@
-import { SignInModal } from '@/entities/user';
+import { SignInModal } from './ui';
 import { useAppSelector } from '@/shared/lib';
 
 export function SignInUp() {

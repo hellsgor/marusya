@@ -10,7 +10,7 @@ type TrailerModalProps = {
 };
 
 export function TrailerModal({ onClose, movie }: TrailerModalProps) {
-  const isVisible = useAppSelector((state) => state.modal.trailer);
+  const isVisible = useAppSelector((state) => state.modal.modals.trailer);
 
   const playerRef = useRef<HTMLVideoElement>(null);
   const [isPlayerReady, setIsPlayerReady] = useState(false);

@@ -1,37 +1,61 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
+type ModalType = 'trailer' | 'signIn' | 'signUp';
+type AuthModalType = 'signIn' | 'signUp';
+
+type ModalsState = Record<ModalType, boolean>;
+
 interface ModalState {
-  trailer: boolean;
-  signIn: boolean;
-  signUp: boolean;
+  modals: ModalsState;
+  options: {
+    isSwitchingAuth: boolean;
+  };
 }
 
 const initialState: ModalState = {
-  trailer: false,
-  signIn: false,
-  signUp: false,
+  modals: {
+    trailer: false,
+    signIn: false,
+    signUp: false,
+  },
+  options: {
+    isSwitchingAuth: false,
+  },
 };
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state, action: PayloadAction<keyof ModalState>) => {
-      Object.keys(state).forEach((key) => {
-        state[key as keyof ModalState] = false;
+    openModal: (state, action: PayloadAction<ModalType>) => {
+      Object.keys(state.modals).forEach((key) => {
+        state.modals[key as ModalType] = false;
       });
-      state[action.payload] = true;
+      state.modals[action.payload] = true;
+      state.options.isSwitchingAuth = false;
     },
-    closeModal: (state, action: PayloadAction<keyof ModalState>) => {
-      state[action.payload] = false;
+    switchAuthModal: (state, action: PayloadAction<AuthModalType>) => {
+      const wasSignIn = state.modals.signIn;
+      const wasSignUp = state.modals.signUp;
+
+      state.modals.signIn = false;
+      state.modals.signUp = false;
+      state.options.isSwitchingAuth = wasSignIn || wasSignUp;
+      state.modals[action.payload] = true;
+    },
+    closeModal: (state, action: PayloadAction<ModalType>) => {
+      state.modals[action.payload] = false;
+      state.options.isSwitchingAuth = false;
     },
     closeAllModal: (state) => {
-      Object.keys(state).forEach((key) => {
-        state[key as keyof ModalState] = false;
+      Object.keys(state.modals).forEach((key) => {
+        state.modals[key as ModalType] = false;
       });
+      state.options.isSwitchingAuth = false;
     },
   },
 });
 
-export const { openModal, closeModal, closeAllModal } = modalSlice.actions;
+export const { openModal, switchAuthModal, closeModal, closeAllModal } =
+  modalSlice.actions;
 export default modalSlice.reducer;

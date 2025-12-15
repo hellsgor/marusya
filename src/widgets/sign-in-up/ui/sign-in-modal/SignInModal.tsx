@@ -1,25 +1,25 @@
-import s from './SignInModal.module.scss';
-
-import { closeModal, openModal } from '@/features/modal';
+import { closeModal } from '@/features/modal';
 import { SignInForm } from '@/features/sign-in';
 import { useAppDispatch } from '@/shared/lib';
-import { Button, Modal } from '@/shared/ui';
+import { AuthModal } from '../auth-modal';
 
-export function SignInModal() {
+interface SignInModalProps {
+  skipBackdropAnimation?: boolean;
+}
+
+export function SignInModal({
+  skipBackdropAnimation = false,
+}: SignInModalProps) {
   const dispatch = useAppDispatch();
 
   return (
-    <Modal
-      onClose={() => dispatch(closeModal('signIn'))}
-      name="sign-in"
-      className={s.signInModal}
+    <AuthModal
+      modalName="signIn"
+      switchTo="signUp"
+      switchButtonText="Регистрация"
+      skipBackdropAnimation={skipBackdropAnimation}
     >
-      <div className={s.signInModal__wrapper}>
-        <SignInForm onSuccess={() => dispatch(closeModal('signIn'))} />
-        <Button variant="ghost" onClick={() => dispatch(openModal('signUp'))}>
-          Регистрация
-        </Button>
-      </div>
-    </Modal>
+      <SignInForm onSuccess={() => dispatch(closeModal('signIn'))} />
+    </AuthModal>
   );
 }

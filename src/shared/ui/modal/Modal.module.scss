@@ -144,6 +144,14 @@
     opacity: 1;
     @include t.transition(opacity, $duration: t.$duration-500);
   }
+
+  &_noBackdropAnimation {
+    transition: none !important;
+
+    .modal__backdrop {
+      transition: none;
+    }
+  }
 }
 
 body:has(.modal_opened) {

@@ -15,15 +15,26 @@ export function Modal({
   onClose,
   name,
   className,
+  skipBackdropAnimation = false,
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const modalBodyRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    if (!modalRef.current) return;
-    modalRef.current?.classList.add(s.modal_opened);
-  }, [modalRef]);
+    const modalElement = modalRef.current;
+    if (!modalElement) return;
+
+    if (skipBackdropAnimation) {
+      modalElement.style.opacity = '1';
+      modalElement.style.pointerEvents = 'auto';
+      modalElement.classList.add(s.modal_opened);
+      modalElement.classList.add(s.modal_noBackdropAnimation);
+    } else {
+      modalElement.classList.add(s.modal_opened);
+      modalElement.classList.remove(s.modal_noBackdropAnimation);
+    }
+  }, [skipBackdropAnimation]);
 
   const handleCloseClick = (e: MouseEvent) => {
     if (!modalBodyRef) return;
@@ -33,6 +44,11 @@ export function Modal({
       (modalBodyRef.current?.contains(e.target as Node) &&
         !closeButtonRef.current?.contains(e.target as Node))
     ) {
+      return;
+    }
+
+    if (skipBackdropAnimation) {
+      onClose();
       return;
     }
 

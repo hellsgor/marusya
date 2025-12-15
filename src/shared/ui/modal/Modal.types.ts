@@ -8,4 +8,5 @@ export type ModalProps = {
   onClose: () => void;
   name?: string;
   className?: string;
+  skipBackdropAnimation?: boolean;
 };

@@ -18,7 +18,9 @@ export function MovieDetailContainer({
   randomRefetch,
 }: MovieDetailContainerProps) {
   const dispatch = useAppDispatch();
-  const isTrailerModalOpen = useAppSelector((state) => state.modal.trailer);
+  const isTrailerModalOpen = useAppSelector(
+    (state) => state.modal.modals.trailer,
+  );
 
   const handleTrailerButtonClick = useCallback(() => {
     dispatch(openModal('trailer'));

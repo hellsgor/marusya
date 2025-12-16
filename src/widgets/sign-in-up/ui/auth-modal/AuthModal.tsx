@@ -11,6 +11,7 @@ interface AuthModalProps {
   switchButtonText: string;
   skipBackdropAnimation?: boolean;
   children?: ReactNode;
+  title?: string;
 }
 
 export function AuthModal({
@@ -19,6 +20,7 @@ export function AuthModal({
   switchButtonText,
   skipBackdropAnimation = false,
   children,
+  title,
 }: AuthModalProps) {
   const dispatch = useAppDispatch();
 
@@ -30,6 +32,7 @@ export function AuthModal({
       skipBackdropAnimation={skipBackdropAnimation}
     >
       <div className={s.authModal__wrapper}>
+        {title && <h3>{title}</h3>}
         {children}
         <Button
           variant="ghost"

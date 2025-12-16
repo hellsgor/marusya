@@ -1,4 +1,9 @@
-export { useMediaQuery, useAppDispatch, useAppSelector } from './hooks';
+export {
+  useMediaQuery,
+  useAppDispatch,
+  useAppSelector,
+  useFormMutation,
+} from './hooks';
 export {
   capitalizeFirstLetter,
   toSlug,

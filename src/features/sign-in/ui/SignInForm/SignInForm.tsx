@@ -11,28 +11,25 @@ import {
 import type { SignInFormDataType } from '../../model/types/SignInFormData';
 import { ERRORS, REGEXP } from '@/shared/config';
 import { useSignInMutation } from '../../model/api/signInApi';
-import { useEffect } from 'react';
-import { getApiErrorText } from '@/shared/lib';
+import { useFormMutation } from '@/shared/lib';
 
 type SignInFormProps = {
   onSuccess?: () => void;
 };
 
 export function SignInForm({ onSuccess }: SignInFormProps) {
-  const [signIn, { isLoading, isSuccess, error }] = useSignInMutation();
-
-  const errorText = getApiErrorText(error, undefined, {
-    on400: ERRORS.e005,
-  });
-
-  useEffect(() => {
-    if (isSuccess && onSuccess) {
-      onSuccess();
-    }
-  }, [isSuccess, onSuccess]);
+  const { isLoading, errorText, mutate } = useFormMutation(
+    useSignInMutation(),
+    {
+      onSuccess,
+      errorOptions: {
+        on400: ERRORS.e005,
+      },
+    },
+  );
 
   return (
-    <Form<SignInFormDataType> onSubmit={signIn}>
+    <Form<SignInFormDataType> onSubmit={mutate}>
       <InputsWrapper>
         <RHFInput
           rules={{
@@ -64,7 +61,7 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
           {isLoading ? <Loader size="small" /> : 'Войти'}
         </Button>
         <FormError
-          text={!isLoading && error ? errorText : undefined}
+          text={errorText}
           textStyle={{
             textAlign: 'center',
             width: '100%',

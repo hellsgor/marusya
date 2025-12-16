@@ -40,7 +40,9 @@ export const signUpApi = api.injectEndpoints({
         const result = SignUpResultSchema.safeParse(response);
 
         if (!result.success) {
-          throw new Error(`Ошибка валидации ответа сервера: ${result.error}`);
+          throw new Error(
+            `Ошибка валидации ответа сервера: ${result.error.message}`,
+          );
         }
 
         return result.data;

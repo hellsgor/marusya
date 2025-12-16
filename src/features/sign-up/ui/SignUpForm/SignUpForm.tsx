@@ -32,11 +32,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
           {isLoading ? <Loader size="small" /> : 'Создать аккаунт'}
         </Button>
         <FormError
-          text={
-            !isLoading && (error || (data && 'error' in data))
-              ? errorText
-              : undefined
-          }
+          text={!isLoading && error ? errorText : undefined}
           textStyle={{
             textAlign: 'center',
             width: '100%',

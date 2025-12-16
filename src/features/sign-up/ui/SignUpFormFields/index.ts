@@ -1,0 +1,1 @@
+export { SignUpFormFields } from './SignUpFormFields';

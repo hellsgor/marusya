@@ -4,4 +4,5 @@ export {
   toSlug,
   getMappedValue,
   getCSSNumericValue,
+  getApiErrorText,
 } from './helpers';

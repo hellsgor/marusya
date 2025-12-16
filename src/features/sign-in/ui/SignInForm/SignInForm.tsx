@@ -12,6 +12,7 @@ import type { SignInFormDataType } from '../../model/types/SignInFormData';
 import { ERRORS, REGEXP } from '@/shared/config';
 import { useSignInMutation } from '../../model/api/signInApi';
 import { useEffect } from 'react';
+import { getApiErrorText } from '@/shared/lib';
 
 type SignInFormProps = {
   onSuccess?: () => void;
@@ -20,10 +21,9 @@ type SignInFormProps = {
 export function SignInForm({ onSuccess }: SignInFormProps) {
   const [signIn, { isLoading, isSuccess, error }] = useSignInMutation();
 
-  const errorText =
-    error && 'status' in error && error.status === 400
-      ? ERRORS.e005
-      : ERRORS.e001;
+  const errorText = getApiErrorText(error, undefined, {
+    on400: ERRORS.e005,
+  });
 
   useEffect(() => {
     if (isSuccess && onSuccess) {
@@ -63,16 +63,14 @@ export function SignInForm({ onSuccess }: SignInFormProps) {
         <Button variant="primary" wide type="submit">
           {isLoading ? <Loader size="small" /> : 'Войти'}
         </Button>
-        {
-          <FormError
-            text={!isLoading && error ? errorText : undefined}
-            textStyle={{
-              textAlign: 'center',
-              width: '100%',
-              paddingTop: '8px',
-            }}
-          />
-        }
+        <FormError
+          text={!isLoading && error ? errorText : undefined}
+          textStyle={{
+            textAlign: 'center',
+            width: '100%',
+            paddingTop: '8px',
+          }}
+        />
       </div>
     </Form>
   );

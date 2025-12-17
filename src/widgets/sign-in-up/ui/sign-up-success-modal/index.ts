@@ -1,0 +1,1 @@
+export { SignUpSuccessModal } from './SignUpSuccessModal';

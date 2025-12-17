@@ -6,8 +6,8 @@ import { Button, Modal } from '@/shared/ui';
 import type { ReactNode } from 'react';
 
 interface AuthModalProps {
-  modalName: 'signIn' | 'signUp';
-  switchTo: 'signIn' | 'signUp';
+  modalName: 'signIn' | 'signUp' | 'signUpSuccess';
+  switchTo: 'signIn' | 'signUp' | 'signUpSuccess';
   switchButtonText: string;
   skipBackdropAnimation?: boolean;
   children?: ReactNode;
@@ -27,7 +27,7 @@ export function AuthModal({
   return (
     <Modal
       onClose={() => dispatch(closeModal(modalName))}
-      name={modalName === 'signIn' ? 'sign-in' : 'sign-up'}
+      name={modalName}
       className={s.authModal}
       skipBackdropAnimation={skipBackdropAnimation}
     >
@@ -35,7 +35,7 @@ export function AuthModal({
         {title && <h3>{title}</h3>}
         {children}
         <Button
-          variant="ghost"
+          variant={modalName === 'signUpSuccess' ? 'primary' : 'ghost'}
           onClick={() => dispatch(switchAuthModal(switchTo))}
         >
           {switchButtonText}

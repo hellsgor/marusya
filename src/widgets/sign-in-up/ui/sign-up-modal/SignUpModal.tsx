@@ -1,7 +1,7 @@
 import { SignUpForm } from '@/features/sign-up';
 import { AuthModal } from '../auth-modal';
 import { useAppDispatch } from '@/shared/lib';
-import { closeModal } from '@/features/modal';
+import { closeModal, openModal } from '@/features/modal';
 
 interface SignUpModalProps {
   skipBackdropAnimation?: boolean;
@@ -20,7 +20,12 @@ export function SignUpModal({
       skipBackdropAnimation={skipBackdropAnimation}
       title="Регистрация"
     >
-      <SignUpForm onSuccess={() => dispatch(closeModal('signUp'))} />
+      <SignUpForm
+        onSuccess={() => {
+          dispatch(closeModal('signUp'));
+          dispatch(openModal('signUpSuccess'));
+        }}
+      />
     </AuthModal>
   );
 }

@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-type ModalType = 'trailer' | 'signIn' | 'signUp';
-type AuthModalType = 'signIn' | 'signUp';
+type ModalType = 'trailer' | 'signIn' | 'signUp' | 'signUpSuccess';
+type AuthModalType = 'signIn' | 'signUp' | 'signUpSuccess';
 
 type ModalsState = Record<ModalType, boolean>;
 
@@ -17,6 +17,7 @@ const initialState: ModalState = {
     trailer: false,
     signIn: false,
     signUp: false,
+    signUpSuccess: false,
   },
   options: {
     isSwitchingAuth: false,
@@ -37,10 +38,13 @@ const modalSlice = createSlice({
     switchAuthModal: (state, action: PayloadAction<AuthModalType>) => {
       const wasSignIn = state.modals.signIn;
       const wasSignUp = state.modals.signUp;
+      const wasSignUpSuccess = state.modals.signUpSuccess;
 
-      state.modals.signIn = false;
-      state.modals.signUp = false;
-      state.options.isSwitchingAuth = wasSignIn || wasSignUp;
+      Object.keys(state.modals).forEach((key) => {
+        state.modals[key as ModalType] = false;
+      });
+      state.options.isSwitchingAuth =
+        wasSignIn || wasSignUp || wasSignUpSuccess;
       state.modals[action.payload] = true;
     },
     closeModal: (state, action: PayloadAction<ModalType>) => {

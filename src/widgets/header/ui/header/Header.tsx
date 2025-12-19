@@ -2,11 +2,13 @@ import s from './Header.module.scss';
 
 import { Container, Icon, MenuItem } from '@/shared/ui';
 import { MainMenu } from '../main-menu';
-import { useMediaQuery } from '@/shared/lib';
+import { useAppDispatch, useMediaQuery } from '@/shared/lib';
 import { NavLogo } from '../nav-logo';
+import { openModal } from '@/features/modal';
 
 export function Header() {
   const isIconViewed = useMediaQuery('lg');
+  const dispatch = useAppDispatch();
 
   return (
     <header className={s.header}>
@@ -15,8 +17,10 @@ export function Header() {
           <NavLogo />
           <MainMenu />
           <MenuItem
-            href="some"
             children={isIconViewed ? <Icon.User /> : 'Войти'}
+            onClick={() => {
+              dispatch(openModal('signIn'));
+            }}
           />
         </div>
       </Container>

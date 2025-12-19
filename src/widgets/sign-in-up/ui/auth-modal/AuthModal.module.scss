@@ -1,0 +1,16 @@
+.authModal {
+  width: 100%;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    align-items: center;
+
+    width: 100%;
+
+    p {
+      text-align: center;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import s from './Section.module.scss';
 
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { Container } from '../container';
 import clsx from 'clsx';
 
@@ -8,6 +8,7 @@ export type SectionProps = {
   className?: string;
   children: ReactNode;
   indents?: string | [string, string];
+  style?: CSSProperties;
 };
 
 const paddings = (indents: SectionProps['indents']) => {
@@ -21,11 +22,11 @@ const paddings = (indents: SectionProps['indents']) => {
   };
 };
 
-export function Section({ className, children, indents }: SectionProps) {
+export function Section({ className, children, indents, style }: SectionProps) {
   return (
     <section
       className={clsx(s.section, className)}
-      style={{ ...paddings(indents) }}
+      style={{ ...paddings(indents), ...style }}
     >
       <Container>
         <div className={s.section__wrapper}>{children}</div>

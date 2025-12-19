@@ -12,3 +12,8 @@ export { Spoiler } from './spoiler';
 export { PageError } from './page-error';
 export { ScrollToTop } from './scroll-to-top';
 export { Modal } from './modal';
+export { InputText, InputPassword } from './inputs';
+export { InputsWrapper } from './inputs-wrapper';
+export { Form } from './form';
+export { RHFInput } from './rhf-input';
+export { FormError } from './form-error';

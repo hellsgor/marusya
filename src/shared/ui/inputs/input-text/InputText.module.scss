@@ -1,0 +1,98 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+@use '@/shared/scss/hover' as h;
+
+@mixin active {
+  .inputText__input {
+    border-color: c.getColor(accent, active);
+  }
+
+  .inputText__leftSlot {
+    color: c.getColor(accent, active);
+  }
+}
+
+.inputText {
+  width: 100%;
+
+  &__inner {
+    position: relative;
+  }
+
+  &__input {
+    will-change: color, border-color;
+
+    width: 100%;
+    padding: 15px 16px;
+    border: 1px solid c.getColor(content, placeholder);
+    border-radius: 8px;
+
+    color: c.getColor(content, 'black');
+
+    background-color: c.getColor(bg, 'white');
+    outline: none;
+
+    transition:
+      color t.$duration-200 t.$ease-in-out,
+      border-color t.$duration-100 t.$ease-in;
+
+    &::placeholder {
+      color: c.getColor(content, placeholder);
+    }
+  }
+
+  &__leftSlot,
+  &__rightSlot {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+
+    width: 24px;
+    height: 24px;
+
+    color: c.getColor(content, placeholder);
+  }
+
+  &__leftSlot {
+    pointer-events: none;
+    left: 16px;
+
+    @include t.transition(color, $duration: t.$duration-100, $func: t.$ease-in);
+  }
+
+  &__rightSlot {
+    right: 16px;
+  }
+
+  &:has(.inputText__leftSlot) {
+    .inputText__input {
+      padding-left: 50px;
+    }
+  }
+
+  &:has(.inputText__rightSlot) {
+    .inputText__input {
+      padding-right: 50px;
+    }
+  }
+
+  @include h.hover {
+    @include active;
+  }
+
+  &:focus-within {
+    @include active;
+  }
+
+  &_hasError {
+    input.inputText__input {
+      border-color: c.getColor(accent, error) !important;
+      transition: border-color 0.35s t.$ease-out;
+    }
+
+    div.inputText__leftSlot {
+      color: c.getColor(accent, error) !important;
+      transition: color 0.35s t.$ease-out;
+    }
+  }
+}

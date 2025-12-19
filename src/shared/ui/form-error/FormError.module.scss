@@ -1,0 +1,44 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+
+.formError {
+  will-change: grid-template-rows;
+
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+
+  width: 100%;
+  min-height: 0;
+
+  font-size: 16px;
+  color: c.getColor(accent, error);
+
+  transition: grid-template-rows 0.15s t.$ease-in 0.075s;
+
+  & > div {
+    will-change: opacity;
+
+    min-height: 0;
+    padding-inline: 16px;
+
+    opacity: 0;
+
+    transition: opacity 0.15s t.$ease-in;
+
+    & > span {
+      display: inline-block;
+      padding-top: 2px;
+    }
+  }
+
+  &_visible {
+    grid-template-rows: 1fr;
+    transition: grid-template-rows t.$duration-200 t.$ease-out;
+
+    div {
+      opacity: 1;
+      transition: opacity t.$duration-200 t.$ease-out 0.15s;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { Loader, ScrollToTop } from '@/shared/ui';
 import { Header } from '@/widgets/header';
 import { Footer } from '@/widgets/footer';
+import { SignInUp } from '@/widgets/sign-in-up';
 
 export function Layout() {
   return (
@@ -17,6 +18,7 @@ export function Layout() {
         </Suspense>
       </main>
       <Footer />
+      <SignInUp />
     </>
   );
 }

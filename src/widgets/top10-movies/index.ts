@@ -1,1 +1,1 @@
-export { Top10Movies } from './Top10Movies';
+export { Top10Movies } from './ui';

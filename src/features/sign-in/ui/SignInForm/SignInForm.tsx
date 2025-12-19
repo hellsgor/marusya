@@ -8,10 +8,11 @@ import {
   Loader,
   RHFInput,
 } from '@/shared/ui';
-import type { SignInFormDataType } from '../../model/types/SignInFormData';
 import { ERRORS, REGEXP } from '@/shared/config';
-import { useSignInMutation } from '../../model/api/signInApi';
 import { useFormMutation } from '@/shared/lib';
+
+import type { SignInFormDataType } from '../../model/SignInFormData';
+import { useSignInMutation } from '../../api/signInApi';
 
 type SignInFormProps = {
   onSuccess?: () => void;

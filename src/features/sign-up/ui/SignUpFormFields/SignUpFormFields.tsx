@@ -1,5 +1,5 @@
 import { InputPassword, InputsWrapper, InputText, RHFInput } from '@/shared/ui';
-import type { SignUpFormDataType } from '../../model/types/SignUpFormData';
+import type { SignUpFormDataType } from '../../model/SignUpFormData';
 import {
   ERRORS,
   MIN_INPUT_LENGTH,

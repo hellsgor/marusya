@@ -2,11 +2,11 @@ import { api } from '@/shared/api';
 import {
   SignUpResultSchema,
   type SignUpResultType,
-} from '../types/SignUpResult';
+} from '../model/SignUpResult';
 import {
   SignUpApiRequestSchema,
   type SignUpFormDataType,
-} from '../types/SignUpFormData';
+} from '../model/SignUpFormData';
 
 export const signUpApi = api.injectEndpoints({
   endpoints: (builder) => ({

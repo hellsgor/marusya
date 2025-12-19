@@ -1,6 +1,6 @@
 import { Button, Form, FormError, Loader } from '@/shared/ui';
-import type { SignUpFormDataType } from '../../model/types/SignUpFormData';
-import { useSignUpMutation } from '../../model/api/signUpApi';
+import type { SignUpFormDataType } from '../../model/SignUpFormData';
+import { useSignUpMutation } from '../../api/signUpApi';
 import { ERRORS } from '@/shared/config';
 import { useFormMutation } from '@/shared/lib';
 import { SignUpFormFields } from '../SignUpFormFields/';

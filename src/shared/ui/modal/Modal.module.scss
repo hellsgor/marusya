@@ -10,6 +10,8 @@
   z-index: 10;
   inset: 0;
 
+  overflow-y: auto;
+
   color: c.getColor(content, 'black');
 
   opacity: 0;
@@ -17,23 +19,23 @@
   @include t.transition(opacity, $duration: t.$duration-200);
 
   &__backdrop {
-    position: absolute;
+    position: fixed;
     z-index: -1;
     inset: 0;
     background-color: c.getColor(bg, backdrop, trailer, default);
   }
 
   &__inner {
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    height: 100vh;
+    min-height: 100vh;
+    padding-block: 40px;
 
     @include m.mobile {
-      padding: 0 20px;
+      padding: 40px 20px;
     }
   }
 
@@ -49,7 +51,6 @@
     background-color: c.getColor(bg, 'white');
 
     @include m.mobile {
-      margin: auto 0;
       padding: 64px 20px 32px;
     }
   }

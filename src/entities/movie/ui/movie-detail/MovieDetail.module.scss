@@ -47,6 +47,16 @@
           padding-inline: 20px;
         }
       }
+
+      @include m.bp(xxs) {
+        column-gap: 0;
+        justify-content: space-between;
+
+        .movieDetail__aboutButton {
+          flex-grow: 0;
+          flex-shrink: 1;
+        }
+      }
     }
   }
 

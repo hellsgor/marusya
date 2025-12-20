@@ -7,8 +7,14 @@ export function UserControl() {
   const dispatch = useAppDispatch();
   const isIconViewed = useMediaQuery('lg');
 
-  const { data: user, isFetching } = useGetUserQuery();
-  const isAuthorized = !!user;
+  const {
+    data: user,
+    isFetching,
+    isError,
+  } = useGetUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+  const isAuthorized = !isError && !!user;
 
   const children = isFetching ? (
     <Loader size="small" />

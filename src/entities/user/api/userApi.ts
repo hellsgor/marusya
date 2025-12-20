@@ -16,7 +16,17 @@ const userApi = api.injectEndpoints({
         return result.data;
       },
     }),
+    logout: builder.mutation<void, void>({
+      query: () => ({ url: '/auth/logout', method: 'GET' }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+        } finally {
+          dispatch(api.util.resetApiState());
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useGetUserQuery, useLogoutMutation } = userApi;

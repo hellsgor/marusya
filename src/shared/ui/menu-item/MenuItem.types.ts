@@ -7,6 +7,7 @@ import type {
 type CommonProps = {
   children: ReactNode;
   className?: string;
+  disabled?: boolean;
 };
 
 export type MenuItemProps = (

@@ -9,9 +9,15 @@ export function MenuItem({
   onClick,
   children,
   className,
+  disabled = false,
 }: MenuItemProps) {
   const getClassName = (isActive: boolean) =>
-    clsx(s.menuItem, isActive && s.menuItem_active, className);
+    clsx(
+      s.menuItem,
+      isActive && s.menuItem_active,
+      disabled && s.menuItem_disabled,
+      className,
+    );
 
   if (href)
     return (

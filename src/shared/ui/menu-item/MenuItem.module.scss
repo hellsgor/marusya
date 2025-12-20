@@ -65,6 +65,11 @@
     }
   }
 
+  &_disabled {
+    pointer-events: none;
+    cursor: progress;
+  }
+
   @include m.tablet-vertical {
     padding: 0;
 

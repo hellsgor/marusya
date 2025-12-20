@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 import { lazy } from 'react';
 import { Layout } from '../layout';
+import { PrivateRoute } from './PrivateRoute';
 
 const MainPage = lazy(() =>
   import('@/pages/main').then((m) => ({ default: m.MainPage })),
@@ -38,7 +39,14 @@ export const router = createBrowserRouter([
         path: '/movies/:movieSlug',
         Component: MoviePage,
       },
-      { path: '/profile', Component: ProfilePage },
+      {
+        path: '/profile',
+        element: (
+          <PrivateRoute>
+            <ProfilePage />
+          </PrivateRoute>
+        ),
+      },
       { path: '*', Component: NoMatchPage },
     ],
   },

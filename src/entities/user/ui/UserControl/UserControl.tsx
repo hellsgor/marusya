@@ -1,0 +1,40 @@
+import { Icon, Loader, MenuItem } from '@/shared/ui';
+import { useGetUserQuery } from '../../api/userApi';
+import { useAppDispatch, useMediaQuery } from '@/shared/lib';
+import { openModal } from '@/features/modal';
+
+export function UserControl() {
+  const dispatch = useAppDispatch();
+  const isIconViewed = useMediaQuery('lg');
+
+  const { data: user, isFetching } = useGetUserQuery();
+  const isAuthorized = !!user;
+
+  const children = isFetching ? (
+    <Loader size="small" />
+  ) : isIconViewed ? (
+    <Icon.User />
+  ) : isAuthorized ? (
+    user.name
+  ) : (
+    'Войти'
+  );
+
+  if (isAuthorized) {
+    return (
+      <MenuItem href="/profile" disabled={isFetching}>
+        {children}
+      </MenuItem>
+    );
+  }
+
+  return (
+    <MenuItem
+      disabled={isFetching}
+      children={children}
+      onClick={() => {
+        dispatch(openModal('signIn'));
+      }}
+    />
+  );
+}

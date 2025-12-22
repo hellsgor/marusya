@@ -1,0 +1,25 @@
+@use '@/shared/scss/hover' as h;
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+
+.tab {
+  position: relative;
+
+  overflow-x: hidden;
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+
+  padding-block: 8px;
+
+  font-size: 24px;
+  @include t.transition(color, $duration: t.$duration-100);
+
+  @include h.hover {
+    color: c.getColor(accent, active);
+  }
+
+  &:disabled {
+    pointer-events: none;
+  }
+}

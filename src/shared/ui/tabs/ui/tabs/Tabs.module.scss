@@ -1,0 +1,30 @@
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+
+.tabs {
+  position: relative;
+
+  &__wrapper {
+    display: flex;
+    column-gap: 64px;
+
+    @include m.mobile {
+      column-gap: 24px;
+    }
+  }
+
+  &__line {
+    pointer-events: none;
+
+    position: absolute;
+    bottom: 0;
+
+    min-width: 24px;
+    height: 2px;
+
+    background-color: c.getColor(accent, secondary);
+
+    @include t.transition((left, opacity));
+  }
+}

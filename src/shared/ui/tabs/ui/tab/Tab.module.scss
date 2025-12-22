@@ -1,6 +1,7 @@
 @use '@/shared/scss/hover' as h;
 @use '@/shared/scss/colors' as c;
 @use '@/shared/scss/transition' as t;
+@use '@/shared/scss/media' as m;
 
 .tab {
   position: relative;
@@ -21,5 +22,19 @@
 
   &:disabled {
     pointer-events: none;
+  }
+
+  &__icon {
+    flex: 0 0 24px;
+
+    @include m.bp(xs) {
+      flex-basis: clamp(1.25rem, -0.205rem + 7.273vw, 1.5rem);
+    }
+  }
+
+  &__text {
+    @include m.bp(xs) {
+      font-size: clamp(1.25rem, -0.205rem + 7.273vw, 1.5rem);
+    }
   }
 }

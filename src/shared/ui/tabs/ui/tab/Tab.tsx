@@ -26,8 +26,8 @@ export function Tab({ text, icon, className, disabled }: TabProps) {
       className={clsx(s.tab, className)}
       disabled={disabled}
     >
-      {IconComponent && <IconComponent className={s.tabs__itemIcon} />}
-      {currentText && <span className={s.tsbs__itemText}>{currentText}</span>}
+      {IconComponent && <IconComponent className={s.tab__icon} />}
+      {currentText && <span className={s.tab__text}>{currentText}</span>}
       {!IconComponent && !currentText && 'Some tab'}
     </button>
   );

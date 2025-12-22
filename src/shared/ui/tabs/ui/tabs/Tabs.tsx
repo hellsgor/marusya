@@ -77,6 +77,7 @@ export const Tabs = memo(function Tabs({
               onTabClick(idx);
             }}
             key={idx}
+            className={s.tabs__item}
           >
             <Tab
               {...item}

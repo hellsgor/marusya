@@ -1,1 +1,1 @@
-export { UserControl } from './UserControl';
+export { UserControl } from './user-control';

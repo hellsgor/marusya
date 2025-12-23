@@ -1,0 +1,23 @@
+@use '@/shared/scss/media' as m;
+
+.userSettings {
+  display: flex;
+  flex-direction: column;
+  row-gap: 64px;
+
+  @include m.mobile {
+    row-gap: 40px;
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+
+  &__logout {
+    @include m.mobile {
+      width: 100%;
+    }
+  }
+}

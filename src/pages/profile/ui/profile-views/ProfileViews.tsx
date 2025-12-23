@@ -1,4 +1,5 @@
 import { Tabs, type TabType } from '@/shared/ui';
+import { UserSettings } from '@/widgets/user-settings';
 import { useState, type ReactNode } from 'react';
 
 export function ProfileViews() {
@@ -13,7 +14,7 @@ export function ProfileViews() {
     {
       text: { desktop: 'Настройка аккаунта', mobile: 'Настройки' },
       icon: 'User',
-      node: (() => <p>Данные пользователя</p>)(),
+      node: <UserSettings />,
     },
   ];
 

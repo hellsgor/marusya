@@ -13,7 +13,7 @@ export const signInApi = api.injectEndpoints({
         method: 'POST',
         body,
       }),
-      invalidatesTags: [{ type: 'user' }],
+      invalidatesTags: ['user'],
       transformResponse: (response: unknown): SignInResultType => {
         const result = SignInResultSchema.safeParse(response);
 

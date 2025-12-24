@@ -49,6 +49,9 @@ $colors: (
     active: #b4a9ff,
     error: #ff7575,
   ),
+  auxiliary: (
+    color1: rgba(255, 255, 255, 0.25),
+  ),
 );
 
 @function getColor($group, $name, $state: 'static', $subState: null) {

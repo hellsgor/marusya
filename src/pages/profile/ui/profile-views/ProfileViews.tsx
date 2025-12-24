@@ -1,4 +1,5 @@
 import { Tabs, type TabType } from '@/shared/ui';
+import { Favorites } from '@/widgets/favorites';
 import { UserSettings } from '@/widgets/user-settings';
 import { useState, type ReactNode } from 'react';
 
@@ -9,7 +10,7 @@ export function ProfileViews() {
     {
       text: { desktop: 'Избранные фильмы', mobile: 'Избранное' },
       icon: 'HeartEmpty',
-      node: (() => <p>Избранное</p>)(),
+      node: <Favorites />,
     },
     {
       text: { desktop: 'Настройка аккаунта', mobile: 'Настройки' },

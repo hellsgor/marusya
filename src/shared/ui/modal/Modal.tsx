@@ -80,7 +80,7 @@ export function Modal({
       <div className={s.modal__backdrop} />
       <div className={s.modal__inner}>
         <div className={s.modal__body} ref={modalBodyRef}>
-          <ButtonClosed className={s.modal__closeButton} />
+          <ButtonClosed className={s.modal__closeButton} ref={closeButtonRef} />
           <div className={s.modal__bodyInner}>
             {type !== 'trailer' && <Logo />}
             {children}

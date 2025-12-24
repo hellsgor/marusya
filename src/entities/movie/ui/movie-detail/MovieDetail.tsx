@@ -16,10 +16,9 @@ export const MovieDetail = memo(function MovieDetail({
   movie,
   randomRefetch,
   onTrailerButtonClick,
+  isFavoriteMovie,
 }: MovieDetailProps) {
   if (!movie) return null;
-
-  const isFavoriteMovie = false;
 
   return (
     <div className={s.movieDetail}>

@@ -4,6 +4,7 @@ import {
   type MovieDetailPropsRandom,
   type MovieModel,
 } from '@/entities/movie';
+import { useGetFavoritesQuery } from '@/features/favorites';
 import { closeModal, openModal } from '@/features/modal';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { useCallback } from 'react';
@@ -22,6 +23,9 @@ export function MovieDetailContainer({
     (state) => state.modal.modals.trailer,
   );
 
+  const { data: favorite } = useGetFavoritesQuery();
+  const isFavoriteMovie = favorite?.some((m) => m.id === movie.id);
+
   const handleTrailerButtonClick = useCallback(() => {
     dispatch(openModal('trailer'));
   }, [dispatch]);
@@ -32,6 +36,7 @@ export function MovieDetailContainer({
         movie={movie}
         onTrailerButtonClick={handleTrailerButtonClick}
         randomRefetch={randomRefetch}
+        isFavoriteMovie={isFavoriteMovie}
       />
       {isTrailerModalOpen && (
         <TrailerModal

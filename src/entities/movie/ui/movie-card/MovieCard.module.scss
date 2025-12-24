@@ -1,4 +1,6 @@
 @use '@/shared/scss/colors' as c;
+@use '@/shared/scss/hover' as h;
+@use '@/shared/scss/transition' as t;
 
 .movieCard {
   position: relative;
@@ -20,5 +22,25 @@
     color: c.getColor(content, brand);
 
     background-color: c.getColor(bg, 'white');
+  }
+
+  &__deleteButton {
+    pointer-events: none;
+
+    position: absolute;
+    z-index: 5;
+    top: -20px;
+    right: -20px;
+
+    opacity: 0;
+
+    @include t.transition(opacity);
+  }
+
+  @include h.hover {
+    .movieCard__deleteButton {
+      pointer-events: all;
+      opacity: 1;
+    }
   }
 }

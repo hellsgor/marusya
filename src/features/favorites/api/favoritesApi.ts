@@ -29,10 +29,10 @@ const favoritesApi = api.injectEndpoints({
       AddToFavoritesDTOType,
       AddToFavoritesDataType
     >({
-      query: (body) => ({
+      query: ({ id }) => ({
         url: '/favorites',
         method: 'POST',
-        body,
+        body: { id: String(id) },
       }),
       invalidatesTags: [{ type: 'user', id: 'favorites' }],
       transformResponse: (response: unknown) => {
@@ -53,7 +53,6 @@ const favoritesApi = api.injectEndpoints({
       query: ({ id }) => ({
         url: `/favorites/${id}`,
         method: 'DELETE',
-        body: { id },
       }),
       invalidatesTags: [{ type: 'user', id: 'favorites' }],
       transformResponse: (response: unknown) => {

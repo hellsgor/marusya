@@ -10,7 +10,7 @@ import { ROUTES } from '@/shared/routes';
 
 import { Poster } from '@/shared/ui/poster';
 import { Card } from '@/shared/ui/card';
-import { ButtonClosed } from '@/shared/ui';
+import { ButtonClosed, Loader } from '@/shared/ui';
 
 type BaseMovieCardProps = Pick<MovieModel, 'id' | 'posterUrl' | 'title'> & {
   className?: string;
@@ -55,6 +55,12 @@ export const MovieCard = memo(function MovieCard({
         <Link to={ROUTES.movie(id, title)}>
           <Poster src={posterUrl ?? undefined} alt={`${title} movie poster`} />
         </Link>
+        {isDeleting && (
+          <>
+            <div className={s.movieCard__filter}></div>
+            <Loader className={s.movieCard__loader} />
+          </>
+        )}
       </Card>
     </div>
   );

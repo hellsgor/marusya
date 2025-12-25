@@ -37,6 +37,20 @@
     @include t.transition(opacity);
   }
 
+  &__filter {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background-color: c.getColor(bg, backdrop, default);
+  }
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+
   @include h.hover {
     .movieCard__deleteButton {
       pointer-events: all;

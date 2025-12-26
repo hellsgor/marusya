@@ -6,10 +6,11 @@ import type { MovieDetailProps } from './MovieDetail.types';
 import { memo } from 'react';
 
 import { Poster } from '@/shared/ui/poster';
-import { Button, ErrorText, Icon, Loader, Spoiler } from '@/shared/ui';
+import { Button, ErrorText, Icon, Loader } from '@/shared/ui';
 import { ROUTES } from '@/shared/routes';
 import { useFavoritesControl } from '@/features/favorites';
 import { MetaItemsRow } from '../meta-items-row';
+import { MovieDescription } from '../movie-description';
 
 export const MovieDetail = memo(function MovieDetail({
   movie,
@@ -35,9 +36,7 @@ export const MovieDetail = memo(function MovieDetail({
         <div className={s.movieDetail__content}>
           <MetaItemsRow {...movie} />
           <h1>{movie.title}</h1>
-          <Spoiler max={4}>
-            <p className={s.movieDetail__description}>{movie.plot}</p>
-          </Spoiler>
+          <MovieDescription text={movie.plot} />
         </div>
         <div className={s.movieDetail__actions}>
           {(movie.trailerUrl || movie.trailerYouTubeId) && (

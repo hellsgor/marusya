@@ -1,0 +1,19 @@
+import s from './MovieDescription.module.scss';
+
+import type { MovieModel } from '../../model/types';
+
+import { Spoiler } from '@/shared/ui';
+import clsx from 'clsx';
+
+type MovieDescriptionProps = {
+  text: MovieModel['plot'];
+  className?: string;
+};
+
+export function MovieDescription({ text, className }: MovieDescriptionProps) {
+  return (
+    <Spoiler max={4} className={clsx(s.movieDescription, className)}>
+      <p>{text}</p>
+    </Spoiler>
+  );
+}

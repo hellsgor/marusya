@@ -17,12 +17,14 @@ type SpoilerProps = {
   children: ReactNode | string;
   max?: MaxHeight | MaxRows;
   buttonTexts?: [string, string];
+  className?: string;
 };
 
 export function Spoiler({
   children,
   max = 3,
   buttonTexts = ['Свернуть', 'Показать'],
+  className,
 }: SpoilerProps) {
   const [isCollapsed, setIsCollapsed] = useState<boolean | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -108,7 +110,7 @@ export function Spoiler({
   };
 
   return (
-    <div className={s.spoiler}>
+    <div className={clsx(s.spoiler, className)}>
       <div
         ref={wrapperRef}
         className={clsx(

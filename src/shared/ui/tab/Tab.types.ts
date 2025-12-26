@@ -1,4 +1,4 @@
-import type { Icon } from '../../icon';
+import type { Icon } from '../icon';
 
 export type TabType = {
   text?:

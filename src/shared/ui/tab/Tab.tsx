@@ -1,7 +1,7 @@
 import s from './Tab.module.scss';
 import clsx from 'clsx';
 
-import type { TabType } from '../../model/types';
+import type { TabType } from './Tab.types';
 
 import { useMediaQuery } from '@/shared/lib';
 

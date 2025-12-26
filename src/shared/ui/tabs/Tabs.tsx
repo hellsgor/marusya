@@ -1,13 +1,13 @@
 import s from './Tabs.module.scss';
 import clsx from 'clsx';
 
-import type { TabType } from '../../model/types';
+import type { TabType } from '../tab';
 
 import { memo, useEffect, useRef, useState } from 'react';
 
 import { debounce } from '@/shared/lib';
 
-import { Tab } from '../tab/Tab';
+import { Tab } from '../tab';
 
 type TabsProps = {
   items: TabType[];

@@ -1,2 +1,2 @@
-export { Tabs } from './ui/tabs/Tabs';
-export type { TabType } from './model/types';
+export { Tabs } from './Tabs';
+export type { TabType } from '../tab/Tab.types';

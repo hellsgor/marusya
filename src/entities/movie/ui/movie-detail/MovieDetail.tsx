@@ -14,7 +14,7 @@ import { MovieDescription } from '../movie-description';
 
 export const MovieDetail = memo(function MovieDetail({
   movie,
-  randomRefetch,
+  onRandomRefetchButtonClick,
   onTrailerButtonClick,
 }: MovieDetailProps) {
   const {
@@ -47,7 +47,7 @@ export const MovieDetail = memo(function MovieDetail({
               Трейлер
             </Button>
           )}
-          {randomRefetch && (
+          {onRandomRefetchButtonClick && (
             <Button
               to={ROUTES.movie(movie.id, movie.title)}
               variant="secondary"
@@ -68,11 +68,11 @@ export const MovieDetail = memo(function MovieDetail({
           >
             {isFetching || isError ? <Loader size="small" /> : <Icon.Heart />}
           </Button>
-          {randomRefetch && (
+          {onRandomRefetchButtonClick && (
             <Button
               variant="secondary"
               smallPaddings
-              onClick={randomRefetch}
+              onClick={onRandomRefetchButtonClick}
               className={s.movieDetail__randomButton}
             >
               <Icon.Refresh />

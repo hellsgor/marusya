@@ -30,8 +30,8 @@ export function MovieDetailContainer({
     <>
       <MovieDetail
         movie={movie}
+        onRandomRefetchButtonClick={randomRefetch}
         onTrailerButtonClick={handleTrailerButtonClick}
-        randomRefetch={randomRefetch}
       />
       {isTrailerModalOpen && (
         <TrailerModal

@@ -9,7 +9,14 @@ import { Poster } from '@/shared/ui/poster';
 import { Rating } from '../rating';
 import { formatRuntime } from '../../lib/helpers/formatRuntime';
 import { getRuGenreName } from '@/entities/genre/@x/movie';
-import { Button, ErrorText, Icon, Loader, Spoiler } from '@/shared/ui';
+import {
+  Button,
+  ErrorText,
+  Icon,
+  Loader,
+  MetaItem,
+  Spoiler,
+} from '@/shared/ui';
 import { ROUTES } from '@/shared/routes';
 import { useFavoritesControl } from '@/features/favorites';
 
@@ -41,11 +48,11 @@ export const MovieDetail = memo(function MovieDetail({
               movie.releaseYear,
               ...movie.genres.map((genre) => getRuGenreName(genre)),
               formatRuntime(movie.runtime),
-            ].map((item, idx) => (
-              <span className={s.movieDetail__metaItem} key={idx}>
-                {item}
-              </span>
-            ))}
+            ]
+              .filter((item) => item && item !== null)
+              .map((item, idx) => (
+                <MetaItem text={`${item}`} key={idx} />
+              ))}
           </div>
           <h1>{movie.title}</h1>
           <Spoiler max={4}>

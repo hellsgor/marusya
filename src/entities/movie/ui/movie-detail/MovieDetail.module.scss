@@ -76,16 +76,6 @@
     align-items: center;
   }
 
-  &__metaItem {
-    font-size: 18px;
-    color: c.getColor(content, secondary);
-
-    @include m.mobile {
-      font-size: 14px;
-      line-height: 1.4287;
-    }
-  }
-
   &__trailerButton {
     @include m.tablet-vertical {
       width: 100%;

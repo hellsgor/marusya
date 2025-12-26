@@ -1,7 +1,6 @@
 @use '@/shared/scss/colors' as c;
 @use '@/shared/scss/media' as m;
 @use '@/shared/scss/transition' as t;
-@use '@/shared/scss/hover' as h;
 
 .modal {
   pointer-events: none;
@@ -71,34 +70,6 @@
     z-index: 5;
     top: 0;
     left: calc(100% + 24px);
-
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    aspect-ratio: 1/1;
-    width: 48px;
-    border-radius: 50%;
-
-    color: c.getColor(content, 'black');
-
-    background-color: c.getColor(bg, 'white');
-
-    @include t.transition(color, $duration: t.$duration-100);
-
-    svg {
-      aspect-ratio: 1/1;
-      width: 24px;
-    }
-
-    @include h.hover {
-      color: c.getColor(accent, primary, hover);
-    }
-
-    &:active {
-      color: c.getColor(accent, primary, disabled);
-    }
 
     @include m.mobile {
       top: 8px;

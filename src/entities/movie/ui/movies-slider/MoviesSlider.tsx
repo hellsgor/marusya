@@ -2,6 +2,7 @@ import s from './MoviesSlider.module.scss';
 import clsx from 'clsx';
 
 import type { MoviesModel } from '../../model/types';
+import type { ComponentProps, ComponentType } from 'react';
 
 import 'swiper/swiper-bundle.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,10 +13,16 @@ import { MovieCard } from '../movie-card';
 type MoviesSliderProps = {
   items: MoviesModel;
   className?: string;
-  isTop10?: boolean;
+  withRatingPlace?: boolean;
+  CardComponent?: ComponentType<ComponentProps<typeof MovieCard>>;
 };
 
-export function MoviesSlider({ items, className, isTop10 }: MoviesSliderProps) {
+export function MoviesSlider({
+  items,
+  className,
+  withRatingPlace = false,
+  CardComponent = MovieCard,
+}: MoviesSliderProps) {
   return (
     <Swiper
       className={clsx(s.moviesSlider, className)}
@@ -29,9 +36,11 @@ export function MoviesSlider({ items, className, isTop10 }: MoviesSliderProps) {
     >
       {items.map(({ id, posterUrl, title }, idx) => (
         <SwiperSlide key={id} className={s.moviesSlider__slide} tag="li">
-          <MovieCard
-            {...{ id, posterUrl, title }}
-            ratingPlace={isTop10 ? idx + 1 : undefined}
+          <CardComponent
+            id={id}
+            posterUrl={posterUrl}
+            title={title}
+            ratingPlace={withRatingPlace ? idx + 1 : undefined}
           />
         </SwiperSlide>
       ))}

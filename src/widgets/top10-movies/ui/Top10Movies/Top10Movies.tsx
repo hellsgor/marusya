@@ -21,9 +21,9 @@ export function Top10Movies() {
         !isError &&
         movies &&
         (!mq ? (
-          <MovieList items={movies} isTop10 />
+          <MovieList items={movies} withRatingPlace />
         ) : (
-          <MovieSlider items={movies} isTop10 />
+          <MovieSlider items={movies} withRatingPlace />
         ))}
     </Section>
   );

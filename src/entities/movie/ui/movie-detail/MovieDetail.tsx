@@ -9,17 +9,27 @@ import { Poster } from '@/shared/ui/poster';
 import { Rating } from '../rating';
 import { formatRuntime } from '../../lib/helpers/formatRuntime';
 import { getRuGenreName } from '@/entities/genre/@x/movie';
-import { Button, Icon, Spoiler } from '@/shared/ui';
+import { Button, ErrorText, Icon, Loader, Spoiler } from '@/shared/ui';
 import { ROUTES } from '@/shared/routes';
+import { useFavoritesControl } from '@/features/favorites';
 
 export const MovieDetail = memo(function MovieDetail({
   movie,
   randomRefetch,
   onTrailerButtonClick,
 }: MovieDetailProps) {
-  if (!movie) return null;
+  const {
+    isFavorite,
+    addToFavorites,
+    deleteFromFavorites,
+    isError,
+    isFetching,
+  } = useFavoritesControl({ id: movie.id });
 
-  const isFavoriteMovie = false;
+  if (!movie) return <ErrorText errorCode="e001" />;
+
+  const handleFavoriteButtonClick = () =>
+    isFavorite ? deleteFromFavorites(movie.id) : addToFavorites(movie.id);
 
   return (
     <div className={s.movieDetail}>
@@ -63,12 +73,14 @@ export const MovieDetail = memo(function MovieDetail({
           <Button
             className={clsx(
               s.movieDetail__favoriteButton,
-              isFavoriteMovie && s.movieDetail__favoriteButton_added,
+              isFavorite && s.movieDetail__favoriteButton_added,
             )}
             variant="secondary"
             smallPaddings
+            disabled={isFetching}
+            onClick={handleFavoriteButtonClick}
           >
-            <Icon.Heart />
+            {isFetching || isError ? <Loader size="small" /> : <Icon.Heart />}
           </Button>
           {randomRefetch && (
             <Button

@@ -6,8 +6,8 @@ import type { ModalProps } from './Modal.types';
 import { createPortal } from 'react-dom';
 import { useEffect, useRef, type MouseEvent } from 'react';
 
-import { Icon } from '../icon';
 import { Logo } from '../logo';
+import { ButtonClosed } from '../button-closed';
 
 export function Modal({
   children,
@@ -80,13 +80,7 @@ export function Modal({
       <div className={s.modal__backdrop} />
       <div className={s.modal__inner}>
         <div className={s.modal__body} ref={modalBodyRef}>
-          <button
-            className={s.modal__closeButton}
-            type="button"
-            ref={closeButtonRef}
-          >
-            <Icon.Cross />
-          </button>
+          <ButtonClosed className={s.modal__closeButton} ref={closeButtonRef} />
           <div className={s.modal__bodyInner}>
             {type !== 'trailer' && <Logo />}
             {children}

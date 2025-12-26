@@ -4,9 +4,10 @@ import s from './Loader.module.scss';
 type LoaderProps = {
   size?: 'big' | 'small';
   fixed?: boolean;
+  className?: string;
 };
 
-export function Loader({ size, fixed = false }: LoaderProps) {
+export function Loader({ size, fixed = false, className }: LoaderProps) {
   return (
     <div
       className={clsx(
@@ -16,6 +17,7 @@ export function Loader({ size, fixed = false }: LoaderProps) {
           [s.loader_big]: size === 'big',
         },
         fixed && s.loader_fixed,
+        className,
       )}
     ></div>
   );

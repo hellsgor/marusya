@@ -1,0 +1,14 @@
+.favorites {
+  &_empty {
+    display: flex;
+    flex-direction: column;
+    row-gap: 28px;
+    align-items: center;
+
+    padding-top: 40px;
+
+    p {
+      text-align: center;
+    }
+  }
+}

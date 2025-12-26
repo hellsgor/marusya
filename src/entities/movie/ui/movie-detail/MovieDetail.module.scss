@@ -69,13 +69,6 @@
     }
   }
 
-  &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 16px;
-    align-items: center;
-  }
-
   &__trailerButton {
     @include m.tablet-vertical {
       width: 100%;

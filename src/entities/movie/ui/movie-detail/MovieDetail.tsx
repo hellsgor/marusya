@@ -6,19 +6,10 @@ import type { MovieDetailProps } from './MovieDetail.types';
 import { memo } from 'react';
 
 import { Poster } from '@/shared/ui/poster';
-import { Rating } from '../rating';
-import { formatRuntime } from '../../lib/helpers/formatRuntime';
-import { getRuGenreName } from '@/entities/genre/@x/movie';
-import {
-  Button,
-  ErrorText,
-  Icon,
-  Loader,
-  MetaItem,
-  Spoiler,
-} from '@/shared/ui';
+import { Button, ErrorText, Icon, Loader, Spoiler } from '@/shared/ui';
 import { ROUTES } from '@/shared/routes';
 import { useFavoritesControl } from '@/features/favorites';
+import { MetaItemsRow } from '../meta-items-row';
 
 export const MovieDetail = memo(function MovieDetail({
   movie,
@@ -42,18 +33,7 @@ export const MovieDetail = memo(function MovieDetail({
     <div className={s.movieDetail}>
       <div className={s.movieDetail__wrapper}>
         <div className={s.movieDetail__content}>
-          <div className={s.movieDetail__meta}>
-            <Rating rate={movie.tmdbRating ?? 0} />
-            {[
-              movie.releaseYear,
-              ...movie.genres.map((genre) => getRuGenreName(genre)),
-              formatRuntime(movie.runtime),
-            ]
-              .filter((item) => item && item !== null)
-              .map((item, idx) => (
-                <MetaItem text={`${item}`} key={idx} />
-              ))}
-          </div>
+          <MetaItemsRow {...movie} />
           <h1>{movie.title}</h1>
           <Spoiler max={4}>
             <p className={s.movieDetail__description}>{movie.plot}</p>

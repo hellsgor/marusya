@@ -12,7 +12,7 @@ export {
   MovieCard,
   MovieDetail,
   MovieInfo,
-  MovieList,
+  MoviesList as MovieList,
   MovieSlider,
   TrailerModal,
 } from './ui';

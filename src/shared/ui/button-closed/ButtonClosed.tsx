@@ -1,9 +1,11 @@
 import s from './ButtonClosed.module.scss';
 import clsx from 'clsx';
 
-import { forwardRef, type ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
-import { Icon } from '../icon';
+import { forwardRef } from 'react';
+
+import { Icon } from '@/shared/ui/icon';
 
 type ButtonClosedProps = {
   className?: string;

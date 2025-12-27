@@ -1,9 +1,8 @@
-import { Loader, Section, PageError } from '@/shared/ui';
-import { useMovieSlug } from '../../lib/hooks/useMovieSlug';
-import { movieApi, useGetByIdQuery } from '@/entities/movie';
-import { MovieInfo } from '@/entities/movie';
+import { movieApi, MovieInfo, useGetByIdQuery } from '@/entities/movie';
 import { useAppSelector, useMediaQuery } from '@/shared/lib';
-import { MovieDetailContainer } from '@/widgets/movie-detail-container';
+import { Loader, PageError, Section } from '@/shared/ui';
+import { useMovieSlug } from '../../lib/hooks/useMovieSlug';
+import { MovieDetail } from '@/widgets/movie-detail';
 
 export function MoviePage() {
   const mq = useMediaQuery('md');
@@ -36,7 +35,7 @@ export function MoviePage() {
 
       {!finalIsFetching && !finalIsError && finalMovie && (
         <>
-          <MovieDetailContainer movie={finalMovie} />
+          <MovieDetail movie={finalMovie} />
           <MovieInfo movie={finalMovie} />
         </>
       )}

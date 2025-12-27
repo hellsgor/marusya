@@ -2,12 +2,13 @@ import s from './Modal.module.scss';
 import clsx from 'clsx';
 
 import type { ModalProps } from './Modal.types';
+import type { MouseEvent } from 'react';
 
 import { createPortal } from 'react-dom';
-import { useEffect, useRef, type MouseEvent } from 'react';
+import { useEffect, useRef } from 'react';
 
-import { Logo } from '../logo';
-import { ButtonClosed } from '../button-closed';
+import { ButtonClosed } from '@/shared/ui/button-closed';
+import { Logo } from '@/shared/ui/logo';
 
 export function Modal({
   children,

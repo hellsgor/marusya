@@ -1,14 +1,11 @@
 import s from './Spoiler.module.scss';
-
-import { Button } from '../button';
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from 'react';
 import clsx from 'clsx';
+
+import type { ReactNode } from 'react';
+
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+import { Button } from '@/shared/ui/button';
 
 type MaxHeight = string;
 type MaxRows = number;
@@ -17,12 +14,14 @@ type SpoilerProps = {
   children: ReactNode | string;
   max?: MaxHeight | MaxRows;
   buttonTexts?: [string, string];
+  className?: string;
 };
 
 export function Spoiler({
   children,
   max = 3,
   buttonTexts = ['Свернуть', 'Показать'],
+  className,
 }: SpoilerProps) {
   const [isCollapsed, setIsCollapsed] = useState<boolean | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -108,7 +107,7 @@ export function Spoiler({
   };
 
   return (
-    <div className={s.spoiler}>
+    <div className={clsx(s.spoiler, className)}>
       <div
         ref={wrapperRef}
         className={clsx(

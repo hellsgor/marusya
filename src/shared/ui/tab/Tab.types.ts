@@ -1,4 +1,4 @@
-import type { Icon } from '../icon';
+import type { Icon } from '@/shared/ui/icon';
 
 export type TabType = {
   text?:

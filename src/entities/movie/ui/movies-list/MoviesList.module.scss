@@ -1,6 +1,6 @@
 @use '@/shared/scss/media' as m;
 
-.movieList {
+.moviesList {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 64px 40px;

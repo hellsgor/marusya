@@ -1,12 +1,14 @@
-import { InputPassword, InputsWrapper, InputText, RHFInput } from '@/shared/ui';
 import type { SignUpFormDataType } from '../../model/SignUpFormData';
+
+import { useFormContext } from 'react-hook-form';
+
 import {
   ERRORS,
   MIN_INPUT_LENGTH,
   MIN_PASSWORD_LENGTH,
   REGEXP,
 } from '@/shared/config';
-import { useFormContext } from 'react-hook-form';
+import { InputPassword, InputsWrapper, InputText, RHFInput } from '@/shared/ui';
 
 export function SignUpFormFields() {
   const { watch } = useFormContext<SignUpFormDataType>();

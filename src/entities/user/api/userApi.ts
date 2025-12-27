@@ -1,5 +1,7 @@
+import type { User } from '../model/user';
+
 import { api } from '@/shared/api';
-import { UserDTOSchema, type User } from '../model/user';
+import { UserDTOSchema } from '../model/user';
 
 const userApi = api.injectEndpoints({
   endpoints: (builder) => ({

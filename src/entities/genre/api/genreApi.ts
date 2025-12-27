@@ -1,9 +1,10 @@
+import type { Genre, Genres } from '../model/types';
+import type { MovieModel } from '@/entities/movie/@x/genre';
+
 import { api } from '@/shared/api';
 import { GenresDTOSchema } from '../model/types';
-import type { Genre, Genres } from '../model/types';
-import { getRuGenreName } from '../lib/getRuGenreName';
-import type { MovieModel } from '@/entities/movie/@x/genre';
 import { getMovieBackdropUrl } from '../lib/getMovieBackdropUrl';
+import { getRuGenreName } from '../lib/getRuGenreName';
 
 const genreApi = api.injectEndpoints({
   endpoints: (builder) => ({

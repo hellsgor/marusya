@@ -7,10 +7,7 @@ import { Link } from 'react-router';
 import { memo } from 'react';
 
 import { ROUTES } from '@/shared/routes';
-
-import { Poster } from '@/shared/ui/poster';
-import { Card } from '@/shared/ui/card';
-import { ButtonClosed, Loader } from '@/shared/ui';
+import { ButtonClosed, Card, Loader, Poster } from '@/shared/ui';
 
 type BaseMovieCardProps = Pick<MovieModel, 'id' | 'posterUrl' | 'title'> & {
   className?: string;

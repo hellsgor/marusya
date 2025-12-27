@@ -1,5 +1,8 @@
 import s from './PageError.module.scss';
-import { ErrorText, type ErrorKey } from '../error-text';
+
+import type { ErrorKey } from '@/shared/ui/error-text';
+
+import { ErrorText } from '@/shared/ui/error-text';
 
 type PageErrorProps = {
   errorCode: ErrorKey;

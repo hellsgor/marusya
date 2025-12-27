@@ -1,3 +1,7 @@
+import type { SignInFormDataType } from '../../model/SignInFormData';
+
+import { ERRORS, REGEXP } from '@/shared/config';
+import { useFormMutation } from '@/shared/lib';
 import {
   Button,
   Form,
@@ -8,10 +12,6 @@ import {
   Loader,
   RHFInput,
 } from '@/shared/ui';
-import { ERRORS, REGEXP } from '@/shared/config';
-import { useFormMutation } from '@/shared/lib';
-
-import type { SignInFormDataType } from '../../model/SignInFormData';
 import { useSignInMutation } from '../../api/signInApi';
 
 type SignInFormProps = {

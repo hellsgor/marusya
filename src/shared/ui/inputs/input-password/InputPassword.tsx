@@ -1,7 +1,10 @@
+import type { InputProps } from '@/shared/ui/inputs/input-text';
+import type { InputHTMLAttributes } from 'react';
+
+import { useState, forwardRef } from 'react';
+
 import { Icon } from '@/shared/ui/icon';
-import { InputText } from '../input-text';
-import type { InputProps } from '../input-text';
-import { useState, forwardRef, type InputHTMLAttributes } from 'react';
+import { InputText } from '@/shared/ui/inputs/input-text';
 
 interface InputPasswordProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>,

@@ -1,7 +1,7 @@
 import s from './Logo.module.scss';
 import clsx from 'clsx';
 
-import { Icon } from '../icon';
+import { Icon } from '@/shared/ui/icon';
 
 type LogoProps = {
   light?: true;

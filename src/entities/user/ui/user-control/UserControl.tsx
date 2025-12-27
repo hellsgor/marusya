@@ -1,7 +1,7 @@
+import { openModal } from '@/features/modal';
+import { useAppDispatch, useMediaQuery } from '@/shared/lib';
 import { Icon, Loader, MenuItem } from '@/shared/ui';
 import { useGetUserQuery } from '../../api/userApi';
-import { useAppDispatch, useMediaQuery } from '@/shared/lib';
-import { openModal } from '@/features/modal';
 
 export function UserControl() {
   const dispatch = useAppDispatch();

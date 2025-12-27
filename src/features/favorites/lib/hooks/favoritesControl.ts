@@ -1,11 +1,12 @@
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import type { SerializedError } from '@reduxjs/toolkit';
 import type { MovieModel } from '@/entities/movie';
+
 import {
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
   useGetFavoritesQuery,
 } from '../../api/favoritesApi';
-import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import type { SerializedError } from '@reduxjs/toolkit';
 
 type useFavoritesControlProps = {
   id: MovieModel['id'] | undefined;

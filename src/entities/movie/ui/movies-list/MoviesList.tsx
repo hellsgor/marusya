@@ -1,4 +1,4 @@
-import s from './MovieList.module.scss';
+import s from './MoviesList.module.scss';
 import clsx from 'clsx';
 
 import type { MoviesModel } from '../../model/types';
@@ -6,23 +6,23 @@ import type { ComponentProps, ComponentType } from 'react';
 
 import { MovieCard } from '../movie-card';
 
-type MovieListProps = {
+type MoviesListProps = {
   items: MoviesModel;
   className?: string;
   withRatingPlace?: boolean;
   CardComponent?: ComponentType<ComponentProps<typeof MovieCard>>;
 };
 
-export function MovieList({
+export function MoviesList({
   items,
   className,
   withRatingPlace = false,
   CardComponent = MovieCard,
-}: MovieListProps) {
+}: MoviesListProps) {
   return (
-    <ul role="list" className={clsx(s.movieList, className)}>
+    <ul role="list" className={clsx(s.moviesList, className)}>
       {items.map(({ id, posterUrl, title }, idx) => (
-        <li key={id} className={s.movieList__item}>
+        <li key={id} className={s.moviesList__item}>
           <CardComponent
             id={id}
             posterUrl={posterUrl}

@@ -5,8 +5,8 @@ import type { InputProps } from './InputText.types';
 
 import { forwardRef } from 'react';
 
+import { FormError } from '@/shared/ui/form-error';
 import { Icon } from '@/shared/ui/icon';
-import { FormError } from '../../form-error';
 
 export const InputText = forwardRef<HTMLInputElement, InputProps>(
   ({ type = 'text', icon, error, rightSlotChild, ...rest }, ref) => {

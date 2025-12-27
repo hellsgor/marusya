@@ -1,0 +1,11 @@
+@use '@/shared/scss/media' as m;
+
+.movieContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  @include m.mobile {
+    row-gap: 12px;
+  }
+}

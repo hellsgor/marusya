@@ -1,13 +1,12 @@
 import s from './Tabs.module.scss';
 import clsx from 'clsx';
 
-import type { TabType } from '../tab';
+import type { TabType } from '@/shared/ui/tab';
 
 import { memo, useEffect, useRef, useState } from 'react';
 
 import { debounce } from '@/shared/lib';
-
-import { Tab } from '../tab';
+import { Tab } from '@/shared/ui/tab';
 
 type TabsProps = {
   items: TabType[];

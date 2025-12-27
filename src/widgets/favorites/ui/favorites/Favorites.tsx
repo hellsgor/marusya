@@ -1,11 +1,11 @@
 import s from './Favorites.module.scss';
 
-import { MovieList, MovieSlider } from '@/entities/movie';
+import { MoviesList, MoviesSlider } from '@/entities/movie';
 import { useGetFavoritesQuery } from '@/features/favorites';
 import { useMediaQuery } from '@/shared/lib';
+import { ROUTES } from '@/shared/routes';
 import { Button, ErrorText, Loader } from '@/shared/ui';
 import { FavoriteMovieCard } from '../favorite-movie-card';
-import { ROUTES } from '@/shared/routes';
 
 export function Favorites() {
   const isMobile = useMediaQuery('md');
@@ -26,8 +26,8 @@ export function Favorites() {
     );
 
   return isMobile ? (
-    <MovieSlider items={data} CardComponent={FavoriteMovieCard} />
+    <MoviesSlider items={data} CardComponent={FavoriteMovieCard} />
   ) : (
-    <MovieList items={data} CardComponent={FavoriteMovieCard} />
+    <MoviesList items={data} CardComponent={FavoriteMovieCard} />
   );
 }

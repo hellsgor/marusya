@@ -1,6 +1,7 @@
-import { createBrowserRouter } from 'react-router';
 import { lazy } from 'react';
-import { Layout } from '../layout';
+import { createBrowserRouter } from 'react-router';
+
+import { Layout } from '@/app/layout';
 import { PrivateRoute } from './PrivateRoute';
 
 const MainPage = lazy(() =>

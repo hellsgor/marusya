@@ -1,9 +1,10 @@
 import s from './Header.module.scss';
 
-import { UserControl } from '@/entities/user';
-import { Container } from '@/shared/ui';
 import { MainMenu } from '../main-menu';
 import { NavLogo } from '../nav-logo';
+import { UserControl } from '../user-control';
+
+import { Container } from '@/shared/ui';
 
 export function Header() {
   return (

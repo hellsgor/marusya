@@ -1,2 +1,2 @@
-export { UserControl, UserDataItem } from './ui';
+export { UserDataItem } from './ui';
 export { useGetUserQuery, useLogoutMutation } from './api/userApi';

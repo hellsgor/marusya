@@ -1,7 +1,8 @@
-import { Loader, PageError, Section } from '@/shared/ui';
 import s from './Top10Movies.module.scss';
-import { useMediaQuery } from '@/shared/lib';
+
 import { MoviesList, MoviesSlider, useGetTop10Query } from '@/entities/movie';
+import { useMediaQuery } from '@/shared/lib';
+import { Loader, PageError, Section } from '@/shared/ui';
 
 export function Top10Movies() {
   const mq = useMediaQuery('md');

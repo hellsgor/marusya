@@ -1,6 +1,6 @@
 import s from './MovieContent.module.scss';
 
-import type { MovieModel } from '../../../entities/movie/model/types';
+import type { MovieModel } from '@/entities/movie';
 
 import { MetaItemsRow, MovieDescription } from './components';
 

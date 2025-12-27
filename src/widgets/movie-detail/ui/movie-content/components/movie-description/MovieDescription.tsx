@@ -1,7 +1,7 @@
 import s from './MovieDescription.module.scss';
 import clsx from 'clsx';
 
-import type { MovieModel } from '../../../../../entities/movie/model/types';
+import type { MovieModel } from '@/entities/movie';
 
 import { Spoiler } from '@/shared/ui';
 

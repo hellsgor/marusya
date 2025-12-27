@@ -1,9 +1,9 @@
 import s from './MovieDescription.module.scss';
+import clsx from 'clsx';
 
 import type { MovieModel } from '../../model/types';
 
 import { Spoiler } from '@/shared/ui';
-import clsx from 'clsx';
 
 type MovieDescriptionProps = {
   text: MovieModel['plot'];

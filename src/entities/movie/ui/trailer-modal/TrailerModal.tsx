@@ -1,8 +1,10 @@
-import { Modal } from '@/shared/ui';
 import type { MovieModel } from '../../model/types';
-import ReactPlayer from 'react-player';
+
 import { useRef, useState } from 'react';
+import ReactPlayer from 'react-player';
+
 import { useAppSelector } from '@/shared/lib';
+import { Modal } from '@/shared/ui';
 
 type TrailerModalProps = {
   onClose: () => void;

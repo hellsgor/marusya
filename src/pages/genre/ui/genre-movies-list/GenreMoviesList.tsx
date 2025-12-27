@@ -1,14 +1,14 @@
 import s from './GenreMoviesList.module.scss';
 
-import { useRef, useState } from 'react';
-import { useParams } from 'react-router';
 import { skipToken } from '@reduxjs/toolkit/query/react';
 
-import { sortMoviesByRating, useInfiniteLoading } from '../../lib';
-import { MOVIES_PER_PAGE } from '../../config/constants';
+import { useRef, useState } from 'react';
+import { useParams } from 'react-router';
 
-import { Button, Loader, PageError } from '@/shared/ui';
 import { MovieList, useGetByGenreQuery } from '@/entities/movie';
+import { Button, Loader, PageError } from '@/shared/ui';
+import { MOVIES_PER_PAGE } from '../../config/constants';
+import { sortMoviesByRating, useInfiniteLoading } from '../../lib';
 
 export function GenreMoviesList() {
   const [page, setPage] = useState(1);

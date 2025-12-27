@@ -1,8 +1,9 @@
 import s from './Section.module.scss';
+import clsx from 'clsx';
 
 import type { CSSProperties, ReactNode } from 'react';
-import { Container } from '../container';
-import clsx from 'clsx';
+
+import { Container } from '@/shared/ui/container';
 
 export type SectionProps = {
   className?: string;

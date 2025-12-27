@@ -1,12 +1,9 @@
+import type { SignUpFormDataType } from '../model/SignUpFormData';
+import type { SignUpResultType } from '../model/SignUpResult';
+
 import { api } from '@/shared/api';
-import {
-  SignUpResultSchema,
-  type SignUpResultType,
-} from '../model/SignUpResult';
-import {
-  SignUpApiRequestSchema,
-  type SignUpFormDataType,
-} from '../model/SignUpFormData';
+import { SignUpApiRequestSchema } from '../model/SignUpFormData';
+import { SignUpResultSchema } from '../model/SignUpResult';
 
 export const signUpApi = api.injectEndpoints({
   endpoints: (builder) => ({

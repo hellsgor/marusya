@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { SerializedError } from '@reduxjs/toolkit';
-import { getApiErrorText } from '../helpers/getApiErrorText';
+
+import { useEffect } from 'react';
+
+import { getApiErrorText } from '@/shared/lib/helpers/getApiErrorText';
 
 type ApiErrorOptions = {
   on400?: string;

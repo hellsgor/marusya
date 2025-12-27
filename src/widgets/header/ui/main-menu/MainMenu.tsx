@@ -1,9 +1,9 @@
 import s from './mainMenu.module.scss';
 import { clsx } from 'clsx';
 
-import { NAV_ITEMS } from '../../config';
-import { MenuItem } from '@/shared/ui';
 import { useMediaQuery } from '@/shared/lib';
+import { MenuItem } from '@/shared/ui';
+import { NAV_ITEMS } from '../../config';
 
 type MainMenuProps = {
   className?: string;

@@ -1,14 +1,11 @@
 import s from './Spoiler.module.scss';
-
-import { Button } from '../button';
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from 'react';
 import clsx from 'clsx';
+
+import type { ReactNode } from 'react';
+
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+import { Button } from '@/shared/ui/button';
 
 type MaxHeight = string;
 type MaxRows = number;

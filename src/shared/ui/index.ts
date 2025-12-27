@@ -20,3 +20,5 @@ export { FormError } from './form-error';
 export { Tabs, type TabType } from './tabs';
 export { ButtonClosed } from './button-closed';
 export { MetaItem } from './meta-item';
+export { Poster } from './poster';
+export { Card } from './card';

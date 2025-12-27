@@ -3,9 +3,9 @@ import s from './Favorites.module.scss';
 import { MovieList, MovieSlider } from '@/entities/movie';
 import { useGetFavoritesQuery } from '@/features/favorites';
 import { useMediaQuery } from '@/shared/lib';
+import { ROUTES } from '@/shared/routes';
 import { Button, ErrorText, Loader } from '@/shared/ui';
 import { FavoriteMovieCard } from '../favorite-movie-card';
-import { ROUTES } from '@/shared/routes';
 
 export function Favorites() {
   const isMobile = useMediaQuery('md');

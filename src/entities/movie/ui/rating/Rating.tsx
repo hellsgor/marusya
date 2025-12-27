@@ -1,9 +1,9 @@
 import s from './Rating.module.scss';
+import clsx from 'clsx';
 
 import type { MovieModel } from '../../model/types';
 
 import { Icon } from '@/shared/ui';
-import clsx from 'clsx';
 
 type RatingProps = {
   rate: MovieModel['tmdbRating'];

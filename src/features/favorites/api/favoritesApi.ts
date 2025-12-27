@@ -1,12 +1,16 @@
-import { MoviesSchema, type MoviesModel } from '@/entities/movie';
+import type {
+  AddToFavoritesDataType,
+  AddToFavoritesDTOType,
+  DeleteFromFavoritesDataType,
+  DeleteFromFavoritesDTOType,
+} from '../model/types';
+import type { MoviesModel } from '@/entities/movie';
+
 import { api } from '@/shared/api';
+import { MoviesSchema } from '@/entities/movie';
 import {
   addToFavoritesDTOSchema,
   deleteFromFavoritesDTOSchema,
-  type AddToFavoritesDataType,
-  type AddToFavoritesDTOType,
-  type DeleteFromFavoritesDataType,
-  type DeleteFromFavoritesDTOType,
 } from '../model/types';
 
 const favoritesApi = api.injectEndpoints({

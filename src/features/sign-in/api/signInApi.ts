@@ -1,9 +1,8 @@
-import { api } from '@/shared/api';
 import type { SignInFormDataType } from '../model/SignInFormData';
-import {
-  SignInResultSchema,
-  type SignInResultType,
-} from '../model/SignInResult';
+import type { SignInResultType } from '../model/SignInResult';
+
+import { api } from '@/shared/api';
+import { SignInResultSchema } from '../model/SignInResult';
 
 export const signInApi = api.injectEndpoints({
   endpoints: (builder) => ({

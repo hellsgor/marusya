@@ -1,9 +1,11 @@
 import s from './BackTitleBar.module.scss';
 
 import type { ReactNode } from 'react';
+
 import { useNavigate } from 'react-router';
-import { Icon } from '../icon';
-import { Button } from '../button';
+
+import { Button } from '@/shared/ui/button';
+import { Icon } from '@/shared/ui/icon';
 
 type BackTitleBarProps = {
   children: ReactNode;

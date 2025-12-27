@@ -1,13 +1,12 @@
 import s from './GenreCard.module.scss';
+
 import type { Genre } from '../../model/types';
 
-import { Poster } from '@/shared/ui/poster';
-
 import { Link } from 'react-router';
-import { ROUTES } from '@/shared/routes';
 
 import { capitalizeFirstLetter } from '@/shared/lib';
-import { Card } from '@/shared/ui/card';
+import { ROUTES } from '@/shared/routes';
+import { Card, Poster } from '@/shared/ui';
 
 type GenreCardProps = {
   genre: Genre;

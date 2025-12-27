@@ -1,4 +1,4 @@
-import { toSlug } from '../lib';
+import { toSlug } from '@/shared/lib';
 
 export const ROUTES = {
   main: '/',

@@ -1,9 +1,9 @@
 import s from './Header.module.scss';
 
+import { UserControl } from '@/entities/user';
 import { Container } from '@/shared/ui';
 import { MainMenu } from '../main-menu';
 import { NavLogo } from '../nav-logo';
-import { UserControl } from '@/entities/user';
 
 export function Header() {
   return (

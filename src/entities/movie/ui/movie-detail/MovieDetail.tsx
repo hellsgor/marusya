@@ -5,10 +5,9 @@ import type { MovieDetailProps } from './MovieDetail.types';
 
 import { memo } from 'react';
 
-import { Poster } from '@/shared/ui/poster';
-import { Button, ErrorText, Icon, Loader } from '@/shared/ui';
-import { ROUTES } from '@/shared/routes';
 import { useFavoritesControl } from '@/features/favorites';
+import { ROUTES } from '@/shared/routes';
+import { Button, ErrorText, Icon, Loader, Poster } from '@/shared/ui';
 import { MetaItemsRow } from '../meta-items-row';
 import { MovieDescription } from '../movie-description';
 

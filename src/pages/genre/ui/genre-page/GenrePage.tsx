@@ -1,9 +1,11 @@
 import s from './GenrePage.module.scss';
+
 import { useParams } from 'react-router';
-import { BackTitleBar, Section } from '@/shared/ui';
-import { capitalizeFirstLetter, useMediaQuery } from '@/shared/lib';
-import { GenreMoviesList } from '../genre-movies-list/GenreMoviesList';
+
 import { getRuGenreName } from '@/entities/genre';
+import { capitalizeFirstLetter, useMediaQuery } from '@/shared/lib';
+import { BackTitleBar, Section } from '@/shared/ui';
+import { GenreMoviesList } from '../genre-movies-list/GenreMoviesList';
 
 export function GenrePage() {
   const mq = useMediaQuery('md');

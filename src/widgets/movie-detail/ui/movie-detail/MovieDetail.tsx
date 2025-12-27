@@ -7,7 +7,9 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib';
 
 import { closeModal, openModal } from '@/features/modal';
 import { ErrorText, Poster } from '@/shared/ui';
-import { MovieContent, MovieActions, TrailerModal } from './ui';
+import { MovieContent } from '../movie-content';
+import { MovieActions } from '../movie-actions';
+import { TrailerModal } from '../trailer-modal';
 
 type MovieDetailProps = {
   movie: MovieModel;

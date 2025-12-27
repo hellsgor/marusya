@@ -6,7 +6,6 @@ import type { MovieModel } from '@/entities/movie';
 import { ROUTES } from '@/shared/routes';
 import { Button, Icon, Loader } from '@/shared/ui';
 import { useFavoritesControl } from '@/features/favorites';
-import { useGetUserQuery } from '@/entities/user';
 import { useAppDispatch } from '@/shared/lib';
 import { openModal } from '@/features/modal';
 
@@ -23,28 +22,12 @@ export function MovieActions({
 }: MovieActionsProps) {
   const dispatch = useAppDispatch();
 
-  const {
-    isFavorite,
-    addToFavorites,
-    deleteFromFavorites,
-    isFetching: isFavoritesFetching,
-  } = useFavoritesControl({ id: movie.id });
-
-  const { data: user, isFetching: isUserFetching } = useGetUserQuery(
-    undefined,
-    {
-      refetchOnMountOrArgChange: true,
-    },
-  );
-
-  const isFetching = isFavoritesFetching || isUserFetching;
+  const { isFavorite, isFetching, toggleFavoriteFunc } = useFavoritesControl({
+    id: movie.id,
+  });
 
   const handleFavoriteButtonClick = () =>
-    user
-      ? isFavorite
-        ? deleteFromFavorites(movie.id)
-        : addToFavorites(movie.id)
-      : dispatch(openModal('signIn'));
+    toggleFavoriteFunc ? toggleFavoriteFunc() : dispatch(openModal('signIn'));
 
   return (
     <div className={s.movieActions}>

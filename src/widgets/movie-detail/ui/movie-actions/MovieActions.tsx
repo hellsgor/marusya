@@ -6,6 +6,9 @@ import type { MovieModel } from '@/entities/movie';
 import { ROUTES } from '@/shared/routes';
 import { Button, Icon, Loader } from '@/shared/ui';
 import { useFavoritesControl } from '@/features/favorites';
+import { useGetUserQuery } from '@/entities/user';
+import { useAppDispatch } from '@/shared/lib';
+import { openModal } from '@/features/modal';
 
 type MovieActionsProps = {
   movie: MovieModel;
@@ -18,16 +21,30 @@ export function MovieActions({
   onRandomRefetchButtonClick,
   onTrailerButtonClick,
 }: MovieActionsProps) {
+  const dispatch = useAppDispatch();
+
   const {
     isFavorite,
     addToFavorites,
     deleteFromFavorites,
-    isError,
-    isFetching,
+    isFetching: isFavoritesFetching,
   } = useFavoritesControl({ id: movie.id });
 
+  const { data: user, isFetching: isUserFetching } = useGetUserQuery(
+    undefined,
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
+
+  const isFetching = isFavoritesFetching || isUserFetching;
+
   const handleFavoriteButtonClick = () =>
-    isFavorite ? deleteFromFavorites(movie.id) : addToFavorites(movie.id);
+    user
+      ? isFavorite
+        ? deleteFromFavorites(movie.id)
+        : addToFavorites(movie.id)
+      : dispatch(openModal('signIn'));
 
   return (
     <div className={s.movieActions}>
@@ -58,7 +75,7 @@ export function MovieActions({
         disabled={isFetching}
         onClick={handleFavoriteButtonClick}
       >
-        {isFetching || isError ? <Loader size="small" /> : <Icon.Heart />}
+        {isFetching ? <Loader size="small" /> : <Icon.Heart />}
       </Button>
       {onRandomRefetchButtonClick && (
         <Button

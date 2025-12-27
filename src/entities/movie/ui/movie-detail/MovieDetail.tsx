@@ -8,8 +8,7 @@ import { memo } from 'react';
 import { useFavoritesControl } from '@/features/favorites';
 import { ROUTES } from '@/shared/routes';
 import { Button, ErrorText, Icon, Loader, Poster } from '@/shared/ui';
-import { MetaItemsRow } from '../meta-items-row';
-import { MovieDescription } from '../movie-description';
+import { MovieContent } from '../movie-content';
 
 export const MovieDetail = memo(function MovieDetail({
   movie,
@@ -32,11 +31,7 @@ export const MovieDetail = memo(function MovieDetail({
   return (
     <div className={s.movieDetail}>
       <div className={s.movieDetail__wrapper}>
-        <div className={s.movieDetail__content}>
-          <MetaItemsRow {...movie} />
-          <h1>{movie.title}</h1>
-          <MovieDescription text={movie.plot} />
-        </div>
+        <MovieContent movie={movie} />
         <div className={s.movieDetail__actions}>
           {(movie.trailerUrl || movie.trailerYouTubeId) && (
             <Button

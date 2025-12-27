@@ -1,1 +1,1 @@
-export { MoviesSlider as MovieSlider } from './MoviesSlider';
+export { MoviesSlider } from './MoviesSlider';

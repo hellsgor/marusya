@@ -5,7 +5,7 @@ import { skipToken } from '@reduxjs/toolkit/query/react';
 import { useRef, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { MovieList, useGetByGenreQuery } from '@/entities/movie';
+import { MoviesList, useGetByGenreQuery } from '@/entities/movie';
 import { Button, Loader, PageError } from '@/shared/ui';
 import { MOVIES_PER_PAGE } from '../../config/constants';
 import { sortMoviesByRating, useInfiniteLoading } from '../../lib';
@@ -43,7 +43,7 @@ export function GenreMoviesList() {
 
       {data && (
         <>
-          <MovieList items={data} className={s.genreMovieList__list} />
+          <MoviesList items={data} className={s.genreMovieList__list} />
           <Button
             className={s.genreMovieList__button}
             ref={showMoreButtonRef}

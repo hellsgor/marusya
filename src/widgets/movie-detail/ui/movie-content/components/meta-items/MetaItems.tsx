@@ -1,8 +1,9 @@
-import type { MovieModel } from '../../../../model/types';
+import type { MovieModel } from '@/entities/movie';
 
 import { getRuGenreName } from '@/entities/genre/@x/movie';
+
+import { formatRuntime } from '@/entities/movie';
 import { MetaItem } from '@/shared/ui';
-import { formatRuntime } from '../../../../lib';
 
 export type MetaItemsProps = Pick<
   MovieModel,

@@ -1,7 +1,7 @@
 import { useGetRandomQuery } from '@/entities/movie';
 import { useMediaQuery } from '@/shared/lib';
 import { Loader, Section, PageError } from '@/shared/ui';
-import { MovieDetailContainer } from '@/widgets/movie-detail-container';
+import { MovieDetail } from '@/widgets/movie-detail';
 import { Top10Movies } from '@/widgets/top10-movies';
 
 export function MainPage() {
@@ -20,7 +20,7 @@ export function MainPage() {
         )}
 
         {!isFetching && !isError && movie && (
-          <MovieDetailContainer
+          <MovieDetail
             movie={movie}
             randomRefetch={() => {
               refetch();

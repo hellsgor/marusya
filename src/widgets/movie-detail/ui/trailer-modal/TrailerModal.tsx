@@ -1,4 +1,4 @@
-import type { MovieModel } from '../../model/types';
+import type { MovieModel } from '@/entities/movie';
 
 import { useRef, useState } from 'react';
 import ReactPlayer from 'react-player';

@@ -23,6 +23,7 @@ export function MainPage() {
           <MovieDetail
             movie={movie}
             randomRefetch={() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
               refetch();
             }}
           />

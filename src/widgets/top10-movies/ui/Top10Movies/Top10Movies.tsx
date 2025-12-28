@@ -3,8 +3,9 @@ import s from './Top10Movies.module.scss';
 import { MoviesList, MoviesSlider, useGetTop10Query } from '@/entities/movie';
 import { useMediaQuery } from '@/shared/lib';
 import { Loader, PageError, Section } from '@/shared/ui';
+import { memo } from 'react';
 
-export function Top10Movies() {
+export const Top10Movies = memo(function Top10Movies() {
   const mq = useMediaQuery('md');
   const { data: movies, isFetching, isError } = useGetTop10Query();
 
@@ -28,4 +29,4 @@ export function Top10Movies() {
         ))}
     </Section>
   );
-}
+});

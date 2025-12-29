@@ -18,8 +18,9 @@ export function RandomMovie() {
         <MovieDetail
           movie={movie}
           randomRefetch={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            refetch();
+            refetch().finally(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
           }}
         />
       )}

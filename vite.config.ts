@@ -7,6 +7,26 @@ import path from 'path';
 export default defineConfig({
   server: {
     host: true,
+    proxy: {
+      '/api': {
+        target: 'https://cinemaguide.skillbox.cc',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: true,
+        configure: (proxy) => {
+          proxy.on('proxyRes', (proxyRes) => {
+            const setCookie = proxyRes.headers['set-cookie'];
+            if (setCookie) {
+              proxyRes.headers['set-cookie'] = setCookie.map((cookie) =>
+                cookie
+                  .replace(/;\s*secure/gi, '')
+                  .replace(/;\s*samesite=none/gi, ''),
+              );
+            }
+          });
+        },
+      },
+    },
   },
   plugins: [react(), svgr(), tsconfigPaths()],
   css: {

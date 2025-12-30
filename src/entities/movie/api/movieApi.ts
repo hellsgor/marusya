@@ -1,4 +1,4 @@
-import { api } from '@/shared/api';
+import { api, checkResponse } from '@/shared/api';
 import { MovieSchema, MoviesSchema } from '../model/types';
 import type { MovieModel, MoviesModel } from '../model/types';
 import type { getByGenreArgs } from '../model/api';
@@ -33,19 +33,12 @@ export const movieApi = api.injectEndpoints({
         _meta,
         { genre, page, sortFunc },
       ): MoviesModel => {
-        const result = MoviesSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(
-            `Ошибка валидации фильмов жанра ${genre}: ${result.error}`,
-          );
-        }
-
-        if (sortFunc && page < 2) {
-          return sortFunc(result.data);
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          MoviesSchema,
+          `Ошибка валидации фильмов жанра ${genre}`,
+          (data) => (sortFunc && page < 2 ? sortFunc(data) : data),
+        );
       },
     }),
 
@@ -55,13 +48,11 @@ export const movieApi = api.injectEndpoints({
         { type: 'currentMovie', id: `${id}` },
       ],
       transformResponse: (response: unknown, _meta, id) => {
-        const result = MovieSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(`Ошибка запроса фильма с id=${id}: ${result.error}`);
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          MovieSchema,
+          `Ошибка запроса фильма с id=${id}`,
+        );
       },
     }),
 
@@ -70,13 +61,11 @@ export const movieApi = api.injectEndpoints({
       providesTags: (result) =>
         result?.id ? [{ type: 'currentMovie', id: `${result.id}` }] : [],
       transformResponse: (response: unknown) => {
-        const result = MovieSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(`Ошибка запроса случайного фильма: ${result.error}`);
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          MovieSchema,
+          'Ошибка запроса случайного фильма',
+        );
       },
     }),
 
@@ -84,13 +73,11 @@ export const movieApi = api.injectEndpoints({
       query: () => '/movie/top10',
       providesTags: () => [{ type: 'movies', id: 'top10' }],
       transformResponse: (response: unknown) => {
-        const result = MoviesSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(`Ошибка запроса ТОП10 фильмов: ${result.error}`);
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          MoviesSchema,
+          'Ошибка запроса ТОП10 фильмов',
+        );
       },
     }),
   }),

@@ -6,7 +6,7 @@ import type {
 } from '../model/types';
 import type { MoviesModel } from '@/entities/movie';
 
-import { api } from '@/shared/api';
+import { api, checkResponse } from '@/shared/api';
 import { MoviesSchema } from '@/entities/movie';
 import {
   addToFavoritesDTOSchema,
@@ -19,13 +19,11 @@ const favoritesApi = api.injectEndpoints({
       query: () => '/favorites',
       providesTags: [{ type: 'user', id: 'favorites' }],
       transformResponse: (response: unknown) => {
-        const result = MoviesSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(`Ошибка запроса избранного: ${result.error}`);
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          MoviesSchema,
+          'Ошибка запроса избранного',
+        );
       },
     }),
 
@@ -40,13 +38,11 @@ const favoritesApi = api.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'user', id: 'favorites' }],
       transformResponse: (response: unknown) => {
-        const result = addToFavoritesDTOSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(`Ошибка добавления в избранное: ${result.error}`);
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          addToFavoritesDTOSchema,
+          'Ошибка добавления в избранное',
+        );
       },
     }),
 
@@ -60,13 +56,11 @@ const favoritesApi = api.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'user', id: 'favorites' }],
       transformResponse: (response: unknown) => {
-        const result = deleteFromFavoritesDTOSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(`Ошибка удаления из избранного: ${result.error}`);
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          deleteFromFavoritesDTOSchema,
+          'Ошибка удаления из избранного',
+        );
       },
     }),
   }),

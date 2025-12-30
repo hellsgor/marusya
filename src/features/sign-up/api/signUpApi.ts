@@ -1,7 +1,7 @@
 import type { SignUpFormDataType } from '../model/SignUpFormData';
 import type { SignUpResultType } from '../model/SignUpResult';
 
-import { api } from '@/shared/api';
+import { api, checkResponse } from '@/shared/api';
 import { SignUpApiRequestSchema } from '../model/SignUpFormData';
 import { SignUpResultSchema } from '../model/SignUpResult';
 
@@ -34,15 +34,11 @@ export const signUpApi = api.injectEndpoints({
         };
       },
       transformResponse: (response: unknown): SignUpResultType => {
-        const result = SignUpResultSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(
-            `Ошибка валидации ответа сервера: ${result.error.message}`,
-          );
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          SignUpResultSchema,
+          'Ошибка валидации ответа сервера при регистрации',
+        );
       },
     }),
   }),

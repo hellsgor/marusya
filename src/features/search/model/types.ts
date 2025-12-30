@@ -3,8 +3,7 @@ import type { MoviesModel } from '@/entities/movie/model/types';
 import { z } from 'zod/v4';
 
 export const SearchSchema = z.object({
-  count: z.number(),
-  title: z.string(),
+  string: z.string(),
 });
 export type SearchType = z.infer<typeof SearchSchema>;
 

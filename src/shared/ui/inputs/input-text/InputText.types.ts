@@ -6,8 +6,9 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: keyof typeof Icon;
   error?: string;
   rightSlotChild?: ReactNode;
+  isDark?: boolean;
 }
 
 export interface BaseInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>,
-    Pick<InputProps, 'error'> {}
+    Pick<InputProps, 'error' | 'isDark'> {}

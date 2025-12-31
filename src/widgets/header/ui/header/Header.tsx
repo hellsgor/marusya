@@ -5,6 +5,7 @@ import { NavLogo } from '../nav-logo';
 import { UserControl } from '../user-control';
 
 import { Container } from '@/shared/ui';
+import { Search } from '@/features/search';
 
 export function Header() {
   return (
@@ -12,7 +13,10 @@ export function Header() {
       <Container>
         <div className={s.header__wrapper}>
           <NavLogo />
-          <MainMenu />
+          <div className={s.header__inner}>
+            <MainMenu />
+            <Search />
+          </div>
           <UserControl />
         </div>
       </Container>

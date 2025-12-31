@@ -22,4 +22,11 @@
       padding: 20px 0 12px;
     }
   }
+
+  &__inner {
+    display: flex;
+    flex: 1;
+    column-gap: 40px;
+    align-items: center;
+  }
 }

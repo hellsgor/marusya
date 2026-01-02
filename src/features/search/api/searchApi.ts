@@ -1,4 +1,4 @@
-import { MAX_SEARCH_COUNT } from '../config/max-search-count';
+import { MAX_SEARCH_COUNT } from '../config';
 import {
   SearchDTOSchema,
   type SearchType,

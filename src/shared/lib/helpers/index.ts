@@ -4,3 +4,4 @@ export { getMappedValue } from './getMappedValue';
 export { getCSSNumericValue } from './getCSSNumericValue';
 export { getApiErrorText } from './getApiErrorText';
 export { debounce } from './debounce';
+export { getErrorMessage } from './getErrorMessage';

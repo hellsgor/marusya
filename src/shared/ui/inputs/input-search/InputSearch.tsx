@@ -53,3 +53,5 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
     );
   },
 );
+
+InputSearch.displayName = 'InputSearch';

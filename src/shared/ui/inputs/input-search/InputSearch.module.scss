@@ -1,0 +1,38 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/hover' as h;
+@use '@/shared/scss/transition' as t;
+
+.inputSearch {
+  width: 100%;
+
+  input[type='search'] {
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+  }
+
+  &__clearButton {
+    pointer-events: none;
+
+    width: 24px;
+    height: 24px;
+
+    color: c.getColor(content, disabled);
+
+    opacity: 0;
+    @include t.transition((color, opacity));
+
+    @include h.hover {
+      color: c.getColor(accent, active);
+    }
+
+    &_visible {
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
+}

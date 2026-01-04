@@ -1,4 +1,8 @@
-export function formatRuntime(runtime: number) {
+export function formatRuntime(runtime: number, isShortFormat: boolean = false) {
+  if (isShortFormat) {
+    return `${runtime} мин`;
+  }
+
   const hours = Math.trunc(runtime / 60);
   const minutes = runtime % 60;
 

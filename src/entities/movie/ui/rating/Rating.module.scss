@@ -16,6 +16,10 @@
     font-weight: 700;
   }
 
+  svg {
+    flex: 0 0 16px;
+  }
+
   &_red {
     background-color: c.getColor(rate, 'red');
   }
@@ -25,5 +29,17 @@
   }
   &_green {
     background-color: c.getColor(rate, 'green');
+  }
+
+  &_small {
+    padding: 2px 8px;
+
+    span {
+      font-size: 12px;
+    }
+
+    svg {
+      flex-basis: 10px;
+    }
   }
 }

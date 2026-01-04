@@ -8,19 +8,24 @@ import { formatRuntime } from '../../lib';
 export type MetaItemsProps = Pick<
   MovieModel,
   'releaseYear' | 'genres' | 'runtime'
->;
+> & { isShortFormat?: boolean };
 
-export function MetaItems({ genres, releaseYear, runtime }: MetaItemsProps) {
+export function MetaItems({
+  genres,
+  releaseYear,
+  runtime,
+  isShortFormat,
+}: MetaItemsProps) {
   return (
     <>
       {[
         releaseYear,
         ...genres.map((genre) => getRuGenreName(genre)),
-        formatRuntime(runtime),
+        formatRuntime(runtime, isShortFormat),
       ]
         .filter((item) => item && item !== null)
         .map((item, idx) => (
-          <MetaItem text={`${item}`} key={idx} />
+          <MetaItem text={`${item}`} key={idx} isSmall={isShortFormat} />
         ))}
     </>
   );

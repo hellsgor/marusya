@@ -1,4 +1,8 @@
 .resultsList {
   display: flex;
   flex-direction: column;
+
+  &__result {
+    width: 100%;
+  }
 }

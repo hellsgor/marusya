@@ -1,0 +1,42 @@
+@use '@/shared/scss/hover' as h;
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+
+.searchResult {
+  display: flex;
+  column-gap: 16px;
+
+  padding: 20px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  @include t.transition(border-color, $duration: t.$duration-100);
+
+  &__wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    row-gap: 8px;
+
+    min-width: 0;
+  }
+
+  &__poster {
+    flex: 0 0 40px;
+    aspect-ratio: 40/52;
+  }
+
+  &__title {
+    overflow: hidden;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__metaRow {
+    flex-wrap: nowrap;
+  }
+
+  @include h.hover {
+    border-color: c.getColor(content, disabled);
+  }
+}

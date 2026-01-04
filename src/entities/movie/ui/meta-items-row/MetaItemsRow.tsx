@@ -2,9 +2,10 @@ import s from './MetaItemsRow.module.scss';
 import clsx from 'clsx';
 
 import type { MetaItemsProps } from '../meta-items';
-import { Rating, type MovieModel } from '@/entities/movie';
+import { type MovieModel } from '@/entities/movie';
 
 import { MetaItems } from '../meta-items';
+import { Rating } from '../rating';
 
 type MetaItemsRowProps = MetaItemsProps &
   Pick<MovieModel, 'tmdbRating'> & { className?: string };

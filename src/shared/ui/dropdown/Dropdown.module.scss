@@ -14,6 +14,8 @@
   @include t.transition(grid-template-rows, $duration: t.$duration-300);
 
   &__inner {
+    overflow: hidden;
+    max-width: 100%;
     min-height: 0;
     padding: 8px;
     @include t.transition(padding, $duration: t.$duration-200);

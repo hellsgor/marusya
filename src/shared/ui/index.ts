@@ -22,3 +22,4 @@ export { ButtonClosed } from './button-closed';
 export { MetaItem } from './meta-item';
 export { Poster } from './poster';
 export { Card } from './card';
+export { Dropdown } from './dropdown';

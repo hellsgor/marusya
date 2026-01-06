@@ -4,6 +4,7 @@ export {
   useAppSelector,
   useFormMutation,
   useDebounce,
+  useMergeRefs,
 } from './hooks';
 export {
   capitalizeFirstLetter,

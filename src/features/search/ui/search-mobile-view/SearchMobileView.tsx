@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import { Icon, Modal, MODAL_TYPES } from '@/shared/ui';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SearchControl } from '../search-control';
 
 type SearchMobileViewProps = {
@@ -12,6 +12,15 @@ type SearchMobileViewProps = {
 
 export function SearchMobileView({ className }: SearchMobileViewProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isVisible && searchInputRef.current) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 0);
+    }
+  }, [isVisible]);
 
   return (
     <div className={clsx(s.searchMobileView, className)}>
@@ -32,7 +41,7 @@ export function SearchMobileView({ className }: SearchMobileViewProps) {
           }}
           className={s.searchMobileView__modal}
         >
-          <SearchControl />
+          <SearchControl ref={searchInputRef} />
         </Modal>
       )}
     </div>

@@ -4,3 +4,4 @@ export { useAppSelector } from './useAppSelector';
 export { useIntersectionObserver } from './useIntersectionObserver';
 export { useFormMutation } from './useFormMutation';
 export { useDebounce } from './useDebounce';
+export { useMergeRefs } from './useMergeRefs';

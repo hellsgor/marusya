@@ -9,6 +9,8 @@
   padding: 4px 12px;
   border-radius: 16px;
 
+  color: c.getColor(content, primary);
+
   background-color: c.getColor(rate, 'gold');
 
   span {

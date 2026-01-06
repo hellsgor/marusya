@@ -28,6 +28,7 @@
 
   &__title {
     font-weight: 700;
+    color: c.getColor(content, primary);
   }
 
   @include h.hover {

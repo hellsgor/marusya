@@ -1,4 +1,3 @@
-@use '@/shared/scss/colors' as c;
 @use '@/shared/scss/media' as m;
 
 .search {
@@ -6,11 +5,5 @@
 
   @include m.tablet-vertical {
     width: fit-content;
-  }
-
-  &__button {
-    width: 24px;
-    height: 24px;
-    color: c.getColor(content, primary);
   }
 }

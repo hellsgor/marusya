@@ -1,3 +1,5 @@
+@use '@/shared/scss/media' as m;
+
 .searchControl {
   position: relative;
   width: 100%;
@@ -11,5 +13,10 @@
 
     max-width: 559px;
     max-height: calc(100vh - 96px);
+
+    @include m.tablet-vertical {
+      top: calc(100% + 8px);
+      max-width: 100%;
+    }
   }
 }

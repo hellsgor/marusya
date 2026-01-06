@@ -78,7 +78,7 @@ export function Modal({
         <div className={s.modal__body} ref={modalBodyRef}>
           <ButtonClosed className={s.modal__closeButton} ref={closeButtonRef} />
           <div className={s.modal__bodyInner}>
-            {type === MODAL_TYPES.DEFAULT && <Logo />}
+            {type === MODAL_TYPES.DEFAULT && <Logo className={s.modal__logo} />}
             {children}
           </div>
         </div>

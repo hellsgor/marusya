@@ -65,6 +65,14 @@
     }
   }
 
+  &__logo {
+    height: 35px;
+
+    @include m.mobile {
+      height: 30px;
+    }
+  }
+
   &__closeButton {
     position: absolute;
     z-index: 5;

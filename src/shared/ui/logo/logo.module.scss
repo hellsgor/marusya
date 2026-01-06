@@ -2,25 +2,21 @@
 @use '@/shared/scss/media' as m;
 
 .logo {
-  overflow: hidden;
+  overflow-x: clip;
   display: flex;
   column-gap: 3%;
   justify-content: flex-end;
 
-  aspect-ratio: calc(251 / 56);
+  aspect-ratio: calc(252 / 56);
   width: auto;
-  height: 32px;
+  height: 100%;
 
   color: c.getColor(content, 'black');
 
   img {
     align-self: center;
     width: auto;
-    height: 40px;
-
-    @include m.mobile {
-      height: 22px;
-    }
+    height: 140%;
   }
 
   &__text {
@@ -40,6 +36,6 @@
   }
 
   @include m.mobile {
-    height: 18px;
+    max-height: 100%;
   }
 }

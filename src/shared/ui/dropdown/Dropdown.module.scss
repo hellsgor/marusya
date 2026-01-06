@@ -2,7 +2,6 @@
 @use '@/shared/scss/transition' as t;
 
 .dropdown {
-  overflow: hidden;
   display: grid;
   grid-template-rows: 1fr;
 
@@ -14,7 +13,7 @@
   @include t.transition(grid-template-rows, $duration: t.$duration-300);
 
   &__inner {
-    overflow: hidden;
+    overflow-y: auto;
     max-width: 100%;
     min-height: 0;
     padding: 8px;

@@ -1,0 +1,15 @@
+.searchControl {
+  position: relative;
+  width: 100%;
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+
+    overflow-y: hidden;
+
+    max-width: 559px;
+    max-height: calc(100vh - 96px);
+  }
+}

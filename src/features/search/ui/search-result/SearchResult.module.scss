@@ -3,6 +3,7 @@
 @use '@/shared/scss/transition' as t;
 
 .searchResult {
+  overflow: hidden;
   display: flex;
   column-gap: 16px;
 
@@ -26,14 +27,7 @@
   }
 
   &__title {
-    overflow: hidden;
     font-weight: 700;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  &__metaRow {
-    flex-wrap: nowrap;
   }
 
   @include h.hover {

@@ -27,7 +27,7 @@ export function SearchResult({ data, className }: SearchResultType) {
         <MetaItemsRow
           {...data}
           isShortFormat={true}
-          genres={data.genres.slice(0, 3)}
+          genres={data.genres.slice(0, 2)}
           className={s.searchResult__metaRow}
         />
         <p className={s.searchResult__title}>{data.title}</p>

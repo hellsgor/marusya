@@ -2,7 +2,7 @@
 
 .header {
   position: fixed;
-  z-index: 5;
+  z-index: 50;
   top: 0;
   right: 0;
   left: 0;
@@ -17,6 +17,10 @@
 
     padding: 24px 0;
 
+    @include m.tablet-vertical {
+      column-gap: 40px;
+    }
+
     @include m.mobile {
       column-gap: 20px;
       padding: 20px 0 12px;
@@ -28,5 +32,13 @@
     flex: 1;
     column-gap: 40px;
     align-items: center;
+
+    @include m.tablet-vertical {
+      justify-content: flex-end;
+    }
+
+    @include m.mobile {
+      column-gap: 20px;
+    }
   }
 }

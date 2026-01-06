@@ -11,10 +11,10 @@ type ResultsListProps = {
 
 export function ResultsList({ results, className }: ResultsListProps) {
   return (
-    <ul className={clsx(s.searchResultsList, className)} role="list">
+    <ul className={clsx(s.resultsList, className)} role="list">
       {results?.length &&
         results.map((movie) => (
-          <li className={s.searchResultsList__result} key={movie.id}>
+          <li className={s.resultsList__result} key={movie.id}>
             <SearchResult data={movie} />
           </li>
         ))}

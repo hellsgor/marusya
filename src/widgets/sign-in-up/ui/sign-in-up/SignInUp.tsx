@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/shared/lib';
-import { SignInModal, SignUpModal, SignUpSuccessModal } from './ui';
+import { SignInModal, SignUpModal, SignUpSuccessModal } from '..';
 
 export function SignInUp() {
   const isSignInModal = useAppSelector((state) => state.modal.modals.signIn);

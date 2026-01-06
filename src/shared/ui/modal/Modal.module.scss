@@ -120,6 +120,22 @@
     }
   }
 
+  &[data-modal-type='EMPTY'] {
+    .modal__inner {
+      justify-content: flex-start;
+      padding: 16px 20px;
+    }
+
+    .modal__body {
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .modal__closeButton {
+      display: none;
+    }
+  }
+
   &_opened {
     pointer-events: auto;
     opacity: 1;

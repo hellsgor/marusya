@@ -1,7 +1,7 @@
 import s from './Modal.module.scss';
 import clsx from 'clsx';
 
-import type { ModalProps } from './Modal.types';
+import { MODAL_TYPES, type ModalProps } from './Modal.types';
 import type { MouseEvent } from 'react';
 
 import { createPortal } from 'react-dom';
@@ -12,9 +12,8 @@ import { Logo } from '@/shared/ui/logo';
 
 export function Modal({
   children,
-  type = 'default',
   onClose,
-  name,
+  type,
   className,
   skipBackdropAnimation = false,
 }: ModalProps) {
@@ -68,22 +67,18 @@ export function Modal({
   return createPortal(
     <div
       ref={modalRef}
-      className={clsx(
-        s.modal,
-        type === 'trailer' && s.modal_trailer,
-        className,
-      )}
+      className={clsx(s.modal, className)}
       onClick={(e) => {
         handleCloseClick(e);
       }}
-      {...(name && { 'data-modal-name': name })}
+      {...{ 'data-modal-type': type }}
     >
       <div className={s.modal__backdrop} />
       <div className={s.modal__inner}>
         <div className={s.modal__body} ref={modalBodyRef}>
           <ButtonClosed className={s.modal__closeButton} ref={closeButtonRef} />
           <div className={s.modal__bodyInner}>
-            {type !== 'trailer' && <Logo />}
+            {type === MODAL_TYPES.DEFAULT && <Logo />}
             {children}
           </div>
         </div>

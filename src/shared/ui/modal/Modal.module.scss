@@ -78,8 +78,9 @@
     }
   }
 
-  &_trailer {
+  &[data-modal-type='TRAILER'] {
     background-color: c.getColor(bg, backdrop, tailer, desktop);
+
     @include m.mobile {
       background-color: c.getColor(bg, backdrop, tailer, mobile);
     }

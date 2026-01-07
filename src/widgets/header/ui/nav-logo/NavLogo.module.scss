@@ -1,0 +1,13 @@
+@use '@/shared/scss/media' as m;
+
+.navLogo {
+  height: 32px;
+
+  @include m.tablet-vertical {
+    margin-right: auto;
+  }
+
+  @include m.mobile {
+    height: 18px;
+  }
+}

@@ -1,7 +1,0 @@
-@use '../../styles/functions/getColor' as colorFn;
-
-.backdrop {
-  width: 100%;
-  height: 100%;
-  background-color: colorFn.getColor(bg, backdrop);
-}

@@ -1,0 +1,37 @@
+div.moviesSlider {
+  touch-action: pan-y pinch-zoom;
+  will-change: transform;
+
+  overflow: visible;
+
+  width: 100%;
+
+  -webkit-overflow-scrolling: touch;
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+}
+
+ul.moviesSlider__wrapper {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  display: flex;
+
+  width: fit-content;
+  padding: 0;
+
+  list-style: none;
+}
+
+li.moviesSlider__slide {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+
+  flex: 0 0 59.733vw;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}

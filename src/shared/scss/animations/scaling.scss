@@ -1,0 +1,14 @@
+@use '@/shared/scss/transition' as t;
+
+@mixin scaling-in {
+  transform: scale(1.1);
+  @include t.transition(transform, $duration: 7s, $func: t.$ease-in);
+}
+
+@mixin scaling-out {
+  @include t.transition(
+    transform,
+    $duration: t.$duration-500,
+    $func: t.$ease-out
+  );
+}

@@ -1,0 +1,10 @@
+.metaItemsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+
+  &_small {
+    gap: 12px;
+  }
+}

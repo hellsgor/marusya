@@ -1,0 +1,1 @@
+export { useFavoritesControl } from './favoritesControl';

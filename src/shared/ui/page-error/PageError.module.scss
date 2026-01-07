@@ -1,0 +1,30 @@
+@use '@/shared/scss/colors' as c;
+
+.pageError {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  width: 100%;
+  max-width: 320px;
+
+  &:has(span) {
+    padding-top: 88px;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    translate: -50% 0;
+
+    font-size: 60px;
+    font-weight: 700;
+    color: c.getColor(accent, active);
+  }
+}

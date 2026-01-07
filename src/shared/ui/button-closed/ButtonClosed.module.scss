@@ -1,0 +1,33 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+@use '@/shared/scss/hover' as h;
+
+.buttonClosed {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  aspect-ratio: 1/1;
+  width: 48px;
+  border-radius: 50%;
+
+  color: c.getColor(content, 'black');
+
+  background-color: c.getColor(bg, 'white');
+
+  @include t.transition(color, $duration: t.$duration-100);
+
+  svg {
+    aspect-ratio: 1/1;
+    width: 24px;
+  }
+
+  @include h.hover {
+    color: c.getColor(accent, primary, hover);
+  }
+
+  &:active {
+    color: c.getColor(accent, primary, disabled);
+  }
+}

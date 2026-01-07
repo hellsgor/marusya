@@ -1,0 +1,23 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/media' as m;
+
+.backTitleBar {
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+  color: c.getColor(content, primary);
+
+  @include m.mobile {
+    column-gap: 8px;
+  }
+
+  &__button {
+    aspect-ratio: 1/1;
+    width: 40px;
+    color: inherit;
+
+    @include m.mobile {
+      width: 32px;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/hover' as h;
+
+.movieActions {
+  display: flex;
+  gap: 16px;
+
+  &:has(.movieActions__randomButton) {
+    @include m.mobile {
+      flex-wrap: wrap;
+
+      .movieActions__aboutButton {
+        flex: 1 0 fit-content;
+        padding-inline: 20px;
+      }
+    }
+
+    @include m.bp(xxs) {
+      column-gap: 0;
+      justify-content: space-between;
+
+      .movieActions__aboutButton {
+        flex-grow: 0;
+        flex-shrink: 1;
+      }
+    }
+  }
+
+  &__trailerButton {
+    @include m.tablet-vertical {
+      width: 100%;
+      max-width: 260px;
+    }
+
+    @include m.mobile {
+      max-width: unset;
+    }
+  }
+
+  &__favoriteButton {
+    svg {
+      fill: transparent;
+      stroke: c.getColor(content, primary);
+    }
+
+    @include h.hover {
+      svg {
+        fill: transparent;
+        stroke: c.getColor(accent, active);
+      }
+    }
+
+    &_added {
+      svg {
+        fill: c.getColor(accent, active);
+        stroke: c.getColor(accent, active);
+      }
+
+      @include h.hover {
+        svg {
+          fill: c.getColor(accent, active);
+          stroke: c.getColor(content, 'black');
+        }
+      }
+    }
+  }
+}

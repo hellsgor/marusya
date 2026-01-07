@@ -1,0 +1,18 @@
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/colors' as c;
+
+.metaItem {
+  font-size: 18px;
+  color: c.getColor(content, secondary);
+  white-space: nowrap;
+
+  @include m.mobile {
+    font-size: 14px;
+    line-height: 1.4287;
+  }
+
+  &_small {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

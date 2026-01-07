@@ -8,21 +8,19 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:style": "stylelint '**/*.{css,scss}'",
+    "lint:style": "stylelint './src/**/*.{css,scss}' --fix",
+    "lint:steiger": "steiger ./src",
     "format": "prettier --write .",
     "prepare": "husky"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.8.2",
-    "@tanstack/react-query": "^5.77.2",
-    "axios": "^1.9.0",
+    "@reduxjs/toolkit": "^2.9.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.23.12",
     "modern-normalize": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-hook-form": "^7.61.1",
-    "react-player": "^3.0.0",
+    "react-hook-form": "^7.68.0",
+    "react-player": "^3.4.0",
     "react-redux": "^9.2.0",
     "react-router": "^7.6.1",
     "swiper": "^11.2.8",
@@ -30,10 +28,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
-    "@tanstack/eslint-plugin-query": "^5.78.0",
-    "@tanstack/react-query-devtools": "^5.77.2",
+    "@feature-sliced/steiger-plugin": "^0.5.7",
+    "@types/node": "^24.10.1",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/react-redux": "^7.1.34",
     "@types/swiper": "^5.4.3",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
@@ -45,14 +44,16 @@
     "lint-staged": "^16.0.0",
     "prettier": "3.5.3",
     "sass": "^1.89.0",
+    "steiger": "^0.5.11",
     "stylelint": "^16.19.1",
     "stylelint-config-clean-order": "^7.0.0",
+    "stylelint-config-recommended-scss": "^16.0.2",
     "stylelint-config-standard": "^38.0.0",
-    "stylelint-config-standard-scss": "^15.0.1",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5",
-    "vite-plugin-svgr": "^4.3.0"
+    "vite-plugin-svgr": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -66,5 +67,6 @@
     "*.{json,md}": [
       "prettier --write"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

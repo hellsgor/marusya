@@ -1,0 +1,26 @@
+@use '@/shared/scss/media' as m;
+
+.moviesList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 64px 40px;
+
+  @include m.bp(xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include m.tablet-vertical {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include m.mobile {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  @include m.bp(s) {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 24px;
+    justify-content: center;
+  }
+}

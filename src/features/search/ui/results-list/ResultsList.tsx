@@ -10,6 +10,8 @@ type ResultsListProps = {
 };
 
 export function ResultsList({ results, className }: ResultsListProps) {
+  if (!results?.length) return null;
+
   return (
     <ul className={clsx(s.resultsList, className)} role="list">
       {results?.length &&

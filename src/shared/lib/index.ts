@@ -5,6 +5,7 @@ export {
   useFormMutation,
   useDebounce,
   useMergeRefs,
+  useClickOutside,
 } from './hooks';
 export {
   capitalizeFirstLetter,

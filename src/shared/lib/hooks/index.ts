@@ -5,3 +5,4 @@ export { useIntersectionObserver } from './useIntersectionObserver';
 export { useFormMutation } from './useFormMutation';
 export { useDebounce } from './useDebounce';
 export { useMergeRefs } from './useMergeRefs';
+export { useClickOutside } from './useClickOutside';

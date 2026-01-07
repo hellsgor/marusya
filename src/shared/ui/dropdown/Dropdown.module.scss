@@ -16,7 +16,6 @@
     overflow-y: auto;
     max-width: 100%;
     min-height: 0;
-    padding: 8px;
     @include t.transition(padding, $duration: t.$duration-200);
   }
 

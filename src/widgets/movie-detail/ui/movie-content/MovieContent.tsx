@@ -1,8 +1,9 @@
 import s from './MovieContent.module.scss';
 
+import { MetaItemsRow } from '@/entities/movie';
 import type { MovieModel } from '@/entities/movie';
 
-import { MetaItemsRow, MovieDescription } from './components';
+import { MovieDescription } from './components';
 
 type MovieContentProps = {
   movie: MovieModel;

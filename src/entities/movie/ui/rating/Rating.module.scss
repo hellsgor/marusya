@@ -9,11 +9,17 @@
   padding: 4px 12px;
   border-radius: 16px;
 
+  color: c.getColor(content, primary);
+
   background-color: c.getColor(rate, 'gold');
 
   span {
     font-size: 18px;
     font-weight: 700;
+  }
+
+  svg {
+    flex: 0 0 16px;
   }
 
   &_red {
@@ -25,5 +31,17 @@
   }
   &_green {
     background-color: c.getColor(rate, 'green');
+  }
+
+  &_small {
+    padding: 2px 8px;
+
+    span {
+      font-size: 12px;
+    }
+
+    svg {
+      flex-basis: 10px;
+    }
   }
 }

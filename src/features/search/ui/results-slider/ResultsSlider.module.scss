@@ -1,0 +1,15 @@
+@use '@/shared/scss/list-reset' as lr;
+
+.resultsSlider {
+  padding: 24px 20px;
+
+  &__wrapper {
+    display: flex;
+    width: fit-content;
+    @include lr.listReset;
+  }
+
+  &__slide {
+    width: 220px;
+  }
+}

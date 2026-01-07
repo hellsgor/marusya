@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 
 import { useAppSelector } from '@/shared/lib';
-import { Modal } from '@/shared/ui';
+import { Modal, MODAL_TYPES } from '@/shared/ui';
 
 type TrailerModalProps = {
   onClose: () => void;
@@ -26,7 +26,7 @@ export function TrailerModal({ onClose, movie }: TrailerModalProps) {
   };
 
   return (
-    <Modal type="trailer" onClose={handleOnClose} name="trailer">
+    <Modal type={MODAL_TYPES.TRAILER} onClose={handleOnClose}>
       <ReactPlayer
         ref={playerRef}
         playing={isVisible && isPlayerReady}

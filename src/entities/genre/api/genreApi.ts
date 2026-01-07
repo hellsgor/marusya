@@ -1,7 +1,7 @@
 import type { Genre, Genres } from '../model/types';
 import type { MovieModel } from '@/entities/movie/@x/genre';
 
-import { api } from '@/shared/api';
+import { api, checkResponse } from '@/shared/api';
 import { GenresDTOSchema } from '../model/types';
 import { getMovieBackdropUrl } from '../lib/getMovieBackdropUrl';
 import { getRuGenreName } from '../lib/getRuGenreName';
@@ -16,18 +16,14 @@ const genreApi = api.injectEndpoints({
             return { error: genresResponse.error };
           }
 
-          const result = GenresDTOSchema.safeParse(genresResponse.data);
-          if (!result.success) {
-            return {
-              error: {
-                status: 'CUSTOM_ERROR',
-                error: `Ошибка валидации данных жанров: ${result.error}`,
-              },
-            };
-          }
+          const genres = checkResponse(
+            genresResponse.data,
+            GenresDTOSchema,
+            'Ошибка валидации данных жанров',
+          );
 
           const genresWithPosters = await Promise.all(
-            result.data.map(async (genre) => {
+            genres.map(async (genre) => {
               try {
                 const movieResponse = await fetchWithBQ(
                   `/movie?genre=${genre}&page=1&count=50`,

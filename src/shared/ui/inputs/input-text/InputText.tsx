@@ -9,11 +9,21 @@ import { FormError } from '@/shared/ui/form-error';
 import { Icon } from '@/shared/ui/icon';
 
 export const InputText = forwardRef<HTMLInputElement, InputProps>(
-  ({ type = 'text', icon, error, rightSlotChild, ...rest }, ref) => {
+  (
+    { type = 'text', icon, error, rightSlotChild, isDark, className, ...rest },
+    ref,
+  ) => {
     const IconComponent = icon ? Icon[icon] : null;
 
     return (
-      <div className={clsx(s.inputText, error && s.inputText_hasError)}>
+      <div
+        className={clsx(
+          s.inputText,
+          error && s.inputText_hasError,
+          isDark && s.inputText_dark,
+          className,
+        )}
+      >
         <div className={s.inputText__inner}>
           {IconComponent && (
             <div className={s.inputText__leftSlot}>

@@ -1,6 +1,6 @@
 import type { User } from '../model/user';
 
-import { api } from '@/shared/api';
+import { api, checkResponse } from '@/shared/api';
 import { UserDTOSchema } from '../model/user';
 
 const userApi = api.injectEndpoints({
@@ -9,13 +9,11 @@ const userApi = api.injectEndpoints({
       query: () => `/profile`,
       providesTags: [{ type: 'user', id: 'profile' }],
       transformResponse: (response: unknown) => {
-        const result = UserDTOSchema.safeParse(response);
-
-        if (!result.success) {
-          throw new Error(`Ошибка запроса пользователя: ${result.error}`);
-        }
-
-        return result.data;
+        return checkResponse(
+          response,
+          UserDTOSchema,
+          'Ошибка запроса пользователя',
+        );
       },
     }),
     logout: builder.mutation<void, void>({

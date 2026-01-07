@@ -2,7 +2,7 @@ import s from './AuthModal.module.scss';
 
 import { closeModal, switchAuthModal } from '@/features/modal';
 import { useAppDispatch } from '@/shared/lib';
-import { Button, Modal } from '@/shared/ui';
+import { Button, Modal, MODAL_TYPES } from '@/shared/ui';
 import type { ReactNode } from 'react';
 
 interface AuthModalProps {
@@ -27,7 +27,7 @@ export function AuthModal({
   return (
     <Modal
       onClose={() => dispatch(closeModal(modalName))}
-      name={modalName}
+      type={MODAL_TYPES.DEFAULT}
       className={s.authModal}
       skipBackdropAnimation={skipBackdropAnimation}
     >

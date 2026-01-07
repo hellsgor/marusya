@@ -7,9 +7,10 @@ import { Icon } from '@/shared/ui';
 
 type RatingProps = {
   rate: MovieModel['tmdbRating'];
+  isSmall?: boolean;
 };
 
-export function Rating({ rate }: RatingProps) {
+export function Rating({ rate, isSmall }: RatingProps) {
   const rounded = Math.round((rate + Number.EPSILON) * 10) / 10;
 
   const ratingModifier = (roundedRate: number) => {
@@ -20,7 +21,13 @@ export function Rating({ rate }: RatingProps) {
   };
 
   return (
-    <div className={clsx(s.rating, ratingModifier(rounded))}>
+    <div
+      className={clsx(
+        s.rating,
+        isSmall && s.rating_small,
+        ratingModifier(rounded),
+      )}
+    >
       <Icon.Star size={16} />
       <span>{rounded.toFixed(1).replace('.', ',')}</span>
     </div>

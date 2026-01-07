@@ -1,14 +1,11 @@
-import type { InputProps } from '@/shared/ui/inputs/input-text';
-import type { InputHTMLAttributes } from 'react';
+import type { BaseInputProps } from '../input-text';
 
 import { useState, forwardRef } from 'react';
 
 import { Icon } from '@/shared/ui/icon';
 import { InputText } from '@/shared/ui/inputs/input-text';
 
-interface InputPasswordProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>,
-    Pick<InputProps, 'error'> {}
+type InputPasswordProps = BaseInputProps;
 
 export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
   ({ error, ...rest }, ref) => {

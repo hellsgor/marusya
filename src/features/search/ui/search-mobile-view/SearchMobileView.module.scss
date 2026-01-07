@@ -1,0 +1,13 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+
+.searchMobileView {
+  width: 24px;
+  height: 24px;
+
+  &__button {
+    width: 24px;
+    height: 24px;
+    color: c.getColor(content, primary);
+  }
+}

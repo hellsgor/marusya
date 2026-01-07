@@ -1,0 +1,1 @@
+export { SearchMobileView } from './SearchMobileView';

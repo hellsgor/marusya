@@ -5,6 +5,10 @@
   flex: 1 auto;
   padding-top: 128px;
 
+  @include m.tablet-vertical {
+    padding-top: 80px;
+  }
+
   @include m.mobile {
     padding-top: 56px;
   }

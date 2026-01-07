@@ -1,0 +1,20 @@
+.inputWrapper {
+  position: relative;
+  width: 100%;
+
+  &__input {
+    input {
+      padding-right: 80px;
+      padding-block: 11px;
+    }
+  }
+
+  &__loader {
+    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    translate: 0 -50%;
+  }
+}

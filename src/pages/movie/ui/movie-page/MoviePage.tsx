@@ -27,7 +27,7 @@ export function MoviePage() {
   const finalIsError = !randomMovieFromCache && isError;
 
   return (
-    <Section indents={['0', !mq ? '120px' : '32px']}>
+    <Section indents={['0', !mq ? '120px' : '32px']} wrapperGap="40px">
       {finalIsFetching && <Loader size="big" fixed />}
       {finalIsError && (
         <PageError errorCode="e001" backdropText="Ooops!"></PageError>

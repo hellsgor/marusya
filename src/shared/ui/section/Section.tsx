@@ -5,11 +5,12 @@ import type { CSSProperties, ReactNode } from 'react';
 
 import { Container } from '@/shared/ui/container';
 
-export type SectionProps = {
+type SectionProps = {
   className?: string;
   children: ReactNode;
   indents?: string | [string, string];
   style?: CSSProperties;
+  wrapperGap?: string;
 };
 
 const paddings = (indents: SectionProps['indents']) => {
@@ -23,14 +24,28 @@ const paddings = (indents: SectionProps['indents']) => {
   };
 };
 
-export function Section({ className, children, indents, style }: SectionProps) {
+const gap = (gap: SectionProps['wrapperGap']) => {
+  if (!gap) return null;
+
+  return { rowGap: gap };
+};
+
+export function Section({
+  className,
+  children,
+  indents,
+  wrapperGap,
+  style,
+}: SectionProps) {
   return (
     <section
       className={clsx(s.section, className)}
       style={{ ...paddings(indents), ...style }}
     >
       <Container>
-        <div className={s.section__wrapper}>{children}</div>
+        <div className={s.section__wrapper} style={{ ...gap(wrapperGap) }}>
+          {children}
+        </div>
       </Container>
     </section>
   );

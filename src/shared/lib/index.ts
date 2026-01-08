@@ -6,6 +6,7 @@ export {
   useDebounce,
   useMergeRefs,
   useClickOutside,
+  useIsScrolled,
 } from './hooks';
 export {
   capitalizeFirstLetter,

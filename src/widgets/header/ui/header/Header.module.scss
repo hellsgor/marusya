@@ -1,4 +1,5 @@
 @use '@/shared/scss/media' as m;
+@use '@/shared/scss/transition' as t;
 
 .header {
   position: fixed;
@@ -8,6 +9,8 @@
   left: 0;
 
   backdrop-filter: blur(10px);
+
+  @include t.transition((top, opacity), $duration: t.$duration-300);
 
   &__wrapper {
     display: flex;
@@ -40,5 +43,10 @@
     @include m.mobile {
       column-gap: 20px;
     }
+  }
+
+  &_hidden {
+    top: -100%;
+    opacity: 0;
   }
 }

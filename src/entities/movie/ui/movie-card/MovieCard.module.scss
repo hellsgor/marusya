@@ -33,9 +33,16 @@
     top: -20px;
     right: -20px;
 
+    width: 40px;
+    height: 40px;
+
     opacity: 0;
 
     @include t.transition(opacity);
+
+    svg {
+      width: 16px;
+    }
   }
 
   &__filter {

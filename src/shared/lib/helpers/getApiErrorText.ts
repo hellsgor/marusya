@@ -4,30 +4,30 @@ import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 type ApiErrorOptions = {
   /**
-   * Обработка ошибки 400 Bad Request
-   * По умолчанию: ERRORS.e012 (Проверьте правильность введенных данных)
+   * Handle 400 Bad Request error
+   * Default: ERRORS.e012 (Please check your input data)
    */
   on400?: string;
   /**
-   * Обработка ошибки 409 Conflict
-   * По умолчанию: не обрабатывается
+   * Handle 409 Conflict error
+   * Default: not handled
    */
   on409?: string;
 };
 
 /**
- * Получает текст ошибки из ответа API или HTTP ошибки
- * @param error - ошибка из RTK Query mutation
- * @param data - данные ответа (может содержать error поле)
- * @param options - опции для специфичной обработки ошибок
- * @returns текст ошибки или undefined
+ * Gets error text from API response or HTTP error
+ * @param error - error from RTK Query mutation
+ * @param data - response data (may contain error field)
+ * @param options - options for specific error handling
+ * @returns error text or undefined
  */
 export function getApiErrorText(
   error: FetchBaseQueryError | SerializedError | undefined,
   data?: unknown,
   options?: ApiErrorOptions,
 ): string | undefined {
-  // Ошибка из ответа сервера (data.error)
+  // Error from server response (data.error)
   if (
     data &&
     typeof data === 'object' &&
@@ -38,34 +38,34 @@ export function getApiErrorText(
     return data.error;
   }
 
-  // Ошибка HTTP запроса
+  // HTTP request error
   if (error && 'status' in error) {
     const status = error.status;
 
     if (typeof status === 'number') {
-      // 409 Conflict - пользователь уже существует (для регистрации)
+      // 409 Conflict - user already exists (for registration)
       if (status === 409 && options?.on409) {
         return options.on409;
       }
 
-      // 400 Bad Request - ошибки валидации
+      // 400 Bad Request - validation errors
       if (status === 400) {
         return options?.on400 ?? ERRORS.e012;
       }
 
-      // 422 Unprocessable Entity - ошибки валидации
+      // 422 Unprocessable Entity - validation errors
       if (status === 422) {
         return ERRORS.e012;
       }
 
-      // 500+ Server Error - ошибки сервера
+      // 500+ Server Error - server errors
       if (status >= 500) {
         return ERRORS.e006;
       }
     }
   }
 
-  // Сетевые ошибки или другие ошибки
+  // Network errors or other errors
   if (error) {
     return ERRORS.e001;
   }

@@ -1,6 +1,7 @@
 @use '@/shared/scss/colors' as c;
 @use '@/shared/scss/hover' as h;
 @use '@/shared/scss/transition' as t;
+@use '@/shared/scss/media' as m;
 
 .inputSearch {
   width: 100%;
@@ -13,10 +14,18 @@
       -webkit-appearance: none;
       appearance: none;
     }
+
+    @include m.mobile {
+      padding-block: 15px;
+    }
   }
 
   &__clearButton {
     pointer-events: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     width: 24px;
     height: 24px;
@@ -28,6 +37,11 @@
 
     @include h.hover {
       color: c.getColor(accent, active);
+    }
+
+    svg {
+      width: 75%;
+      height: 75%;
     }
 
     &_visible {

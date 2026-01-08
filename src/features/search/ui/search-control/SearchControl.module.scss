@@ -11,11 +11,11 @@
 
     overflow-y: hidden;
 
-    max-width: 559px;
+    max-width: 561px;
     max-height: calc(100vh - 96px);
 
     & > * {
-      padding: 8px;
+      padding: 8px 10px 8px 6px;
 
       @include m.tablet-vertical {
         padding: 0;

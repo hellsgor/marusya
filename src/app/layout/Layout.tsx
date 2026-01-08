@@ -10,14 +10,16 @@ import { SignInUp } from '@/widgets/sign-in-up';
 export function Layout() {
   return (
     <>
+      <div className={s.layout}>
+        <Header />
+        <main className={s.main}>
+          <Suspense fallback={<Loader size="big" fixed />}>
+            <Outlet />
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
       <ScrollToTop />
-      <Header />
-      <main className={s.main}>
-        <Suspense fallback={<Loader size="big" fixed />}>
-          <Outlet />
-        </Suspense>
-      </main>
-      <Footer />
       <SignInUp />
     </>
   );

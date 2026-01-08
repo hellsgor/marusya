@@ -13,7 +13,7 @@ export function GenresPage() {
       className={s.genresPage}
     >
       <h1>Жанры фильмов</h1>
-      {isLoading && <Loader size="big" />}
+      {isLoading && <Loader size="big" fixed />}
       {isError && !data && (
         <PageError errorCode="e001" backdropText="Ooops!"></PageError>
       )}

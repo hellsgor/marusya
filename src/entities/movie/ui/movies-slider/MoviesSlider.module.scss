@@ -5,6 +5,7 @@ div.moviesSlider {
   overflow: visible;
 
   width: 100%;
+  max-width: calc(100vw - 40px);
 
   -webkit-overflow-scrolling: touch;
 

@@ -19,26 +19,12 @@ type useFavoritesControlType = {
   isError: boolean;
   error: Error | FetchBaseQueryError | SerializedError | null;
   isFavorite: boolean | undefined;
-  // addToFavorites: (movieId: MovieModel['id']) => void;
-  // deleteFromFavorites: (movieId: MovieModel['id']) => void;
   toggleFavoriteFunc: (() => void) | undefined;
 };
 
 export function useFavoritesControl({
   id,
 }: useFavoritesControlProps): useFavoritesControlType {
-  // const result: useFavoritesControlType = {
-  //   favorites: undefined,
-  //   isFetching: false,
-  //   isError: false,
-  //   error: null,
-  //   isFavorite: undefined,
-  //   // addToFavorites: () => {},
-  //   // deleteFromFavorites: () => {},
-  //   // handleFavoriteButtonClick: () => {},
-  //   // isAuthorized: false,
-  // };
-
   const { data: user, isError: isUserError } = useGetUserQuery();
   const isAuthorized = !isUserError && !!user;
 
@@ -67,20 +53,6 @@ export function useFavoritesControl({
 
   const isFavorite = favorites?.some((m) => m.id === id);
 
-  // result.favorites = favorites;
-  // result.isFetching = favoritesFetching || addFetching || deleteFetching;
-  // result.isError = isFavoritesError || isAddError || isDeleteError;
-  // result.error = resError;
-  // result.isFavorite = favorites?.some((m) => m.id === id);
-  // result.addToFavorites = (movieId: MovieModel['id']) => {
-  //   addToFavorites({ id: movieId });
-  // };
-  // result.deleteFromFavorites = (movieId: MovieModel['id']) => {
-  //   deleteFromFavorites({ id: movieId });
-  // };
-  // result.handleFavoriteButtonClick =
-
-  // return result;
   return {
     favorites,
     isFetching: favoritesFetching || addFetching || deleteFetching,

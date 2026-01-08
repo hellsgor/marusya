@@ -9,7 +9,7 @@ export const signUpApi = api.injectEndpoints({
   endpoints: (builder) => ({
     signUp: builder.mutation<SignUpResultType, SignUpFormDataType>({
       query: (body) => {
-        // Формируем данные для API без confirmPassword
+        // Prepare API data without confirmPassword field
         const apiRequestData = {
           email: body.email,
           name: body.name,
@@ -17,7 +17,7 @@ export const signUpApi = api.injectEndpoints({
           password: body.password,
         };
 
-        // Валидируем данные для API
+        // Validate API request data
         const apiValidationResult =
           SignUpApiRequestSchema.safeParse(apiRequestData);
 

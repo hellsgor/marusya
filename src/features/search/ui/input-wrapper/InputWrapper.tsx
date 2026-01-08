@@ -13,10 +13,14 @@ type InputWrapperProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onClear: () => void;
   value: string;
+  autoFocus?: boolean;
 };
 
 export const InputWrapper = forwardRef<HTMLInputElement, InputWrapperProps>(
-  function InputWrapper({ error, isSearching, onChange, onClear, value }, ref) {
+  function InputWrapper(
+    { error, isSearching, onChange, onClear, value, autoFocus },
+    ref,
+  ) {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const mergedRefs = useMergeRefs(ref, inputRef);
@@ -28,7 +32,9 @@ export const InputWrapper = forwardRef<HTMLInputElement, InputWrapperProps>(
           ref={mergedRefs}
           name="search"
           autoComplete="off"
+          autoFocus={autoFocus}
           value={value}
+          inputMode="search"
           onClear={() => {
             onClear();
             if (inputRef?.current) {

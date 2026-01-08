@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function useIsScrolled(hideValue: number, intermediateValue: number) {
   const prevScroll = useRef(0);
@@ -6,7 +6,7 @@ export function useIsScrolled(hideValue: number, intermediateValue: number) {
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setIsScrolled(window.scrollY >= hideValue);
     prevScroll.current = window.scrollY;
 
@@ -29,7 +29,9 @@ export function useIsScrolled(hideValue: number, intermediateValue: number) {
           window.scrollY >= hideValue &&
           negativeScrollAcc.current >= intermediateValue;
 
-        setIsScrolled(shouldBeHidden);
+        setIsScrolled((prev) =>
+          prev !== shouldBeHidden ? shouldBeHidden : prev,
+        );
         isScheduled = false;
       });
     };

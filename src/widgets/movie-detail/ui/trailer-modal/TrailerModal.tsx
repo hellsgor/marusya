@@ -1,10 +1,11 @@
 import type { MovieModel } from '@/entities/movie';
 
-import { useRef, useState } from 'react';
-import ReactPlayer from 'react-player';
+import { useRef, useState, Suspense, lazy } from 'react';
 
 import { useAppSelector } from '@/shared/lib';
 import { Modal, MODAL_TYPES } from '@/shared/ui';
+
+const ReactPlayer = lazy(() => import('react-player'));
 
 type TrailerModalProps = {
   onClose: () => void;
@@ -27,23 +28,25 @@ export function TrailerModal({ onClose, movie }: TrailerModalProps) {
 
   return (
     <Modal type={MODAL_TYPES.TRAILER} onClose={handleOnClose}>
-      <ReactPlayer
-        ref={playerRef}
-        playing={isVisible && isPlayerReady}
-        src={movie.trailerUrl ?? undefined}
-        width={'100%'}
-        height={'100%'}
-        controls
-        onReady={() => setIsPlayerReady(true)}
-        config={{
-          youtube: {
-            rel: 0,
-            iv_load_policy: 3,
-            fs: 0,
-            enablejsapi: 1,
-          },
-        }}
-      />
+      <Suspense fallback={<div>Загрузка плеера...</div>}>
+        <ReactPlayer
+          ref={playerRef}
+          playing={isVisible && isPlayerReady}
+          src={movie.trailerUrl ?? undefined}
+          width={'100%'}
+          height={'100%'}
+          controls
+          onReady={() => setIsPlayerReady(true)}
+          config={{
+            youtube: {
+              rel: 0,
+              iv_load_policy: 3,
+              fs: 0,
+              enablejsapi: 1,
+            },
+          }}
+        />
+      </Suspense>
     </Modal>
   );
 }

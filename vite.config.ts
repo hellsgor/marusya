@@ -46,15 +46,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Выделяем react-player и его зависимости (dash, hls) в отдельный чанк
-          if (
-            id.includes('react-player') ||
-            id.includes('dash') ||
-            id.includes('hls')
-          ) {
-            return 'player-vendor';
-          }
-
           // React core - отдельно для лучшего кэширования
           if (
             id.includes('node_modules/react/') ||
@@ -87,6 +78,9 @@ export default defineConfig({
           if (id.includes('react-hook-form') || id.includes('zod')) {
             return 'forms-vendor';
           }
+
+          // react-player НЕ группируем отдельно - пусть Vite решает сам
+          // Это избежит циклических зависимостей
 
           // Остальные node_modules библиотеки
           if (id.includes('node_modules')) {

@@ -7,4 +7,3 @@ function App() {
 }
 
 export default App;
-// TODO: check with pixel perfect all app routes

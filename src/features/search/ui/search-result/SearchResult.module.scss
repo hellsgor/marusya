@@ -6,9 +6,9 @@
 .searchResult {
   overflow: hidden;
   display: flex;
-  gap: 16px;
+  gap: 17px;
 
-  padding: 20px 8px;
+  padding: 19px 8px;
   border: 1px solid transparent;
   border-radius: 6px;
   @include t.transition(border-color, $duration: t.$duration-100);

@@ -37,7 +37,8 @@ export const movieApi = api.injectEndpoints({
           response,
           MoviesSchema,
           `Ошибка валидации фильмов жанра ${genre}`,
-          (data) => (sortFunc && page < 2 ? sortFunc(data) : data),
+          (data) =>
+            sortFunc !== undefined && page < 2 ? sortFunc(data) : data,
         );
       },
     }),

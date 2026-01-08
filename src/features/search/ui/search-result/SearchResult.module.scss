@@ -18,6 +18,10 @@
     padding: 0;
   }
 
+  @include m.mobile {
+    gap: 16px;
+  }
+
   &__wrapper {
     display: flex;
     flex: 1;

@@ -7,6 +7,7 @@ export {
   useMergeRefs,
   useClickOutside,
   useIsScrolled,
+  useBodyScrollLock,
 } from './hooks';
 export {
   capitalizeFirstLetter,

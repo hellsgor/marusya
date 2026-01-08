@@ -15,6 +15,8 @@
 
   opacity: 0;
 
+  -webkit-overflow-scrolling: touch;
+
   @include t.transition(opacity, $duration: t.$duration-200);
 
   &__backdrop {
@@ -25,6 +27,7 @@
   }
 
   &__inner {
+    overscroll-behavior: contain;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -149,8 +152,4 @@
       transition: none;
     }
   }
-}
-
-body:has(.modal_opened) {
-  overflow-y: hidden;
 }

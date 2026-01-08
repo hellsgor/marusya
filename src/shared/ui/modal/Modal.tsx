@@ -5,10 +5,11 @@ import { MODAL_TYPES, type ModalProps } from './Modal.types';
 import type { MouseEvent } from 'react';
 
 import { createPortal } from 'react-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { ButtonClosed } from '@/shared/ui/button-closed';
 import { Logo } from '@/shared/ui/logo';
+import { useBodyScrollLock } from '@/shared/lib';
 
 export function Modal({
   children,
@@ -20,6 +21,9 @@ export function Modal({
   const modalRef = useRef<HTMLDivElement | null>(null);
   const modalBodyRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [isOpened, setIsOpened] = useState(false);
+
+  useBodyScrollLock(isOpened);
 
   useEffect(() => {
     const modalElement = modalRef.current;
@@ -30,9 +34,11 @@ export function Modal({
       modalElement.style.pointerEvents = 'auto';
       modalElement.classList.add(s.modal_opened);
       modalElement.classList.add(s.modal_noBackdropAnimation);
+      setIsOpened(true);
     } else {
       modalElement.classList.add(s.modal_opened);
       modalElement.classList.remove(s.modal_noBackdropAnimation);
+      setIsOpened(true);
     }
   }, [skipBackdropAnimation]);
 
@@ -48,6 +54,7 @@ export function Modal({
     }
 
     if (skipBackdropAnimation) {
+      setIsOpened(false);
       onClose();
       return;
     }
@@ -57,6 +64,7 @@ export function Modal({
         'transitionend',
         handleTransitionEnd,
       );
+      setIsOpened(false);
       onClose();
     };
 
@@ -71,6 +79,7 @@ export function Modal({
       onClick={(e) => {
         handleCloseClick(e);
       }}
+      data-scroll-lock-ignore
       {...{ 'data-modal-type': type }}
     >
       <div className={s.modal__backdrop} />

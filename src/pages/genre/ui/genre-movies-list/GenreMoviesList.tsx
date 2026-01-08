@@ -35,7 +35,7 @@ export function GenreMoviesList() {
 
   return (
     <div className={s.genreMovieList}>
-      {isLoading && <Loader size="big" />}
+      {isLoading && <Loader size="big" fixed />}
 
       {isError && !data && (
         <PageError errorCode="e002" backdropText="Ooops!"></PageError>

@@ -1,7 +1,13 @@
 import s from './SearchControl.module.scss';
 import clsx from 'clsx';
 
-import { forwardRef, useEffect, useState, useRef } from 'react';
+import {
+  forwardRef,
+  useEffect,
+  useState,
+  useRef,
+  useImperativeHandle,
+} from 'react';
 import { useLocation } from 'react-router';
 
 import { ERRORS } from '@/shared/config';
@@ -25,9 +31,15 @@ type SearchControlProps = {
   autoFocus?: boolean;
 };
 
-export const SearchControl = forwardRef<HTMLInputElement, SearchControlProps>(
+export type SearchControlRef = {
+  blur: () => void;
+  close: () => void;
+};
+
+export const SearchControl = forwardRef<SearchControlRef, SearchControlProps>(
   function SearchControl({ autoFocus }, ref) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const isVerticalTablet = useMediaQuery('lg');
     const { pathname } = useLocation();
 
@@ -47,6 +59,15 @@ export const SearchControl = forwardRef<HTMLInputElement, SearchControlProps>(
       searchValue: value,
     });
 
+    useImperativeHandle(ref, () => ({
+      blur: () => {
+        inputRef.current?.blur();
+      },
+      close: () => {
+        handleClose();
+      },
+    }));
+
     useEffect(() => {
       setValue('');
     }, [pathname]);
@@ -64,7 +85,7 @@ export const SearchControl = forwardRef<HTMLInputElement, SearchControlProps>(
           onClear={() => setValue('')}
           value={value}
           autoFocus={autoFocus}
-          ref={ref}
+          ref={inputRef}
         />
 
         <Dropdown

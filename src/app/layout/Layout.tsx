@@ -9,7 +9,7 @@ import { SignInUp } from '@/widgets/sign-in-up';
 
 export function Layout() {
   return (
-    <>
+    <div className={s.layout}>
       <ScrollToTop />
       <Header />
       <main className={s.main}>
@@ -19,6 +19,6 @@ export function Layout() {
       </main>
       <Footer />
       <SignInUp />
-    </>
+    </div>
   );
 }

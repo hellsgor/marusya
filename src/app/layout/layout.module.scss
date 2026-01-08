@@ -1,8 +1,13 @@
 @use '@/shared/scss/media' as m;
 
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
 .main {
   overflow-x: clip;
-  flex: 1 auto;
+  flex: 1 1 100vh;
   padding-top: 128px;
 
   @include m.tablet-vertical {

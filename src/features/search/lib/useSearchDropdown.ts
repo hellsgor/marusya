@@ -16,19 +16,19 @@ export const useSearchDropdown = ({
   const [isManuallyClosedByUser, setIsManuallyClosedByUser] = useState(false);
   const { pathname } = useLocation();
 
-  // Открываем dropdown при наличии результатов
+  // Open dropdown when results are available
   useEffect(() => {
     if (!isManuallyClosedByUser) {
       setIsExpanded(isCorrectLength && hasResults);
     }
   }, [isCorrectLength, hasResults, isManuallyClosedByUser]);
 
-  // Сбрасываем флаг ручного закрытия при изменении значения
+  // Reset manual close flag when search value changes
   useEffect(() => {
     setIsManuallyClosedByUser(false);
   }, [searchValue]);
 
-  // Сбрасываем всё при смене роута
+  // Reset everything on route change
   useEffect(() => {
     setIsExpanded(false);
     setIsManuallyClosedByUser(false);

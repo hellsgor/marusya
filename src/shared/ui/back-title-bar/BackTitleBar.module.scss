@@ -18,6 +18,10 @@
 
     @include m.mobile {
       width: 32px;
+
+      svg {
+        width: 12px;
+      }
     }
   }
 }

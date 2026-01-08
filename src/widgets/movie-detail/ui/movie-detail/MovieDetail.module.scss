@@ -31,6 +31,10 @@
       flex-basis: max(234px, calc((100vw / 22) * 9));
       width: 100%;
     }
+
+    @include m.mobile {
+      flex-basis: 260px;
+    }
   }
 
   @include m.tablet-vertical {

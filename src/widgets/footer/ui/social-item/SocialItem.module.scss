@@ -1,0 +1,36 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+@use '@/shared/scss/hover' as h;
+@use '@/shared/scss/media' as m;
+
+.socialItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  aspect-ratio: 1/1;
+  width: 36px;
+  border: 1px solid c.getColor(content, thirdly);
+  border-radius: 8px;
+
+  color: c.getColor(content, thirdly);
+
+  background-color: transparent;
+  @include t.transition(
+    $props: (
+      color,
+      border-color,
+    ),
+    $duration: t.$duration-100
+  );
+
+  @include h.hover {
+    border-color: c.getColor(accent, active);
+    color: c.getColor(accent, active);
+  }
+
+  @include m.mobile {
+    width: 24px;
+    height: 24px;
+  }
+}

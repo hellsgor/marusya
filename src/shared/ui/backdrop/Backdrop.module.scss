@@ -1,0 +1,17 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/transition' as t;
+
+.backdrop {
+  pointer-events: none;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  background-color: c.getColor(bg, backdrop, default);
+  @include t.transition(opacity, $duration: t.$duration-300);
+
+  &_visible {
+    opacity: 1;
+  }
+}

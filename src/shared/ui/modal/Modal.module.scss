@@ -1,0 +1,155 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/transition' as t;
+
+.modal {
+  pointer-events: none;
+
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+
+  overflow-y: auto;
+
+  color: c.getColor(content, 'black');
+
+  opacity: 0;
+
+  -webkit-overflow-scrolling: touch;
+
+  @include t.transition(opacity, $duration: t.$duration-200);
+
+  &__backdrop {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    background-color: c.getColor(bg, backdrop, trailer, default);
+  }
+
+  &__inner {
+    overscroll-behavior: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+    padding-block: 40px;
+
+    @include m.mobile {
+      padding: 40px 20px;
+    }
+  }
+
+  &__body {
+    position: relative;
+
+    width: 100%;
+    max-width: 420px;
+    height: fit-content;
+    padding: 64px 40px;
+    border-radius: 24px;
+
+    background-color: c.getColor(bg, 'white');
+
+    @include m.mobile {
+      padding: 64px 20px 32px;
+    }
+  }
+
+  &__bodyInner {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    align-items: center;
+
+    @include m.mobile {
+      row-gap: 32px;
+    }
+  }
+
+  &__logo {
+    height: 35px;
+
+    @include m.mobile {
+      height: 30px;
+    }
+  }
+
+  &__closeButton {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: calc(100% + 24px);
+
+    @include m.mobile {
+      top: 8px;
+      right: 8px;
+      left: unset;
+    }
+  }
+
+  &[data-modal-type='TRAILER'] {
+    background-color: c.getColor(bg, backdrop, tailer, desktop);
+
+    @include m.mobile {
+      background-color: c.getColor(bg, backdrop, tailer, mobile);
+    }
+
+    .modal__inner {
+      @include m.mobile {
+        padding: 0;
+      }
+    }
+
+    .modal__body {
+      aspect-ratio: 960/540;
+      width: calc((960 / 1440) * 100vw);
+      max-width: 960px;
+      padding: 0;
+      border-radius: 0;
+
+      background-color: c.getColor(bg, secondary, static);
+
+      @include m.mobile {
+        position: static;
+        width: 100%;
+      }
+    }
+
+    .modal__bodyInner {
+      display: block;
+      height: 100%;
+    }
+  }
+
+  &[data-modal-type='EMPTY'] {
+    .modal__inner {
+      justify-content: flex-start;
+      padding: 16px 20px;
+    }
+
+    .modal__body {
+      max-width: 100%;
+      padding: 0;
+    }
+
+    .modal__closeButton {
+      display: none;
+    }
+  }
+
+  &_opened {
+    pointer-events: auto;
+    opacity: 1;
+    @include t.transition(opacity, $duration: t.$duration-500);
+  }
+
+  &_noBackdropAnimation {
+    transition: none !important;
+
+    .modal__backdrop {
+      transition: none;
+    }
+  }
+}

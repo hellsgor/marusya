@@ -1,0 +1,1 @@
+export { FavoriteMovieCard } from './FavoriteMovieCard';

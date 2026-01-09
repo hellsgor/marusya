@@ -1,0 +1,45 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/media' as m;
+
+body {
+  font-family: 'Play', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.333;
+  color: c.getColor(content, primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 1.17;
+
+  @include m.mobile {
+    font-size: 24px;
+    line-height: 1.333;
+  }
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 1.2;
+
+  @include m.mobile {
+    font-size: 24px;
+    line-height: 1.333;
+  }
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 1.333;
+}

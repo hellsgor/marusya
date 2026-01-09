@@ -1,0 +1,52 @@
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/transition' as t;
+
+.header {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  backdrop-filter: blur(10px);
+
+  @include t.transition((top, opacity), $duration: t.$duration-300);
+
+  &__wrapper {
+    display: flex;
+    column-gap: 80px;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 24px 0;
+
+    @include m.tablet-vertical {
+      column-gap: 40px;
+    }
+
+    @include m.mobile {
+      column-gap: 20px;
+      padding: 20px 0 12px;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex: 1;
+    column-gap: 40px;
+    align-items: center;
+
+    @include m.tablet-vertical {
+      justify-content: flex-end;
+    }
+
+    @include m.mobile {
+      column-gap: 20px;
+    }
+  }
+
+  &_hidden {
+    top: -100%;
+    opacity: 0;
+  }
+}

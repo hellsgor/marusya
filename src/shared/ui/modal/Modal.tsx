@@ -1,0 +1,98 @@
+import s from './Modal.module.scss';
+import clsx from 'clsx';
+
+import { MODAL_TYPES, type ModalProps } from './Modal.types';
+import type { MouseEvent } from 'react';
+
+import { createPortal } from 'react-dom';
+import { useEffect, useRef, useState } from 'react';
+
+import { ButtonClosed } from '@/shared/ui/button-closed';
+import { Logo } from '@/shared/ui/logo';
+import { useBodyScrollLock } from '@/shared/lib';
+
+export function Modal({
+  children,
+  onClose,
+  type,
+  className,
+  skipBackdropAnimation = false,
+}: ModalProps) {
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const modalBodyRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [isOpened, setIsOpened] = useState(false);
+
+  useBodyScrollLock(isOpened);
+
+  useEffect(() => {
+    const modalElement = modalRef.current;
+    if (!modalElement) return;
+
+    if (skipBackdropAnimation) {
+      modalElement.style.opacity = '1';
+      modalElement.style.pointerEvents = 'auto';
+      modalElement.classList.add(s.modal_opened);
+      modalElement.classList.add(s.modal_noBackdropAnimation);
+      setIsOpened(true);
+    } else {
+      modalElement.classList.add(s.modal_opened);
+      modalElement.classList.remove(s.modal_noBackdropAnimation);
+      setIsOpened(true);
+    }
+  }, [skipBackdropAnimation]);
+
+  const handleCloseClick = (e: MouseEvent) => {
+    if (!modalBodyRef) return;
+
+    if (
+      e.target === modalBodyRef.current ||
+      (modalBodyRef.current?.contains(e.target as Node) &&
+        !closeButtonRef.current?.contains(e.target as Node))
+    ) {
+      return;
+    }
+
+    if (skipBackdropAnimation) {
+      setIsOpened(false);
+      onClose();
+      return;
+    }
+
+    const handleTransitionEnd = () => {
+      modalRef.current?.removeEventListener(
+        'transitionend',
+        handleTransitionEnd,
+      );
+      setIsOpened(false);
+      onClose();
+    };
+
+    modalRef.current?.classList.remove(s.modal_opened);
+    modalRef.current?.addEventListener('transitionend', handleTransitionEnd);
+  };
+
+  return createPortal(
+    <div
+      ref={modalRef}
+      className={clsx(s.modal, className)}
+      onClick={(e) => {
+        handleCloseClick(e);
+      }}
+      data-scroll-lock-ignore
+      {...{ 'data-modal-type': type }}
+    >
+      <div className={s.modal__backdrop} />
+      <div className={s.modal__inner}>
+        <div className={s.modal__body} ref={modalBodyRef}>
+          <ButtonClosed className={s.modal__closeButton} ref={closeButtonRef} />
+          <div className={s.modal__bodyInner}>
+            {type === MODAL_TYPES.DEFAULT && <Logo className={s.modal__logo} />}
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.getElementById('modals') as HTMLElement,
+  );
+}

@@ -1,0 +1,68 @@
+@use '@/shared/scss/colors' as c;
+@use '@/shared/scss/hover' as h;
+@use '@/shared/scss/transition' as t;
+
+.movieCard {
+  position: relative;
+  aspect-ratio: 335/502;
+
+  &__rating {
+    pointer-events: none;
+
+    position: absolute;
+    z-index: 10;
+    top: -12px;
+    left: -12px;
+    transform: translate3d(0, 0, 0);
+
+    padding: 8px 24px;
+    border-radius: 50px;
+
+    font-size: 24px;
+    font-weight: 700;
+    color: c.getColor(content, brand);
+
+    background-color: c.getColor(bg, 'white');
+  }
+
+  &__deleteButton {
+    pointer-events: none;
+
+    position: absolute;
+    z-index: 5;
+    top: -20px;
+    right: -20px;
+
+    width: 40px;
+    height: 40px;
+
+    opacity: 0;
+
+    @include t.transition(opacity);
+
+    svg {
+      width: 16px;
+    }
+  }
+
+  &__filter {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background-color: c.getColor(bg, backdrop, default);
+  }
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+
+  @include h.hover {
+    .movieCard__deleteButton {
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,2 @@
+export const HIDE_HEADER_SCROLL_VALUE = 200;
+export const SHOW_HEADER_SCROLL_BY = -30;

@@ -1,0 +1,43 @@
+@use '@/shared/scss/media' as m;
+
+.movieDetail {
+  $columnGap: 32px;
+
+  display: flex;
+  column-gap: $columnGap;
+  justify-content: space-between;
+
+  &__wrapper {
+    display: flex;
+    flex: 0 0 568px;
+    flex-direction: column;
+    row-gap: 60px;
+
+    padding-top: 74px;
+
+    @include m.tablet-vertical {
+      flex: unset;
+      row-gap: 32px;
+      padding-top: 24px;
+    }
+  }
+
+  &__poster {
+    flex: 0 1 auto;
+    height: 552px;
+    border-radius: 16px;
+
+    @include m.tablet-vertical {
+      flex-basis: max(234px, calc((100vw / 22) * 9));
+      width: 100%;
+    }
+
+    @include m.mobile {
+      flex-basis: 260px;
+    }
+  }
+
+  @include m.tablet-vertical {
+    flex-direction: column-reverse;
+  }
+}

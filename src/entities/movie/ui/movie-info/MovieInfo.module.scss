@@ -1,0 +1,74 @@
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/colors' as c;
+
+.movieInfo {
+  $propertyIndent: 8px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 64px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+
+    @include m.mobile {
+      row-gap: 12px;
+    }
+  }
+
+  &__property {
+    display: flex;
+    column-gap: $propertyIndent;
+
+    @include m.mobile {
+      flex-direction: column;
+      row-gap: 4px;
+    }
+  }
+
+  &__key {
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: $propertyIndent;
+    align-items: flex-end;
+
+    width: 320px;
+
+    white-space: nowrap;
+
+    &::after {
+      content: '';
+
+      flex: 1;
+
+      height: 1rem;
+
+      background: repeating-linear-gradient(
+        to right,
+        c.getColor(content, disabled) 0,
+        c.getColor(content, disabled) 2px,
+        transparent 2px,
+        transparent 6px
+      );
+      background-repeat: repeat-x;
+      background-position: bottom 0.25em left 0;
+      background-size: 6px 1px;
+    }
+
+    @include m.mobile {
+      font-size: 14px;
+      line-height: 1.4286;
+      color: c.getColor(content, disabled);
+
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  @include m.tablet-vertical {
+    row-gap: 40px;
+  }
+}

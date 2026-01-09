@@ -1,0 +1,13 @@
+@use '@/shared/scss/media' as m;
+@use '@/shared/scss/colors' as c;
+
+.movieDescription {
+  p {
+    font-size: 24px;
+    color: c.getColor(content, secondary);
+
+    @include m.mobile {
+      font-size: 18px;
+    }
+  }
+}

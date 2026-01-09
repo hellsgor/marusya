@@ -1,0 +1,9 @@
+@use '@/shared/scss/media' as m;
+
+.search {
+  width: 100%;
+
+  @include m.tablet-vertical {
+    width: fit-content;
+  }
+}

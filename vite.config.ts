@@ -46,7 +46,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // React core - отдельно для лучшего кэширования
           if (
             id.includes('node_modules/react/') ||
             id.includes('node_modules/react/index')
@@ -54,35 +53,26 @@ export default defineConfig({
             return 'react-core';
           }
 
-          // React DOM - отдельно
           if (id.includes('react-dom')) {
             return 'react-dom';
           }
 
-          // React Router
           if (id.includes('react-router')) {
             return 'react-router';
           }
 
-          // Redux
           if (id.includes('@reduxjs/toolkit') || id.includes('react-redux')) {
             return 'redux-vendor';
           }
 
-          // UI библиотеки
           if (id.includes('swiper')) {
             return 'ui-vendor';
           }
 
-          // Формы и валидация
           if (id.includes('react-hook-form') || id.includes('zod')) {
             return 'forms-vendor';
           }
 
-          // react-player НЕ группируем отдельно - пусть Vite решает сам
-          // Это избежит циклических зависимостей
-
-          // Остальные node_modules библиотеки
           if (id.includes('node_modules')) {
             return 'vendor';
           }

@@ -1,4 +1,5 @@
-import s from './GenrePage.module.scss';
+import s from './GenresPage.module.scss';
+
 import { Loader, PageError, Section } from '@/shared/ui';
 import { GenreCard, useGetGenresQuery } from '@/entities/genre';
 import { useMediaQuery } from '@/shared/lib';

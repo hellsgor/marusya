@@ -4,7 +4,8 @@ import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  base: mode === 'development' ? '/' : process.env.VITE_BASE_PATH,
   server: {
     host: true,
     proxy: {
@@ -81,4 +82,4 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 1000,
   },
-});
+}));

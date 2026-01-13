@@ -23,32 +23,37 @@ const NoMatchPage = lazy(() =>
   import('@/pages/no-match').then((m) => ({ default: m.NoMatchPage })),
 );
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      Component: Layout,
+      children: [
+        { index: true, Component: MainPage },
+        {
+          path: '/genres',
+          children: [
+            { index: true, Component: GenresPage },
+            { path: ':genre', Component: GenrePage },
+          ],
+        },
+        {
+          path: '/movies/:movieSlug',
+          Component: MoviePage,
+        },
+        {
+          path: '/profile',
+          element: (
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          ),
+        },
+        { path: '*', Component: NoMatchPage },
+      ],
+    },
+  ],
   {
-    path: '/',
-    Component: Layout,
-    children: [
-      { index: true, Component: MainPage },
-      {
-        path: '/genres',
-        children: [
-          { index: true, Component: GenresPage },
-          { path: ':genre', Component: GenrePage },
-        ],
-      },
-      {
-        path: '/movies/:movieSlug',
-        Component: MoviePage,
-      },
-      {
-        path: '/profile',
-        element: (
-          <PrivateRoute>
-            <ProfilePage />
-          </PrivateRoute>
-        ),
-      },
-      { path: '*', Component: NoMatchPage },
-    ],
+    basename: import.meta.env.VITE_BASE_PATH || '/',
   },
-]);
+);

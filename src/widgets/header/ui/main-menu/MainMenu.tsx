@@ -1,4 +1,4 @@
-import s from './mainMenu.module.scss';
+import s from './MainMenu.module.scss';
 import { clsx } from 'clsx';
 
 import { useMediaQuery } from '@/shared/lib';

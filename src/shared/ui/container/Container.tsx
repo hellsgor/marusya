@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import s from './container.module.scss';
+import s from './Container.module.scss';
 
 import type { ReactNode } from 'react';
 

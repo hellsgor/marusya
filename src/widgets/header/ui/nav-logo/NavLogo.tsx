@@ -1,4 +1,4 @@
-import s from './navLogo.module.scss';
+import s from './NavLogo.module.scss';
 
 import { Logo } from '@/shared/ui';
 import { Link } from 'react-router';

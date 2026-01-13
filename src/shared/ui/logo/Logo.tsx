@@ -19,7 +19,10 @@ export function Logo({ light, headerUsage, className }: LogoProps) {
         className,
       )}
     >
-      <img src="/images/marusya-image.png" alt="Marusya logo image" />
+      <img
+        src={`${import.meta.env.BASE_URL}images/marusya-image.png`}
+        alt="Marusya logo image"
+      />
       <Icon.MarusyaText className={s.logo__text} />
     </div>
   );

@@ -8,6 +8,7 @@ export {
   useClickOutside,
   useIsScrolled,
   useBodyScrollLock,
+  useDocumentTitle,
 } from './hooks';
 export {
   capitalizeFirstLetter,

@@ -1,5 +1,5 @@
 import { movieApi, MovieInfo, useGetByIdQuery } from '@/entities/movie';
-import { useAppSelector, useMediaQuery } from '@/shared/lib';
+import { useAppSelector, useDocumentTitle, useMediaQuery } from '@/shared/lib';
 import { Loader, PageError, Section } from '@/shared/ui';
 import { useMovieSlug } from '../../lib/hooks/useMovieSlug';
 import { MovieDetail } from '@/widgets/movie-detail';
@@ -25,6 +25,8 @@ export function MoviePage() {
   const finalMovie = randomMovieFromCache || movie;
   const finalIsFetching = !randomMovieFromCache && isFetching;
   const finalIsError = !randomMovieFromCache && isError;
+
+  useDocumentTitle(finalMovie?.title);
 
   return (
     <Section

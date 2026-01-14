@@ -6,8 +6,11 @@ import {
   useLogoutMutation,
   UserDataItem,
 } from '@/entities/user';
+import { useDocumentTitle } from '@/shared/lib';
 
 export function UserSettings() {
+  useDocumentTitle('Настройки');
+
   const { data: user, isFetching, isError } = useGetUserQuery();
   const [logout] = useLogoutMutation();
 

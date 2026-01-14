@@ -1,3 +1,7 @@
+![cover](.github/assets/cover.png)
+
+![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?logo=typescript&logoColor=white) ![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-2.9.0-764ABC?logo=redux&logoColor=white) ![React Router](https://img.shields.io/badge/React%20Router-7.6.1-CA4245?logo=react-router&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-6.3.5-646CFF?logo=vite&logoColor=white) ![SCSS](https://img.shields.io/badge/SCSS-1.89.0-CC6699?logo=sass&logoColor=white) ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-7.68.0-EC5990?logo=react-hook-form&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3.25.30-3E63DD?logo=zod&logoColor=white) ![Swiper](https://img.shields.io/badge/Swiper-11.2.8-6332F6?logo=swiper&logoColor=white) ![React Player](https://img.shields.io/badge/React%20Player-3.4.0-FF0000?logo=youtube&logoColor=white)
+
 # Маруся — Платформа для поиска фильмов
 
 Русская версия | [English](./README.md)
@@ -5,10 +9,6 @@
 > **Учебный проект** — бета-версия стримингового сервиса от ВК Маруси
 
 Веб-приложение для поиска фильмов, просмотра информации о них и управления списком избранного. Пользователи могут искать фильмы по названию, просматривать топ-10 по рейтингу IMDb, получать случайные рекомендации и сохранять понравившиеся фильмы в избранное.
-
-## 🛠️ Технологический стек
-
-![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?logo=typescript&logoColor=white) ![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-2.9.0-764ABC?logo=redux&logoColor=white) ![React Router](https://img.shields.io/badge/React%20Router-7.6.1-CA4245?logo=react-router&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-6.3.5-646CFF?logo=vite&logoColor=white) ![SCSS](https://img.shields.io/badge/SCSS-1.89.0-CC6699?logo=sass&logoColor=white) ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-7.68.0-EC5990?logo=react-hook-form&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3.25.30-3E63DD?logo=zod&logoColor=white) ![Swiper](https://img.shields.io/badge/Swiper-11.2.8-6332F6?logo=swiper&logoColor=white) ![React Player](https://img.shields.io/badge/React%20Player-3.4.0-FF0000?logo=youtube&logoColor=white)
 
 ## 🎯 Основные возможности
 

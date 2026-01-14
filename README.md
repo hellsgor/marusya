@@ -128,6 +128,10 @@ The project follows clean code principles and style guide:
 
 The application design follows Figma mockups provided by project partners. The interface is responsive and optimized for various screen sizes.
 
+## 📋 Technical Specification
+
+For detailed technical requirements and specifications, see the [Technical Specification](./TECHNICAL_SPEC.md).
+
 ## 📄 License
 
 Educational project developed as part of the Skillbox course.

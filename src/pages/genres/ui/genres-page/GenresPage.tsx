@@ -2,11 +2,13 @@ import s from './GenresPage.module.scss';
 
 import { Loader, PageError, Section } from '@/shared/ui';
 import { GenreCard, useGetGenresQuery } from '@/entities/genre';
-import { useMediaQuery } from '@/shared/lib';
+import { useDocumentTitle, useMediaQuery } from '@/shared/lib';
 
 export function GenresPage() {
   const mq = useMediaQuery('md');
   const { data, isLoading, isError } = useGetGenresQuery();
+
+  useDocumentTitle('Жанры');
 
   return (
     <Section

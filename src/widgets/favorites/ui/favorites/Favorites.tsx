@@ -2,12 +2,14 @@ import s from './Favorites.module.scss';
 
 import { MoviesList, MoviesSlider } from '@/entities/movie';
 import { useGetFavoritesQuery } from '@/features/favorites';
-import { useMediaQuery } from '@/shared/lib';
+import { useDocumentTitle, useMediaQuery } from '@/shared/lib';
 import { ROUTES } from '@/shared/routes';
 import { Button, ErrorText, Loader } from '@/shared/ui';
 import { FavoriteMovieCard } from '../favorite-movie-card';
 
 export function Favorites() {
+  useDocumentTitle('Избранное');
+
   const isMobile = useMediaQuery('md');
   const { data, isLoading, isError } = useGetFavoritesQuery();
 

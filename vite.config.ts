@@ -4,8 +4,7 @@ import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
 
-export default defineConfig(({ mode }) => ({
-  base: mode === 'development' ? '/' : process.env.VITE_BASE_PATH,
+export default defineConfig(() => ({
   server: {
     host: true,
     proxy: {
